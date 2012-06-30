@@ -1,0 +1,5 @@
+D:\Visual Studio 2010\ShippingLocal\DSR.Common\bin\Debug\DSR.Common.dll
+D:\Visual Studio 2010\ShippingLocal\DSR.Common\bin\Debug\DSR.Common.pdb
+D:\Visual Studio 2010\ShippingLocal\DSR.Common\obj\Debug\ResolveAssemblyReference.cache
+D:\Visual Studio 2010\ShippingLocal\DSR.Common\obj\Debug\DSR.Common.dll
+D:\Visual Studio 2010\ShippingLocal\DSR.Common\obj\Debug\DSR.Common.pdb

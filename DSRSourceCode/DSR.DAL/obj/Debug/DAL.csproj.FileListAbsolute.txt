@@ -1,0 +1,5 @@
+D:\Visual Studio 2010\ShippingLocal\DAL\bin\Debug\DAL.dll
+D:\Visual Studio 2010\ShippingLocal\DAL\bin\Debug\DAL.pdb
+D:\Visual Studio 2010\ShippingLocal\DAL\obj\Debug\ResolveAssemblyReference.cache
+D:\Visual Studio 2010\ShippingLocal\DAL\obj\Debug\DAL.dll
+D:\Visual Studio 2010\ShippingLocal\DAL\obj\Debug\DAL.pdb

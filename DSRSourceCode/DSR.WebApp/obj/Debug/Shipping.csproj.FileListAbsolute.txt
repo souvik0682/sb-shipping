@@ -1,0 +1,13 @@
+D:\Visual Studio 2010\WebApplication1\WebApplication1\obj\Debug\ResolveAssemblyReference.cache
+D:\Visual Studio 2010\WebApplication1\WebApplication1\obj\Debug\RdlCompile.cache
+D:\Visual Studio 2010\WebApplication1\WebApplication1\obj\Debug\RdlCompile.compiled
+D:\Visual Studio 2010\WebApplication1\WebApplication1\bin\Shipping.dll
+D:\Visual Studio 2010\WebApplication1\WebApplication1\bin\Shipping.pdb
+D:\Visual Studio 2010\WebApplication1\WebApplication1\bin\BLL.dll
+D:\Visual Studio 2010\WebApplication1\WebApplication1\bin\Entity.dll
+D:\Visual Studio 2010\WebApplication1\WebApplication1\bin\Utilities.dll
+D:\Visual Studio 2010\WebApplication1\WebApplication1\bin\BLL.pdb
+D:\Visual Studio 2010\WebApplication1\WebApplication1\bin\Entity.pdb
+D:\Visual Studio 2010\WebApplication1\WebApplication1\bin\Utilities.pdb
+D:\Visual Studio 2010\WebApplication1\WebApplication1\obj\Debug\Shipping.dll
+D:\Visual Studio 2010\WebApplication1\WebApplication1\obj\Debug\Shipping.pdb

@@ -1,0 +1,10 @@
+D:\Visual Studio 2010\WebApplication1\Entity\bin\Debug\Entity.dll
+D:\Visual Studio 2010\WebApplication1\Entity\bin\Debug\Entity.pdb
+D:\Visual Studio 2010\WebApplication1\Entity\obj\Debug\ResolveAssemblyReference.cache
+D:\Visual Studio 2010\WebApplication1\Entity\obj\Debug\Entity.dll
+D:\Visual Studio 2010\WebApplication1\Entity\obj\Debug\Entity.pdb
+D:\Visual Studio 2010\ShippingLocal\Entity\bin\Debug\Entity.dll
+D:\Visual Studio 2010\ShippingLocal\Entity\bin\Debug\Entity.pdb
+D:\Visual Studio 2010\ShippingLocal\Entity\obj\Debug\ResolveAssemblyReference.cache
+D:\Visual Studio 2010\ShippingLocal\Entity\obj\Debug\Entity.dll
+D:\Visual Studio 2010\ShippingLocal\Entity\obj\Debug\Entity.pdb
