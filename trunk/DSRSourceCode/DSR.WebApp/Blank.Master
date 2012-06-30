@@ -1,0 +1,41 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Blank.master.cs" Inherits="DSR.WebApp.Blank" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="<%=Page.ResolveClientUrl("~/Styles/DSR.css") %>" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true" EnableScriptGlobalization="true"></asp:ScriptManager>
+        <div id="header">
+            <div class="logo">
+                <img alt="" src="<%=Page.ResolveClientUrl("~/Images/logo.png") %>" height="50" />        
+            </div>  
+            <div class="search">
+                <div style="text-align: right;">
+                    <asp:Label ID="lblUserName" runat="server" Text="Welcome Amit Kumar Chandra"></asp:Label>
+                </div>
+            </div>
+        </div>
+        <div id="subheader">
+            <div class="menu"><a href="#">Home</a> | <a href="#">About</a> | <a href="#">Master</a> | <a href="#">Transaction</a> | <a href="#">Reports</a> | <a href="#">Change Password</a> | <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click" Text="Logout" ToolTip="Click to logout"></asp:LinkButton></div>
+        </div>
+        <div id="main">
+            <div class="main_container">
+                <asp:ContentPlaceHolder ID="container" runat="server"></asp:ContentPlaceHolder>        
+            </div>
+        </div>
+        <div id="footer">
+            <hr />
+            <div class="copyright">Copyright 2012, <b>Shiping Limited</b>. All rights reserved.</div>
+            <div class="disclaimer">Powred By <a href="#" onclick="window.open('http://www.mycompany.com/','my_Window')"><b>My Company</b></a></div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,12 @@
+D:\Visual Studio 2010\ShippingLocal\Entity\bin\Debug\DSR.Entity.dll
+D:\Visual Studio 2010\ShippingLocal\Entity\bin\Debug\DSR.Entity.pdb
+D:\Visual Studio 2010\ShippingLocal\Entity\obj\Debug\ResolveAssemblyReference.cache
+D:\Visual Studio 2010\ShippingLocal\Entity\obj\Debug\DSR.Entity.dll
+D:\Visual Studio 2010\ShippingLocal\Entity\obj\Debug\DSR.Entity.pdb
+D:\Visual Studio 2010\ShippingLocal\DSR.Entity\bin\Debug\DSR.Entity.dll
+D:\Visual Studio 2010\ShippingLocal\DSR.Entity\bin\Debug\DSR.Entity.pdb
+D:\Visual Studio 2010\ShippingLocal\DSR.Entity\bin\Debug\DSR.Common.dll
+D:\Visual Studio 2010\ShippingLocal\DSR.Entity\bin\Debug\DSR.Common.pdb
+D:\Visual Studio 2010\ShippingLocal\DSR.Entity\obj\Debug\ResolveAssemblyReference.cache
+D:\Visual Studio 2010\ShippingLocal\DSR.Entity\obj\Debug\DSR.Entity.dll
+D:\Visual Studio 2010\ShippingLocal\DSR.Entity\obj\Debug\DSR.Entity.pdb

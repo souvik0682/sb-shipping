@@ -1,0 +1,13 @@
+D:\Visual Studio 2010\ShippingLocal\ShippingWeb\bin\Shipping.dll
+D:\Visual Studio 2010\ShippingLocal\ShippingWeb\bin\Shipping.pdb
+D:\Visual Studio 2010\ShippingLocal\ShippingWeb\bin\BLL.dll
+D:\Visual Studio 2010\ShippingLocal\ShippingWeb\bin\Entity.dll
+D:\Visual Studio 2010\ShippingLocal\ShippingWeb\bin\Utilities.dll
+D:\Visual Studio 2010\ShippingLocal\ShippingWeb\bin\BLL.pdb
+D:\Visual Studio 2010\ShippingLocal\ShippingWeb\bin\Entity.pdb
+D:\Visual Studio 2010\ShippingLocal\ShippingWeb\bin\Utilities.pdb
+D:\Visual Studio 2010\ShippingLocal\ShippingWeb\obj\Debug\ResolveAssemblyReference.cache
+D:\Visual Studio 2010\ShippingLocal\ShippingWeb\obj\Debug\RdlCompile.cache
+D:\Visual Studio 2010\ShippingLocal\ShippingWeb\obj\Debug\RdlCompile.compiled
+D:\Visual Studio 2010\ShippingLocal\ShippingWeb\obj\Debug\Shipping.dll
+D:\Visual Studio 2010\ShippingLocal\ShippingWeb\obj\Debug\Shipping.pdb
