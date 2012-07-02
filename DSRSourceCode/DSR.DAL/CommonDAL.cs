@@ -41,13 +41,14 @@ namespace DSR.DAL
 
         #region Location
 
-        public static List<ILocation> GetLocationList()
+        public static List<ILocation> GetLocationList(char isActiveOnly)
         {
             string strExecution = "[common].[uspGetLocation]";
             List<ILocation> lstLoc = new List<ILocation>();
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
+                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
                 DataTableReader reader = oDq.GetTableReader();
 
                 while (reader.Read())
@@ -62,7 +63,7 @@ namespace DSR.DAL
             return lstLoc;
         }
 
-        public static ILocation GetLocation(int locId)
+        public static ILocation GetLocation(int locId, char isActiveOnly)
         {
             string strExecution = "[common].[uspGetLocation]";
             ILocation loc = null;
@@ -70,6 +71,7 @@ namespace DSR.DAL
             using (DbQuery oDq = new DbQuery(strExecution))
             {
                 oDq.AddIntegerParam("@LocId", locId);
+                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
                 DataTableReader reader = oDq.GetTableReader();
 
                 while (reader.Read())
@@ -83,14 +85,15 @@ namespace DSR.DAL
             return loc;
         }
 
-        public static void SaveLocation(ILocation loc, int modifiedBy)
+        public static int SaveLocation(ILocation loc, int modifiedBy)
         {
             string strExecution = "[common].[uspSaveLocation]";
+            int result = 0;
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
                 oDq.AddIntegerParam("@LocId", loc.Id);
-                oDq.AddVarcharParam("@LocName",50, loc.Name);
+                oDq.AddVarcharParam("@LocName", 50, loc.Name);
                 oDq.AddVarcharParam("@LocAddress", 200, loc.LocAddress.Address);
                 oDq.AddVarcharParam("@LocCity", 20, loc.LocAddress.City);
                 oDq.AddVarcharParam("@LocPin", 10, loc.LocAddress.Pin);
@@ -98,6 +101,23 @@ namespace DSR.DAL
                 oDq.AddVarcharParam("@LocPhone", 30, loc.Phone);
                 oDq.AddIntegerParam("@ManagerId", loc.ManagerId);
                 oDq.AddCharParam("@IsActive", 1, loc.IsActive);
+                oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
+                oDq.AddIntegerParam("@Result", result, QueryParameterDirection.Output);
+                oDq.RunActionQuery();
+                result = Convert.ToInt32(oDq.GetParaValue("@Result"));
+
+            }
+
+            return result;
+        }
+
+        public static void DeleteLocation(int locId, int modifiedBy)
+        {
+            string strExecution = "[common].[uspDeleteLocation]";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@LocId", locId);
                 oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
                 oDq.RunActionQuery();
             }

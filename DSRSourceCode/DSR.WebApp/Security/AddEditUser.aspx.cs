@@ -46,7 +46,7 @@ namespace DSR.WebApp.Security
         private void PopulateLocation()
         {
             CommonBLL commonBll = new CommonBLL();
-            List<ILocation> lstLoc = commonBll.GetLocationList();
+            List<ILocation> lstLoc = commonBll.GetActiveLocationList();
             GeneralFunctions.PopulateDropDownList(ddlLoc, lstLoc, "Id", "Name", true);
         }
 

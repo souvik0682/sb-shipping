@@ -88,9 +88,18 @@ namespace DSR.WebApp.Security
         {
             CommonBLL commonBll = new CommonBLL();
             ILocation loc = new LocationEntity();
+            string message = string.Empty;
             BuildLocationEntity(loc);
-            commonBll.SaveLocation(loc, _userId);
-            Response.Redirect("~/Security/ManageLocation.aspx");
+            message = commonBll.SaveLocation(loc, _userId);
+
+            if (message == string.Empty)
+            {
+                Response.Redirect("~/Security/ManageLocation.aspx");
+            }
+            else
+            {
+                GeneralFunctions.RegisterAlertScript(this, message);
+            }
         }
 
         private void BuildLocationEntity(ILocation loc)

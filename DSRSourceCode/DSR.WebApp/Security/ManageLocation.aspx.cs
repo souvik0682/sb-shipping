@@ -15,6 +15,7 @@ namespace DSR.WebApp.Security
     {
         #region Private Member Variables
 
+        private int _userId = 0;
         private bool _hasEditAccess = true;
 
         #endregion
@@ -32,12 +33,12 @@ namespace DSR.WebApp.Security
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            RedirecToAddEditPage(0);
+            RedirecToAddEditPage(-1);
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            upLoc.Update(); 
+            upLoc.Update();
         }
 
         protected void gvwLoc_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -76,6 +77,10 @@ namespace DSR.WebApp.Security
             {
                 RedirecToAddEditPage(Convert.ToInt32(e.CommandArgument));
             }
+            else if (e.CommandName == "Remove")
+            {
+                DeleteLocation(Convert.ToInt32(e.CommandArgument));
+            }
         }
 
         protected void gvwLoc_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -100,7 +105,7 @@ namespace DSR.WebApp.Security
                 //Delete link
                 ImageButton btnRemove = (ImageButton)e.Row.FindControl("btnRemove");
                 btnRemove.ToolTip = ResourceManager.GetStringWithoutName("ERR00007");
-
+                btnRemove.CommandArgument = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id"));
 
                 if (_hasEditAccess)
                 {
@@ -128,10 +133,18 @@ namespace DSR.WebApp.Security
                 {
                     BuildSearchCriteria(searchCriteria);
                     CommonBLL commonBll = new CommonBLL();
-                    gvwLoc.DataSource = commonBll.GetLocationList();
+                    gvwLoc.DataSource = commonBll.GetAllLocationList();
                     gvwLoc.DataBind();
                 }
             }
+        }
+
+        private void DeleteLocation(int locId)
+        {
+            CommonBLL commonBll = new CommonBLL();
+            commonBll.DeleteLocation(locId, _userId);
+            LoadLocation();
+            ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "<script>javascript:void alert('" + ResourceManager.GetStringWithoutName("ERR00006") + "');</script>", false);
         }
 
         private void RedirecToAddEditPage(int id)

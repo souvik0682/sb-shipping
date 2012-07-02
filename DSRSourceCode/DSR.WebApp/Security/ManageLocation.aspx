@@ -45,7 +45,7 @@
                     <PagerSettings Mode="NumericFirstLast" Position="Bottom" />
                     <PagerStyle CssClass="gridviewpager" />
                     <EmptyDataRowStyle CssClass="gridviewemptydatarow" />
-                    <EmptyDataTemplate>No User(s) Found</EmptyDataTemplate>
+                    <EmptyDataTemplate>No Location(s) Found</EmptyDataTemplate>
                     <Columns>
                         <asp:TemplateField HeaderText="Sl #">
                             <HeaderStyle CssClass="gridviewheader" />
