@@ -26,7 +26,7 @@
             <td><asp:TextBox ID="txtAbbr" runat="server" CssClass="textbox" MaxLength="3" Width="250"></asp:TextBox></td>
         </tr>
         <tr>
-            <td>Phone:<span class="errormessage1">*</span></td>
+            <td>Phone:</td>
             <td><asp:TextBox ID="txtPhone" runat="server" CssClass="textbox" MaxLength="30" Width="250"></asp:TextBox></td>
         </tr>
         <tr>
