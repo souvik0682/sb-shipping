@@ -11,7 +11,7 @@
         </div>
     </div>
     <div>
-        <div id="headercaption">Manage Location</div>
+        <div id="headercaption">MANAGE LOCATION</div>
         <div style="padding:5px;">
             <fieldset style="width:300px;">
                 <legend>Search Location</legend>
@@ -73,14 +73,14 @@
                             <HeaderStyle CssClass="gridviewheader" />
                             <ItemStyle CssClass="gridviewitem" Width="5%" HorizontalAlign="Center" VerticalAlign="Middle" />                                    
                             <ItemTemplate>
-                                <asp:ImageButton ID="btnEdit" runat="server" CommandName="Edit" ImageUrl="~/Images/edit_icon.png" />
+                                <asp:ImageButton ID="btnEdit" runat="server" CommandName="Edit" ImageUrl="~/Images/edit.png" Height="16" Width="16" />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField>
                             <HeaderStyle CssClass="gridviewheader" />
                             <ItemStyle CssClass="gridviewitem" Width="5%" HorizontalAlign="Center" VerticalAlign="Middle" />                                    
                             <ItemTemplate>
-                                <asp:ImageButton ID="btnRemove" runat="server" CommandName="Remove" ImageUrl="~/Images/trash_icon.gif" />
+                                <asp:ImageButton ID="btnRemove" runat="server" CommandName="Remove" ImageUrl="~/Images/remove.png" Height="16" Width="16" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

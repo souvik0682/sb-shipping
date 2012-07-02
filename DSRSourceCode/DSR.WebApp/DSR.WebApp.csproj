@@ -70,6 +70,8 @@
     <Content Include="Reports\DailyCallRpt.aspx" />
     <Content Include="Security\AddEditUser.aspx" />
     <Content Include="Security\AddEditLocation.aspx" />
+    <Content Include="Security\AddEditArea.aspx" />
+    <Content Include="Security\ManageArea.aspx" />
     <Content Include="Security\ManageLocation.aspx" />
     <Content Include="Security\ManageUser.aspx" />
     <Content Include="Styles\Site.css" />
@@ -169,6 +171,20 @@
     </Compile>
     <Compile Include="Security\AddEditLocation.aspx.designer.cs">
       <DependentUpon>AddEditLocation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\AddEditArea.aspx.cs">
+      <DependentUpon>AddEditArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\AddEditArea.aspx.designer.cs">
+      <DependentUpon>AddEditArea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\ManageArea.aspx.cs">
+      <DependentUpon>ManageArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\ManageArea.aspx.designer.cs">
+      <DependentUpon>ManageArea.aspx</DependentUpon>
     </Compile>
     <Compile Include="Security\ManageLocation.aspx.cs">
       <DependentUpon>ManageLocation.aspx</DependentUpon>
