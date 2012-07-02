@@ -7,7 +7,10 @@
     <table border="0" cellpadding="5" cellspacing="5">
         <tr>
             <td>Location Name:<span class="errormessage1">*</span></td>
-            <td><asp:TextBox ID="txtLocName" runat="server" CssClass="textbox" MaxLength="50" Width="250"></asp:TextBox></td>
+            <td>
+                <asp:TextBox ID="txtLocName" runat="server" CssClass="textbox" MaxLength="50" Width="250"></asp:TextBox><br />
+                <asp:RequiredFieldValidator ID="rfvName" runat="server" CssClass="errormessage" ControlToValidate="txtLocName" Display="Dynamic" ErrorMessage="Location Name Cannot be Left Blank" ValidationGroup="Save"></asp:RequiredFieldValidator>
+            </td>
         </tr>
         <tr>
             <td>Address:</td>
@@ -23,7 +26,10 @@
         </tr>
         <tr>
             <td>Abbreviation:<span class="errormessage1">*</span></td>
-            <td><asp:TextBox ID="txtAbbr" runat="server" CssClass="textbox" MaxLength="3" Width="250"></asp:TextBox></td>
+            <td>
+                <asp:TextBox ID="txtAbbr" runat="server" CssClass="textbox" MaxLength="3" Width="250"></asp:TextBox><br />
+                <asp:RequiredFieldValidator ID="rfvAbbr" runat="server" CssClass="errormessage" ControlToValidate="txtAbbr" Display="Dynamic" ErrorMessage="Abbreviation Cannot be Left Blank" ValidationGroup="Save"></asp:RequiredFieldValidator>
+            </td>
         </tr>
         <tr>
             <td>Phone:</td>
@@ -39,7 +45,7 @@
         </tr>
         <tr>
             <td colspan="2">
-                <asp:Button ID="btnSave" runat="server" CssClass="button" Text="Save" OnClick="btnSave_Click" />&nbsp;<asp:Button ID="btnBack" runat="server" CssClass="button" Text="Back" OnClientClick="javascript:window.location.href='ManageLocation.aspx';return false;" />
+                <asp:Button ID="btnSave" runat="server" CssClass="button" Text="Save" ValidationGroup="Save" OnClick="btnSave_Click" />&nbsp;<asp:Button ID="btnBack" runat="server" CssClass="button" Text="Back" OnClientClick="javascript:window.location.href='ManageLocation.aspx';return false;" />
             </td>
         </tr>
     </table>

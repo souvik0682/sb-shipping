@@ -12,3 +12,12 @@ D:\Visual Studio 2010\ShippingLocal\DSR.DAL\bin\Debug\DSR.Entity.pdb
 D:\Visual Studio 2010\ShippingLocal\DSR.DAL\obj\Debug\ResolveAssemblyReference.cache
 D:\Visual Studio 2010\ShippingLocal\DSR.DAL\obj\Debug\DSR.DAL.dll
 D:\Visual Studio 2010\ShippingLocal\DSR.DAL\obj\Debug\DSR.DAL.pdb
+D:\Visual Studio 2010\DSRSourceCode\DSR.DAL\bin\Debug\DSR.DAL.dll
+D:\Visual Studio 2010\DSRSourceCode\DSR.DAL\bin\Debug\DSR.DAL.pdb
+D:\Visual Studio 2010\DSRSourceCode\DSR.DAL\bin\Debug\DSR.Common.dll
+D:\Visual Studio 2010\DSRSourceCode\DSR.DAL\bin\Debug\DSR.Entity.dll
+D:\Visual Studio 2010\DSRSourceCode\DSR.DAL\bin\Debug\DSR.Common.pdb
+D:\Visual Studio 2010\DSRSourceCode\DSR.DAL\bin\Debug\DSR.Entity.pdb
+D:\Visual Studio 2010\DSRSourceCode\DSR.DAL\obj\Debug\ResolveAssemblyReference.cache
+D:\Visual Studio 2010\DSRSourceCode\DSR.DAL\obj\Debug\DSR.DAL.dll
+D:\Visual Studio 2010\DSRSourceCode\DSR.DAL\obj\Debug\DSR.DAL.pdb
