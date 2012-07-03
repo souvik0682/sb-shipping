@@ -33,7 +33,7 @@ legend {font-size: 1.1em;font-weight: 600;padding: 2px 4px 8px 4px;}
 .contentheader{font-size:12pt;font-weight:bold;background-color:#ffffff;text-align:left;padding-bottom:4px;}
 
 /* Controls */
-.button {background-color:#328dc4;color:white;border:solid 1px #bbbbbb; cursor:pointer;height:23px;}
+.button {background-color:#f3f6f8;color:Black;border:solid 1px #c8c8c8; cursor:pointer;height:28px;}
 .textbox {border: 1px default #7f9db9;color: #000000;}
 .numerictextbox {border: 1px default #7f9db9;text-align:right;}
 .disabledtextbox {background-color:#dfdfdf;border: 1px default #7f9db9;color: #000000;}
@@ -44,6 +44,9 @@ legend {font-size: 1.1em;font-weight: 600;padding: 2px 4px 8px 4px;}
 .image{cursor:pointer;}
 .panel{background-color:#f0f0f0;}
 .hyperlink{text-decoration:underline;}
+
+.txtsearch{width: 221px;background: transparent url('../Images/bg.jpg') no-repeat;color: #747862;height: 20px;border: 0;padding: 4px 8px;margin-bottom: 0px;}
+
 .table{border-collapse:collapse;}
 .table th{border:solid 1px #A1CDF2;font-size:12px; font-weight:bold;color:#36478B;text-align:left;}
 .table td{border:solid 1px #A1CDF2;font-size:12px; font-weight:normal;text-align:left;}

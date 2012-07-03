@@ -11,10 +11,20 @@
         </div>
     </div>
     <div>
-        <div style="padding:5px;">
-            <asp:Button ID="btnAdd" runat="server" Text="Add New User" CssClass="button" Height="30px" Width="100px" OnClick="btnAdd_Click" />
+        <div id="headercaption">MANAGE USER</div>
+        <div style="padding:5px 0px 5px 5px;">
+            <fieldset style="width:600px;">
+                <legend>Search User</legend>
+                <table>
+                    <tr>
+                        <td><asp:TextBox ID="txtUserName" runat="server" CssClass="txtsearch"></asp:TextBox></td>
+                        <td><asp:TextBox ID="txtFName" runat="server" CssClass="txtsearch"></asp:TextBox></td>
+                        <td><asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="button" Width="100px" OnClick="btnSearch_Click" /></td>
+                    </tr>
+                </table>              
+            </fieldset>
         </div>
-        <asp:UpdateProgress ID="uProgressDPU" runat="server" AssociatedUpdatePanelID="upUser">
+        <asp:UpdateProgress ID="uProgressUser" runat="server" AssociatedUpdatePanelID="upUser">
             <ProgressTemplate>
                 <div class="progress">
                     <div id="image">
@@ -22,12 +32,17 @@
                     <div id="text">
                         Please Wait...</div>
                 </div>
-            </ProgressTemplate>
-        
+            </ProgressTemplate>        
         </asp:UpdateProgress>
-        <asp:UpdatePanel ID="upUser" runat="server">
-            <ContentTemplate>
-                <asp:GridView ID="gvwUser" runat="server" AutoGenerateColumns="false" AllowPaging="true" BorderStyle="None" BorderWidth="0" OnPageIndexChanging="gvwUser_PageIndexChanging" OnRowDataBound="gvwUser_RowDataBound" OnRowCommand="gvwUser_RowCommand" Width="600px">
+        <fieldset id="fsList" runat="server" style="width:710px;min-height:100px;">
+            <legend>User List</legend>
+            <div style="float:right;padding-right:10px;padding-bottom:5px;"><asp:Button ID="btnAdd" runat="server" Text="Add New User" CssClass="button" Width="130px" OnClick="btnAdd_Click" /></div>
+            <asp:UpdatePanel ID="upUser" runat="server" UpdateMode="Conditional">
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="btnSearch" EventName="Click" />
+                </Triggers>
+                <ContentTemplate>
+                    <asp:GridView ID="gvwUser" runat="server" AutoGenerateColumns="false" AllowPaging="true" BorderStyle="None" BorderWidth="0" OnPageIndexChanging="gvwUser_PageIndexChanging" OnRowDataBound="gvwUser_RowDataBound" OnRowCommand="gvwUser_RowCommand" Width="100%">
                     <PagerSettings Mode="NumericFirstLast" Position="Bottom" />
                     <PagerStyle CssClass="gridviewpager" />
                     <EmptyDataRowStyle CssClass="gridviewemptydatarow" />
@@ -66,19 +81,20 @@
                             <HeaderStyle CssClass="gridviewheader" />
                             <ItemStyle CssClass="gridviewitem" Width="5%" HorizontalAlign="Center" VerticalAlign="Middle" />                                    
                             <ItemTemplate>
-                                <asp:ImageButton ID="btnEdit" runat="server" CommandName="Remove" ImageUrl="~/Images/edit_icon.png" />
+                                <asp:ImageButton ID="btnEdit" runat="server" CommandName="Remove" ImageUrl="~/Images/edit.png" Height="16" Width="16" />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField>
                             <HeaderStyle CssClass="gridviewheader" />
                             <ItemStyle CssClass="gridviewitem" Width="5%" HorizontalAlign="Center" VerticalAlign="Middle" />                                    
                             <ItemTemplate>
-                                <asp:ImageButton ID="btnRemove" runat="server" CommandName="Remove" ImageUrl="~/Images/trash_icon.gif" />
+                                <asp:ImageButton ID="btnRemove" runat="server" CommandName="Remove" ImageUrl="~/Images/remove.png" Height="16" Width="16" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
-                </asp:GridView>
-            </ContentTemplate>
-        </asp:UpdatePanel>
+                    </asp:GridView>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </fieldset>
     </div>
 </asp:Content>

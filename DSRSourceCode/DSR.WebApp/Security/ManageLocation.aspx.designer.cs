@@ -13,22 +13,22 @@ namespace DSR.WebApp.Security {
     public partial class ManageLocation {
         
         /// <summary>
-        /// rblCriteria control.
+        /// txtAbbreviation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblCriteria;
+        protected global::System.Web.UI.WebControls.TextBox txtAbbreviation;
         
         /// <summary>
-        /// txtCriteria control.
+        /// txtLocationName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCriteria;
+        protected global::System.Web.UI.WebControls.TextBox txtLocationName;
         
         /// <summary>
         /// btnSearch control.
@@ -40,13 +40,13 @@ namespace DSR.WebApp.Security {
         protected global::System.Web.UI.WebControls.Button btnSearch;
         
         /// <summary>
-        /// uProgressDPU control.
+        /// uProgressLoc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdateProgress uProgressDPU;
+        protected global::System.Web.UI.UpdateProgress uProgressLoc;
         
         /// <summary>
         /// fsList control.

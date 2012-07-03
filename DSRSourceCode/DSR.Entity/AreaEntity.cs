@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DSR.Common;
+using System.Data;
 
 namespace DSR.Entity
 {
@@ -65,6 +66,25 @@ namespace DSR.Entity
             get;
             set;
         }
+
+        #endregion
+
+        #region Constructors
+
+        public AreaEntity()
+        {
+            this.Location = new LocationEntity();
+        }
+
+        public AreaEntity(DataTableReader reader)
+        {
+            this.Id = Convert.ToInt32(reader["Id"]);
+            this.Name  = Convert.ToString(reader["Name"]);
+            this.Location = new LocationEntity();
+            this.Location.Id = Convert.ToInt32(reader["LocId"]);
+            this.Location.Name = Convert.ToString(reader["LocName"]);
+            this.IsActive = Convert.ToChar(reader["Active"]);
+        }       
 
         #endregion
     }
