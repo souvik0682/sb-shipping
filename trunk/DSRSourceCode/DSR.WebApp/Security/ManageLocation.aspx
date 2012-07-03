@@ -12,18 +12,19 @@
     </div>
     <div>
         <div id="headercaption">MANAGE LOCATION</div>
-        <div style="padding:5px;">
-            <fieldset style="width:300px;">
+        <div style="padding:5px 0px 5px 5px;">
+            <fieldset style="width:600px;">
                 <legend>Search Location</legend>
-                <asp:RadioButtonList ID="rblCriteria" runat="server" CssClass="radiobutton" RepeatDirection="Horizontal">
-                    <asp:ListItem Value="1" Text="Abbreviation"></asp:ListItem>
-                    <asp:ListItem Value="2" Text="Location"></asp:ListItem>
-                </asp:RadioButtonList>
-                <asp:TextBox ID="txtCriteria" runat="server" CssClass="textbox"></asp:TextBox>
-                <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="button" Width="100px" OnClick="btnSearch_Click" />
+                <table>
+                    <tr>
+                        <td><asp:TextBox ID="txtAbbreviation" runat="server" CssClass="txtsearch"></asp:TextBox></td>
+                        <td><asp:TextBox ID="txtLocationName" runat="server" CssClass="txtsearch"></asp:TextBox></td>
+                        <td><asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="button" Width="100px" OnClick="btnSearch_Click" /></td>
+                    </tr>
+                </table>              
             </fieldset>
         </div>
-        <asp:UpdateProgress ID="uProgressDPU" runat="server" AssociatedUpdatePanelID="upLoc">
+        <asp:UpdateProgress ID="uProgressLoc" runat="server" AssociatedUpdatePanelID="upLoc">
             <ProgressTemplate>
                 <div class="progress">
                     <div id="image">

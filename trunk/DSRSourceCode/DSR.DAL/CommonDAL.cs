@@ -124,5 +124,85 @@ namespace DSR.DAL
         }
 
         #endregion
+
+        #region Area
+
+        public static List<IArea> GetAreaList(char isActiveOnly)
+        {
+            string strExecution = "[common].[uspGetArea]";
+            List<IArea> lstArea = new List<IArea>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    IArea area = new AreaEntity(reader);
+                    lstArea.Add(area);
+                }
+
+                reader.Close();
+            }
+
+            return lstArea;
+        }
+
+        public static IArea GetArea(int areaId, char isActiveOnly)
+        {
+            string strExecution = "[common].[uspGetArea]";
+            IArea area = null;
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@AreaId", areaId);
+                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    area = new AreaEntity(reader);
+                }
+
+                reader.Close();
+            }
+
+            return area;
+        }
+
+        public static int SaveArea(IArea area, int modifiedBy)
+        {
+            string strExecution = "[common].[uspSaveArea]";
+            int result = 0;
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@AreaId", area.Id);
+                oDq.AddVarcharParam("@AreaName", 50, area.Name);
+                oDq.AddIntegerParam("@LocId", area.Location.Id);
+                oDq.AddCharParam("@IsActive", 1, area.IsActive);
+                oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
+                oDq.AddIntegerParam("@Result", result, QueryParameterDirection.Output);
+                oDq.RunActionQuery();
+                result = Convert.ToInt32(oDq.GetParaValue("@Result"));
+            }
+
+            return result;
+        }
+
+        public static void DeleteArea(int areaId, int modifiedBy)
+        {
+            string strExecution = "[common].[uspDeleteArea]";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@AreaId", areaId);
+                oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
+                oDq.RunActionQuery();
+            }
+        }
+
+        #endregion
     }
 }

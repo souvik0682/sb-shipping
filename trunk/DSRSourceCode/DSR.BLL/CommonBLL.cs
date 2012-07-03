@@ -60,5 +60,47 @@ namespace DSR.BLL
         }
 
         #endregion
+
+        #region Location
+
+        public List<IArea> GetAllAreaList()
+        {
+            return CommonDAL.GetAreaList('N');
+        }
+
+        public List<IArea> GetActiveAreaList()
+        {
+            return CommonDAL.GetAreaList('Y');
+        }
+
+        public IArea GetArea(int areaId)
+        {
+            return CommonDAL.GetArea(areaId, 'N');
+        }
+
+        public string SaveArea(IArea area, int modifiedBy)
+        {
+            int result = 0;
+            string errMessage = string.Empty;
+            result = CommonDAL.SaveArea(area, modifiedBy);
+
+            switch (result)
+            {
+                case 1:
+                    errMessage = ResourceManager.GetStringWithoutName("ERR00013");
+                    break;
+                default:
+                    break;
+            }
+
+            return errMessage;
+        }
+
+        public void DeleteArea(int areaId, int modifiedBy)
+        {
+            CommonDAL.DeleteArea(areaId, modifiedBy);
+        }
+
+        #endregion
     }
 }

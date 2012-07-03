@@ -23,6 +23,8 @@ namespace DSR.WebApp.Security
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            SetAttributes();
+
             if (!IsPostBack)
             {
                 SetDefaultSearchCriteria();
@@ -33,6 +35,11 @@ namespace DSR.WebApp.Security
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             RedirecToAddEditPage(0);
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+
         }
 
         protected void gvwUser_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -113,6 +120,18 @@ namespace DSR.WebApp.Security
         #endregion
 
         #region Private Methods
+
+        private void SetAttributes()
+        {
+            txtUserName.Attributes.Add("OnFocus", "javascript:js_waterMark_Focus('" + txtUserName.ClientID + "', 'Type Username')");
+            txtUserName.Attributes.Add("OnBlur", "javascript:js_waterMark_Blur('" + txtUserName.ClientID + "', 'Type Username')");
+            txtUserName.Text = "Type Username";
+
+
+            txtFName.Attributes.Add("OnFocus", "javascript:js_waterMark_Focus('" + txtFName.ClientID + "', 'Type First Name')");
+            txtFName.Attributes.Add("OnBlur", "javascript:js_waterMark_Blur('" + txtFName.ClientID + "', 'Type First Name')");
+            txtFName.Text = "Type First Name";
+        }
 
         private void LoadUser()
         {
