@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="container" runat="Server">
+    <div id="headercaption">ADD / EDIT LOCATION</div>
     <fieldset style="width:400px;">
         <legend>Add / Edit Location</legend>
     <table border="0" cellpadding="5" cellspacing="5">

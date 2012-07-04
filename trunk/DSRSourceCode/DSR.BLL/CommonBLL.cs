@@ -18,19 +18,29 @@ namespace DSR.BLL
 
         #region Location
 
-        public List<ILocation> GetAllLocationList()
+        private void SetDefaultSearchCriteriaForLocation(SearchCriteria searchCriteria)
         {
-            return CommonDAL.GetLocationList('N');
+            searchCriteria.SortExpression = "Location";
+            searchCriteria.SortDirection = "ASC";
+        }
+
+        public List<ILocation> GetAllLocationList(SearchCriteria searchCriteria)
+        {
+            return CommonDAL.GetLocationList('N', searchCriteria);
         }
 
         public List<ILocation> GetActiveLocationList()
         {
-            return CommonDAL.GetLocationList('Y');
+            SearchCriteria searchCriteria = new SearchCriteria();
+            SetDefaultSearchCriteriaForLocation(searchCriteria);
+            return CommonDAL.GetLocationList('Y', searchCriteria);
         }
 
         public ILocation GetLocation(int locId)
         {
-            return CommonDAL.GetLocation(locId, 'N');
+            SearchCriteria searchCriteria = new SearchCriteria();
+            SetDefaultSearchCriteriaForLocation(searchCriteria);
+            return CommonDAL.GetLocation(locId, 'N', searchCriteria);
         }
 
         public string SaveLocation(ILocation loc, int modifiedBy)

@@ -41,7 +41,7 @@ namespace DSR.DAL
 
         #region Location
 
-        public static List<ILocation> GetLocationList(char isActiveOnly)
+        public static List<ILocation> GetLocationList(char isActiveOnly, SearchCriteria searchCriteria)
         {
             string strExecution = "[common].[uspGetLocation]";
             List<ILocation> lstLoc = new List<ILocation>();
@@ -49,6 +49,10 @@ namespace DSR.DAL
             using (DbQuery oDq = new DbQuery(strExecution))
             {
                 oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
+                oDq.AddVarcharParam("@SchAbbr", 3, searchCriteria.LocAbbr);
+                oDq.AddVarcharParam("@SchLocName", 50, searchCriteria.LocName);
+                oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
+                oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
                 DataTableReader reader = oDq.GetTableReader();
 
                 while (reader.Read())
@@ -63,7 +67,7 @@ namespace DSR.DAL
             return lstLoc;
         }
 
-        public static ILocation GetLocation(int locId, char isActiveOnly)
+        public static ILocation GetLocation(int locId, char isActiveOnly, SearchCriteria searchCriteria)
         {
             string strExecution = "[common].[uspGetLocation]";
             ILocation loc = null;
@@ -72,6 +76,8 @@ namespace DSR.DAL
             {
                 oDq.AddIntegerParam("@LocId", locId);
                 oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
+                oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
+                oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
                 DataTableReader reader = oDq.GetTableReader();
 
                 while (reader.Read())

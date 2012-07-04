@@ -14,12 +14,7 @@ legend {font-size: 1.1em;font-weight: 600;padding: 2px 4px 8px 4px;}
 #header .logo{float:left;padding:5px 0px 0px 8px;}
 #header .search{float:right;padding:12px 10px 0px 0px;font-size: 12px;}
 #header .search a{ color: #E0F5FF;}
-
 #subheader{margin:0px;width:100%;color:#FFFFFF;background-color:Black;height:30px;}
-#subheader .menu{padding:6px 0px 0px 8px;font-weight: bold;font-size: 12px;}
-#subheader .menu a{color:#FFFFFF;}
-
-#headercaption{width:100%;background-color:#328dc4;height:30px;color:White;font-size: 14pt;font-weight:bold;text-align:center;padding-top:3px;}
 
 #main {background:#ffffff;width:100%;min-height:380px;margin:0px;color:#000000;padding:0px;}
 #main .main_left{float:left;padding:0px;margin:0px;width:195px;padding:0px;}
@@ -30,6 +25,19 @@ legend {font-size: 1.1em;font-weight: 600;padding: 2px 4px 8px 4px;}
 #footer .disclaimer{float:right;font-size:11px; color:#666666;padding:5px 10px 0px 0px;}
 #footer .disclaimer a{color:#666666;}
 
+/* Menu */
+#navbar {margin: 0;padding: 0;height: 1em; }
+#navbar li {list-style: none;float: left; }
+#navbar li a {display: block;padding: 6px 25px 6px 5px;background-color:Black;color: #fff;text-decoration: none;}
+#navbar li a:hover {display: block;padding: 6px 25px 6px 5px;background-color:Black;color: #fff;text-decoration: underline;}
+#navbar li ul {display: none; width: 10em; /* Width to help Opera out */background-color: #69f;}
+#navbar li:hover ul {display: block;position: absolute;margin: 0;padding: 0; }
+#navbar li:hover li {float: none; }
+#navbar li:hover li a {background:none;background-color: #69f;border-bottom: 1px solid #fff;color: #000; }
+#navbar li:hover li a:hover{text-decoration:underline;}
+#navbar li li a:hover {background-color: #8db3ff; }
+
+#headercaption{width:100%;background-color:#328dc4;height:30px;color:White;font-size: 12pt;font-weight:bold;text-align:center;padding-top:4px;}
 .contentheader{font-size:12pt;font-weight:bold;background-color:#ffffff;text-align:left;padding-bottom:4px;}
 
 /* Controls */

@@ -40,6 +40,7 @@ namespace DSR.WebApp.Security
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            LoadLocation();
             upLoc.Update();
         }
 
@@ -52,24 +53,24 @@ namespace DSR.WebApp.Security
         {
             if (e.CommandName.Equals("Sort"))
             {
-                if (ViewState["SortExpression"] == null)
+                if (ViewState[Constants.SORT_EXPRESSION] == null)
                 {
-                    ViewState["SortExpression"] = e.CommandArgument.ToString();
-                    ViewState["SortDirection"] = "ASC";
+                    ViewState[Constants.SORT_EXPRESSION] = e.CommandArgument.ToString();
+                    ViewState[Constants.SORT_DIRECTION] = "ASC";
                 }
                 else
                 {
-                    if (ViewState["SortExpression"].ToString() == e.CommandArgument.ToString())
+                    if (ViewState[Constants.SORT_EXPRESSION].ToString() == e.CommandArgument.ToString())
                     {
-                        if (ViewState["SortDirection"].ToString() == "ASC")
-                            ViewState["SortDirection"] = "DESC";
+                        if (ViewState[Constants.SORT_DIRECTION].ToString() == "ASC")
+                            ViewState[Constants.SORT_DIRECTION] = "DESC";
                         else
-                            ViewState["SortDirection"] = "ASC";
+                            ViewState[Constants.SORT_DIRECTION] = "ASC";
                     }
                     else
                     {
-                        ViewState["SortDirection"] = "ASC";
-                        ViewState["SortExpression"] = e.CommandArgument.ToString();
+                        ViewState[Constants.SORT_DIRECTION] = "ASC";
+                        ViewState[Constants.SORT_EXPRESSION] = e.CommandArgument.ToString();
                     }
                 }
 
@@ -147,7 +148,7 @@ namespace DSR.WebApp.Security
                 {
                     BuildSearchCriteria(searchCriteria);
                     CommonBLL commonBll = new CommonBLL();
-                    gvwLoc.DataSource = commonBll.GetAllLocationList();
+                    gvwLoc.DataSource = commonBll.GetAllLocationList(searchCriteria);
                     gvwLoc.DataBind();
                 }
             }
@@ -185,7 +186,8 @@ namespace DSR.WebApp.Security
 
             criteria.SortExpression = sortExpression;
             criteria.SortDirection = sortDirection;
-
+            criteria.LocAbbr = (txtAbbreviation.Text == "Type Abbreviation") ? string.Empty : txtAbbreviation.Text;
+            criteria.LocName = (txtLocationName.Text == "Type Location Name") ? string.Empty : txtLocationName.Text;
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
         }
 

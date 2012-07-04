@@ -19,12 +19,43 @@
             </div>  
             <div class="search">
                 <div style="text-align: right;">
-                    <asp:Label ID="lblUserName" runat="server" Text="Welcome Amit Kumar Chandra"></asp:Label>
+                    <asp:Label ID="lblUserName" runat="server" Text="Welcome Amit Kumar Chandra"></asp:Label>&nbsp;&nbsp|&nbsp;&nbsp;<asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click" Text="Logout" ToolTip="Click to logout"></asp:LinkButton>
                 </div>
             </div>
         </div>
         <div id="subheader">
-            <div class="menu"><a href="#">Home</a> | <a href="#">About</a> | <a href="#">Master</a> | <a href="#">Transaction</a> | <a href="#">Reports</a> | <a href="#">Change Password</a> | <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click" Text="Logout" ToolTip="Click to logout"></asp:LinkButton></div>
+            <div class="menu">
+                <ul id="navbar">
+                    <li><a href="#">Home</a></li>
+                    <li>
+                        <a href="#">Master</a>
+                        <ul>
+                            <li id="liUser" runat="server"><a href="<%=Page.ResolveClientUrl("~/Security/ManageUser.aspx") %>">User Master</a></li>
+                            <li><a href="<%=Page.ResolveClientUrl("~/Security/ManageLocation.aspx") %>">Location Master</a></li>
+                            <li><a href="<%=Page.ResolveClientUrl("~/Security/ManageArea.aspx") %>">Area Master</a></li>
+                            <li><a href="<%=Page.ResolveClientUrl("~/Security/ManageGroupCompany.aspx") %>">Group Company</a></li>
+                            <li><a href="<%=Page.ResolveClientUrl("~/Security/ManageCustomer.aspx") %>">Customer</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Transaction</a>
+                        <ul>
+                            <li><a href="#">Daily Sales Call</a></li>
+                            <li><a href="#">Commitment Detail</a></li>
+                            <li><a href="#">Tag Customer</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Reports</a>
+                        <ul>
+                            <li><a href="#">Daily Sales Call Report</a></li>
+                            <li><a href="#">Location Wise Sales Call</a></li>
+                            <li><a href="#">Area Wise Sales Call</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Import Data</a></li>
+                </ul>            
+            </div>
         </div>
         <div id="main">
             <div class="main_container">
