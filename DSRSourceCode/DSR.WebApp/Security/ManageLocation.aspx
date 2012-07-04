@@ -10,8 +10,8 @@
             </div>
         </div>
     </div>
-    <div>
-        <div id="headercaption">MANAGE LOCATION</div>
+    <div id="headercaption">MANAGE LOCATION</div>
+    <div style="width:820px;">        
         <div style="padding:5px 0px 5px 5px;">
             <fieldset style="width:600px;">
                 <legend>Search Location</legend>
@@ -34,7 +34,7 @@
                 </div>
             </ProgressTemplate>        
         </asp:UpdateProgress>
-        <fieldset id="fsList" runat="server" style="width:710px;min-height:100px;">
+        <fieldset id="fsList" runat="server" style="width:100%;min-height:100px;">
         <legend>Location List</legend>
         <div style="float:right;padding-right:10px;padding-bottom:5px;"><asp:Button ID="btnAdd" runat="server" Text="Add New Location" CssClass="button" Width="130px" OnClick="btnAdd_Click" /></div>
         <asp:UpdatePanel ID="upLoc" runat="server" UpdateMode="Conditional">
@@ -42,7 +42,7 @@
                 <asp:AsyncPostBackTrigger ControlID="btnSearch" EventName="Click" />
             </Triggers>
             <ContentTemplate>
-                <asp:GridView ID="gvwLoc" runat="server" AutoGenerateColumns="false" AllowPaging="true" BorderStyle="None" BorderWidth="0" OnPageIndexChanging="gvwLoc_PageIndexChanging" OnRowDataBound="gvwLoc_RowDataBound" OnRowCommand="gvwLoc_RowCommand" Width="700px">
+                <asp:GridView ID="gvwLoc" runat="server" AutoGenerateColumns="false" AllowPaging="true" BorderStyle="None" BorderWidth="0" OnPageIndexChanging="gvwLoc_PageIndexChanging" OnRowDataBound="gvwLoc_RowDataBound" OnRowCommand="gvwLoc_RowCommand" Width="100%">
                     <PagerSettings Mode="NumericFirstLast" Position="Bottom" />
                     <PagerStyle CssClass="gridviewpager" />
                     <EmptyDataRowStyle CssClass="gridviewemptydatarow" />

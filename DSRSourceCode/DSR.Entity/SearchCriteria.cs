@@ -11,6 +11,24 @@ namespace DSR.Entity
     {
         #region Public Properties
 
+        public string LocAbbr
+        {
+            get;
+            set;
+        }
+
+        public string LocName
+        {
+            get;
+            set;
+        }
+
+        public string AreaName
+        {
+            get;
+            set;
+        }
+
         public string SortExpression
         {
             get;
