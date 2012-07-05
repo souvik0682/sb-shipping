@@ -133,7 +133,7 @@ namespace DSR.DAL
 
         #region Area
 
-        public static List<IArea> GetAreaList(char isActiveOnly)
+        public static List<IArea> GetAreaList(char isActiveOnly, SearchCriteria searchCriteria)
         {
             string strExecution = "[common].[uspGetArea]";
             List<IArea> lstArea = new List<IArea>();
@@ -141,6 +141,9 @@ namespace DSR.DAL
             using (DbQuery oDq = new DbQuery(strExecution))
             {
                 oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
+                oDq.AddVarcharParam("@SchAreaName", 50, searchCriteria.AreaName);
+                oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
+                oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
                 DataTableReader reader = oDq.GetTableReader();
 
                 while (reader.Read())
@@ -155,7 +158,7 @@ namespace DSR.DAL
             return lstArea;
         }
 
-        public static IArea GetArea(int areaId, char isActiveOnly)
+        public static IArea GetArea(int areaId, char isActiveOnly, SearchCriteria searchCriteria)
         {
             string strExecution = "[common].[uspGetArea]";
             IArea area = null;
@@ -164,6 +167,8 @@ namespace DSR.DAL
             {
                 oDq.AddIntegerParam("@AreaId", areaId);
                 oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
+                oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
+                oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
                 DataTableReader reader = oDq.GetTableReader();
 
                 while (reader.Read())
@@ -204,6 +209,95 @@ namespace DSR.DAL
             using (DbQuery oDq = new DbQuery(strExecution))
             {
                 oDq.AddIntegerParam("@AreaId", areaId);
+                oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
+                oDq.RunActionQuery();
+            }
+        }
+
+        #endregion
+
+        #region Group Company
+
+        public static List<IGroupCompany> GetGroupCompanyList(char isActiveOnly, SearchCriteria searchCriteria)
+        {
+            string strExecution = "[common].[uspGetGroupCompany]";
+            List<IGroupCompany> lstGroupCompany = new List<IGroupCompany>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
+                oDq.AddVarcharParam("@SchGroupName", 50, searchCriteria.GroupName);
+                oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
+                oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    IGroupCompany groupCompany = new GroupCompanyEntity(reader);
+                    lstGroupCompany.Add(groupCompany);
+                }
+
+                reader.Close();
+            }
+
+            return lstGroupCompany;
+        }
+
+        public static IGroupCompany GetGroupCompany(int groupCompanyId, char isActiveOnly, SearchCriteria searchCriteria)
+        {
+            string strExecution = "[common].[uspGetGroupCompany]";
+            IGroupCompany groupCompany = null;
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@GroupId", groupCompanyId);
+                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
+                oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
+                oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    groupCompany = new GroupCompanyEntity(reader);
+                }
+
+                reader.Close();
+            }
+
+            return groupCompany;
+        }
+
+        public static int SaveGroupCompany(IGroupCompany groupCompany, int modifiedBy)
+        {
+            string strExecution = "[common].[uspSaveGroupCompany]";
+            int result = 0;
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@GroupId", groupCompany.Id);
+                oDq.AddVarcharParam("@GroupName", 50, groupCompany.Name);
+                oDq.AddVarcharParam("@Address", 200, groupCompany.Address.Address);
+                oDq.AddVarcharParam("@City", 20, groupCompany.Address.City);
+                oDq.AddVarcharParam("@Pin", 10, groupCompany.Address.Pin);
+                oDq.AddVarcharParam("@Phone", 40, groupCompany.Phone);
+                oDq.AddCharParam("@IsActive", 1, groupCompany.IsActive);
+                oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
+                oDq.AddIntegerParam("@Result", result, QueryParameterDirection.Output);
+                oDq.RunActionQuery();
+                result = Convert.ToInt32(oDq.GetParaValue("@Result"));
+
+            }
+
+            return result;
+        }
+
+        public static void DeleteGroupCompany(int groupCompanyId, int modifiedBy)
+        {
+            string strExecution = "[common].[uspDeleteGroupCompany]";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@GroupId", groupCompanyId);
                 oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
                 oDq.RunActionQuery();
             }

@@ -7,6 +7,6 @@ namespace DSR.Common
 {
     public interface IRole : IBase<int>
     {
-        char SalesRole { get; set; }
+        char? SalesRole { get; set; }
     }
 }

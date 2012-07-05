@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManageLocation.aspx.cs" Inherits="DSR.WebApp.Security.ManageLocation" MasterPageFile="~/Blank.Master" Title=":: DSR:: Manage Location" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="container" runat="Server">
@@ -17,8 +18,14 @@
                 <legend>Search Location</legend>
                 <table>
                     <tr>
-                        <td><asp:TextBox ID="txtAbbreviation" runat="server" CssClass="txtsearch"></asp:TextBox></td>
-                        <td><asp:TextBox ID="txtLocationName" runat="server" CssClass="txtsearch"></asp:TextBox></td>
+                        <td>
+                            <asp:TextBox ID="txtAbbreviation" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
+                            <cc1:TextBoxWatermarkExtender ID="txtWMEAbbr" runat="server" TargetControlID="txtAbbreviation" WatermarkText="Type Abbreviation" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtLocationName" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
+                            <cc1:TextBoxWatermarkExtender ID="txtWMEName" runat="server" TargetControlID="txtLocationName" WatermarkText="Type Location Name" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
+                        </td>
                         <td><asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="button" Width="100px" OnClick="btnSearch_Click" /></td>
                     </tr>
                 </table>              
@@ -36,7 +43,7 @@
         </asp:UpdateProgress>
         <fieldset id="fsList" runat="server" style="width:100%;min-height:100px;">
         <legend>Location List</legend>
-        <div style="float:right;padding-right:10px;padding-bottom:5px;"><asp:Button ID="btnAdd" runat="server" Text="Add New Location" CssClass="button" Width="130px" OnClick="btnAdd_Click" /></div>
+        <div style="float:right;padding-right:10px;padding-bottom:5px;"><asp:Button ID="btnAdd" runat="server" Text="Add New Location" Width="130px" OnClick="btnAdd_Click" /></div>
         <asp:UpdatePanel ID="upLoc" runat="server" UpdateMode="Conditional">
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="btnSearch" EventName="Click" />

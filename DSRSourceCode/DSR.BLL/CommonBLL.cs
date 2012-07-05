@@ -71,21 +71,31 @@ namespace DSR.BLL
 
         #endregion
 
-        #region Location
+        #region Area
 
-        public List<IArea> GetAllAreaList()
+        private void SetDefaultSearchCriteriaForArea(SearchCriteria searchCriteria)
         {
-            return CommonDAL.GetAreaList('N');
+            searchCriteria.SortExpression = "Location";
+            searchCriteria.SortDirection = "ASC";
+        }
+
+        public List<IArea> GetAllAreaList(SearchCriteria searchCriteria)
+        {
+            return CommonDAL.GetAreaList('N', searchCriteria);
         }
 
         public List<IArea> GetActiveAreaList()
         {
-            return CommonDAL.GetAreaList('Y');
+            SearchCriteria searchCriteria = new SearchCriteria();
+            SetDefaultSearchCriteriaForArea(searchCriteria);
+            return CommonDAL.GetAreaList('Y', searchCriteria);
         }
 
         public IArea GetArea(int areaId)
         {
-            return CommonDAL.GetArea(areaId, 'N');
+            SearchCriteria searchCriteria = new SearchCriteria();
+            SetDefaultSearchCriteriaForArea(searchCriteria);
+            return CommonDAL.GetArea(areaId, 'N', searchCriteria);
         }
 
         public string SaveArea(IArea area, int modifiedBy)
@@ -109,6 +119,58 @@ namespace DSR.BLL
         public void DeleteArea(int areaId, int modifiedBy)
         {
             CommonDAL.DeleteArea(areaId, modifiedBy);
+        }
+
+        #endregion
+
+        #region Group Company
+
+        private void SetDefaultSearchCriteriaForGroupCompany(SearchCriteria searchCriteria)
+        {
+            searchCriteria.SortExpression = "Location";
+            searchCriteria.SortDirection = "ASC";
+        }
+
+        public List<IGroupCompany> GetAllGroupCompanyList(SearchCriteria searchCriteria)
+        {
+            return CommonDAL.GetGroupCompanyList('N', searchCriteria);
+        }
+
+        public List<IGroupCompany> GetActiveGroupCompanyList()
+        {
+            SearchCriteria searchCriteria = new SearchCriteria();
+            SetDefaultSearchCriteriaForGroupCompany(searchCriteria);
+            return CommonDAL.GetGroupCompanyList('Y', searchCriteria);
+        }
+
+        public IGroupCompany GetGroupCompany(int groupCompanyId)
+        {
+            SearchCriteria searchCriteria = new SearchCriteria();
+            SetDefaultSearchCriteriaForLocation(searchCriteria);
+            return CommonDAL.GetGroupCompany(groupCompanyId, 'N', searchCriteria);
+        }
+
+        public string SaveGroupCompany(IGroupCompany groupCompany, int modifiedBy)
+        {
+            int result = 0;
+            string errMessage = string.Empty;
+            result = CommonDAL.SaveGroupCompany(groupCompany, modifiedBy);
+
+            switch (result)
+            {
+                case 1:
+                    errMessage = ResourceManager.GetStringWithoutName("ERR00014");
+                    break;
+                default:
+                    break;
+            }
+
+            return errMessage;
+        }
+
+        public void DeleteGroupCompany(int groupCompanyId, int modifiedBy)
+        {
+            CommonDAL.DeleteGroupCompany(groupCompanyId, modifiedBy);
         }
 
         #endregion

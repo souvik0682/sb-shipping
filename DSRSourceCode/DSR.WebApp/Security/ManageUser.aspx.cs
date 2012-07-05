@@ -15,6 +15,7 @@ namespace DSR.WebApp.Security
     {
         #region Private Member Variables       
 
+        private int _userId = 0;
         private bool _hasEditAccess = true;
 
         #endregion
@@ -23,8 +24,6 @@ namespace DSR.WebApp.Security
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            SetAttributes();
-
             if (!IsPostBack)
             {
                 SetDefaultSearchCriteria();
@@ -39,7 +38,8 @@ namespace DSR.WebApp.Security
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-
+            LoadUser();
+            upUser.Update();
         }
 
         protected void gvwUser_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -51,28 +51,32 @@ namespace DSR.WebApp.Security
         {
             if (e.CommandName.Equals("Sort"))
             {
-                if (ViewState["SortExpression"] == null)
+                if (ViewState[Constants.SORT_EXPRESSION] == null)
                 {
-                    ViewState["SortExpression"] = e.CommandArgument.ToString();
-                    ViewState["SortDirection"] = "ASC";
+                    ViewState[Constants.SORT_EXPRESSION] = e.CommandArgument.ToString();
+                    ViewState[Constants.SORT_DIRECTION] = "ASC";
                 }
                 else
                 {
-                    if (ViewState["SortExpression"].ToString() == e.CommandArgument.ToString())
+                    if (ViewState[Constants.SORT_EXPRESSION].ToString() == e.CommandArgument.ToString())
                     {
-                        if (ViewState["SortDirection"].ToString() == "ASC")
-                            ViewState["SortDirection"] = "DESC";
+                        if (ViewState[Constants.SORT_DIRECTION].ToString() == "ASC")
+                            ViewState[Constants.SORT_DIRECTION] = "DESC";
                         else
-                            ViewState["SortDirection"] = "ASC";
+                            ViewState[Constants.SORT_DIRECTION] = "ASC";
                     }
                     else
                     {
-                        ViewState["SortDirection"] = "ASC";
-                        ViewState["SortExpression"] = e.CommandArgument.ToString();
+                        ViewState[Constants.SORT_DIRECTION] = "ASC";
+                        ViewState[Constants.SORT_EXPRESSION] = e.CommandArgument.ToString();
                     }
                 }
 
                 LoadUser();
+            }
+            else if (e.CommandName == "Edit")
+            {
+                RedirecToAddEditPage(Convert.ToInt32(e.CommandArgument));
             }
             else if (e.CommandName == "Remove")
             {
@@ -121,18 +125,6 @@ namespace DSR.WebApp.Security
 
         #region Private Methods
 
-        private void SetAttributes()
-        {
-            txtUserName.Attributes.Add("OnFocus", "javascript:js_waterMark_Focus('" + txtUserName.ClientID + "', 'Type Username')");
-            txtUserName.Attributes.Add("OnBlur", "javascript:js_waterMark_Blur('" + txtUserName.ClientID + "', 'Type Username')");
-            txtUserName.Text = "Type Username";
-
-
-            txtFName.Attributes.Add("OnFocus", "javascript:js_waterMark_Focus('" + txtFName.ClientID + "', 'Type First Name')");
-            txtFName.Attributes.Add("OnBlur", "javascript:js_waterMark_Blur('" + txtFName.ClientID + "', 'Type First Name')");
-            txtFName.Text = "Type First Name";
-        }
-
         private void LoadUser()
         {
             if (!ReferenceEquals(Session[Constants.SESSION_SEARCH_CRITERIA], null))
@@ -143,7 +135,7 @@ namespace DSR.WebApp.Security
                 {
                     BuildSearchCriteria(searchCriteria);
                     UserBLL userBll = new UserBLL();
-                    gvwUser.DataSource = userBll.GetAllUser(searchCriteria);
+                    gvwUser.DataSource = userBll.GetAllUserList(searchCriteria);
                     gvwUser.DataBind();
                 }
             }
@@ -173,7 +165,8 @@ namespace DSR.WebApp.Security
 
             criteria.SortExpression = sortExpression;
             criteria.SortDirection = sortDirection;
-
+            criteria.UserName = (txtUserName.Text == "Type Username") ? string.Empty : txtUserName.Text.Trim();
+            criteria.FirstName = (txtFName.Text == "Type First Name") ? string.Empty : txtFName.Text.Trim();
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
         }
 

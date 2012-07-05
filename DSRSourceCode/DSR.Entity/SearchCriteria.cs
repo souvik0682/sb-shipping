@@ -29,6 +29,24 @@ namespace DSR.Entity
             set;
         }
 
+        public string GroupName
+        {
+            get;
+            set;
+        }
+
+        public string UserName
+        {
+            get;
+            set;
+        }
+
+        public string FirstName
+        {
+            get;
+            set;
+        }
+
         public string SortExpression
         {
             get;
