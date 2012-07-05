@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManageUser.aspx.cs" Inherits="DSR.WebApp.Security.ManageUser" MasterPageFile="~/Blank.Master" Title=":: DSR:: Manage User" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="container" runat="Server">
@@ -10,16 +11,22 @@
             </div>
         </div>
     </div>
-    <div>
-        <div id="headercaption">MANAGE USER</div>
+    <div id="headercaption">MANAGE USER</div>
+    <div style="width:820px;">        
         <div style="padding:5px 0px 5px 5px;">
             <fieldset style="width:600px;">
                 <legend>Search User</legend>
                 <table>
                     <tr>
-                        <td><asp:TextBox ID="txtUserName" runat="server" CssClass="txtsearch"></asp:TextBox></td>
-                        <td><asp:TextBox ID="txtFName" runat="server" CssClass="txtsearch"></asp:TextBox></td>
-                        <td><asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="button" Width="100px" OnClick="btnSearch_Click" /></td>
+                        <td>
+                            <asp:TextBox ID="txtUserName" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
+                            <cc1:TextBoxWatermarkExtender ID="txtWMEUserName" runat="server" TargetControlID="txtUserName" WatermarkText="Type Username" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtFName" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
+                            <cc1:TextBoxWatermarkExtender ID="txtWMEFName" runat="server" TargetControlID="txtFName" WatermarkText="Type First Name" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
+                        </td>
+                        <td><asp:Button ID="btnSearch" runat="server" Text="Search" Width="100px" OnClick="btnSearch_Click" /></td>
                     </tr>
                 </table>              
             </fieldset>
@@ -34,9 +41,9 @@
                 </div>
             </ProgressTemplate>        
         </asp:UpdateProgress>
-        <fieldset id="fsList" runat="server" style="width:710px;min-height:100px;">
+        <fieldset id="fsList" runat="server" style="width:100%;min-height:100px;">
             <legend>User List</legend>
-            <div style="float:right;padding-right:10px;padding-bottom:5px;"><asp:Button ID="btnAdd" runat="server" Text="Add New User" CssClass="button" Width="130px" OnClick="btnAdd_Click" /></div>
+            <div style="float:right;padding-right:10px;padding-bottom:5px;"><asp:Button ID="btnAdd" runat="server" Text="Add New User" Width="130px" OnClick="btnAdd_Click" /></div>
             <asp:UpdatePanel ID="upUser" runat="server" UpdateMode="Conditional">
                 <Triggers>
                     <asp:AsyncPostBackTrigger ControlID="btnSearch" EventName="Click" />

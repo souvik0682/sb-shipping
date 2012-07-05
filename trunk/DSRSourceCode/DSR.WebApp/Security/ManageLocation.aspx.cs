@@ -24,7 +24,7 @@ namespace DSR.WebApp.Security
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            SetAttributes();
+            //SetAttributes();
 
             if (!IsPostBack)
             {
@@ -126,17 +126,17 @@ namespace DSR.WebApp.Security
 
         #region Private Methods
 
-        private void SetAttributes()
-        {
-            txtAbbreviation.Attributes.Add("OnFocus", "javascript:js_waterMark_Focus('" + txtAbbreviation.ClientID + "', 'Type Abbreviation')");
-            txtAbbreviation.Attributes.Add("OnBlur", "javascript:js_waterMark_Blur('" + txtAbbreviation.ClientID + "', 'Type Abbreviation')");
-            txtAbbreviation.Text = "Type Abbreviation";
+        //private void SetAttributes()
+        //{
+            //txtAbbreviation.Attributes.Add("OnFocus", "javascript:js_waterMark_Focus('" + txtAbbreviation.ClientID + "', 'Type Abbreviation')");
+            //txtAbbreviation.Attributes.Add("OnBlur", "javascript:js_waterMark_Blur('" + txtAbbreviation.ClientID + "', 'Type Abbreviation')");
+            //txtAbbreviation.Text = "Type Abbreviation";
 
 
-            txtLocationName.Attributes.Add("OnFocus", "javascript:js_waterMark_Focus('" + txtLocationName.ClientID + "', 'Type Location Name')");
-            txtLocationName.Attributes.Add("OnBlur", "javascript:js_waterMark_Blur('" + txtLocationName.ClientID + "', 'Type Location Name')");
-            txtLocationName.Text = "Type Location Name";
-        }
+            //txtLocationName.Attributes.Add("OnFocus", "javascript:js_waterMark_Focus('" + txtLocationName.ClientID + "', 'Type Location Name')");
+            //txtLocationName.Attributes.Add("OnBlur", "javascript:js_waterMark_Blur('" + txtLocationName.ClientID + "', 'Type Location Name')");
+            //txtLocationName.Text = "Type Location Name";
+        //}
 
         private void LoadLocation()
         {
@@ -186,8 +186,8 @@ namespace DSR.WebApp.Security
 
             criteria.SortExpression = sortExpression;
             criteria.SortDirection = sortDirection;
-            criteria.LocAbbr = (txtAbbreviation.Text == "Type Abbreviation") ? string.Empty : txtAbbreviation.Text;
-            criteria.LocName = (txtLocationName.Text == "Type Location Name") ? string.Empty : txtLocationName.Text;
+            criteria.LocAbbr = (txtAbbreviation.Text == "Type Abbreviation") ? string.Empty : txtAbbreviation.Text.Trim();
+            criteria.LocName = (txtLocationName.Text == "Type Location Name") ? string.Empty : txtLocationName.Text.Trim();
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
         }
 

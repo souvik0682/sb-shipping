@@ -45,7 +45,7 @@ namespace DSR.WebApp.Security
 
         private void RetriveParameters()
         {
-            _userId = UserBLL.GetUserId();
+            _userId = UserBLL.GetLoggedInUserId();
 
             if (!ReferenceEquals(Request.QueryString["id"], null))
             {

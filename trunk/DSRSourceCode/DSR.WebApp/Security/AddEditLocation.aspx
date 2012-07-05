@@ -9,36 +9,36 @@
         <tr>
             <td style="width:140px;">Location Name:<span class="errormessage1">*</span></td>
             <td>
-                <asp:TextBox ID="txtLocName" runat="server" CssClass="textbox" MaxLength="50" Width="250"></asp:TextBox><br />
+                <asp:TextBox ID="txtLocName" runat="server" MaxLength="50" Width="250"></asp:TextBox><br />
                 <asp:RequiredFieldValidator ID="rfvName" runat="server" CssClass="errormessage" ControlToValidate="txtLocName" Display="Dynamic" ErrorMessage="Location Name Cannot be Left Blank" ValidationGroup="Save"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
             <td>Address:</td>
-            <td><asp:TextBox ID="txtAddress" runat="server" CssClass="textbox" TextMode="MultiLine" MaxLength="200" Width="250"></asp:TextBox></td>
+            <td><asp:TextBox ID="txtAddress" runat="server" TextMode="MultiLine" MaxLength="200" Width="250"></asp:TextBox></td>
         </tr>
         <tr>
             <td>City:</td>
-            <td><asp:TextBox ID="txtCity" runat="server" CssClass="textbox" MaxLength="20" Width="250"></asp:TextBox></td>
+            <td><asp:TextBox ID="txtCity" runat="server" MaxLength="20" Width="250"></asp:TextBox></td>
         </tr>
         <tr>
             <td>Pin:</td>
-            <td><asp:TextBox ID="txtPin" runat="server" CssClass="textbox" MaxLength="10" Width="250"></asp:TextBox></td>
+            <td><asp:TextBox ID="txtPin" runat="server" MaxLength="10" Width="250"></asp:TextBox></td>
         </tr>
         <tr>
             <td>Abbreviation:<span class="errormessage1">*</span></td>
             <td>
-                <asp:TextBox ID="txtAbbr" runat="server" CssClass="textbox" MaxLength="3" Width="250"></asp:TextBox><br />
+                <asp:TextBox ID="txtAbbr" runat="server" MaxLength="3" Width="250"></asp:TextBox><br />
                 <asp:RequiredFieldValidator ID="rfvAbbr" runat="server" CssClass="errormessage" ControlToValidate="txtAbbr" Display="Dynamic" ErrorMessage="Abbreviation Cannot be Left Blank" ValidationGroup="Save"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
             <td>Phone:</td>
-            <td><asp:TextBox ID="txtPhone" runat="server" CssClass="textbox" MaxLength="30" Width="250"></asp:TextBox></td>
+            <td><asp:TextBox ID="txtPhone" runat="server" MaxLength="30" Width="250"></asp:TextBox></td>
         </tr>
         <tr>
             <td>Manager:</td>
-            <td><asp:DropDownList ID="ddlManager" runat="server" CssClass="dropdownlist"><asp:ListItem Value="0" Text="--Select--"></asp:ListItem></asp:DropDownList></td>
+            <td><asp:DropDownList ID="ddlManager" runat="server"><asp:ListItem Value="0" Text="--Select--"></asp:ListItem></asp:DropDownList></td>
         </tr>
         <tr>
             <td>Is Active?:<span class="errormessage1">*</span></td>
@@ -46,7 +46,7 @@
         </tr>
         <tr>
             <td colspan="2">
-                <asp:Button ID="btnSave" runat="server" CssClass="button" Text="Save" ValidationGroup="Save" OnClick="btnSave_Click" />&nbsp;&nbsp;<asp:Button ID="btnBack" runat="server" CssClass="button" Text="Back" OnClientClick="javascript:window.location.href='ManageLocation.aspx';return false;" />
+                <asp:Button ID="btnSave" runat="server" Text="Save" ValidationGroup="Save" OnClick="btnSave_Click" />&nbsp;&nbsp;<asp:Button ID="btnBack" runat="server" CssClass="button" Text="Back" OnClientClick="javascript:window.location.href='ManageLocation.aspx';return false;" />
             </td>
         </tr>
     </table>

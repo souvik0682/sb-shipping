@@ -156,4 +156,10 @@
   <data name="ERR00013" xml:space="preserve">
     <value>Area name already exists. Please enter another name.</value>
   </data>
+  <data name="ERR00014" xml:space="preserve">
+    <value>Group Company name already exists. Please enter another name.</value>
+  </data>
+  <data name="ERR00015" xml:space="preserve">
+    <value>User name already exists. Please enter another name.</value>
+  </data>
 </root>

@@ -47,7 +47,7 @@ namespace DSR.Entity
             set;
         }
 
-        public char SalesPersonType
+        public char? SalesPersonType
         {
             get;
             set;
@@ -105,11 +105,32 @@ namespace DSR.Entity
 
         #endregion
 
+        #region IRole Members
+
+        public IRole UserRole
+        {
+            get;
+            set;
+        }
+
+        #endregion
+
+        #region ILocation Members
+
+        public ILocation UserLocation
+        {
+            get;
+            set;
+        }
+
+        #endregion
+
         #region Constructors
 
         public UserEntity()
         {
-
+            this.UserRole = new RoleEntity();
+            this.UserLocation = new LocationEntity();
         }
 
         public UserEntity(DataTableReader reader)
@@ -118,6 +139,18 @@ namespace DSR.Entity
             this.Name = Convert.ToString(reader["UserName"]);
             this.FirstName = Convert.ToString(reader["FirstName"]);
             this.LastName = Convert.ToString(reader["LastName"]);
+            this.UserRole = new RoleEntity(reader);
+            this.UserLocation = new LocationEntity();
+            this.UserLocation.Id = Convert.ToInt32(reader["LocId"]);
+            this.UserLocation.Name = Convert.ToString(reader["LocName"]);
+
+            if (reader["SalesPersonType"] != DBNull.Value)
+                this.SalesPersonType = Convert.ToChar(reader["SalesPersonType"]);
+
+            if (reader["EmailId"] != DBNull.Value)
+                this.EmailId = Convert.ToString(reader["EmailId"]);
+
+            this.IsActive = Convert.ToChar(reader["Active"]);
         }
 
         #endregion

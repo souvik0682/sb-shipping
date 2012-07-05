@@ -5,6 +5,21 @@ a:link{color: #000000;text-decoration: none;}
 a:visited{color: #505abc;}
 a:hover{color: #1d60ff;text-decoration: underline;}
 a:active{color: #12eb87;}
+input[type="text"],textarea
+{
+	border: 1px default #7f9db9;
+	color: #000000;
+	font-family:"Trebuchet MS", Helvetica, sans-serif;font-size:10pt;
+}
+input[type="submit"]
+{
+	background-color:#f3f6f8;color:Black;border:solid 1px #c8c8c8; cursor:pointer;font-family:"Trebuchet MS", Helvetica, sans-serif;font-size:10pt;height:28px;
+}
+select
+{
+	border: 1px solid #BBBBBB;background-color: #ffffff;font-family:"Trebuchet MS", Helvetica, sans-serif;font-size:10pt;
+}
+
 fieldset{ margin: 5px;padding: 5px;-moz-border-radius:5px;-border-radius: 5px; -webkit-border-radius: 5px;background:-webkit-gradient(linear, left bottom, left top, from(#ccc), to(#fff)); text-align:left;vertical-align:top;}
 fieldset p {margin: 2px 12px 0px 0px;}
 legend {font-size: 1.1em;font-weight: 600;padding: 2px 4px 8px 4px;}
@@ -41,19 +56,16 @@ legend {font-size: 1.1em;font-weight: 600;padding: 2px 4px 8px 4px;}
 .contentheader{font-size:12pt;font-weight:bold;background-color:#ffffff;text-align:left;padding-bottom:4px;}
 
 /* Controls */
-.button {background-color:#f3f6f8;color:Black;border:solid 1px #c8c8c8; cursor:pointer;height:28px;}
-.textbox {border: 1px default #7f9db9;color: #000000;}
-.numerictextbox {border: 1px default #7f9db9;text-align:right;}
-.disabledtextbox {background-color:#dfdfdf;border: 1px default #7f9db9;color: #000000;}
-.disablednumerictextbox {background-color:#dfdfdf;border: 1px default #7f9db9;color: #000000;text-align:right;}
+.numerictextbox {text-align:right;}
+.disabledtextbox {background-color:#dfdfdf;}
+.disablednumerictextbox {background-color:#dfdfdf;text-align:right;}
 .label {color:#000000;}
-.dropdownlist{border: 1px solid #BBBBBB;background-color: #ffffff;}
 .radiobutton {color:#000000;}
 .image{cursor:pointer;}
 .panel{background-color:#f0f0f0;}
 .hyperlink{text-decoration:underline;}
 
-.txtsearch{width: 221px;background: transparent url('../Images/bg.jpg') no-repeat;color: #747862;height: 20px;border: 0;padding: 4px 8px;margin-bottom: 0px;}
+.watermark{width: 221px;background: transparent url('../Images/bg.jpg') no-repeat;color: #747862;height: 20px;border: 0;padding: 4px 8px;margin-bottom: 0px;}
 
 .table{border-collapse:collapse;}
 .table th{border:solid 1px #A1CDF2;font-size:12px; font-weight:bold;color:#36478B;text-align:left;}

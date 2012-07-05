@@ -10,10 +10,10 @@ namespace DSR.Common
         string Password { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
-        IRole CustomerRole { get; set; }
-        ILocation CustomerLocation { get; set; }
+        IRole UserRole { get; set; }
+        ILocation UserLocation { get; set; }
         string EmailId { get; set; }
-        char SalesPersonType { get; set; }
+        char? SalesPersonType { get; set; }
         char IsActive { get; set; }
     }
 }
