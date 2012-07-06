@@ -15,6 +15,8 @@ namespace DSR.DAL
         {
         }
 
+        #region Location
+
         public static List<IRole> GetRole()
         {
             string strExecution = "[common].[uspGetRole]";
@@ -26,10 +28,7 @@ namespace DSR.DAL
 
                 while (reader.Read())
                 {
-                    IRole role = new RoleEntity();
-                    role.Id = Convert.ToInt32(reader["pk_RoleID"]);
-                    role.Name = Convert.ToString(reader["RoleName"]);
-                    role.SalesRole = Convert.ToChar(reader["SalesRole"]);
+                    IRole role = new RoleEntity(reader);
                     lstRole.Add(role);
                 }
 
@@ -38,6 +37,29 @@ namespace DSR.DAL
 
             return lstRole;
         }
+
+        public static IRole GetRole(int roleId)
+        {
+            string strExecution = "[common].[uspGetRole]";
+            IRole role = null;
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@RoleId", roleId);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    role = new RoleEntity(reader);
+                }
+
+                reader.Close();
+            }
+
+            return role;
+        }
+
+        #endregion
 
         #region Location
 
@@ -298,6 +320,114 @@ namespace DSR.DAL
             using (DbQuery oDq = new DbQuery(strExecution))
             {
                 oDq.AddIntegerParam("@GroupId", groupCompanyId);
+                oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
+                oDq.RunActionQuery();
+            }
+        }
+
+        #endregion
+
+        #region Customer
+
+        public static List<ICustomer> GetCustomerList(char isActiveOnly, SearchCriteria searchCriteria)
+        {
+            string strExecution = "[common].[uspGetCustomer]";
+            List<ICustomer> lstCustomer = new List<ICustomer>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
+                oDq.AddVarcharParam("@SchLocAbbr", 3, searchCriteria.LocAbbr);
+                oDq.AddVarcharParam("@SchCustName", 60, searchCriteria.CustomerName);
+                oDq.AddVarcharParam("@SchGroupName", 50, searchCriteria.GroupName);
+                oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
+                oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    ICustomer customer = new CustomerEntity(reader);
+                    lstCustomer.Add(customer);
+                }
+
+                reader.Close();
+            }
+
+            return lstCustomer;
+        }
+
+        public static ICustomer GetCustomer(int customerId, char isActiveOnly, SearchCriteria searchCriteria)
+        {
+            string strExecution = "[common].[uspGetCustomer]";
+            ICustomer customer = null;
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@CustId", customerId);
+                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
+                oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
+                oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    customer = new CustomerEntity(reader);
+                }
+
+                reader.Close();
+            }
+
+            return customer;
+        }
+
+        public static int SaveCustomer(ICustomer customer, int modifiedBy)
+        {
+            string strExecution = "[common].[uspSaveCustomer]";
+            int result = 0;
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@CustId", customer.Id);
+                oDq.AddIntegerParam("@GroupId", customer.Group.Id);
+                oDq.AddIntegerParam("@LocId", customer.Location.Id);
+                oDq.AddIntegerParam("@AreaId", customer.Area.Id);
+                oDq.AddIntegerParam("@CustTypeId", customer.CustType.Id);
+                oDq.AddCharParam("@CorporateOrLocal", 1, customer.CorporateOrLocal);
+                oDq.AddVarcharParam("@CustomerName", 60, customer.Name);
+                oDq.AddVarcharParam("@Address", 200, customer.Address.Address);
+                oDq.AddVarcharParam("@City", 50, customer.Address.City);
+                oDq.AddVarcharParam("@Pin", 10, customer.Address.Pin);
+                oDq.AddVarcharParam("@Phone1", 50, customer.Phone1);
+                oDq.AddVarcharParam("@Phone2", 50, customer.Phone2);
+                oDq.AddVarcharParam("@ContactPerson1", 50, customer.ContactPerson1.Name);
+                oDq.AddVarcharParam("@ContactDesignation1", 50, customer.ContactPerson1.Designation);
+                oDq.AddVarcharParam("@ContactMobile1", 15, customer.ContactPerson1.Mobile);
+                oDq.AddVarcharParam("@ContactPerson2", 50, customer.ContactPerson2.Name);
+                oDq.AddVarcharParam("@ContactDesignation2", 50, customer.ContactPerson2.Designation);
+                oDq.AddVarcharParam("@ContactMobile2", 15, customer.ContactPerson2.Mobile);
+                oDq.AddVarcharParam("@CustomerProfile", 500, customer.CustomerProfile);
+                oDq.AddVarcharParam("@PAN", 10, customer.PAN);
+                oDq.AddVarcharParam("@TAN", 15, customer.TAN);
+                oDq.AddVarcharParam("@BIN", 15, customer.BIN);
+                oDq.AddVarcharParam("@IEC", 15, customer.IEC);
+                //oDq.AddIntegerParam("@SalesExecutive", customer.SalesExecutive);
+                oDq.AddCharParam("@IsActive", 1, customer.IsActive);
+                oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
+                oDq.AddIntegerParam("@Result", result, QueryParameterDirection.Output);
+                oDq.RunActionQuery();
+                result = Convert.ToInt32(oDq.GetParaValue("@Result"));
+            }
+
+            return result;
+        }
+
+        public static void DeleteCustomer(int customerId, int modifiedBy)
+        {
+            string strExecution = "[common].[uspDeleteCustomer]";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@CustId", customerId);
                 oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
                 oDq.RunActionQuery();
             }

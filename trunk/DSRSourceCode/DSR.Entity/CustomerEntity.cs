@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DSR.Common;
+using System.Data;
 
 namespace DSR.Entity
 {
@@ -12,6 +13,12 @@ namespace DSR.Entity
         #region ICustomer Members
 
         public IGroupCompany Group
+        {
+            get;
+            set;
+        }
+
+        public ILocation Location
         {
             get;
             set;
@@ -149,6 +156,21 @@ namespace DSR.Entity
         {
             get;
             set;
+        }
+
+        #endregion
+
+        #region Constructors
+
+        public CustomerEntity()
+        {
+
+        }
+
+        public CustomerEntity(DataTableReader reader)
+        {
+            this.Id = Convert.ToInt32(reader["RoleId"]);
+            this.Name = Convert.ToString(reader["RoleName"]);
         }
 
         #endregion

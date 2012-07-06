@@ -12,7 +12,7 @@
         </div>
     </div>
     <div id="headercaption">MANAGE USER</div>
-    <div style="width:820px;">        
+    <div style="width:920px;">        
         <div style="padding:5px 0px 5px 5px;">
             <fieldset style="width:600px;">
                 <legend>Search User</legend>
@@ -61,28 +61,35 @@
                         </asp:TemplateField>
                         <asp:TemplateField>
                             <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="17%" />    
+                            <ItemStyle CssClass="gridviewitem" Width="15%" />    
                             <HeaderTemplate><asp:LinkButton ID="lnkHName" runat="server" CommandName="Sort" CommandArgument="UserName" Text="User Name"></asp:LinkButton></HeaderTemplate>                                
                         </asp:TemplateField>
                         <asp:TemplateField>
                             <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="17%" />
+                            <ItemStyle CssClass="gridviewitem" Width="15%" />
                             <HeaderTemplate><asp:LinkButton ID="lnkHRole" runat="server" CommandName="Sort" CommandArgument="RoleName" Text="User Role"></asp:LinkButton></HeaderTemplate>                                    
                         </asp:TemplateField>
                         <asp:TemplateField>
                             <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="17%" />           
+                            <ItemStyle CssClass="gridviewitem" Width="15%" />           
                             <HeaderTemplate><asp:LinkButton ID="lnkHFN" runat="server" CommandName="Sort" CommandArgument="FirstName" Text="First Name"></asp:LinkButton></HeaderTemplate>                         
                         </asp:TemplateField>
                         <asp:TemplateField>
                             <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="17%" />   
+                            <ItemStyle CssClass="gridviewitem" Width="15%" />   
                             <HeaderTemplate><asp:LinkButton ID="lnkHLN" runat="server" CommandName="Sort" CommandArgument="LastName" Text="Last Name"></asp:LinkButton></HeaderTemplate>                                 
                         </asp:TemplateField>
                         <asp:TemplateField>
                             <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="17%" />       
+                            <ItemStyle CssClass="gridviewitem" Width="15%" />       
                             <HeaderTemplate><asp:LinkButton ID="lnkHLoc" runat="server" CommandName="Sort" CommandArgument="LocName" Text="Location"></asp:LinkButton></HeaderTemplate>                             
+                        </asp:TemplateField>
+                        <asp:TemplateField>
+                            <HeaderStyle CssClass="gridviewheader" />
+                            <ItemStyle CssClass="gridviewitem" Width="10%" HorizontalAlign="Center" VerticalAlign="Middle" />                                    
+                            <ItemTemplate>
+                                <asp:Button ID="btnPwd" runat="server" CommandName="ChangePwd" Text="Change Password" />
+                            </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField>
                             <HeaderStyle CssClass="gridviewheader" />

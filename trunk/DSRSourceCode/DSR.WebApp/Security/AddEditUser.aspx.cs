@@ -26,6 +26,7 @@ namespace DSR.WebApp.Security
         {
             RetriveParameters();
             CheckUserAccess();
+            SetAttributes();            
 
             if (!IsPostBack)
             {
@@ -38,6 +39,17 @@ namespace DSR.WebApp.Security
         protected void btnSave_Click(object sender, EventArgs e)
         {
             SaveUser();
+        }
+
+        protected void ddlRole_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (IsSalesRole(Convert.ToInt32(ddlRole.SelectedValue)))
+                ddlSalesPersonType.Enabled = true;
+            else
+            {
+                ddlSalesPersonType.Enabled = false;
+                ddlSalesPersonType.SelectedValue = "0";
+            }
         }
 
         #endregion
@@ -54,10 +66,41 @@ namespace DSR.WebApp.Security
             }
         }
 
+        private void SetAttributes()
+        {
+            if (!IsPostBack)
+            {
+                ddlSalesPersonType.Enabled = false;
+                spnName.Style["display"] = "none";
+                spnFName.Style["display"] = "none";
+                spnLName.Style["display"] = "none";
+                spnEmail.Style["display"] = "none";
+                spnRole.Style["display"] = "none";
+                spnLoc.Style["display"] = "none";
+                spnType.Style["display"] = "none";
+            }
+        }
+
         private void CheckUserAccess()
         {
             if (_uId == 0)
                 Response.Redirect("~/Security/ManageUser.aspx");
+        }
+
+        private bool IsSalesRole(int roleId)
+        {
+            IRole role = new CommonBLL().GetRole(roleId);
+            bool isSalesRole = false;
+
+            if (!ReferenceEquals(role, null))
+            {
+                if (role.SalesRole.HasValue && role.SalesRole.Value == 'Y')
+                {
+                    isSalesRole = true;
+                }
+            }
+
+            return isSalesRole;
         }
 
         private void PopulateRole()
@@ -88,7 +131,14 @@ namespace DSR.WebApp.Security
                 ddlLoc.SelectedValue = Convert.ToString(user.UserLocation.Id);
 
                 if (user.UserRole.SalesRole == 'Y')
+                {
                     ddlSalesPersonType.SelectedValue = Convert.ToString(user.SalesPersonType);
+                    ddlSalesPersonType.Enabled = true;
+                }
+                else
+                {
+                    ddlSalesPersonType.Enabled = false;
+                }
 
                 if (user.IsActive == 'Y')
                     chkActive.Checked = true;
@@ -97,21 +147,82 @@ namespace DSR.WebApp.Security
             }
         }
 
+        private bool ValidateControls(IUser user)
+        {
+            bool isValid = true;
+
+            if (user.Name == string.Empty)
+            {
+                isValid = false;
+                spnName.Style["display"] = "";
+            }
+
+            if (user.FirstName == string.Empty)
+            {
+                isValid = false;
+                spnFName.Style["display"] = "";
+            }
+
+            if (user.LastName == string.Empty)
+            {
+                isValid = false;
+                spnLName.Style["display"] = "";
+            }
+
+            if (user.EmailId == string.Empty)
+            {
+                isValid = false;
+                spnEmail.Style["display"] = "";
+            }
+
+            if (user.UserRole.Id == 0)
+            {
+                isValid = false;
+                spnRole.Style["display"] = "";
+            }
+
+            if (user.UserLocation.Id ==0)
+            {
+                isValid = false;
+                spnLoc.Style["display"] = "";
+            }
+
+            IRole role = new CommonBLL().GetRole(user.UserRole.Id);
+
+            if (!ReferenceEquals(role, null))
+            {
+                if (role.SalesRole.HasValue && role.SalesRole.Value == 'Y')
+                {
+                    if (user.SalesPersonType.Value == '0')
+                    {
+                        isValid = false;
+                        spnType.Style["display"] = "";
+                    }
+                }
+            }
+
+            return isValid;
+        }
+
         private void SaveUser()
         {
             UserBLL userBll = new UserBLL();
             IUser user = new UserEntity();
             string message = string.Empty;
             BuildUserEntity(user);
-            message = userBll.SaveUser(user, _userId);
 
-            if (message == string.Empty)
+            if (ValidateControls(user))
             {
-                Response.Redirect("~/Security/ManageUser.aspx");
-            }
-            else
-            {
-                GeneralFunctions.RegisterAlertScript(this, message);
+                message = userBll.SaveUser(user, _userId);
+
+                if (message == string.Empty)
+                {
+                    Response.Redirect("~/Security/ManageUser.aspx");
+                }
+                else
+                {
+                    GeneralFunctions.RegisterAlertScript(this, message);
+                }
             }
         }
 

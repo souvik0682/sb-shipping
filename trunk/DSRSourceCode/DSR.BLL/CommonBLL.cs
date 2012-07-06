@@ -11,10 +11,19 @@ namespace DSR.BLL
 {
     public class CommonBLL
     {
+        #region Location
+
         public List<IRole> GetRole()
         {
             return CommonDAL.GetRole();
         }
+
+        public IRole GetRole(int roleId)
+        {
+            return CommonDAL.GetRole(roleId);
+        }
+
+        #endregion
 
         #region Location
 
@@ -171,6 +180,58 @@ namespace DSR.BLL
         public void DeleteGroupCompany(int groupCompanyId, int modifiedBy)
         {
             CommonDAL.DeleteGroupCompany(groupCompanyId, modifiedBy);
+        }
+
+        #endregion
+
+        #region Customer
+
+        private void SetDefaultSearchCriteriaForCustomer(SearchCriteria searchCriteria)
+        {
+            searchCriteria.SortExpression = "Location";
+            searchCriteria.SortDirection = "ASC";
+        }
+
+        public List<ICustomer> GetAllCustomerList(SearchCriteria searchCriteria)
+        {
+            return CommonDAL.GetCustomerList('N', searchCriteria);
+        }
+
+        public List<ICustomer> GetActiveCustomerList()
+        {
+            SearchCriteria searchCriteria = new SearchCriteria();
+            SetDefaultSearchCriteriaForCustomer(searchCriteria);
+            return CommonDAL.GetCustomerList('Y', searchCriteria);
+        }
+
+        public ICustomer GetCustomer(int customer)
+        {
+            SearchCriteria searchCriteria = new SearchCriteria();
+            SetDefaultSearchCriteriaForCustomer(searchCriteria);
+            return CommonDAL.GetCustomer(customer, 'N', searchCriteria);
+        }
+
+        public string SaveCustomer(ICustomer customer, int modifiedBy)
+        {
+            int result = 0;
+            string errMessage = string.Empty;
+            result = CommonDAL.SaveCustomer(customer, modifiedBy);
+
+            switch (result)
+            {
+                case 1:
+                    errMessage = ResourceManager.GetStringWithoutName("ERR00013");
+                    break;
+                default:
+                    break;
+            }
+
+            return errMessage;
+        }
+
+        public void DeleteCustomer(int customer, int modifiedBy)
+        {
+            CommonDAL.DeleteCustomer(customer, modifiedBy);
         }
 
         #endregion

@@ -154,7 +154,7 @@
     <value>Location Abbreviation already exists. Please enter another abbreviation.</value>
   </data>
   <data name="ERR00013" xml:space="preserve">
-    <value>Area name already exists. Please enter another name.</value>
+    <value>Area already exists. Please enter another name.</value>
   </data>
   <data name="ERR00014" xml:space="preserve">
     <value>Group Company name already exists. Please enter another name.</value>

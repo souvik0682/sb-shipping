@@ -78,7 +78,10 @@ namespace DSR.DAL
                 oDq.AddVarcharParam("@LastName", 30, user.LastName);
                 oDq.AddIntegerParam("@RoleId", user.UserRole.Id);
                 oDq.AddIntegerParam("@LocId", user.UserLocation.Id);
-                oDq.AddCharParam("@SalesPersonType", 1, user.SalesPersonType);
+
+                if (user.SalesPersonType != '0')
+                    oDq.AddCharParam("@SalesPersonType", 1, user.SalesPersonType);
+
                 oDq.AddVarcharParam("@EmailId", 50, user.EmailId);
                 oDq.AddCharParam("@IsActive", 1, user.IsActive);
                 oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
