@@ -41,7 +41,7 @@
                 </div>
             </ProgressTemplate>        
         </asp:UpdateProgress>
-        <fieldset id="fsList" runat="server" style="width:100%;min-height:100px;">
+        <fieldset id="fsList" runat="server" style="width:710px;min-height:100px;">
         <legend>Location List</legend>
         <div style="float:right;padding-right:10px;padding-bottom:5px;"><asp:Button ID="btnAdd" runat="server" Text="Add New Location" Width="130px" OnClick="btnAdd_Click" /></div>
         <asp:UpdatePanel ID="upLoc" runat="server" UpdateMode="Conditional">

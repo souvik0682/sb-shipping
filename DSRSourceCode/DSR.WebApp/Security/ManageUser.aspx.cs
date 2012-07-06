@@ -82,6 +82,10 @@ namespace DSR.WebApp.Security
             {
                 RedirecToAddEditPage(Convert.ToInt32(e.CommandArgument));
             }
+            else if (e.CommandName == "ChangePwd")
+            {
+                ChangeUserPassword();
+            }
         }
 
         protected void gvwUser_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -94,10 +98,10 @@ namespace DSR.WebApp.Security
 
                 e.Row.Cells[0].Text = ((gvwUser.PageSize * gvwUser.PageIndex) + e.Row.RowIndex + 1).ToString();
                 e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Name"));
-                e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "CustomerRole.Name"));
+                e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "UserRole.Name"));
                 e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "FirstName"));
                 e.Row.Cells[4].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "LastName"));
-                e.Row.Cells[5].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "CustomerLocation.Id"));
+                e.Row.Cells[5].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "UserLocation.Name"));
 
                 // Edit link
                 ImageButton btnEdit = (ImageButton)e.Row.FindControl("btnEdit");
@@ -180,6 +184,11 @@ namespace DSR.WebApp.Security
             criteria.SortDirection = sortDirection;
 
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
+        }
+
+        private void ChangeUserPassword()
+        {
+
         }
 
         #endregion

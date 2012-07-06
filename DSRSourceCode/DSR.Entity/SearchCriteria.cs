@@ -41,6 +41,12 @@ namespace DSR.Entity
             set;
         }
 
+        public string CustomerName
+        {
+            get;
+            set;
+        }
+
         public string FirstName
         {
             get;

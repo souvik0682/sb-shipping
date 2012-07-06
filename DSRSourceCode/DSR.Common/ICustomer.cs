@@ -8,6 +8,7 @@ namespace DSR.Common
     public interface ICustomer : IBase<int>, ICommon
     {
         IGroupCompany Group { get; set; }
+        ILocation Location { get; set; }
         IArea Area { get; set; }
         ICustomerType CustType { get; set; }
         char CorporateOrLocal { get; set; }
