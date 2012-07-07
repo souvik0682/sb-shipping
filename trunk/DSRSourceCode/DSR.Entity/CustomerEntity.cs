@@ -102,7 +102,13 @@ namespace DSR.Entity
             set;
         }
 
-        public int UserId
+        public int? SalesExecutiveId
+        {
+            get;
+            set;
+        }
+
+        public string SalesExecutiveName
         {
             get;
             set;
@@ -169,8 +175,66 @@ namespace DSR.Entity
 
         public CustomerEntity(DataTableReader reader)
         {
-            this.Id = Convert.ToInt32(reader["RoleId"]);
-            this.Name = Convert.ToString(reader["RoleName"]);
+            //Initialize properties
+            this.Group = new GroupCompanyEntity();
+            this.Location = new LocationEntity();
+            this.Area = new AreaEntity();
+            this.Address = new AddressEntity();
+            this.ContactPerson1 = new ContactPersonEntity();
+            this.ContactPerson2 = new ContactPersonEntity();
+
+            this.Id = Convert.ToInt32(reader["CustID"]);
+            this.Name = Convert.ToString(reader["CustName"]);
+            
+            this.Group.Id = Convert.ToInt32(reader["GroupID"]);
+            this.Group.Name = Convert.ToString(reader["GroupName"]);
+            this.Location.Id = Convert.ToInt32(reader["LocID"]);
+            this.Location.Name = Convert.ToString(reader["LocName"]);
+            this.Area.Id = Convert.ToInt32(reader["AreaID"]);
+            this.Area.Name = Convert.ToString(reader["AreaName"]);
+            this.CustType = new CustomerTypeEntity(reader);
+            this.CorporateOrLocal = Convert.ToChar(reader["CorporateorLocal"]);
+            this.Address.Address = Convert.ToString(reader["CustAddress"]);
+            this.Address.City = Convert.ToString(reader["CustCity"]);
+            this.Address.Pin = Convert.ToString(reader["CustPin"]);
+            this.Phone1 = Convert.ToString(reader["CustPhone1"]);
+            this.Phone2 = Convert.ToString(reader["CustPhone2"]);
+            this.ContactPerson1.Name = Convert.ToString(reader["ContactPerson1"]);
+            this.ContactPerson1.Designation = Convert.ToString(reader["ContactDesg1"]);
+            this.ContactPerson1.Mobile = Convert.ToString(reader["ContactMob1"]);
+            this.ContactPerson1.EmailId = Convert.ToString(reader["ContactEmailId1"]);
+            this.ContactPerson2.Name = Convert.ToString(reader["ContactPerson2"]);
+            this.ContactPerson2.Designation = Convert.ToString(reader["ContactDesg2"]);
+            this.ContactPerson2.Mobile = Convert.ToString(reader["ContactMob2"]);
+            this.ContactPerson2.EmailId = Convert.ToString(reader["ContactEmailId2"]);
+            this.CustomerProfile = Convert.ToString(reader["CustomerProfile"]);
+            this.PAN = Convert.ToString(reader["PANNo"]);
+            this.TAN = Convert.ToString(reader["TANNo"]);
+            this.BIN = Convert.ToString(reader["BINNo"]);
+            this.IEC = Convert.ToString(reader["IECNo"]);
+
+            if (reader["SalesExecutiveId"] != DBNull.Value)
+            {
+                this.SalesExecutiveId = Convert.ToInt32(reader["SalesExecutiveId"]);
+                this.SalesExecutiveName = Convert.ToString(reader["SalesExecutiveName"]);
+            }
+
+            this.IsActive = Convert.ToChar(reader["Active"]);
+        }
+
+        #endregion
+
+        #region Public Functions
+
+        public void Initialize()
+        {
+            this.Group = new GroupCompanyEntity();
+            this.Location = new LocationEntity();
+            this.Area = new AreaEntity();
+            this.CustType = new CustomerTypeEntity();
+            this.Address = new AddressEntity();
+            this.ContactPerson1 = new ContactPersonEntity();
+            this.ContactPerson2 = new ContactPersonEntity();
         }
 
         #endregion

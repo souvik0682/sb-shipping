@@ -24,6 +24,8 @@ namespace DSR.WebApp.Security
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            SetAttributes();
+
             if (!IsPostBack)
             {
                 SetDefaultSearchCriteria();
@@ -33,7 +35,7 @@ namespace DSR.WebApp.Security
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            RedirecToAddEditPage(0);
+            RedirecToAddEditPage(-1);
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -92,7 +94,7 @@ namespace DSR.WebApp.Security
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                GeneralFunctions.ApplyGridViewAlternateItemStyle(e.Row, 8);
+                GeneralFunctions.ApplyGridViewAlternateItemStyle(e.Row, 9);
 
                 ScriptManager sManager = ScriptManager.GetCurrent(this);
 
@@ -128,6 +130,15 @@ namespace DSR.WebApp.Security
         #endregion
 
         #region Private Methods
+
+        private void SetAttributes()
+        {
+            if (!IsPostBack)
+            {
+                txtWMEUserName.WatermarkText = ResourceManager.GetStringWithoutName("ERR00019");
+                txtWMEFName.WatermarkText = ResourceManager.GetStringWithoutName("ERR00020");
+            }
+        }
 
         private void LoadUser()
         {
@@ -169,8 +180,8 @@ namespace DSR.WebApp.Security
 
             criteria.SortExpression = sortExpression;
             criteria.SortDirection = sortDirection;
-            criteria.UserName = (txtUserName.Text == "Type Username") ? string.Empty : txtUserName.Text.Trim();
-            criteria.FirstName = (txtFName.Text == "Type First Name") ? string.Empty : txtFName.Text.Trim();
+            criteria.UserName = (txtUserName.Text == ResourceManager.GetStringWithoutName("ERR00019")) ? string.Empty : txtUserName.Text.Trim();
+            criteria.FirstName = (txtFName.Text == ResourceManager.GetStringWithoutName("ERR00020")) ? string.Empty : txtFName.Text.Trim();
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
         }
 

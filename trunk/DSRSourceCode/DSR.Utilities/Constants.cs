@@ -32,6 +32,12 @@ namespace DSR.Utilities
 
     public static class Constants
     {
+        #region Constants
+
+        public const string EMAIL_REGX_EXP = @"^[a-z][a-z|0-9|]*([_][a-z|0-9]+)*([.][a-z|" + @"0-9]+([_][a-z|0-9]+)*)?@[a-z][a-z|0-9|]*\.([a-z]" + @"[a-z|0-9]*(\.[a-z][a-z|0-9]*)?)$";
+
+        #endregion
+
         #region Session Variables
 
         public const string DEFAULT_CULTURE = "en-US";

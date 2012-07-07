@@ -55,7 +55,7 @@
                     <EmptyDataRowStyle CssClass="gridviewemptydatarow" />
                     <EmptyDataTemplate>No User(s) Found</EmptyDataTemplate>
                     <Columns>
-                        <asp:TemplateField HeaderText="Sl No.">
+                        <asp:TemplateField HeaderText="Sl#">
                             <HeaderStyle CssClass="gridviewheader" />
                             <ItemStyle CssClass="gridviewitem" Width="5%" />                                    
                         </asp:TemplateField>

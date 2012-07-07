@@ -33,16 +33,16 @@ namespace DSR.BLL
             searchCriteria.SortDirection = "ASC";
         }
 
-        public List<ILocation> GetAllLocationList(SearchCriteria searchCriteria)
+        public List<ILocation> GetAllLocation(SearchCriteria searchCriteria)
         {
-            return CommonDAL.GetLocationList('N', searchCriteria);
+            return CommonDAL.GetLocation('N', searchCriteria);
         }
 
-        public List<ILocation> GetActiveLocationList()
+        public List<ILocation> GetActiveLocation()
         {
             SearchCriteria searchCriteria = new SearchCriteria();
             SetDefaultSearchCriteriaForLocation(searchCriteria);
-            return CommonDAL.GetLocationList('Y', searchCriteria);
+            return CommonDAL.GetLocation('Y', searchCriteria);
         }
 
         public ILocation GetLocation(int locId)
@@ -88,16 +88,16 @@ namespace DSR.BLL
             searchCriteria.SortDirection = "ASC";
         }
 
-        public List<IArea> GetAllAreaList(SearchCriteria searchCriteria)
+        public List<IArea> GetAllArea(SearchCriteria searchCriteria)
         {
-            return CommonDAL.GetAreaList('N', searchCriteria);
+            return CommonDAL.GetArea('N', searchCriteria);
         }
 
-        public List<IArea> GetActiveAreaList()
+        public List<IArea> GetActiveArea()
         {
             SearchCriteria searchCriteria = new SearchCriteria();
             SetDefaultSearchCriteriaForArea(searchCriteria);
-            return CommonDAL.GetAreaList('Y', searchCriteria);
+            return CommonDAL.GetArea('Y', searchCriteria);
         }
 
         public IArea GetArea(int areaId)
@@ -130,6 +130,11 @@ namespace DSR.BLL
             CommonDAL.DeleteArea(areaId, modifiedBy);
         }
 
+        public List<IArea> GetAreaByLocation(int locId)
+        {
+            return CommonDAL.GetAreaByLocation(locId);
+        }
+
         #endregion
 
         #region Group Company
@@ -140,16 +145,16 @@ namespace DSR.BLL
             searchCriteria.SortDirection = "ASC";
         }
 
-        public List<IGroupCompany> GetAllGroupCompanyList(SearchCriteria searchCriteria)
+        public List<IGroupCompany> GetAllGroupCompany(SearchCriteria searchCriteria)
         {
-            return CommonDAL.GetGroupCompanyList('N', searchCriteria);
+            return CommonDAL.GetGroupCompany('N', searchCriteria);
         }
 
-        public List<IGroupCompany> GetActiveGroupCompanyList()
+        public List<IGroupCompany> GetActiveGroupCompany()
         {
             SearchCriteria searchCriteria = new SearchCriteria();
             SetDefaultSearchCriteriaForGroupCompany(searchCriteria);
-            return CommonDAL.GetGroupCompanyList('Y', searchCriteria);
+            return CommonDAL.GetGroupCompany('Y', searchCriteria);
         }
 
         public IGroupCompany GetGroupCompany(int groupCompanyId)
@@ -192,16 +197,16 @@ namespace DSR.BLL
             searchCriteria.SortDirection = "ASC";
         }
 
-        public List<ICustomer> GetAllCustomerList(SearchCriteria searchCriteria)
+        public List<ICustomer> GetAllCustomer(SearchCriteria searchCriteria)
         {
-            return CommonDAL.GetCustomerList('N', searchCriteria);
+            return CommonDAL.GetCustomer('N', searchCriteria);
         }
 
-        public List<ICustomer> GetActiveCustomerList()
+        public List<ICustomer> GetActiveCustomer()
         {
             SearchCriteria searchCriteria = new SearchCriteria();
             SetDefaultSearchCriteriaForCustomer(searchCriteria);
-            return CommonDAL.GetCustomerList('Y', searchCriteria);
+            return CommonDAL.GetCustomer('Y', searchCriteria);
         }
 
         public ICustomer GetCustomer(int customer)
@@ -232,6 +237,34 @@ namespace DSR.BLL
         public void DeleteCustomer(int customer, int modifiedBy)
         {
             CommonDAL.DeleteCustomer(customer, modifiedBy);
+        }
+
+        #endregion
+
+        #region Customer Type
+
+        public List<ICustomerType> GetAllCustomerType()
+        {
+            return CommonDAL.GetCustomerType('N');
+        }
+
+        public List<ICustomerType> GetActiveCustomerType()
+        {
+            return CommonDAL.GetCustomerType('Y');
+        }
+
+        public ICustomerType GetCustomerType(int custTypeId)
+        {
+            return CommonDAL.GetCustomerType(custTypeId, 'N');
+        }
+
+        #endregion
+
+        #region User
+
+        public List<IUser> GetSalesExecutive()
+        {
+            return CommonDAL.GetSalesExecutive();
         }
 
         #endregion

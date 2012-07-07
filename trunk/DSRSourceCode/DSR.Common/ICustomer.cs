@@ -22,7 +22,10 @@ namespace DSR.Common
         string TAN { get; set; }
         string BIN { get; set; }
         string IEC { get; set; }
-        int UserId { get; set; }
+        int? SalesExecutiveId { get; set; }
+        string SalesExecutiveName { get; set; }
         char IsActive { get; set; }
+
+        void Initialize();
     }
 }

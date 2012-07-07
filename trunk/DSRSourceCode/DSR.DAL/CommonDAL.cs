@@ -63,7 +63,7 @@ namespace DSR.DAL
 
         #region Location
 
-        public static List<ILocation> GetLocationList(char isActiveOnly, SearchCriteria searchCriteria)
+        public static List<ILocation> GetLocation(char isActiveOnly, SearchCriteria searchCriteria)
         {
             string strExecution = "[common].[uspGetLocation]";
             List<ILocation> lstLoc = new List<ILocation>();
@@ -155,7 +155,7 @@ namespace DSR.DAL
 
         #region Area
 
-        public static List<IArea> GetAreaList(char isActiveOnly, SearchCriteria searchCriteria)
+        public static List<IArea> GetArea(char isActiveOnly, SearchCriteria searchCriteria)
         {
             string strExecution = "[common].[uspGetArea]";
             List<IArea> lstArea = new List<IArea>();
@@ -236,11 +236,33 @@ namespace DSR.DAL
             }
         }
 
+        public static List<IArea> GetAreaByLocation(int locId)
+        {
+            string strExecution = "[common].[uspGetAreaByLocation]";
+            List<IArea> lstArea = new List<IArea>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@LocId", locId);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    IArea area = new AreaEntity(reader);
+                    lstArea.Add(area);
+                }
+
+                reader.Close();
+            }
+
+            return lstArea;
+        }
+
         #endregion
 
         #region Group Company
 
-        public static List<IGroupCompany> GetGroupCompanyList(char isActiveOnly, SearchCriteria searchCriteria)
+        public static List<IGroupCompany> GetGroupCompany(char isActiveOnly, SearchCriteria searchCriteria)
         {
             string strExecution = "[common].[uspGetGroupCompany]";
             List<IGroupCompany> lstGroupCompany = new List<IGroupCompany>();
@@ -329,7 +351,7 @@ namespace DSR.DAL
 
         #region Customer
 
-        public static List<ICustomer> GetCustomerList(char isActiveOnly, SearchCriteria searchCriteria)
+        public static List<ICustomer> GetCustomer(char isActiveOnly, SearchCriteria searchCriteria)
         {
             string strExecution = "[common].[uspGetCustomer]";
             List<ICustomer> lstCustomer = new List<ICustomer>();
@@ -402,15 +424,17 @@ namespace DSR.DAL
                 oDq.AddVarcharParam("@ContactPerson1", 50, customer.ContactPerson1.Name);
                 oDq.AddVarcharParam("@ContactDesignation1", 50, customer.ContactPerson1.Designation);
                 oDq.AddVarcharParam("@ContactMobile1", 15, customer.ContactPerson1.Mobile);
+                oDq.AddVarcharParam("@ContactEmailId1", 50, customer.ContactPerson1.EmailId);
                 oDq.AddVarcharParam("@ContactPerson2", 50, customer.ContactPerson2.Name);
                 oDq.AddVarcharParam("@ContactDesignation2", 50, customer.ContactPerson2.Designation);
                 oDq.AddVarcharParam("@ContactMobile2", 15, customer.ContactPerson2.Mobile);
+                oDq.AddVarcharParam("@ContactEmailId2", 50, customer.ContactPerson2.EmailId);
                 oDq.AddVarcharParam("@CustomerProfile", 500, customer.CustomerProfile);
                 oDq.AddVarcharParam("@PAN", 10, customer.PAN);
                 oDq.AddVarcharParam("@TAN", 15, customer.TAN);
                 oDq.AddVarcharParam("@BIN", 15, customer.BIN);
                 oDq.AddVarcharParam("@IEC", 15, customer.IEC);
-                //oDq.AddIntegerParam("@SalesExecutive", customer.SalesExecutive);
+                oDq.AddIntegerParam("@SalesExecutiveId", customer.SalesExecutiveId);
                 oDq.AddCharParam("@IsActive", 1, customer.IsActive);
                 oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
                 oDq.AddIntegerParam("@Result", result, QueryParameterDirection.Output);
@@ -431,6 +455,79 @@ namespace DSR.DAL
                 oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
                 oDq.RunActionQuery();
             }
+        }
+
+        #endregion
+
+        #region Customer Type
+
+        public static List<ICustomerType> GetCustomerType(char isActiveOnly)
+        {
+            string strExecution = "[common].[uspGetCustomerType]";
+            List<ICustomerType> lstCustomerType = new List<ICustomerType>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    ICustomerType customerType = new CustomerTypeEntity(reader);
+                    lstCustomerType.Add(customerType);
+                }
+
+                reader.Close();
+            }
+
+            return lstCustomerType;
+        }
+
+        public static ICustomerType GetCustomerType(int custTypeId, char isActiveOnly)
+        {
+            string strExecution = "[common].[uspGetCustomerType]";
+            ICustomerType customerType = null;
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@CustTypeId", custTypeId);
+                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    customerType = new CustomerTypeEntity(reader);
+                }
+
+                reader.Close();
+            }
+
+            return customerType;
+        }
+
+        #endregion
+
+        #region User
+
+        public static List<IUser> GetSalesExecutive()
+        {
+            string strExecution = "[common].[uspGetSalesExecutive]";
+            List<IUser> lstUser = new List<IUser>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    IUser user = new UserEntity(reader);
+                    lstUser.Add(user);
+                }
+
+                reader.Close();
+            }
+
+            return lstUser;
         }
 
         #endregion

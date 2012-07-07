@@ -104,7 +104,6 @@ namespace DSR.DAL
                 oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
                 oDq.RunActionQuery();
             }
-        }
-
+        } 
     }
 }

@@ -40,6 +40,8 @@ namespace DSR.WebApp
             lblMsgUsername.Visible = false;
             lblMsgPassword.Visible = false;
             txtPassword.Attributes.Add("autocomplete", "off");
+            rfvName.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00001");
+            rfvPwd.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00002"); 
         }
 
         private bool ValidateControl()
