@@ -76,6 +76,6 @@ namespace DSR.BLL
         public void DeleteUser(int userId, int modifiedBy)
         {
             UserDAL.DeleteUser(userId, modifiedBy);
-        }
+        }        
     }
 }

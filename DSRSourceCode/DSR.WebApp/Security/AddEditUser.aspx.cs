@@ -8,6 +8,7 @@ using DSR.BLL;
 using DSR.Utilities;
 using DSR.Common;
 using DSR.Entity;
+using DSR.Utilities.ResourceManager;
 
 namespace DSR.WebApp.Security
 {
@@ -70,13 +71,22 @@ namespace DSR.WebApp.Security
         {
             if (!IsPostBack)
             {
+                rfvUserName.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00036");
+                rfvFName.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00037");
+                rfvLName.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00038");
+                rfvEmail.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00039");
+                rfvRole.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00040");
+                rfvLoc.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00025");
+
+                revEmail.ValidationExpression = Constants.EMAIL_REGX_EXP;
+
                 ddlSalesPersonType.Enabled = false;
-                spnName.Style["display"] = "none";
-                spnFName.Style["display"] = "none";
-                spnLName.Style["display"] = "none";
-                spnEmail.Style["display"] = "none";
-                spnRole.Style["display"] = "none";
-                spnLoc.Style["display"] = "none";
+                //spnName.Style["display"] = "none";
+                //spnFName.Style["display"] = "none";
+                //spnLName.Style["display"] = "none";
+                //spnEmail.Style["display"] = "none";
+                //spnRole.Style["display"] = "none";
+                //spnLoc.Style["display"] = "none";
                 spnType.Style["display"] = "none";
             }
         }
@@ -113,7 +123,7 @@ namespace DSR.WebApp.Security
         private void PopulateLocation()
         {
             CommonBLL commonBll = new CommonBLL();
-            List<ILocation> lstLoc = commonBll.GetActiveLocationList();
+            List<ILocation> lstLoc = commonBll.GetActiveLocation();
             GeneralFunctions.PopulateDropDownList(ddlLoc, lstLoc, "Id", "Name", true);
         }
 
@@ -154,37 +164,37 @@ namespace DSR.WebApp.Security
             if (user.Name == string.Empty)
             {
                 isValid = false;
-                spnName.Style["display"] = "";
+                //spnName.Style["display"] = "";
             }
 
             if (user.FirstName == string.Empty)
             {
                 isValid = false;
-                spnFName.Style["display"] = "";
+                //spnFName.Style["display"] = "";
             }
 
             if (user.LastName == string.Empty)
             {
                 isValid = false;
-                spnLName.Style["display"] = "";
+                //spnLName.Style["display"] = "";
             }
 
             if (user.EmailId == string.Empty)
             {
                 isValid = false;
-                spnEmail.Style["display"] = "";
+                //spnEmail.Style["display"] = "";
             }
 
             if (user.UserRole.Id == 0)
             {
                 isValid = false;
-                spnRole.Style["display"] = "";
+                //spnRole.Style["display"] = "";
             }
 
             if (user.UserLocation.Id ==0)
             {
                 isValid = false;
-                spnLoc.Style["display"] = "";
+                //spnLoc.Style["display"] = "";
             }
 
             IRole role = new CommonBLL().GetRole(user.UserRole.Id);

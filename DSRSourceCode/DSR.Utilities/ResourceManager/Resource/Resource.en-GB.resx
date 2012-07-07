@@ -162,4 +162,79 @@
   <data name="ERR00015" xml:space="preserve">
     <value>User name already exists. Please enter another name.</value>
   </data>
+  <data name="ERR00016" xml:space="preserve">
+    <value>Type Area</value>
+  </data>
+  <data name="ERR00017" xml:space="preserve">
+    <value>Type Abbreviation</value>
+  </data>
+  <data name="ERR00018" xml:space="preserve">
+    <value>Type Location Name</value>
+  </data>
+  <data name="ERR00019" xml:space="preserve">
+    <value>Type Username</value>
+  </data>
+  <data name="ERR00020" xml:space="preserve">
+    <value>Type First Name</value>
+  </data>
+  <data name="ERR00021" xml:space="preserve">
+    <value>Type Group Name</value>
+  </data>
+  <data name="ERR00022" xml:space="preserve">
+    <value>Type Customer Name</value>
+  </data>
+  <data name="ERR00023" xml:space="preserve">
+    <value>*Invalid EmailId</value>
+  </data>
+  <data name="ERR00024" xml:space="preserve">
+    <value>*Group name cannot be left blank</value>
+  </data>
+  <data name="ERR00025" xml:space="preserve">
+    <value>*Location cannot be left blank</value>
+  </data>
+  <data name="ERR00026" xml:space="preserve">
+    <value>*Area name cannot be left blank</value>
+  </data>
+  <data name="ERR00027" xml:space="preserve">
+    <value>*Customer Type cannot be left blank</value>
+  </data>
+  <data name="ERR00028" xml:space="preserve">
+    <value>*Corporate / Local cannot be left blank</value>
+  </data>
+  <data name="ERR00029" xml:space="preserve">
+    <value>*Customer name cannot be left blank</value>
+  </data>
+  <data name="ERR00030" xml:space="preserve">
+    <value>*Address cannot be left blank</value>
+  </data>
+  <data name="ERR00031" xml:space="preserve">
+    <value>*Phone no cannot be left blank</value>
+  </data>
+  <data name="ERR00032" xml:space="preserve">
+    <value>*Contact Person name cannot be left blank</value>
+  </data>
+  <data name="ERR00033" xml:space="preserve">
+    <value>*Designation cannot be left blank</value>
+  </data>
+  <data name="ERR00034" xml:space="preserve">
+    <value>*Mobile number cannot be left blank</value>
+  </data>
+  <data name="ERR00035" xml:space="preserve">
+    <value>*Abbreviation Cannot be Left Blank</value>
+  </data>
+  <data name="ERR00036" xml:space="preserve">
+    <value>*Username cannot be left bhank</value>
+  </data>
+  <data name="ERR00037" xml:space="preserve">
+    <value>*First name cannot be left bhank</value>
+  </data>
+  <data name="ERR00038" xml:space="preserve">
+    <value>*Last name cannot be left bhank</value>
+  </data>
+  <data name="ERR00039" xml:space="preserve">
+    <value>*Email Id cannot be left blank</value>
+  </data>
+  <data name="ERR00040" xml:space="preserve">
+    <value>*Role cannot be left blank</value>
+  </data>
 </root>

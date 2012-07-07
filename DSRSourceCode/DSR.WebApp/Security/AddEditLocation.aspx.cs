@@ -8,6 +8,7 @@ using DSR.BLL;
 using DSR.Utilities;
 using DSR.Common;
 using DSR.Entity;
+using DSR.Utilities.ResourceManager;
 
 namespace DSR.WebApp.Security
 {
@@ -26,6 +27,7 @@ namespace DSR.WebApp.Security
         {
             RetriveParameters();
             CheckUserAccess();
+            SetAttributes();
 
             if (!IsPostBack)
             {
@@ -42,6 +44,16 @@ namespace DSR.WebApp.Security
         #endregion
 
         #region Private Methods
+
+        private void SetAttributes()
+        {
+            if (!IsPostBack)
+            {
+                txtAddress.Attributes["onkeypress"] = "javascript:return SetMaxLength(this, 200)";
+                rfvName.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00025");
+                rfvAbbr.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00035");
+            }
+        }
 
         private void RetriveParameters()
         {

@@ -29,6 +29,14 @@ namespace DSR.Entity
             set;
         }
 
+        public string UserFullName
+        {
+            get
+            {
+                return this.FirstName + " " + this.LastName;
+            }
+        }
+
         public IRole CustomerRole
         {
             get;

@@ -43,6 +43,8 @@
     <Compile Include="AddressEntity.cs" />
     <Compile Include="AreaEntity.cs" />
     <Compile Include="CallDetailEntity.cs" />
+    <Compile Include="ContactPersonEntity.cs" />
+    <Compile Include="CustomerTypeEntity.cs" />
     <Compile Include="CustomerEntity.cs" />
     <Compile Include="DailySalesCallEntity.cs" />
     <Compile Include="GroupCompanyEntity.cs" />

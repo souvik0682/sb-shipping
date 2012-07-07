@@ -1,5 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddEditLocation.aspx.cs" Inherits="DSR.WebApp.Security.AddEditLocation" MasterPageFile="~/Blank.Master" Title=":: DSR :: Add / Edit Location" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <script type="text/javascript" language="javascript">
+        function SetMaxLength(obj, maxLen) {
+            return (obj.value.length < maxLen);
+        }    
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="container" runat="Server">
     <div id="headercaption">ADD / EDIT LOCATION</div>
@@ -10,12 +15,12 @@
             <td style="width:140px;">Location Name:<span class="errormessage1">*</span></td>
             <td>
                 <asp:TextBox ID="txtLocName" runat="server" MaxLength="50" Width="250"></asp:TextBox><br />
-                <asp:RequiredFieldValidator ID="rfvName" runat="server" CssClass="errormessage" ControlToValidate="txtLocName" Display="Dynamic" ErrorMessage="Location Name Cannot be Left Blank" ValidationGroup="Save"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="rfvName" runat="server" CssClass="errormessage" ControlToValidate="txtLocName" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
             <td>Address:</td>
-            <td><asp:TextBox ID="txtAddress" runat="server" TextMode="MultiLine" MaxLength="200" Width="250"></asp:TextBox></td>
+            <td><asp:TextBox ID="txtAddress" runat="server" TextMode="MultiLine" MaxLength="200" Rows="5" Width="250"></asp:TextBox></td>
         </tr>
         <tr>
             <td>City:</td>
@@ -29,7 +34,7 @@
             <td>Abbreviation:<span class="errormessage1">*</span></td>
             <td>
                 <asp:TextBox ID="txtAbbr" runat="server" MaxLength="3" Width="250"></asp:TextBox><br />
-                <asp:RequiredFieldValidator ID="rfvAbbr" runat="server" CssClass="errormessage" ControlToValidate="txtAbbr" Display="Dynamic" ErrorMessage="Abbreviation Cannot be Left Blank" ValidationGroup="Save"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="rfvAbbr" runat="server" CssClass="errormessage" ControlToValidate="txtAbbr" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>

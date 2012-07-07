@@ -10,5 +10,6 @@ namespace DSR.Common
         string Name { get; set; }
         string Designation { get; set; }
         string Mobile { get; set; }
+        string EmailId { get; set; }
     }
 }

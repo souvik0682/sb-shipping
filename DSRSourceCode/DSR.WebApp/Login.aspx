@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="DSR.WebApp.Login"
-    MasterPageFile="~/Blank.Master" %>
+    MasterPageFile="~/Blank.Master" Title=":: DSR :: Login" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -12,7 +12,7 @@
             </div>
         </div>
     </div>
-    <div style="float:left;">
+    <div style="float:left;margin:6% 0% 0% 30%;">
         <fieldset style="width: 400px;">
             <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
                 <ProgressTemplate>
@@ -26,13 +26,14 @@
             </asp:UpdateProgress>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <table border="0" cellpadding="5" cellspacing="5">
+                    <table border="0" cellpadding="5" cellspacing="5" width="100%">
                         <tr>
                             <td class="label">
                                 Username:
                             </td>
                             <td>
-                                <asp:TextBox ID="txtUserName" runat="server" CssClass="textbox" Width="220px"></asp:TextBox><br />
+                                <asp:TextBox ID="txtUserName" runat="server" CssClass="textbox" MaxLength="10" Width="250px"></asp:TextBox><br />
+                                <asp:RequiredFieldValidator ID="rfvName" runat="server" CssClass="errormessage" ControlToValidate="txtUserName" ValidationGroup="Save"></asp:RequiredFieldValidator>
                                 <asp:Label ID="lblMsgUsername" runat="server" CssClass="errormessage"></asp:Label>
                             </td>
                         </tr>
@@ -42,7 +43,8 @@
                             </td>
                             <td>
                                 <asp:TextBox ID="txtPassword" runat="server" CssClass="textbox" TextMode="Password"
-                                    onkeypress="javascript:doClick(event,'container_btnLogin');" Width="220px">octmp</asp:TextBox><br />
+                                    onkeypress="javascript:doClick(event,'container_btnLogin');" MaxLength="10" Width="250px"></asp:TextBox><br />
+                                <asp:RequiredFieldValidator ID="rfvPwd" runat="server" CssClass="errormessage" ControlToValidate="txtPassword" ValidationGroup="Save"></asp:RequiredFieldValidator>
                                 <asp:Label ID="lblMsgPassword" runat="server" CssClass="errormessage"></asp:Label>
                             </td>
                         </tr>
@@ -53,7 +55,7 @@
                         </tr>
                         <tr>
                             <td style="padding-bottom: 15px;" colspan="2">
-                                <asp:Button ID="btnLogin" runat="server" CssClass="button" Text="Login" OnClick="btnLogin_Click" />
+                                <asp:Button ID="btnLogin" runat="server" CssClass="button" Text="Login" ValidationGroup="Save" OnClick="btnLogin_Click" />
                             </td>
                         </tr>
                         <tr>
