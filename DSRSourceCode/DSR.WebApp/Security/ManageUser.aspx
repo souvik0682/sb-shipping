@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManageUser.aspx.cs" Inherits="DSR.WebApp.Security.ManageUser" MasterPageFile="~/Blank.Master" Title=":: DSR:: Manage User" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManageUser.aspx.cs" Inherits="DSR.WebApp.Security.ManageUser" MasterPageFile="~/Site.Master" Title=":: DSR:: Manage User" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>

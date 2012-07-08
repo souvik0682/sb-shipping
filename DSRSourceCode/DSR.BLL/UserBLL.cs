@@ -13,6 +13,12 @@ namespace DSR.BLL
 {
     public class UserBLL
     {
+        public bool ValidateUser(IUser user)
+        {
+            UserDAL.ValidateUser(user);
+            return (user.Id > 0) ? true : false;
+        }
+
         public static int GetLoggedInUserId()
         {
             int userId = 0;

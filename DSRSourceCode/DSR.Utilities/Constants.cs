@@ -28,6 +28,14 @@ namespace DSR.Utilities
         XML = 3
     }
 
+    public enum UserRole
+    {
+        Admin = 1,
+        Manager = 2,
+        Management = 3,
+        SalesExecutive = 4
+    };
+
     #endregion
 
     public static class Constants
@@ -35,11 +43,6 @@ namespace DSR.Utilities
         #region Constants
 
         public const string EMAIL_REGX_EXP = @"^[a-z][a-z|0-9|]*([_][a-z|0-9]+)*([.][a-z|" + @"0-9]+([_][a-z|0-9]+)*)?@[a-z][a-z|0-9|]*\.([a-z]" + @"[a-z|0-9]*(\.[a-z][a-z|0-9]*)?)$";
-
-        #endregion
-
-        #region Session Variables
-
         public const string DEFAULT_CULTURE = "en-US";
         public const string DATA_VALUE_FIELD = "ListItemValue";
         public const string DATA_TEXT_FIELD = "ListItemText";

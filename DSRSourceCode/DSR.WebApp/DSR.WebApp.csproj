@@ -138,6 +138,13 @@
     <Compile Include="Blank.Master.designer.cs">
       <DependentUpon>Blank.Master</DependentUpon>
     </Compile>
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -233,13 +240,6 @@
     <Compile Include="Security\ManageUser.aspx.designer.cs">
       <DependentUpon>ManageUser.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Site.Master.cs">
-      <DependentUpon>Site.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Site.Master.designer.cs">
-      <DependentUpon>Site.Master</DependentUpon>
-    </Compile>
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -253,7 +253,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
-    <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Blank.Master" />
@@ -278,6 +277,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="RDLC\DailyCallRpt.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Site.Master" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

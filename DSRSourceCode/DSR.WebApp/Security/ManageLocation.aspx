@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManageLocation.aspx.cs" Inherits="DSR.WebApp.Security.ManageLocation" MasterPageFile="~/Blank.Master" Title=":: DSR:: Manage Location" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManageLocation.aspx.cs" Inherits="DSR.WebApp.Security.ManageLocation" MasterPageFile="~/Site.Master" Title=":: DSR:: Manage Location" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>

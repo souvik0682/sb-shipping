@@ -20,9 +20,9 @@ select
 	border: 1px solid #BBBBBB;background-color: #ffffff;font-family:"Trebuchet MS", Helvetica, sans-serif;font-size:10pt;
 }
 
-fieldset{ margin: 5px;padding: 5px;-moz-border-radius:5px;-border-radius: 5px; -webkit-border-radius: 5px;background:-webkit-gradient(linear, left bottom, left top, from(#ccc), to(#fff)); text-align:left;vertical-align:top;}
+fieldset{margin: 5px;padding: 5px; text-align:left;vertical-align:top;}
 fieldset p {margin: 2px 12px 0px 0px;}
-legend {font-size: 1.1em;font-weight: 600;padding: 2px 4px 8px 4px;}
+legend {font-size: 1.1em;font-weight: 600;padding: 2px 4px 8px 4px;color:Blue;}
 
 /* Header & Footer */
 #header{margin:0px;width:100%;background:#328dc4 url(Images/header.jpg) no-repeat center top; color:#ffffff;height:65px;border-right:none 0px #328dc4;border-left:none 0px #328dc4;}
@@ -87,7 +87,7 @@ legend {font-size: 1.1em;font-weight: 600;padding: 2px 4px 8px 4px;}
 /* Miscellaneous */
 .errormessage{color:Red;font-size:8pt;}
 .errormessage1{font-family:Trebuchet MS, Helvetica, sans-serif;font-size:12px;font-weight:bold;color:Red;}
-.logindisclaimer{font-family: Arial, "Trebuchet MS", Georgia, "Times New Roman", Times, serif;font-size: 10px; text-align: justify;vertical-align:bottom; color: #666666;}
+.logindisclaimer{font-family: Arial, "Trebuchet MS", Georgia, "Times New Roman", Times, serif;font-size: 10px; text-align: justify;vertical-align:bottom; color: #666666;margin-top:20px;}
 /********* For Ajax *********/
 .background{filter: alpha(opacity=40);}
 .progress{position: absolute;z-index: 999;top: 30%;left: 35%;height: 80px;width: 110px;background-color: #659EC7;border: inset 1px #2554C7;}

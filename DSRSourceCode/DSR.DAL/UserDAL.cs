@@ -15,6 +15,37 @@ namespace DSR.DAL
         {
         }
 
+        public static void ValidateUser(IUser user)
+        {
+            string strExecution = "[admin].[uspValidateUser]";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddVarcharParam("@UserName", 15, user.Name);
+                oDq.AddVarcharParam("@Password", 15, user.Password);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    user.Id = Convert.ToInt32(reader["UserId"]);
+                    user.FirstName = Convert.ToString(reader["FirstName"]);
+                    user.LastName = Convert.ToString(reader["LastName"]);
+                    user.EmailId = Convert.ToString(reader["emailID"]);
+                    user.UserRole.Id = Convert.ToInt32(reader["RoleId"]);
+
+                    if (reader["SalesRole"] != DBNull.Value)
+                        user.UserRole.SalesRole = Convert.ToChar(reader["SalesRole"]);
+
+                    user.UserLocation.Id = Convert.ToInt32(reader["LocId"]);
+
+                    if (reader["SalesPersonType"] != DBNull.Value)
+                        user.SalesPersonType = Convert.ToChar(reader["SalesPersonType"]);
+                }
+
+                reader.Close();
+            }
+        }
+
         public static List<IUser> GetUserList(char isActiveOnly, SearchCriteria searchCriteria)
         {
             string strExecution = "[admin].[uspGetUser]";
@@ -104,6 +135,6 @@ namespace DSR.DAL
                 oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
                 oDq.RunActionQuery();
             }
-        } 
+        }
     }
 }

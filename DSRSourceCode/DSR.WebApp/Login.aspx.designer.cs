@@ -31,6 +31,15 @@ namespace DSR.WebApp {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
+        /// UserNameLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label UserNameLabel;
+        
+        /// <summary>
         /// txtUserName control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace DSR.WebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMsgUsername;
+        
+        /// <summary>
+        /// PasswordLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label PasswordLabel;
         
         /// <summary>
         /// txtPassword control.
@@ -85,15 +103,6 @@ namespace DSR.WebApp {
         protected global::System.Web.UI.WebControls.Label lblMsgPassword;
         
         /// <summary>
-        /// lblMsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMsg;
-        
-        /// <summary>
         /// btnLogin control.
         /// </summary>
         /// <remarks>
@@ -101,5 +110,14 @@ namespace DSR.WebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnLogin;
+        
+        /// <summary>
+        /// lblMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMsg;
     }
 }
