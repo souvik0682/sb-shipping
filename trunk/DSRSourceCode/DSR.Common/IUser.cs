@@ -10,6 +10,7 @@ namespace DSR.Common
         string Password { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
+        string UserFullName { get; }
         IRole UserRole { get; set; }
         ILocation UserLocation { get; set; }
         string EmailId { get; set; }

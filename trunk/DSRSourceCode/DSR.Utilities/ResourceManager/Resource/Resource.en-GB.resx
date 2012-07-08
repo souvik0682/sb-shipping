@@ -237,4 +237,13 @@
   <data name="ERR00040" xml:space="preserve">
     <value>*Role cannot be left blank</value>
   </data>
+  <data name="ERR00041" xml:space="preserve">
+    <value>*Cannot open database requested by the login</value>
+  </data>
+  <data name="ERR00042" xml:space="preserve">
+    <value>*Login failed for user</value>
+  </data>
+  <data name="ERR00043" xml:space="preserve">
+    <value>* Unable to login. Please try again.</value>
+  </data>
 </root>

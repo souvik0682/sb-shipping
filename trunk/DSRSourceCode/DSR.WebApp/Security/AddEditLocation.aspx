@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddEditLocation.aspx.cs" Inherits="DSR.WebApp.Security.AddEditLocation" MasterPageFile="~/Blank.Master" Title=":: DSR :: Add / Edit Location" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddEditLocation.aspx.cs" Inherits="DSR.WebApp.Security.AddEditLocation" MasterPageFile="~/Site.Master" Title=":: DSR :: Add / Edit Location" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <script type="text/javascript" language="javascript">
         function SetMaxLength(obj, maxLen) {

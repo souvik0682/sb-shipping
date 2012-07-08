@@ -6,11 +6,73 @@ using DSR.DAL;
 using DSR.Common;
 using DSR.Entity;
 using DSR.Utilities.ResourceManager;
+using DSR.Utilities;
 
 namespace DSR.BLL
 {
     public class CommonBLL
     {
+        #region Common
+
+        /// <summary>
+        /// Handles the exception.
+        /// </summary>
+        /// <param name="ex">The <see cref="System.Exception"/> object.</param>
+        /// <param name="logFilePath">The log file path.</param>
+        /// <createdby>Amit Kumar Chandra</createdby>
+        /// <createddate>08/07/2012</createddate>
+        public static void HandleException(Exception ex, string logFilePath)
+        {
+            int userId = 0;
+            string userDetail = string.Empty;
+            string baseException = string.Empty;
+
+            if (ex.GetType() != typeof(System.Threading.ThreadAbortException))
+            {
+                if (System.Web.HttpContext.Current.Session[Constants.SESSION_USER_INFO] != null)
+                {
+                    IUser user = (IUser)System.Web.HttpContext.Current.Session[Constants.SESSION_USER_INFO];
+
+                    if (!ReferenceEquals(user, null))
+                    {
+                        userId = user.Id;
+                        //userDetail = user.Id.ToString() + ", " + user.FirstName + " " + user.LastName;
+                    }
+                }
+
+                if (ex.GetBaseException() != null)
+                {
+                    baseException = ex.GetBaseException().ToString();
+                }
+                else
+                {
+                    baseException = ex.StackTrace;
+                }
+
+                try
+                {
+                    CommonDAL.SaveErrorLog(userId, ex.Message, baseException);
+                }
+                catch
+                {
+                    //try
+                    //{
+                    //    string message = DateTime.UtcNow.ToShortDateString().ToString() + " "
+                    //            + DateTime.UtcNow.ToLongTimeString().ToString() + " ==> " + "User Id: " + userDetail + "\r\n"
+                    //            + ex.GetBaseException().ToString();
+
+                    //    GeneralFunctions.WriteErrorLog(logFilePath + LogFileName, message);
+                    //}
+                    //catch
+                    //{
+                    //    // Consume the exception.
+                    //}
+                }
+            }
+        }
+
+        #endregion
+
         #region Location
 
         public List<IRole> GetRole()
