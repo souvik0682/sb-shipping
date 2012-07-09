@@ -40,9 +40,7 @@ namespace DSR.WebApp
                     if (valid)
                     {
                         Session[Constants.SESSION_USER_INFO] = user;
-
-                        if (user.UserRole.Id == (int)UserRole.Admin)
-                            Response.Redirect("~/Security/ManageUser.aspx");
+                        Response.Redirect("~/Security/Home.aspx");
                     }
                     else
                     {

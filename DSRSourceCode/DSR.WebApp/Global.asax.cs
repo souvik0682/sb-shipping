@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
+using DSR.Utilities;
 
 namespace DSR.WebApp
 {
@@ -25,7 +26,22 @@ namespace DSR.WebApp
         void Application_Error(object sender, EventArgs e)
         {
             // Code that runs when an unhandled error occurs
+            if (HttpContext.Current.Session != null)
+            {
+                Exception ex = Server.GetLastError();
 
+                if ((ex.GetType() == typeof(HttpUnhandledException)))
+                {
+                    Session[Constants.SESSION_ERROR] = ex.GetBaseException();
+                }
+                else
+                {
+                    Session[Constants.SESSION_ERROR] = ex;
+                }
+
+                Server.ClearError();
+                Server.Transfer("~/Error.aspx");
+            }
         }
 
         void Session_Start(object sender, EventArgs e)

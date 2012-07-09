@@ -8,12 +8,14 @@ using DSR.Utilities;
 using DSR.BLL;
 using DSR.Utilities.ResourceManager;
 using DSR.Entity;
+using DSR.Common;
+using System.Configuration;
 
 namespace DSR.WebApp.Security
 {
     public partial class ManageUser : System.Web.UI.Page
     {
-        #region Private Member Variables       
+        #region Private Member Variables
 
         private int _userId = 0;
         private bool _hasEditAccess = true;
@@ -24,6 +26,7 @@ namespace DSR.WebApp.Security
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            CheckUserAccess();
             SetAttributes();
 
             if (!IsPostBack)
@@ -127,9 +130,38 @@ namespace DSR.WebApp.Security
             }
         }
 
+        protected void ddlPaging_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            gvwUser.PageSize = Convert.ToInt32(ddlPaging.SelectedValue);
+            LoadUser();
+            upUser.Update();
+        }
+
         #endregion
 
         #region Private Methods
+
+        private void CheckUserAccess()
+        {
+            if (!ReferenceEquals(Session[Constants.SESSION_USER_INFO], null))
+            {
+                IUser user = (IUser)Session[Constants.SESSION_USER_INFO];
+
+                if (ReferenceEquals(user, null) || user.Id == 0)
+                {
+                    Response.Redirect("~/Login.aspx");
+                }
+
+                if (user.UserRole.Id != (int)UserRole.Admin)
+                {
+                    Response.Redirect("~/Unauthorized.aspx");
+                }
+            }
+            else
+            {
+                Response.Redirect("~/Login.aspx");
+            }
+        }
 
         private void SetAttributes()
         {
@@ -137,6 +169,8 @@ namespace DSR.WebApp.Security
             {
                 txtWMEUserName.WatermarkText = ResourceManager.GetStringWithoutName("ERR00019");
                 txtWMEFName.WatermarkText = ResourceManager.GetStringWithoutName("ERR00020");
+                gvwUser.PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
+                gvwUser.PagerSettings.PageButtonCount = Convert.ToInt32(ConfigurationManager.AppSettings["PageButtonCount"]);
             }
         }
 

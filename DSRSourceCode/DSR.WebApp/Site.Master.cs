@@ -27,6 +27,7 @@ namespace DSR.WebApp
                 }
 
                 SetAttributes(user);
+                ShowMenu(user);
             }
             else
             {
@@ -53,6 +54,35 @@ namespace DSR.WebApp
         private void SetAttributes(IUser user)
         {
             lblUserName.Text = "Welcome " + user.UserFullName;
+        }
+
+        private void ShowMenu(IUser user)
+        {
+            liUserMst.Style["display"] = "none";
+            liLocMst.Style["display"] = "none";
+            liAreaMst.Style["display"] = "none";
+            liGrMst.Style["display"] = "none";
+            liCustMst.Style["display"] = "none";
+
+            switch (user.UserRole.Id)
+            {
+                case (int)UserRole.Admin:
+                    liUserMst.Style["display"] = "";
+                    liLocMst.Style["display"] = "";
+                    liAreaMst.Style["display"] = "";
+                    liGrMst.Style["display"] = "";
+                    liCustMst.Style["display"] = "";
+                    break;
+                case (int)UserRole.Management:
+                    break;
+                case (int)UserRole.Manager:
+                    liCustMst.Style["display"] = "";
+                    break;
+                case (int)UserRole.SalesExecutive:
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

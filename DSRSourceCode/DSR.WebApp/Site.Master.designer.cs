@@ -58,13 +58,49 @@ namespace DSR.WebApp {
         protected global::System.Web.UI.WebControls.LinkButton lnkLogout;
         
         /// <summary>
-        /// liUser control.
+        /// liUserMst control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liUser;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liUserMst;
+        
+        /// <summary>
+        /// liLocMst control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liLocMst;
+        
+        /// <summary>
+        /// liAreaMst control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liAreaMst;
+        
+        /// <summary>
+        /// liGrMst control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liGrMst;
+        
+        /// <summary>
+        /// liCustMst control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liCustMst;
         
         /// <summary>
         /// container control.

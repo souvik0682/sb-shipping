@@ -21,7 +21,7 @@ select
 }
 
 fieldset{margin: 5px;padding: 5px; text-align:left;vertical-align:top;}
-fieldset p {margin: 2px 12px 0px 0px;}
+fieldset p {margin: 2px 6px 0px 6px;}
 legend {font-size: 1.1em;font-weight: 600;padding: 2px 4px 8px 4px;color:Blue;}
 
 /* Header & Footer */
@@ -39,6 +39,10 @@ legend {font-size: 1.1em;font-weight: 600;padding: 2px 4px 8px 4px;color:Blue;}
 #footer .copyright{float:left;font-size:11px; color:#666666;padding:5px 0px 0px 10px;}
 #footer .disclaimer{float:right;font-size:11px; color:#666666;padding:5px 10px 0px 0px;}
 #footer .disclaimer a{color:#666666;}
+
+#dvheader {font-family:Arial, Helvetica, sans-serif;}
+#dvbody {font-family:Arial, Helvetica, sans-serif;font-size:12px;color:#000000;}
+#dvfooter {font-family:Arial, Helvetica, sans-serif;font-size:12px;color:#000000;}
 
 /* Menu */
 #navbar {margin: 0;padding: 0;height: 1em; }

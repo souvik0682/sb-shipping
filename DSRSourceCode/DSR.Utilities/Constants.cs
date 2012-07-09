@@ -59,6 +59,7 @@ namespace DSR.Utilities
 
         public const string SESSION_SEARCH_CRITERIA = "SearchCriteria";
         public const string SESSION_USER_INFO = "UserInfo";
+        public const string SESSION_ERROR = "ErrorInfo";
         #endregion
     }
 }
