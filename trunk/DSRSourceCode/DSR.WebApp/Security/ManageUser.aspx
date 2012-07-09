@@ -43,10 +43,20 @@
         </asp:UpdateProgress>
         <fieldset id="fsList" runat="server" style="width:100%;min-height:100px;">
             <legend>User List</legend>
-            <div style="float:right;padding-right:10px;padding-bottom:5px;"><asp:Button ID="btnAdd" runat="server" Text="Add New User" Width="130px" OnClick="btnAdd_Click" /></div>
+            <div style="float:right;padding-right:10px;padding-bottom:5px;">                
+                Results Per Page:<asp:DropDownList ID="ddlPaging" runat="server" Width="50px" AutoPostBack="true" 
+                    OnSelectedIndexChanged="ddlPaging_SelectedIndexChanged">
+                    <asp:ListItem Text="15" Value="15" />
+                    <asp:ListItem Text="30" Value="30" />
+                    <asp:ListItem Text="50" Value="50" />
+                    <asp:ListItem Text="100" Value="100" />
+                </asp:DropDownList>&nbsp;&nbsp;            
+                <asp:Button ID="btnAdd" runat="server" Text="Add New User" Width="130px" OnClick="btnAdd_Click" />
+            </div>
             <asp:UpdatePanel ID="upUser" runat="server" UpdateMode="Conditional">
                 <Triggers>
                     <asp:AsyncPostBackTrigger ControlID="btnSearch" EventName="Click" />
+                    <asp:AsyncPostBackTrigger ControlID="ddlPaging" EventName="SelectedIndexChanged" />
                 </Triggers>
                 <ContentTemplate>
                     <asp:GridView ID="gvwUser" runat="server" AutoGenerateColumns="false" AllowPaging="true" BorderStyle="None" BorderWidth="0" OnPageIndexChanging="gvwUser_PageIndexChanging" OnRowDataBound="gvwUser_RowDataBound" OnRowCommand="gvwUser_RowCommand" Width="100%">

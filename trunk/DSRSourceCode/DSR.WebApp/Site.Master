@@ -26,15 +26,15 @@
         <div id="subheader">
             <div class="menu">
                 <ul id="navbar">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="<%=Page.ResolveClientUrl("~/Security/Home.aspx") %>">Home</a></li>
                     <li>
                         <a href="#">Master</a>
                         <ul>
-                            <li id="liUser" runat="server"><a href="<%=Page.ResolveClientUrl("~/Security/ManageUser.aspx") %>">User Master</a></li>
-                            <li><a href="<%=Page.ResolveClientUrl("~/Security/ManageLocation.aspx") %>">Location Master</a></li>
-                            <li><a href="<%=Page.ResolveClientUrl("~/Security/ManageArea.aspx") %>">Area Master</a></li>
-                            <li><a href="<%=Page.ResolveClientUrl("~/Security/ManageGroupCompany.aspx") %>">Group Company</a></li>
-                            <li><a href="<%=Page.ResolveClientUrl("~/Security/ManageCustomer.aspx") %>">Customer</a></li>
+                            <li id="liUserMst" runat="server"><a href="<%=Page.ResolveClientUrl("~/Security/ManageUser.aspx") %>">User Master</a></li>
+                            <li id="liLocMst" runat="server"><a href="<%=Page.ResolveClientUrl("~/Security/ManageLocation.aspx") %>">Location Master</a></li>
+                            <li id="liAreaMst" runat="server"><a href="<%=Page.ResolveClientUrl("~/Security/ManageArea.aspx") %>">Area Master</a></li>
+                            <li id="liGrMst" runat="server"><a href="<%=Page.ResolveClientUrl("~/Security/ManageGroupCompany.aspx") %>">Group Company</a></li>
+                            <li id="liCustMst" runat="server"><a href="<%=Page.ResolveClientUrl("~/Security/ManageCustomer.aspx") %>">Customer</a></li>
                         </ul>
                     </li>
                     <li>

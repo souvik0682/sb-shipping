@@ -8,6 +8,8 @@ using DSR.Utilities;
 using DSR.BLL;
 using DSR.Utilities.ResourceManager;
 using DSR.Entity;
+using DSR.Common;
+using System.Configuration;
 
 namespace DSR.WebApp.Security
 {
@@ -24,6 +26,7 @@ namespace DSR.WebApp.Security
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            CheckUserAccess();
             SetAttributes();
 
             if (!IsPostBack)
@@ -122,9 +125,38 @@ namespace DSR.WebApp.Security
             }
         }
 
+        protected void ddlPaging_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            gvwLoc.PageSize = Convert.ToInt32(ddlPaging.SelectedValue);
+            LoadLocation();
+            upLoc.Update();
+        }
+
         #endregion
 
         #region Private Methods
+
+        private void CheckUserAccess()
+        {
+            if (!ReferenceEquals(Session[Constants.SESSION_USER_INFO], null))
+            {
+                IUser user = (IUser)Session[Constants.SESSION_USER_INFO];
+
+                if (ReferenceEquals(user, null) || user.Id == 0)
+                {
+                    Response.Redirect("~/Login.aspx");
+                }
+
+                if (user.UserRole.Id != (int)UserRole.Admin)
+                {
+                    Response.Redirect("~/Unauthorized.aspx");
+                }
+            }
+            else
+            {
+                Response.Redirect("~/Login.aspx");
+            }
+        }
 
         private void SetAttributes()
         {
@@ -140,6 +172,8 @@ namespace DSR.WebApp.Security
 
             txtWMEAbbr.WatermarkText = ResourceManager.GetStringWithoutName("ERR00017");
             txtWMEName.WatermarkText = ResourceManager.GetStringWithoutName("ERR00018");
+            gvwLoc.PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
+            gvwLoc.PagerSettings.PageButtonCount = Convert.ToInt32(ConfigurationManager.AppSettings["PageButtonCount"]);
         }
 
         private void LoadLocation()

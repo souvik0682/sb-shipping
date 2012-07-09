@@ -292,6 +292,15 @@ namespace DSR.Utilities
                 ddl.Items.Insert(0, new ListItem(Constants.DROPDOWNLIST_DEFAULT_TEXT, Constants.DROPDOWNLIST_DEFAULT_VALUE));
         }
 
+        public static void PopulateDropDownList<T>(DropDownList ddl, List<T> lstSource, string dataValueField, string dataTextField, string customDefaultValue)
+        {
+            ddl.DataSource = lstSource;
+            ddl.DataValueField = dataValueField;
+            ddl.DataTextField = dataTextField;
+            ddl.DataBind();
+            ddl.Items.Insert(0, new ListItem(customDefaultValue, Constants.DROPDOWNLIST_DEFAULT_VALUE));
+        }
+
         /// <summary>
         /// Registers the startup alert script with the <see cref="System.Web.UI.Page"/> object with the message.
         /// </summary>
