@@ -72,12 +72,6 @@ namespace DSR.BLL
             }
         }
 
-        public static string GetDefaultPassword()
-        {
-            string pwd = "dsr123";
-            return Encryption.Encrypt(pwd);
-        }
-
         #endregion
 
         #region Location

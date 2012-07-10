@@ -259,7 +259,7 @@ namespace DSR.WebApp.Security
         {
             user.Id = _uId;
             user.Name = txtUserName.Text;
-            user.Password = CommonBLL.GetDefaultPassword();
+            user.Password = UserBLL.GetDefaultPassword();
             user.FirstName = txtFName.Text;
             user.LastName = txtLName.Text;
             user.EmailId = txtEmail.Text;

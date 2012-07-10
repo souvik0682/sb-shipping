@@ -89,7 +89,7 @@ namespace DSR.WebApp.Security
             }
             else if (e.CommandName == "ChangePwd")
             {
-                ChangeUserPassword();
+                ResetUserPassword(Convert.ToInt32(e.CommandArgument));
             }
         }
 
@@ -108,6 +108,10 @@ namespace DSR.WebApp.Security
                 e.Row.Cells[4].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "LastName"));
                 e.Row.Cells[5].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "UserLocation.Name"));
 
+                //Pwd Button
+                Button btnPwd = (Button)e.Row.FindControl("btnPwd");
+                btnPwd.CommandArgument = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id"));
+                
                 // Edit link
                 ImageButton btnEdit = (ImageButton)e.Row.FindControl("btnEdit");
                 btnEdit.ToolTip = ResourceManager.GetStringWithoutName("ERR00008");
@@ -231,7 +235,16 @@ namespace DSR.WebApp.Security
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
         }
 
-        private void ChangeUserPassword()
+        private void ResetUserPassword(int uId)
+        {
+            IUser user = new UserEntity();
+            user.Id = uId;
+            new UserBLL().ResetPassword(user,_userId);
+            SendEmail();
+            ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "<script>javascript:void alert('Your password has been reset and send to your email');</script>", false);
+        }
+
+        private void SendEmail()
         {
 
         }

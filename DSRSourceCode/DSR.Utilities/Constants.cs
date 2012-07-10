@@ -52,7 +52,7 @@ namespace DSR.Utilities
         public const string NOT_AVAILABLE_TEXT = "Not Available";
         public const string SORT_EXPRESSION = "SortExpression";
         public const string SORT_DIRECTION = "SortDirection";
-
+        public const string DEFAULT_PASSWORD = "dsr123";
         #endregion
 
         #region Session Variables
