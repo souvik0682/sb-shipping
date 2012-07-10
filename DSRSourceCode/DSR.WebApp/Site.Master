@@ -27,7 +27,7 @@
             <div class="menu">
                 <ul id="navbar">
                     <li><a href="<%=Page.ResolveClientUrl("~/Security/Home.aspx") %>">Home</a></li>
-                    <li>
+                    <li id="liMaster" runat="server">
                         <a href="#">Master</a>
                         <ul>
                             <li id="liUserMst" runat="server"><a href="<%=Page.ResolveClientUrl("~/Security/ManageUser.aspx") %>">User Master</a></li>

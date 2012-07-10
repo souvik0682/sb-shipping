@@ -58,6 +58,8 @@ namespace DSR.WebApp
 
         private void ShowMenu(IUser user)
         {
+            liMaster.Style["display"] = "none";
+
             liUserMst.Style["display"] = "none";
             liLocMst.Style["display"] = "none";
             liAreaMst.Style["display"] = "none";
@@ -67,6 +69,7 @@ namespace DSR.WebApp
             switch (user.UserRole.Id)
             {
                 case (int)UserRole.Admin:
+                    liMaster.Style["display"] = "";
                     liUserMst.Style["display"] = "";
                     liLocMst.Style["display"] = "";
                     liAreaMst.Style["display"] = "";
@@ -76,6 +79,7 @@ namespace DSR.WebApp
                 case (int)UserRole.Management:
                     break;
                 case (int)UserRole.Manager:
+                    liMaster.Style["display"] = "";
                     liCustMst.Style["display"] = "";
                     break;
                 case (int)UserRole.SalesExecutive:

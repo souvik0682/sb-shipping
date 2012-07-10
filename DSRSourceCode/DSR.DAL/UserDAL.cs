@@ -105,6 +105,7 @@ namespace DSR.DAL
             {
                 oDq.AddIntegerParam("@UserId", user.Id);
                 oDq.AddVarcharParam("@UserName", 10, user.Name);
+                oDq.AddVarcharParam("@Pwd", 50, user.Password);
                 oDq.AddVarcharParam("@FirstName", 30, user.FirstName);
                 oDq.AddVarcharParam("@LastName", 30, user.LastName);
                 oDq.AddIntegerParam("@RoleId", user.UserRole.Id);

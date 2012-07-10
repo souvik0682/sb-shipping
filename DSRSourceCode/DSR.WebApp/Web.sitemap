@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+
+  <siteMapNode>
+    <siteMapNode url="Default.aspx" title="Home" description="Home" accesskey="H" />
+    
+    <siteMapNode url="~/Views/UsersList.aspx" title="Users" description="Users" accesskey="U" />
+    
+    <siteMapNode url="~/Views/LocationList.aspx" title="Location" description="Location" accesskey="L" />
+
+    <siteMapNode url="~/Views/SalesPersonalList.aspx" title="Sales Personal" description="Sales Personal" accesskey="S" />
+
+    <siteMapNode url="~/Views/CustomersList.aspx" title="Customers" description="Customers" accesskey="C" />
+
+    <siteMapNode url="~/Views/LinkCustomer.aspx" title="Link Customer with Sales executive" description="Link customer with Sales executive" accesskey="K" />
+
+    <siteMapNode url="~/Views/AssignCustomer.aspx" title="Assign Customer to salesperson" description="Assign Customer to salesperson" accesskey="A" />
+    
+
+    <!--<siteMapNode url="~/Views/Menu4.aspx" title="Men&lt;u>u&lt;/u>4" description="Menu4" accesskey="U">
+      <siteMapNode url="~/Views/Menu4Sub1.aspx" title="Menu4&lt;u>S&lt;/u>ub1" description="Menu4Sub1" accesskey="S" />
+      <siteMapNode url="~/Views/Menu4Sub2.aspx" title="Menu4Su&lt;u>b&lt;/u>2" description="Menu4Sub2" target="_blank" accesskey="B" />
+    </siteMapNode>-->
+
+    <!--<siteMapNode url="~/Views/Menu5.aspx" title="Menu5&lt;u>A&lt;/u>" description="Menu5" accesskey="A">
+      <siteMapNode url="~/Views/Menu5Sub1.aspx" title="Menu4sub1&lt;u>C&lt;/u>" description="Menu5Sub1" accesskey="C" />
+      <siteMapNode url="~/Views/Menu5Sub2.aspx" title="Menu4Sub2&lt;u>D&lt;/u>"  description="Menu5Sub2" accesskey="D">
+        <siteMapNode url="~/Views/Menu5SubSub1.aspx" title="Menu5SubSub1&lt;u>T&lt;/u>" description="Menu5SubSub1" accesskey="T">
+          <siteMapNode url="~/Views/Menu5SubSubSub1.aspx" title="An&lt;u>o&lt;/u>therSub" description="AnotherSub" accesskey="O" />
+        </siteMapNode>
+      </siteMapNode>
+    </siteMapNode>-->
+
+  </siteMapNode>
+</siteMap>
