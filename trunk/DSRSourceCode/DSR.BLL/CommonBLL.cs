@@ -7,6 +7,7 @@ using DSR.Common;
 using DSR.Entity;
 using DSR.Utilities.ResourceManager;
 using DSR.Utilities;
+using DSR.Utilities.Cryptography;
 
 namespace DSR.BLL
 {
@@ -69,6 +70,12 @@ namespace DSR.BLL
                     //}
                 }
             }
+        }
+
+        public static string GetDefaultPassword()
+        {
+            string pwd = "dsr123";
+            return Encryption.Encrypt(pwd);
         }
 
         #endregion
