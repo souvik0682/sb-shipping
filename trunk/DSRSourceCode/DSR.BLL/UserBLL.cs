@@ -8,11 +8,17 @@ using DSR.Entity;
 using DSR.Utilities;
 using System.Web;
 using DSR.Utilities.ResourceManager;
+using DSR.Utilities.Cryptography;
 
 namespace DSR.BLL
 {
     public class UserBLL
     {
+        public static string GetDefaultPassword()
+        {
+            return Encryption.Encrypt(Constants.DEFAULT_PASSWORD);
+        }
+
         public bool ValidateUser(IUser user)
         {
             UserDAL.ValidateUser(user);
@@ -82,6 +88,12 @@ namespace DSR.BLL
         public void DeleteUser(int userId, int modifiedBy)
         {
             UserDAL.DeleteUser(userId, modifiedBy);
-        }        
+        }
+
+        public void ResetPassword(IUser user, int modifiedBy)
+        {
+            user.Password = GetDefaultPassword();
+            UserDAL.ResetPassword(user, modifiedBy);
+        }  
     }
 }

@@ -137,5 +137,19 @@ namespace DSR.DAL
                 oDq.RunActionQuery();
             }
         }
+
+        public static void ResetPassword(IUser user, int modifiedBy)
+        {
+            string strExecution = "[admin].[uspResetPassword]";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@UserId", user.Id);
+                oDq.AddVarcharParam("@Pwd", 50, user.Password);
+                oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
+                oDq.RunActionQuery();
+
+            }
+        }
     }
 }
