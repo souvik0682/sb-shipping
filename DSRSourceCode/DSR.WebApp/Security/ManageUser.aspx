@@ -12,25 +12,24 @@
         </div>
     </div>
     <div id="headercaption">MANAGE USER</div>
-    <div style="width:920px;">        
-        <div style="padding:5px 0px 5px 5px;">
-            <fieldset style="width:600px;">
-                <legend>Search User</legend>
-                <table>
-                    <tr>
-                        <td>
-                            <asp:TextBox ID="txtUserName" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
-                            <cc1:TextBoxWatermarkExtender ID="txtWMEUserName" runat="server" TargetControlID="txtUserName" WatermarkText="Type Username" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtFName" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
-                            <cc1:TextBoxWatermarkExtender ID="txtWMEFName" runat="server" TargetControlID="txtFName" WatermarkText="Type First Name" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
-                        </td>
-                        <td><asp:Button ID="btnSearch" runat="server" Text="Search" Width="100px" OnClick="btnSearch_Click" /></td>
-                    </tr>
-                </table>              
-            </fieldset>
-        </div>
+    <center>
+    <div style="width:850px;">        
+        <fieldset style="width:100%;">
+            <legend>Search User</legend>
+            <table>
+                <tr>
+                    <td>
+                        <asp:TextBox ID="txtUserName" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
+                        <cc1:TextBoxWatermarkExtender ID="txtWMEUserName" runat="server" TargetControlID="txtUserName" WatermarkText="Type Username" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtFName" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
+                        <cc1:TextBoxWatermarkExtender ID="txtWMEFName" runat="server" TargetControlID="txtFName" WatermarkText="Type First Name" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
+                    </td>
+                    <td><asp:Button ID="btnSearch" runat="server" Text="Search" Width="100px" OnClick="btnSearch_Click" /></td>
+                </tr>
+            </table>              
+        </fieldset>
         <asp:UpdateProgress ID="uProgressUser" runat="server" AssociatedUpdatePanelID="upUser">
             <ProgressTemplate>
                 <div class="progress">
@@ -43,7 +42,7 @@
         </asp:UpdateProgress>
         <fieldset id="fsList" runat="server" style="width:100%;min-height:100px;">
             <legend>User List</legend>
-            <div style="float:right;padding-right:10px;padding-bottom:5px;">                
+            <div style="float:right;padding-bottom:5px;">                
                 Results Per Page:<asp:DropDownList ID="ddlPaging" runat="server" Width="50px" AutoPostBack="true" 
                     OnSelectedIndexChanged="ddlPaging_SelectedIndexChanged">
                     <asp:ListItem Text="15" Value="15" />
@@ -52,73 +51,76 @@
                     <asp:ListItem Text="100" Value="100" />
                 </asp:DropDownList>&nbsp;&nbsp;            
                 <asp:Button ID="btnAdd" runat="server" Text="Add New User" Width="130px" OnClick="btnAdd_Click" />
+            </div><br /><br />
+            <div>
+                <asp:UpdatePanel ID="upUser" runat="server" UpdateMode="Conditional">
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="btnSearch" EventName="Click" />
+                        <asp:AsyncPostBackTrigger ControlID="ddlPaging" EventName="SelectedIndexChanged" />
+                    </Triggers>
+                    <ContentTemplate>
+                        <asp:GridView ID="gvwUser" runat="server" AutoGenerateColumns="false" AllowPaging="true" BorderStyle="None" BorderWidth="0" OnPageIndexChanging="gvwUser_PageIndexChanging" OnRowDataBound="gvwUser_RowDataBound" OnRowCommand="gvwUser_RowCommand" Width="100%">
+                        <PagerSettings Mode="NumericFirstLast" Position="Bottom" />
+                        <PagerStyle CssClass="gridviewpager" />
+                        <EmptyDataRowStyle CssClass="gridviewemptydatarow" />
+                        <EmptyDataTemplate>No User(s) Found</EmptyDataTemplate>
+                        <Columns>
+                            <asp:TemplateField HeaderText="Sl#">
+                                <HeaderStyle CssClass="gridviewheader" />
+                                <ItemStyle CssClass="gridviewitem" Width="5%" />                                    
+                            </asp:TemplateField>
+                            <asp:TemplateField>
+                                <HeaderStyle CssClass="gridviewheader" />
+                                <ItemStyle CssClass="gridviewitem" Width="15%" />    
+                                <HeaderTemplate><asp:LinkButton ID="lnkHName" runat="server" CommandName="Sort" CommandArgument="UserName" Text="User Name"></asp:LinkButton></HeaderTemplate>                                
+                            </asp:TemplateField>
+                            <asp:TemplateField>
+                                <HeaderStyle CssClass="gridviewheader" />
+                                <ItemStyle CssClass="gridviewitem" Width="15%" />
+                                <HeaderTemplate><asp:LinkButton ID="lnkHRole" runat="server" CommandName="Sort" CommandArgument="RoleName" Text="User Role"></asp:LinkButton></HeaderTemplate>                                    
+                            </asp:TemplateField>
+                            <asp:TemplateField>
+                                <HeaderStyle CssClass="gridviewheader" />
+                                <ItemStyle CssClass="gridviewitem" Width="15%" />           
+                                <HeaderTemplate><asp:LinkButton ID="lnkHFN" runat="server" CommandName="Sort" CommandArgument="FirstName" Text="First Name"></asp:LinkButton></HeaderTemplate>                         
+                            </asp:TemplateField>
+                            <asp:TemplateField>
+                                <HeaderStyle CssClass="gridviewheader" />
+                                <ItemStyle CssClass="gridviewitem" Width="15%" />   
+                                <HeaderTemplate><asp:LinkButton ID="lnkHLN" runat="server" CommandName="Sort" CommandArgument="LastName" Text="Last Name"></asp:LinkButton></HeaderTemplate>                                 
+                            </asp:TemplateField>
+                            <asp:TemplateField>
+                                <HeaderStyle CssClass="gridviewheader" />
+                                <ItemStyle CssClass="gridviewitem" Width="15%" />       
+                                <HeaderTemplate><asp:LinkButton ID="lnkHLoc" runat="server" CommandName="Sort" CommandArgument="LocName" Text="Location"></asp:LinkButton></HeaderTemplate>                             
+                            </asp:TemplateField>
+                            <asp:TemplateField>
+                                <HeaderStyle CssClass="gridviewheader" />
+                                <ItemStyle CssClass="gridviewitem" Width="10%" HorizontalAlign="Center" VerticalAlign="Middle" />                                    
+                                <ItemTemplate>
+                                    <asp:Button ID="btnPwd" runat="server" CommandName="ChangePwd" Text="Change Password" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField>
+                                <HeaderStyle CssClass="gridviewheader" />
+                                <ItemStyle CssClass="gridviewitem" Width="5%" HorizontalAlign="Center" VerticalAlign="Middle" />                                    
+                                <ItemTemplate>
+                                    <asp:ImageButton ID="btnEdit" runat="server" CommandName="Remove" ImageUrl="~/Images/edit.png" Height="16" Width="16" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField>
+                                <HeaderStyle CssClass="gridviewheader" />
+                                <ItemStyle CssClass="gridviewitem" Width="5%" HorizontalAlign="Center" VerticalAlign="Middle" />                                    
+                                <ItemTemplate>
+                                    <asp:ImageButton ID="btnRemove" runat="server" CommandName="Remove" ImageUrl="~/Images/remove.png" Height="16" Width="16" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                        </asp:GridView>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
             </div>
-            <asp:UpdatePanel ID="upUser" runat="server" UpdateMode="Conditional">
-                <Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="btnSearch" EventName="Click" />
-                    <asp:AsyncPostBackTrigger ControlID="ddlPaging" EventName="SelectedIndexChanged" />
-                </Triggers>
-                <ContentTemplate>
-                    <asp:GridView ID="gvwUser" runat="server" AutoGenerateColumns="false" AllowPaging="true" BorderStyle="None" BorderWidth="0" OnPageIndexChanging="gvwUser_PageIndexChanging" OnRowDataBound="gvwUser_RowDataBound" OnRowCommand="gvwUser_RowCommand" Width="100%">
-                    <PagerSettings Mode="NumericFirstLast" Position="Bottom" />
-                    <PagerStyle CssClass="gridviewpager" />
-                    <EmptyDataRowStyle CssClass="gridviewemptydatarow" />
-                    <EmptyDataTemplate>No User(s) Found</EmptyDataTemplate>
-                    <Columns>
-                        <asp:TemplateField HeaderText="Sl#">
-                            <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="5%" />                                    
-                        </asp:TemplateField>
-                        <asp:TemplateField>
-                            <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="15%" />    
-                            <HeaderTemplate><asp:LinkButton ID="lnkHName" runat="server" CommandName="Sort" CommandArgument="UserName" Text="User Name"></asp:LinkButton></HeaderTemplate>                                
-                        </asp:TemplateField>
-                        <asp:TemplateField>
-                            <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="15%" />
-                            <HeaderTemplate><asp:LinkButton ID="lnkHRole" runat="server" CommandName="Sort" CommandArgument="RoleName" Text="User Role"></asp:LinkButton></HeaderTemplate>                                    
-                        </asp:TemplateField>
-                        <asp:TemplateField>
-                            <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="15%" />           
-                            <HeaderTemplate><asp:LinkButton ID="lnkHFN" runat="server" CommandName="Sort" CommandArgument="FirstName" Text="First Name"></asp:LinkButton></HeaderTemplate>                         
-                        </asp:TemplateField>
-                        <asp:TemplateField>
-                            <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="15%" />   
-                            <HeaderTemplate><asp:LinkButton ID="lnkHLN" runat="server" CommandName="Sort" CommandArgument="LastName" Text="Last Name"></asp:LinkButton></HeaderTemplate>                                 
-                        </asp:TemplateField>
-                        <asp:TemplateField>
-                            <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="15%" />       
-                            <HeaderTemplate><asp:LinkButton ID="lnkHLoc" runat="server" CommandName="Sort" CommandArgument="LocName" Text="Location"></asp:LinkButton></HeaderTemplate>                             
-                        </asp:TemplateField>
-                        <asp:TemplateField>
-                            <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="10%" HorizontalAlign="Center" VerticalAlign="Middle" />                                    
-                            <ItemTemplate>
-                                <asp:Button ID="btnPwd" runat="server" CommandName="ChangePwd" Text="Change Password" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField>
-                            <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="5%" HorizontalAlign="Center" VerticalAlign="Middle" />                                    
-                            <ItemTemplate>
-                                <asp:ImageButton ID="btnEdit" runat="server" CommandName="Remove" ImageUrl="~/Images/edit.png" Height="16" Width="16" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField>
-                            <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="5%" HorizontalAlign="Center" VerticalAlign="Middle" />                                    
-                            <ItemTemplate>
-                                <asp:ImageButton ID="btnRemove" runat="server" CommandName="Remove" ImageUrl="~/Images/remove.png" Height="16" Width="16" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                    </asp:GridView>
-                </ContentTemplate>
-            </asp:UpdatePanel>
         </fieldset>
     </div>
+    </center>
 </asp:Content>

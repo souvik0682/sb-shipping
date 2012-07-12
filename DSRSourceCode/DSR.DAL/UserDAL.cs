@@ -96,6 +96,28 @@ namespace DSR.DAL
             return user;
         }
 
+        public static List<IUser> GetUserByRole(int roleId)
+        {
+            string strExecution = "[admin].[uspGetUserByRole]";
+            List<IUser> lstUser = new List<IUser>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@RoleId",roleId);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    IUser user = new UserEntity(reader);
+                    lstUser.Add(user);
+                }
+
+                reader.Close();
+            }
+
+            return lstUser;
+        }
+
         public static int SaveUser(IUser user, int modifiedBy)
         {
             string strExecution = "[admin].[uspSaveUser]";
