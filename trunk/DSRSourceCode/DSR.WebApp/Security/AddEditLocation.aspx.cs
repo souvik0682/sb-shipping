@@ -31,6 +31,7 @@ namespace DSR.WebApp.Security
 
             if (!IsPostBack)
             {
+                PopulateControls();
                 LoadData();
             }
         }
@@ -90,6 +91,12 @@ namespace DSR.WebApp.Security
                 Response.Redirect("~/Security/ManageLocation.aspx");
         }
 
+        private void PopulateControls()
+        {
+            UserBLL userBll = new UserBLL();
+            GeneralFunctions.PopulateDropDownList<IUser>(ddlManager, userBll.GetManagers(), "Id", "UserFullName", true);
+        }
+
         private void LoadData()
         {
             ILocation location = new CommonBLL().GetLocation(_locId);
@@ -107,6 +114,8 @@ namespace DSR.WebApp.Security
 
                 txtAbbr.Text = location.Abbreviation;
                 txtPhone.Text = location.Phone;
+
+                ddlManager.SelectedValue = Convert.ToString(location.ManagerId);
 
                 if (location.IsActive == 'Y')
                     chkActive.Checked = true;

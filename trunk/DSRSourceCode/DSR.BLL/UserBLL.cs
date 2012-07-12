@@ -67,6 +67,11 @@ namespace DSR.BLL
             return UserDAL.GetUser(userId, 'N', searchCriteria);
         }
 
+        public List<IUser> GetManagers()
+        {
+            return UserDAL.GetUserByRole((int)UserRole.Manager);
+        }
+
         public string SaveUser(IUser user, int modifiedBy)
         {
             int result = 0;
@@ -94,6 +99,6 @@ namespace DSR.BLL
         {
             user.Password = GetDefaultPassword();
             UserDAL.ResetPassword(user, modifiedBy);
-        }  
+        }
     }
 }

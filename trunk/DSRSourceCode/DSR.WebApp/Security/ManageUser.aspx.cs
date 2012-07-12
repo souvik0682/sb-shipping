@@ -111,7 +111,8 @@ namespace DSR.WebApp.Security
                 //Pwd Button
                 Button btnPwd = (Button)e.Row.FindControl("btnPwd");
                 btnPwd.CommandArgument = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id"));
-                
+                btnPwd.OnClientClick = "javascript:return confirm('Are you sure you want to reset password?');";
+
                 // Edit link
                 ImageButton btnEdit = (ImageButton)e.Row.FindControl("btnEdit");
                 btnEdit.ToolTip = ResourceManager.GetStringWithoutName("ERR00008");

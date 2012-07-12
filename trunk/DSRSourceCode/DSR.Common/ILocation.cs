@@ -11,6 +11,7 @@ namespace DSR.Common
         string Abbreviation { get; set; }
         string Phone { get; set; }
         int ManagerId { get; set; }
+        string ManagerName { get; set; }
         char IsActive { get; set; }
     }
 }

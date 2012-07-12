@@ -35,6 +35,12 @@ namespace DSR.Entity
             set;
         }
 
+        public string ManagerName
+        {
+            get;
+            set;
+        }
+
         public char IsActive
         {
             get;
@@ -101,7 +107,13 @@ namespace DSR.Entity
             this.LocAddress = new AddressEntity(reader);
             this.Abbreviation = Convert.ToString(reader["LocAbbr"]);
             this.Phone = Convert.ToString(reader["LocPhone"]);
-            this.ManagerId = Convert.ToInt32(reader["ManagerId"]);
+
+            if (reader["ManagerId"] != DBNull.Value)
+            {
+                this.ManagerId = Convert.ToInt32(reader["ManagerId"]);
+                this.ManagerName = Convert.ToString(reader["ManagerName"]);
+            }
+
             this.IsActive = Convert.ToChar(reader["Active"]);
         }       
 
