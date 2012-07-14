@@ -31,6 +31,24 @@ namespace DSR.WebApp.Security {
         protected global::AjaxControlToolkit.TextBoxWatermarkExtender txtWMEArea;
         
         /// <summary>
+        /// txtLoc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLoc;
+        
+        /// <summary>
+        /// txtWMELoc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TextBoxWatermarkExtender txtWMELoc;
+        
+        /// <summary>
         /// btnSearch control.
         /// </summary>
         /// <remarks>

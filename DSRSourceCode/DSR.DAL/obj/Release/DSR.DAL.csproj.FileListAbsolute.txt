@@ -1,0 +1,9 @@
+D:\Visual Studio 2010\DSRSourceCode\DSR.DAL\bin\Release\DSR.DAL.dll
+D:\Visual Studio 2010\DSRSourceCode\DSR.DAL\bin\Release\DSR.DAL.pdb
+D:\Visual Studio 2010\DSRSourceCode\DSR.DAL\bin\Release\DSR.Common.dll
+D:\Visual Studio 2010\DSRSourceCode\DSR.DAL\bin\Release\DSR.Entity.dll
+D:\Visual Studio 2010\DSRSourceCode\DSR.DAL\bin\Release\DSR.Common.pdb
+D:\Visual Studio 2010\DSRSourceCode\DSR.DAL\bin\Release\DSR.Entity.pdb
+D:\Visual Studio 2010\DSRSourceCode\DSR.DAL\obj\Release\ResolveAssemblyReference.cache
+D:\Visual Studio 2010\DSRSourceCode\DSR.DAL\obj\Release\DSR.DAL.dll
+D:\Visual Studio 2010\DSRSourceCode\DSR.DAL\obj\Release\DSR.DAL.pdb

@@ -71,6 +71,14 @@ namespace DSR.WebApp.Security
                 rfvContactMob1.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00034");
                 revEmail1.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00023");
                 revEmail2.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00023");
+                rfvExecutive.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00045");
+                ddlCorpLoc.SelectedValue = "L";
+            }
+
+            if (_custId == -1)
+            {
+                chkActive.Checked = true;
+                chkActive.Enabled = false;
             }
         }
 

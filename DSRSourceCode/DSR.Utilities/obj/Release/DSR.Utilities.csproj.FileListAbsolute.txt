@@ -1,0 +1,13 @@
+D:\Visual Studio 2010\DSRSourceCode\DSR.Utilities\bin\Release\DSR.Utilities.dll
+D:\Visual Studio 2010\DSRSourceCode\DSR.Utilities\bin\Release\DSR.Utilities.pdb
+D:\Visual Studio 2010\DSRSourceCode\DSR.Utilities\bin\Release\en-GB\DSR.Utilities.resources.dll
+D:\Visual Studio 2010\DSRSourceCode\DSR.Utilities\bin\Release\en-US\DSR.Utilities.resources.dll
+D:\Visual Studio 2010\DSRSourceCode\DSR.Utilities\obj\Release\ResolveAssemblyReference.cache
+D:\Visual Studio 2010\DSRSourceCode\DSR.Utilities\obj\Release\DSR.Utilities.ResourceManager.Resource.Resource.en-GB.resources
+D:\Visual Studio 2010\DSRSourceCode\DSR.Utilities\obj\Release\DSR.Utilities.ResourceManager.Resource.Resource.en-US.resources
+D:\Visual Studio 2010\DSRSourceCode\DSR.Utilities\obj\Release\GenerateResource.read.1.tlog
+D:\Visual Studio 2010\DSRSourceCode\DSR.Utilities\obj\Release\GenerateResource.write.1.tlog
+D:\Visual Studio 2010\DSRSourceCode\DSR.Utilities\obj\Release\en-GB\DSR.Utilities.resources.dll
+D:\Visual Studio 2010\DSRSourceCode\DSR.Utilities\obj\Release\en-US\DSR.Utilities.resources.dll
+D:\Visual Studio 2010\DSRSourceCode\DSR.Utilities\obj\Release\DSR.Utilities.dll
+D:\Visual Studio 2010\DSRSourceCode\DSR.Utilities\obj\Release\DSR.Utilities.pdb

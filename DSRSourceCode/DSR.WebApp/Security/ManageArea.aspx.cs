@@ -161,6 +161,7 @@ namespace DSR.WebApp.Security
             if (!IsPostBack)
             {
                 txtWMEArea.WatermarkText = ResourceManager.GetStringWithoutName("ERR00016");
+                txtWMELoc.WatermarkText = ResourceManager.GetStringWithoutName("ERR00018");
                 gvwArea.PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
                 gvwArea.PagerSettings.PageButtonCount = Convert.ToInt32(ConfigurationManager.AppSettings["PageButtonCount"]);
             }
@@ -208,13 +209,14 @@ namespace DSR.WebApp.Security
             }
             else
             {
-                sortExpression = "Name";
+                sortExpression = "Area";
                 sortDirection = "ASC";
             }
 
             criteria.SortExpression = sortExpression;
             criteria.SortDirection = sortDirection;
             criteria.AreaName = (txtArea.Text == ResourceManager.GetStringWithoutName("ERR00016")) ? string.Empty : txtArea.Text.Trim();
+            criteria.LocName = (txtLoc.Text == ResourceManager.GetStringWithoutName("ERR00018")) ? string.Empty : txtLoc.Text.Trim();
 
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
         }

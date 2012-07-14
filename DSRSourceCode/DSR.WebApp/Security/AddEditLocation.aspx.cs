@@ -54,6 +54,12 @@ namespace DSR.WebApp.Security
                 rfvName.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00025");
                 rfvAbbr.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00035");
             }
+
+            if (_locId == -1)
+            {
+                chkActive.Checked = true;
+                chkActive.Enabled = false;
+            }
         }
 
         private void RetriveParameters()

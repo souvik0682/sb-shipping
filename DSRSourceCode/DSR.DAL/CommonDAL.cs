@@ -188,6 +188,7 @@ namespace DSR.DAL
             using (DbQuery oDq = new DbQuery(strExecution))
             {
                 oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
+                oDq.AddVarcharParam("@SchLocName", 50, searchCriteria.LocName);
                 oDq.AddVarcharParam("@SchAreaName", 50, searchCriteria.AreaName);
                 oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
                 oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);

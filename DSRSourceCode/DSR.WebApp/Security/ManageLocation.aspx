@@ -45,7 +45,7 @@
             <div style="float:right;padding-bottom:5px;">
                 Results Per Page:<asp:DropDownList ID="ddlPaging" runat="server" Width="50px" AutoPostBack="true" 
                         OnSelectedIndexChanged="ddlPaging_SelectedIndexChanged">
-                        <asp:ListItem Text="15" Value="15" />
+                        <asp:ListItem Text="10" Value="10" />
                         <asp:ListItem Text="30" Value="30" />
                         <asp:ListItem Text="50" Value="50" />
                         <asp:ListItem Text="100" Value="100" />
@@ -60,7 +60,7 @@
                     </Triggers>
                     <ContentTemplate>
                         <asp:GridView ID="gvwLoc" runat="server" AutoGenerateColumns="false" AllowPaging="true" BorderStyle="None" BorderWidth="0" OnPageIndexChanging="gvwLoc_PageIndexChanging" OnRowDataBound="gvwLoc_RowDataBound" OnRowCommand="gvwLoc_RowCommand" Width="100%">
-                            <PagerSettings Mode="NumericFirstLast" Position="Bottom" />
+                            <PagerSettings Mode="NumericFirstLast" Position="TopAndBottom" />
                             <PagerStyle CssClass="gridviewpager" />
                             <EmptyDataRowStyle CssClass="gridviewemptydatarow" />
                             <EmptyDataTemplate>No Location(s) Found</EmptyDataTemplate>
@@ -85,7 +85,8 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Location Manager">
                                     <HeaderStyle CssClass="gridviewheader" />
-                                    <ItemStyle CssClass="gridviewitem" Width="25%" />                                       
+                                    <ItemStyle CssClass="gridviewitem" Width="25%" />      
+                                    <HeaderTemplate><asp:LinkButton ID="lnkHMan" runat="server" CommandName="Sort" CommandArgument="Manager" Text="Location Manager"></asp:LinkButton></HeaderTemplate>                                                                 
                                 </asp:TemplateField>
                                 <asp:TemplateField>
                                     <HeaderStyle CssClass="gridviewheader" />

@@ -51,6 +51,12 @@ namespace DSR.WebApp.Security
                 txtAddress.Attributes["onkeypress"] = "javascript:return SetMaxLength(this, 200)";
                 rfvName.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00024");               
             }
+
+            if (_groupId == -1)
+            {
+                chkActive.Checked = true;
+                chkActive.Enabled = false;
+            }
         }
 
         private void RetriveParameters()

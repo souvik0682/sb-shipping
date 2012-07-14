@@ -22,6 +22,10 @@
                         <asp:TextBox ID="txtArea" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
                         <cc1:TextBoxWatermarkExtender ID="txtWMEArea" runat="server" TargetControlID="txtArea" WatermarkText="Type Area" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
                     </td>
+                    <td>
+                        <asp:TextBox ID="txtLoc" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
+                        <cc1:TextBoxWatermarkExtender ID="txtWMELoc" runat="server" TargetControlID="txtLoc" WatermarkText="Type Location Name" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
+                    </td>
                     <td><asp:Button ID="btnSearch" runat="server" Text="Search" Width="100px" OnClick="btnSearch_Click" /></td>
                 </tr>
             </table>
@@ -41,7 +45,7 @@
             <div style="float:right;padding-bottom:5px;">
                 Results Per Page:<asp:DropDownList ID="ddlPaging" runat="server" Width="50px" AutoPostBack="true" 
                         OnSelectedIndexChanged="ddlPaging_SelectedIndexChanged">
-                        <asp:ListItem Text="15" Value="15" />
+                        <asp:ListItem Text="10" Value="10" />
                         <asp:ListItem Text="30" Value="30" />
                         <asp:ListItem Text="50" Value="50" />
                         <asp:ListItem Text="100" Value="100" />
@@ -56,7 +60,7 @@
                     </Triggers>
                     <ContentTemplate>
                         <asp:GridView ID="gvwArea" runat="server" AutoGenerateColumns="false" AllowPaging="true" BorderStyle="None" BorderWidth="0" OnPageIndexChanging="gvwArea_PageIndexChanging" OnRowDataBound="gvwArea_RowDataBound" OnRowCommand="gvwArea_RowCommand" Width="100%">
-                            <PagerSettings Mode="NumericFirstLast" Position="Bottom" />
+                            <PagerSettings Mode="NumericFirstLast" Position="TopAndBottom" />
                             <PagerStyle CssClass="gridviewpager" />
                             <EmptyDataRowStyle CssClass="gridviewemptydatarow" />
                             <EmptyDataTemplate>No Area(s) Found</EmptyDataTemplate>
@@ -68,7 +72,7 @@
                                 <asp:TemplateField>
                                     <HeaderStyle CssClass="gridviewheader" />
                                     <ItemStyle CssClass="gridviewitem" Width="40%" />    
-                                    <HeaderTemplate><asp:LinkButton ID="lnkHLoc" runat="server" CommandName="Sort" CommandArgument="Loc" Text="Location"></asp:LinkButton></HeaderTemplate>                                
+                                    <HeaderTemplate><asp:LinkButton ID="lnkHLoc" runat="server" CommandName="Sort" CommandArgument="Location" Text="Location"></asp:LinkButton></HeaderTemplate>                                
                                 </asp:TemplateField>
                                 <asp:TemplateField>
                                     <HeaderStyle CssClass="gridviewheader" />

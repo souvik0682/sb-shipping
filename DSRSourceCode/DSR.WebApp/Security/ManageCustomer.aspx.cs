@@ -162,7 +162,7 @@ namespace DSR.WebApp.Security
         {
             if (!IsPostBack)
             {
-                txtWMELoc.WatermarkText = ResourceManager.GetStringWithoutName("ERR00017");
+                txtWMELoc.WatermarkText = ResourceManager.GetStringWithoutName("ERR00018");
                 txtWMECust.WatermarkText = ResourceManager.GetStringWithoutName("ERR00022");
                 txtWMEGr.WatermarkText = ResourceManager.GetStringWithoutName("ERR00021");
                 gvwCust.PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
@@ -212,7 +212,7 @@ namespace DSR.WebApp.Security
             }
             else
             {
-                sortExpression = "Name";
+                sortExpression = "Location";
                 sortDirection = "ASC";
             }
 
@@ -220,7 +220,7 @@ namespace DSR.WebApp.Security
             criteria.SortDirection = sortDirection;
             criteria.CustomerName = (txtCustName.Text == ResourceManager.GetStringWithoutName("ERR00022")) ? string.Empty : txtCustName.Text.Trim();
             criteria.GroupName = (txtGrComp.Text == ResourceManager.GetStringWithoutName("ERR00021")) ? string.Empty : txtGrComp.Text.Trim();
-            criteria.LocAbbr = (txtLoc.Text == ResourceManager.GetStringWithoutName("ERR00017")) ? string.Empty : txtLoc.Text.Trim();
+            criteria.LocAbbr = (txtLoc.Text == ResourceManager.GetStringWithoutName("ERR00018")) ? string.Empty : txtLoc.Text.Trim();
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
         }
 

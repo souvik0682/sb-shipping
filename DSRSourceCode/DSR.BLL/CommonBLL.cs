@@ -8,12 +8,108 @@ using DSR.Entity;
 using DSR.Utilities.ResourceManager;
 using DSR.Utilities;
 using DSR.Utilities.Cryptography;
+using System.Net.Mail;
 
 namespace DSR.BLL
 {
     public class CommonBLL
     {
         #region Common
+
+        #region Email
+        
+        public static bool SendMail(string from, string mailTo, string cc, string subject, string body, string mailServerIP)
+        {
+            bool sent = true;
+
+            try
+            {
+                if (mailTo != "")
+                {
+                    MailMessage MyMail = new MailMessage();
+                    MyMail.To.Add(new MailAddress(mailTo));
+                    MyMail.Priority = MailPriority.High;
+                    MyMail.From = new MailAddress(from, "DSR Help Desk");
+
+                    if (cc != "")
+                    {
+                        MailAddress ccAddr = new MailAddress(cc);
+                        MyMail.CC.Add(ccAddr);
+                    }
+
+                    MyMail.Subject = subject;
+                    MyMail.Body = GetMessageBody(body);
+                    MyMail.IsBodyHtml = true;
+
+                    SmtpClient client = new SmtpClient(mailServerIP);
+                    client.Credentials = System.Net.CredentialCache.DefaultNetworkCredentials;
+                    client.Send(MyMail);
+                }
+                else { sent = false; }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return sent;
+        }
+
+        public static bool SendMail(string from, string mailTo, string cc, string subject, string body, string mailServerIP, string mailUserAccount, string mailUserPwd)
+        {
+            bool sent = true;
+
+            try
+            {
+                if (mailTo != "")
+                {
+                    MailMessage MyMail = new MailMessage();
+                    MyMail.To.Add(new MailAddress(mailTo));
+                    MyMail.Priority = MailPriority.High;
+                    MyMail.From = new MailAddress(from, "DSR Help Desk");
+
+                    if (cc != "")
+                    {
+                        MailAddress ccAddr = new MailAddress(cc);
+                        MyMail.CC.Add(ccAddr);
+                    }
+
+                    MyMail.Subject = subject;
+                    MyMail.Body = GetMessageBody(body);
+                    MyMail.IsBodyHtml = true;
+
+                    SmtpClient client = new SmtpClient(mailServerIP, 25);
+                    System.Net.NetworkCredential credential = new System.Net.NetworkCredential(mailUserAccount, mailUserPwd);
+                    client.Credentials = credential;
+                    client.Send(MyMail);
+                }
+                else { sent = false; }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return sent;
+        }
+
+        public static string GetMessageBody(string strBodyContent)
+        {
+            try
+            {
+                StringBuilder sbMsgBody = new StringBuilder();
+                sbMsgBody.Append("<font face='Verdana, Arial, Helvetica, sans-serif' size='10' color='#8B4B0D'>Daily Sales Call</font>");
+                sbMsgBody.Append("<br>");
+                sbMsgBody.Append("<br><br><br>");
+                sbMsgBody.Append("<font face=verdana size=2>" + strBodyContent + "</font>");
+
+                return sbMsgBody.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        #endregion
 
         /// <summary>
         /// Handles the exception.
