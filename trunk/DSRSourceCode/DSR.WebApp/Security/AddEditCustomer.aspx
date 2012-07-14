@@ -48,8 +48,8 @@
                     <td>
                         <asp:DropDownList ID="ddlCorpLoc" runat="server" CssClass="dropdownlist" TabIndex="4">
                             <asp:ListItem Value="0" Text="---Select---"></asp:ListItem>
-                            <asp:ListItem Value="C" Text="Corporate"></asp:ListItem>
                             <asp:ListItem Value="L" Text="Local"></asp:ListItem>
+                            <asp:ListItem Value="C" Text="Corporate"></asp:ListItem>
                         </asp:DropDownList><br />
                         <asp:RequiredFieldValidator ID="rfvCorpLoc" runat="server" CssClass="errormessage" ControlToValidate="ddlCorpLoc" InitialValue="0" ValidationGroup="Save"></asp:RequiredFieldValidator>
                     </td>
@@ -78,8 +78,8 @@
                     <td>City:</td>
                     <td><asp:TextBox ID="txtCity" runat="server" CssClass="textbox" MaxLength="50" Width="250" TabIndex="7"></asp:TextBox></td>
                     <td></td>
-                    <td>Sales Executive:</td>
-                    <td><asp:DropDownList ID="ddlExecutive" runat="server" CssClass="dropdownlist" TabIndex="20"><asp:ListItem Value="0" Text="---Select---"></asp:ListItem></asp:DropDownList></td>
+                    <td>Account Of:<span class="errormessage">*</span></td>
+                    <td><asp:DropDownList ID="ddlExecutive" runat="server" CssClass="dropdownlist" TabIndex="20"><asp:ListItem Value="0" Text="---Select---"></asp:ListItem></asp:DropDownList><br /><asp:RequiredFieldValidator ID="rfvExecutive" runat="server" CssClass="errormessage" ControlToValidate="ddlExecutive" InitialValue="0" ValidationGroup="Save"></asp:RequiredFieldValidator></td>
                 </tr>
                 <tr>
                     <td>Pin:</td>

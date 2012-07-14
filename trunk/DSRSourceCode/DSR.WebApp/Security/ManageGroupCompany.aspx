@@ -41,7 +41,7 @@
             <div style="float:right;padding-bottom:5px;">
                 Results Per Page:<asp:DropDownList ID="ddlPaging" runat="server" Width="50px" AutoPostBack="true" 
                         OnSelectedIndexChanged="ddlPaging_SelectedIndexChanged">
-                        <asp:ListItem Text="15" Value="15" />
+                        <asp:ListItem Text="10" Value="10" />
                         <asp:ListItem Text="30" Value="30" />
                         <asp:ListItem Text="50" Value="50" />
                         <asp:ListItem Text="100" Value="100" />
@@ -57,7 +57,7 @@
                     <ContentTemplate>
                         <asp:GridView ID="gvwGroup" Width="100%" runat="server" AutoGenerateColumns="false"
                         AllowPaging="false" BorderStyle="None" BorderWidth="0" OnRowDataBound="gvwGroup_RowDataBound" OnRowCommand="gvwGroup_RowCommand" OnPageIndexChanging="gvwGroup_PageIndexChanging">
-                        <PagerSettings Mode="NumericFirstLast" />
+                        <PagerSettings Mode="NumericFirstLast" Position="TopAndBottom" />
                         <PagerStyle CssClass="gridviewpager" />
                         <EmptyDataRowStyle CssClass="gridviewemptydatarow" />
                         <EmptyDataTemplate>

@@ -22,13 +22,13 @@ namespace DSR.WebApp.Security {
         protected global::System.Web.UI.WebControls.TextBox txtUserName;
         
         /// <summary>
-        /// rfvUserName control.
+        /// spnName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvUserName;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spnName;
         
         /// <summary>
         /// txtFName control.
@@ -40,13 +40,13 @@ namespace DSR.WebApp.Security {
         protected global::System.Web.UI.WebControls.TextBox txtFName;
         
         /// <summary>
-        /// rfvFName control.
+        /// spnFName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFName;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spnFName;
         
         /// <summary>
         /// txtLName control.
@@ -58,13 +58,13 @@ namespace DSR.WebApp.Security {
         protected global::System.Web.UI.WebControls.TextBox txtLName;
         
         /// <summary>
-        /// rfvLName control.
+        /// spnLName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvLName;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spnLName;
         
         /// <summary>
         /// txtEmail control.
@@ -76,13 +76,13 @@ namespace DSR.WebApp.Security {
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
         
         /// <summary>
-        /// rfvEmail control.
+        /// spnEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEmail;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spnEmail;
         
         /// <summary>
         /// revEmail control.
@@ -103,13 +103,13 @@ namespace DSR.WebApp.Security {
         protected global::System.Web.UI.WebControls.DropDownList ddlRole;
         
         /// <summary>
-        /// rfvRole control.
+        /// spnRole control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRole;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spnRole;
         
         /// <summary>
         /// ddlLoc control.
@@ -121,13 +121,13 @@ namespace DSR.WebApp.Security {
         protected global::System.Web.UI.WebControls.DropDownList ddlLoc;
         
         /// <summary>
-        /// rfvLoc control.
+        /// spnLoc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvLoc;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spnLoc;
         
         /// <summary>
         /// ddlSalesPersonType control.

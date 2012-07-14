@@ -45,7 +45,10 @@ namespace DSR.WebApp.Security
         protected void ddlRole_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (IsSalesRole(Convert.ToInt32(ddlRole.SelectedValue)))
+            {
+                ddlSalesPersonType.SelectedValue = "M";
                 ddlSalesPersonType.Enabled = true;
+            }
             else
             {
                 ddlSalesPersonType.Enabled = false;
@@ -69,25 +72,41 @@ namespace DSR.WebApp.Security
 
         private void SetAttributes()
         {
+            spnName.Style["display"] = "none";
+            spnFName.Style["display"] = "none";
+            spnLName.Style["display"] = "none";
+            spnEmail.Style["display"] = "none";
+            spnRole.Style["display"] = "none";
+            spnLoc.Style["display"] = "none";
+            spnType.Style["display"] = "none";
+
             if (!IsPostBack)
             {
-                rfvUserName.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00036");
-                rfvFName.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00037");
-                rfvLName.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00038");
-                rfvEmail.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00039");
-                rfvRole.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00040");
-                rfvLoc.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00025");
+                //rfvUserName.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00036");
+                //rfvFName.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00037");
+                //rfvLName.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00038");
+                //rfvEmail.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00039");
+                //rfvRole.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00040");
+                //rfvLoc.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00025");
 
                 revEmail.ValidationExpression = Constants.EMAIL_REGX_EXP;
 
+                spnName.InnerText = ResourceManager.GetStringWithoutName("ERR00036");
+                spnFName.InnerText = ResourceManager.GetStringWithoutName("ERR00037");
+                spnLName.InnerText = ResourceManager.GetStringWithoutName("ERR00038");
+                spnEmail.InnerText = ResourceManager.GetStringWithoutName("ERR00039");
+                spnRole.InnerText = ResourceManager.GetStringWithoutName("ERR00040");
+                spnLoc.InnerText = ResourceManager.GetStringWithoutName("ERR00025");
+                spnType.InnerText = ResourceManager.GetStringWithoutName("ERR00044");
+
                 ddlSalesPersonType.Enabled = false;
-                //spnName.Style["display"] = "none";
-                //spnFName.Style["display"] = "none";
-                //spnLName.Style["display"] = "none";
-                //spnEmail.Style["display"] = "none";
-                //spnRole.Style["display"] = "none";
-                //spnLoc.Style["display"] = "none";
-                spnType.Style["display"] = "none";
+            }
+
+            if (_uId == -1)
+            {
+                txtUserName.Enabled = false;
+                chkActive.Checked = true;
+                chkActive.Enabled = false;
             }
         }
 
@@ -183,51 +202,54 @@ namespace DSR.WebApp.Security
             if (user.Name == string.Empty)
             {
                 isValid = false;
-                //spnName.Style["display"] = "";
+                spnName.Style["display"] = "";
             }
 
             if (user.FirstName == string.Empty)
             {
                 isValid = false;
-                //spnFName.Style["display"] = "";
+                spnFName.Style["display"] = "";
             }
 
             if (user.LastName == string.Empty)
             {
                 isValid = false;
-                //spnLName.Style["display"] = "";
+                spnLName.Style["display"] = "";
             }
 
             if (user.EmailId == string.Empty)
             {
                 isValid = false;
-                //spnEmail.Style["display"] = "";
+                spnEmail.Style["display"] = "";
             }
 
             if (user.UserRole.Id == 0)
             {
                 isValid = false;
-                //spnRole.Style["display"] = "";
+                spnRole.Style["display"] = "";
+                spnType.Style["display"] = "none";
+            }
+            else
+            {
+                IRole role = new CommonBLL().GetRole(user.UserRole.Id);
+
+                if (!ReferenceEquals(role, null))
+                {
+                    if (role.SalesRole.HasValue && role.SalesRole.Value == 'Y')
+                    {
+                        if (user.SalesPersonType.Value == '0')
+                        {
+                            isValid = false;
+                            spnType.Style["display"] = "";
+                        }
+                    }
+                }
             }
 
             if (user.UserLocation.Id ==0)
             {
                 isValid = false;
-                //spnLoc.Style["display"] = "";
-            }
-
-            IRole role = new CommonBLL().GetRole(user.UserRole.Id);
-
-            if (!ReferenceEquals(role, null))
-            {
-                if (role.SalesRole.HasValue && role.SalesRole.Value == 'Y')
-                {
-                    if (user.SalesPersonType.Value == '0')
-                    {
-                        isValid = false;
-                        spnType.Style["display"] = "";
-                    }
-                }
+                spnLoc.Style["display"] = "";
             }
 
             return isValid;

@@ -85,7 +85,7 @@ namespace DSR.WebApp.Security
             }
             else if (e.CommandName == "Remove")
             {
-                RedirecToAddEditPage(Convert.ToInt32(e.CommandArgument));
+                DeleteUser(Convert.ToInt32(e.CommandArgument));
             }
             else if (e.CommandName == "ChangePwd")
             {
@@ -121,7 +121,7 @@ namespace DSR.WebApp.Security
                 //Delete link
                 ImageButton btnRemove = (ImageButton)e.Row.FindControl("btnRemove");
                 btnRemove.ToolTip = ResourceManager.GetStringWithoutName("ERR00007");
-
+                btnRemove.CommandArgument = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id"));
 
                 if (_hasEditAccess)
                 {
@@ -179,6 +179,14 @@ namespace DSR.WebApp.Security
             }
         }
 
+        private void DeleteUser(int userId)
+        {
+            UserBLL userBll = new UserBLL();
+            userBll.DeleteUser(userId, _userId);
+            LoadUser();
+            ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "<script>javascript:void alert('" + ResourceManager.GetStringWithoutName("ERR00006") + "');</script>", false);
+        }
+
         private void LoadUser()
         {
             if (!ReferenceEquals(Session[Constants.SESSION_SEARCH_CRITERIA], null))
@@ -213,7 +221,7 @@ namespace DSR.WebApp.Security
             }
             else
             {
-                sortExpression = "Name";
+                sortExpression = "UserName";
                 sortDirection = "ASC";
             }
 

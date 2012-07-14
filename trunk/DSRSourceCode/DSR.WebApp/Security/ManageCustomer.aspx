@@ -20,7 +20,7 @@
                 <tr>
                     <td>
                         <asp:TextBox ID="txtLoc" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
-                        <cc1:TextBoxWatermarkExtender ID="txtWMELoc" runat="server" TargetControlID="txtLoc" WatermarkText="Type Location" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
+                        <cc1:TextBoxWatermarkExtender ID="txtWMELoc" runat="server" TargetControlID="txtLoc" WatermarkText="Type Location Name" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
                     </td>
                     <td>
                         <asp:TextBox ID="txtCustName" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
@@ -49,7 +49,7 @@
             <div style="float:right;padding-bottom:5px;">
                 Results Per Page:<asp:DropDownList ID="ddlPaging" runat="server" Width="50px" AutoPostBack="true" 
                         OnSelectedIndexChanged="ddlPaging_SelectedIndexChanged">
-                        <asp:ListItem Text="15" Value="15" />
+                        <asp:ListItem Text="10" Value="10" />
                         <asp:ListItem Text="30" Value="30" />
                         <asp:ListItem Text="50" Value="50" />
                         <asp:ListItem Text="100" Value="100" />
@@ -65,7 +65,7 @@
                     <ContentTemplate>
                         <asp:GridView ID="gvwCust" Width="100%" runat="server" AutoGenerateColumns="false"
                             AllowPaging="false" BorderStyle="None" BorderWidth="0" OnRowDataBound="gvwCust_RowDataBound" OnRowCommand="gvwCust_RowCommand" OnPageIndexChanging="gvwCust_PageIndexChanging">
-                            <PagerSettings Mode="NumericFirstLast" />
+                            <PagerSettings Mode="NumericFirstLast" Position="TopAndBottom" />
                             <PagerStyle CssClass="gridviewpager" />
                             <EmptyDataRowStyle CssClass="gridviewemptydatarow" />
                             <EmptyDataTemplate>

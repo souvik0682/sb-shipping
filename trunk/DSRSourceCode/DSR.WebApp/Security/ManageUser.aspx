@@ -45,7 +45,7 @@
             <div style="float:right;padding-bottom:5px;">                
                 Results Per Page:<asp:DropDownList ID="ddlPaging" runat="server" Width="50px" AutoPostBack="true" 
                     OnSelectedIndexChanged="ddlPaging_SelectedIndexChanged">
-                    <asp:ListItem Text="15" Value="15" />
+                    <asp:ListItem Text="10" Value="10" />
                     <asp:ListItem Text="30" Value="30" />
                     <asp:ListItem Text="50" Value="50" />
                     <asp:ListItem Text="100" Value="100" />
@@ -60,7 +60,7 @@
                     </Triggers>
                     <ContentTemplate>
                         <asp:GridView ID="gvwUser" runat="server" AutoGenerateColumns="false" AllowPaging="true" BorderStyle="None" BorderWidth="0" OnPageIndexChanging="gvwUser_PageIndexChanging" OnRowDataBound="gvwUser_RowDataBound" OnRowCommand="gvwUser_RowCommand" Width="100%">
-                        <PagerSettings Mode="NumericFirstLast" Position="Bottom" />
+                        <PagerSettings Mode="NumericFirstLast" Position="TopAndBottom" />
                         <PagerStyle CssClass="gridviewpager" />
                         <EmptyDataRowStyle CssClass="gridviewemptydatarow" />
                         <EmptyDataTemplate>No User(s) Found</EmptyDataTemplate>
@@ -105,7 +105,7 @@
                                 <HeaderStyle CssClass="gridviewheader" />
                                 <ItemStyle CssClass="gridviewitem" Width="5%" HorizontalAlign="Center" VerticalAlign="Middle" />                                    
                                 <ItemTemplate>
-                                    <asp:ImageButton ID="btnEdit" runat="server" CommandName="Remove" ImageUrl="~/Images/edit.png" Height="16" Width="16" />
+                                    <asp:ImageButton ID="btnEdit" runat="server" CommandName="Edit" ImageUrl="~/Images/edit.png" Height="16" Width="16" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField>

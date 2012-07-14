@@ -11,28 +11,32 @@
                     <td style="width:150px;">User Name:<span class="errormessage1">*</span></td>
                     <td>
                         <asp:TextBox ID="txtUserName" runat="server" MaxLength="10" Width="250"></asp:TextBox><br />
-                        <asp:RequiredFieldValidator ID="rfvUserName" runat="server" CssClass="errormessage" ControlToValidate="txtUserName" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>
+                        <span id="spnName" runat="server" class="errormessage" style="display:none;"></span>
+                        <%--<asp:RequiredFieldValidator ID="rfvUserName" runat="server" CssClass="errormessage" ControlToValidate="txtUserName" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>--%>
                     </td>
                 </tr>
                 <tr>
                     <td>First Name:<span class="errormessage1">*</span></td>
                     <td>
                         <asp:TextBox ID="txtFName" runat="server" MaxLength="30" Width="250"></asp:TextBox><br />
-                        <asp:RequiredFieldValidator ID="rfvFName" runat="server" CssClass="errormessage" ControlToValidate="txtFName" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>
+                        <span id="spnFName" runat="server" class="errormessage" style="display:none;"></span>
+                        <%--<asp:RequiredFieldValidator ID="rfvFName" runat="server" CssClass="errormessage" ControlToValidate="txtFName" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>--%>
                     </td>
                 </tr>
                 <tr>
                     <td>Last Name:<span class="errormessage1">*</span></td>
                     <td>
                         <asp:TextBox ID="txtLName" runat="server" MaxLength="30" Width="250"></asp:TextBox><br />
-                        <asp:RequiredFieldValidator ID="rfvLName" runat="server" CssClass="errormessage" ControlToValidate="txtLName" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>
+                        <span id="spnLName" runat="server" class="errormessage" style="display:none;"></span>
+                        <%--<asp:RequiredFieldValidator ID="rfvLName" runat="server" CssClass="errormessage" ControlToValidate="txtLName" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>--%>
                     </td>
                 </tr>
                 <tr>
                     <td>Email Id:<span class="errormessage1">*</span></td>
                     <td>
                         <asp:TextBox ID="txtEmail" runat="server" MaxLength="100" Width="250"></asp:TextBox><br />
-                        <asp:RequiredFieldValidator ID="rfvEmail" runat="server" CssClass="errormessage" ControlToValidate="txtEmail" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>
+                        <span id="spnEmail" runat="server" class="errormessage" style="display:none;"></span>
+                        <%--<asp:RequiredFieldValidator ID="rfvEmail" runat="server" CssClass="errormessage" ControlToValidate="txtEmail" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>--%>
                         <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" CssClass="errormessage" ValidationGroup="Save"></asp:RegularExpressionValidator>
                     </td>
                 </tr>
@@ -40,14 +44,16 @@
                     <td>Role:<span class="errormessage1">*</span></td>
                     <td>
                         <asp:DropDownList ID="ddlRole" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlRole_SelectedIndexChanged"></asp:DropDownList><br />
-                        <asp:RequiredFieldValidator ID="rfvRole" runat="server" CssClass="errormessage" ControlToValidate="ddlRole" InitialValue="0" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>
+                        <span id="spnRole" runat="server" class="errormessage" style="display:none;"></span>
+                        <%--<asp:RequiredFieldValidator ID="rfvRole" runat="server" CssClass="errormessage" ControlToValidate="ddlRole" InitialValue="0" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>--%>
                     </td>
                 </tr>
                 <tr>
                     <td>Location:<span class="errormessage1">*</span></td>
                     <td>
                         <asp:DropDownList ID="ddlLoc" runat="server"></asp:DropDownList><br />
-                        <asp:RequiredFieldValidator ID="rfvLoc" runat="server" CssClass="errormessage" ControlToValidate="ddlLoc" InitialValue="0" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>
+                        <span id="spnLoc" runat="server" class="errormessage" style="display:none;"></span>
+                        <%--<asp:RequiredFieldValidator ID="rfvLoc" runat="server" CssClass="errormessage" ControlToValidate="ddlLoc" InitialValue="0" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>--%>
                     </td>
                 </tr>
                 <tr>
@@ -55,10 +61,10 @@
                     <td>
                         <asp:DropDownList ID="ddlSalesPersonType" runat="server">
                             <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                            <asp:ListItem Value="L" Text="Team Lead"></asp:ListItem>
                             <asp:ListItem Value="M" Text="Team Member"></asp:ListItem>
+                            <asp:ListItem Value="L" Text="Team Lead"></asp:ListItem>
                         </asp:DropDownList><br />
-                        <span id="spnType" runat="server" class="errormessage" style="display:none;">Please Select Sales Person Type</span>
+                        <span id="spnType" runat="server" class="errormessage" style="display:none;"></span>
                     </td>
                 </tr>
                 <tr>

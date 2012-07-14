@@ -218,7 +218,7 @@ namespace DSR.WebApp.Security
             }
             else
             {
-                sortExpression = "Name";
+                sortExpression = "Location";
                 sortDirection = "ASC";
             }
 
