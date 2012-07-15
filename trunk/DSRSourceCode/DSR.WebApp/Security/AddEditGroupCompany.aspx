@@ -11,12 +11,10 @@
     <center>
         <fieldset style="width:400px;">
             <legend>Add / Edit Group Company</legend>
-                <table border="0" cellpadding="5" cellspacing="5">
+                <table border="0" cellpadding="3" cellspacing="3">
                 <tr>
                     <td valign="top" style="width:140px;">Group Name:<span class="errormessage">*</span></td>
-                    <td>
-                        <asp:TextBox ID="txtName" runat="server" MaxLength="50" Width="250"></asp:TextBox><br /><asp:RequiredFieldValidator ID="rfvName" runat="server" CssClass="errormessage" ControlToValidate="txtName" ValidationGroup="Save"></asp:RequiredFieldValidator>
-                    </td>
+                    <td><asp:TextBox ID="txtName" runat="server" MaxLength="50" Width="250"></asp:TextBox><br /><asp:RequiredFieldValidator ID="rfvName" runat="server" CssClass="errormessage" ControlToValidate="txtName" ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator></td>
                 </tr>
                 <tr>
                     <td>Address:</td>
@@ -32,7 +30,7 @@
                 </tr>
                 <tr>
                     <td>Phone:</td>
-                    <td><asp:TextBox ID="txtPhone" runat="server" MaxLength="40" Width="250"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtPhone" runat="server" MaxLength="40" Width="250"></asp:TextBox><br /><asp:RegularExpressionValidator ID="revPhone" runat="server" ControlToValidate="txtPhone" CssClass="errormessage" ValidationGroup="Save" Display="Dynamic"></asp:RegularExpressionValidator></td>
                 </tr>
                 <tr>
                     <td>Is Active?:</td>
@@ -40,7 +38,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <asp:Button ID="btnSave" runat="server" Text="Save" ValidationGroup="Save" OnClick="btnSave_Click" />&nbsp;&nbsp;<asp:Button ID="btnBack" runat="server" CssClass="button" Text="Back" OnClientClick="javascript:window.location.href='ManageGroupCompany.aspx';return false;" />
+                        <asp:Button ID="btnSave" runat="server" Text="Save" ValidationGroup="Save" OnClick="btnSave_Click" />&nbsp;&nbsp;<asp:Button ID="btnBack" runat="server" CssClass="button" Text="Back" />
                     </td>
                 </tr>
             </table>

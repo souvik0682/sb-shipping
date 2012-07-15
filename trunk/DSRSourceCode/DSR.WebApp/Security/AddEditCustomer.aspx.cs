@@ -54,10 +54,17 @@ namespace DSR.WebApp.Security
         {
             if (!IsPostBack)
             {
+                btnBack.OnClientClick = "javascript:return RedirectAfterCancelClick('ManageCustomer.aspx','" + ResourceManager.GetStringWithoutName("ERR00046") + "')";
                 txtAddress.Attributes["onkeypress"] = "javascript:return SetMaxLength(this, 200)";
                 txtProfile.Attributes["onkeypress"] = "javascript:return SetMaxLength(this, 500)";
+
+                revPhone1.ValidationExpression = Constants.PHONE_REGX_EXP;
+                revPhone2.ValidationExpression = Constants.PHONE_REGX_EXP;
+                revContactMob1.ValidationExpression = Constants.PHONE_REGX_EXP;
+                revContactMob2.ValidationExpression = Constants.PHONE_REGX_EXP;
                 revEmail1.ValidationExpression = Constants.EMAIL_REGX_EXP;
                 revEmail2.ValidationExpression = Constants.EMAIL_REGX_EXP;
+                
                 rfvGroup.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00024");
                 rfvLoc.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00025");
                 rfvArea.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00026");
@@ -72,6 +79,10 @@ namespace DSR.WebApp.Security
                 revEmail1.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00023");
                 revEmail2.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00023");
                 rfvExecutive.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00045");
+                revPhone1.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00047");
+                revPhone2.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00047");
+                revContactMob1.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00048");
+                revContactMob2.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00048");
                 ddlCorpLoc.SelectedValue = "L";
             }
 
@@ -85,7 +96,7 @@ namespace DSR.WebApp.Security
         private void PopulateControls()
         {
             CommonBLL commonBll = new CommonBLL();
-            GeneralFunctions.PopulateDropDownList<IGroupCompany>(ddlGroup, commonBll.GetActiveGroupCompany(), "Id", "Name", "Without Group Company");
+            GeneralFunctions.PopulateDropDownList<IGroupCompany>(ddlGroup, commonBll.GetActiveGroupCompany(), "Id", "Name", true);
             GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetActiveLocation(), "Id", "Name", true);
             GeneralFunctions.PopulateDropDownList<ICustomerType>(ddlCustType, commonBll.GetActiveCustomerType(), "Id", "Name", true);
             GeneralFunctions.PopulateDropDownList<IUser>(ddlExecutive, commonBll.GetSalesExecutive(), "Id", "UserFullName", true);

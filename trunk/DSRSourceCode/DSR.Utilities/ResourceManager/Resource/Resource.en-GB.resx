@@ -199,7 +199,7 @@
     <value>*Customer Type cannot be left blank</value>
   </data>
   <data name="ERR00028" xml:space="preserve">
-    <value>*Corporate / Local cannot be left blank</value>
+    <value>*Client Scope cannot be left blank</value>
   </data>
   <data name="ERR00029" xml:space="preserve">
     <value>*Customer name cannot be left blank</value>
@@ -251,5 +251,14 @@
   </data>
   <data name="ERR00045" xml:space="preserve">
     <value>*Account of cannot be left blank</value>
+  </data>
+  <data name="ERR00046" xml:space="preserve">
+    <value>Want to Quit?</value>
+  </data>
+  <data name="ERR00047" xml:space="preserve">
+    <value>*Invalid Phone Number</value>
+  </data>
+  <data name="ERR00048" xml:space="preserve">
+    <value>*Invalid Mobile Number</value>
   </data>
 </root>

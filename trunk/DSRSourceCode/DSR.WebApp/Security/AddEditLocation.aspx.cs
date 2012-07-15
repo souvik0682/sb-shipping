@@ -50,7 +50,10 @@ namespace DSR.WebApp.Security
         {
             if (!IsPostBack)
             {
+                btnBack.OnClientClick = "javascript:return RedirectAfterCancelClick('ManageLocation.aspx','" + ResourceManager.GetStringWithoutName("ERR00046") + "')";
                 txtAddress.Attributes["onkeypress"] = "javascript:return SetMaxLength(this, 200)";
+                revPhone.ValidationExpression = Constants.PHONE_REGX_EXP;
+                revPhone.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00047");
                 rfvName.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00025");
                 rfvAbbr.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00035");
             }

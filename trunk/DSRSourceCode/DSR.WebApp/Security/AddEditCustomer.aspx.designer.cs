@@ -49,6 +49,15 @@ namespace DSR.WebApp.Security {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvContactMob1;
         
         /// <summary>
+        /// revContactMob1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revContactMob1;
+        
+        /// <summary>
         /// ddlLoc control.
         /// </summary>
         /// <remarks>
@@ -164,6 +173,15 @@ namespace DSR.WebApp.Security {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtContactMob2;
+        
+        /// <summary>
+        /// revContactMob2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revContactMob2;
         
         /// <summary>
         /// txtName control.
@@ -292,6 +310,15 @@ namespace DSR.WebApp.Security {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPhone1;
         
         /// <summary>
+        /// revPhone1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revPhone1;
+        
+        /// <summary>
         /// txtTan control.
         /// </summary>
         /// <remarks>
@@ -308,6 +335,15 @@ namespace DSR.WebApp.Security {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPhone2;
+        
+        /// <summary>
+        /// revPhone2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revPhone2;
         
         /// <summary>
         /// txtBin control.

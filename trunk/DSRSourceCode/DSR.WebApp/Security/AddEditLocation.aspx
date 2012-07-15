@@ -11,13 +11,10 @@
     <center>
         <fieldset style="width:400px;">
             <legend>Add / Edit Location</legend>
-            <table border="0" cellpadding="5" cellspacing="5">
+            <table border="0" cellpadding="2" cellspacing="3">
                 <tr>
                     <td style="width:140px;">Location Name:<span class="errormessage1">*</span></td>
-                    <td>
-                        <asp:TextBox ID="txtLocName" runat="server" MaxLength="50" Width="250"></asp:TextBox><br />
-                        <asp:RequiredFieldValidator ID="rfvName" runat="server" CssClass="errormessage" ControlToValidate="txtLocName" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>
-                    </td>
+                    <td><asp:TextBox ID="txtLocName" runat="server" MaxLength="50" Width="250"></asp:TextBox><br /><asp:RequiredFieldValidator ID="rfvName" runat="server" CssClass="errormessage" ControlToValidate="txtLocName" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator></td>
                 </tr>
                 <tr>
                     <td>Address:</td>
@@ -33,14 +30,11 @@
                 </tr>
                 <tr>
                     <td>Abbreviation:<span class="errormessage1">*</span></td>
-                    <td>
-                        <asp:TextBox ID="txtAbbr" runat="server" MaxLength="3" Width="250"></asp:TextBox><br />
-                        <asp:RequiredFieldValidator ID="rfvAbbr" runat="server" CssClass="errormessage" ControlToValidate="txtAbbr" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>
-                    </td>
+                    <td><asp:TextBox ID="txtAbbr" runat="server" MaxLength="3" Width="250"></asp:TextBox><br /><asp:RequiredFieldValidator ID="rfvAbbr" runat="server" CssClass="errormessage" ControlToValidate="txtAbbr" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator></td>
                 </tr>
                 <tr>
                     <td>Phone:</td>
-                    <td><asp:TextBox ID="txtPhone" runat="server" MaxLength="30" Width="250"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtPhone" runat="server" MaxLength="30" Width="250"></asp:TextBox><asp:RegularExpressionValidator ID="revPhone" runat="server" ControlToValidate="txtPhone" CssClass="errormessage" ValidationGroup="Save" Display="Dynamic"></asp:RegularExpressionValidator></td>
                 </tr>
                 <tr>
                     <td>Manager:</td>
@@ -52,7 +46,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <asp:Button ID="btnSave" runat="server" Text="Save" ValidationGroup="Save" OnClick="btnSave_Click" />&nbsp;&nbsp;<asp:Button ID="btnBack" runat="server" CssClass="button" Text="Back" OnClientClick="javascript:window.location.href='ManageLocation.aspx';return false;" />
+                        <asp:Button ID="btnSave" runat="server" Text="Save" ValidationGroup="Save" OnClick="btnSave_Click" />&nbsp;&nbsp;<asp:Button ID="btnBack" runat="server" CssClass="button" Text="Back" />
                     </td>
                 </tr>
             </table>

@@ -6,7 +6,7 @@
     <center>
         <fieldset style="width:400px;">
             <legend>Add / Edit Area</legend>
-            <table border="0" cellpadding="5" cellspacing="5">
+            <table border="0" cellpadding="3" cellspacing="3">
                 <tr>
                     <td style="width:140px;">Area Name:<span class="errormessage1">*</span></td>
                     <td>
@@ -27,7 +27,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <asp:Button ID="btnSave" runat="server" Text="Save" ValidationGroup="Save" OnClick="btnSave_Click" />&nbsp;&nbsp;<asp:Button ID="btnBack" runat="server" CssClass="button" Text="Back" OnClientClick="javascript:window.location.href='ManageArea.aspx';return false;" />
+                        <asp:Button ID="btnSave" runat="server" Text="Save" ValidationGroup="Save" OnClick="btnSave_Click" />&nbsp;&nbsp;<asp:Button ID="btnBack" runat="server" CssClass="button" Text="Back" />
                     </td>
                 </tr>
             </table>

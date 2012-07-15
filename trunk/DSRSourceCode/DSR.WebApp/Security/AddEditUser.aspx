@@ -6,7 +6,7 @@
     <center>
         <fieldset style="width:450px;">
             <legend>Add / Edit User</legend>
-            <table border="0" cellpadding="5" cellspacing="5" width="100%">
+            <table border="0" cellpadding="3" cellspacing="3" width="100%">
                 <tr>
                     <td style="width:150px;">User Name:<span class="errormessage1">*</span></td>
                     <td>
@@ -37,7 +37,7 @@
                         <asp:TextBox ID="txtEmail" runat="server" MaxLength="100" Width="250"></asp:TextBox><br />
                         <span id="spnEmail" runat="server" class="errormessage" style="display:none;"></span>
                         <%--<asp:RequiredFieldValidator ID="rfvEmail" runat="server" CssClass="errormessage" ControlToValidate="txtEmail" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>--%>
-                        <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" CssClass="errormessage" ValidationGroup="Save"></asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" CssClass="errormessage" ValidationGroup="Save" Display="Dynamic"></asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
@@ -73,7 +73,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />&nbsp;&nbsp;<asp:Button ID="btnBack" runat="server" CssClass="button" Text="Back" OnClientClick="javascript:window.location.href='ManageUser.aspx';return false;"/>
+                        <asp:Button ID="btnSave" runat="server" Text="Save" ValidationGroup="Save" OnClick="btnSave_Click" />&nbsp;&nbsp;<asp:Button ID="btnBack" runat="server" CssClass="button" Text="Back"/>
                     </td>
                 </tr>
             </table>

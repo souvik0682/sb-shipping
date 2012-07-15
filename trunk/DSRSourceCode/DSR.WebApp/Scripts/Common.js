@@ -85,6 +85,18 @@ function getLeftPosition(inputObj) {
     return returnValue;
 }
 
+function RedirectAfterCancelClick(pagename, message) {
+    var result = confirm(message);
+
+    if (result) {
+        window.location.href = pagename;
+        return false;
+    }
+    else {
+        return false;
+    }
+}
+
 /***** For Ajax *****/
 function pageLoad() {
     var manager = Sys.WebForms.PageRequestManager.getInstance();
