@@ -42,7 +42,10 @@ namespace DSR.Utilities
     {
         #region Constants
 
-        public const string EMAIL_REGX_EXP = @"^[a-z][a-z|0-9|]*([_][a-z|0-9]+)*([.][a-z|" + @"0-9]+([_][a-z|0-9]+)*)?@[a-z][a-z|0-9|]*\.([a-z]" + @"[a-z|0-9]*(\.[a-z][a-z|0-9]*)?)$";
+        //public const string EMAIL_REGX_EXP = @"^[a-z][a-z|0-9|]*([_][a-z|0-9]+)*([.][a-z|" + @"0-9]+([_][a-z|0-9]+)*)?@[a-z][a-z|0-9|]*\.([a-z]" + @"[a-z|0-9]*(\.[a-z][a-z|0-9]*)?)$";
+        public const string EMAIL_REGX_EXP = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
+        public const string PHONE_REGX_EXP = @"^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$"; 
+        public const string MOBILE_REGX_EXP = "";
         public const string DEFAULT_CULTURE = "en-US";
         public const string DATA_VALUE_FIELD = "ListItemValue";
         public const string DATA_TEXT_FIELD = "ListItemText";

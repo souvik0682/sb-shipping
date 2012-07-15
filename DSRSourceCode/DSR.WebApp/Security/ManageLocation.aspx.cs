@@ -100,7 +100,26 @@ namespace DSR.WebApp.Security
                 e.Row.Cells[0].Text = ((gvwLoc.PageSize * gvwLoc.PageIndex) + e.Row.RowIndex + 1).ToString();
                 e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Abbreviation"));
                 e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Name"));
-                e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "LocAddress.City")) + "-" + Convert.ToString(DataBinder.Eval(e.Row.DataItem, "LocAddress.Pin"));
+
+                if (Convert.ToString(DataBinder.Eval(e.Row.DataItem, "LocAddress.City")) == string.Empty)
+                {
+                    if (Convert.ToString(DataBinder.Eval(e.Row.DataItem, "LocAddress.Pin")) != string.Empty)
+                    {
+                        e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "LocAddress.Pin"));
+                    }
+                }
+                else
+                {
+                    if (Convert.ToString(DataBinder.Eval(e.Row.DataItem, "LocAddress.Pin")) == string.Empty)
+                    {
+                        e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "LocAddress.City"));
+                    }
+                    else
+                    {
+                        e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "LocAddress.City")) + "-" + Convert.ToString(DataBinder.Eval(e.Row.DataItem, "LocAddress.Pin"));
+                    }
+                }
+
                 e.Row.Cells[4].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ManagerName"));
 
                 // Edit link

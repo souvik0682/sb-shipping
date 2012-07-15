@@ -60,6 +60,7 @@
     <Content Include="Error.aspx" />
     <Content Include="FileNotFound.aspx" />
     <Content Include="Images\bg.jpg" />
+    <Content Include="Images\BLA-logo.bmp" />
     <Content Include="Images\Close-Button.bmp" />
     <Content Include="Images\edit.png" />
     <Content Include="Images\edit_icon.png" />

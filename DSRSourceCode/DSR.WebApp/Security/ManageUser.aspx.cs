@@ -109,9 +109,9 @@ namespace DSR.WebApp.Security
                 e.Row.Cells[5].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "UserLocation.Name"));
 
                 //Pwd Button
-                Button btnPwd = (Button)e.Row.FindControl("btnPwd");
-                btnPwd.CommandArgument = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id"));
-                btnPwd.OnClientClick = "javascript:return confirm('Are you sure you want to reset password?');";
+                LinkButton lnkPwd = (LinkButton)e.Row.FindControl("lnkPwd");
+                lnkPwd.CommandArgument = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id"));
+                lnkPwd.OnClientClick = "javascript:return confirm('Are you sure you want to reset password?');";
 
                 // Edit link
                 ImageButton btnEdit = (ImageButton)e.Row.FindControl("btnEdit");
@@ -249,13 +249,27 @@ namespace DSR.WebApp.Security
             IUser user = new UserEntity();
             user.Id = uId;
             new UserBLL().ResetPassword(user,_userId);
-            SendEmail();
+            SendResetPwdEmail(uId);
             ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "<script>javascript:void alert('Your password has been reset and send to your email');</script>", false);
         }
 
-        private void SendEmail()
+        private void SendResetPwdEmail(int uId)
         {
+            IUser user = new UserBLL().GetUser(uId);
 
+            if (!ReferenceEquals(user, null))
+            {                
+                string msgBody = "Dear " + user.UserFullName+"<br/>.The password has been reset and you can now login with the following credentials:<br/>Username: " + user.Name + "<br/>Password:1234";
+
+                try
+                {
+                    CommonBLL.SendMail("", user.EmailId, string.Empty, "DSR Password Reset", "", Convert.ToString(ConfigurationManager.AppSettings["MailServerIP"]));
+                }
+                catch (Exception ex)
+                {
+                    CommonBLL.HandleException(ex, this.Server.MapPath(this.Request.ApplicationPath).Replace("/", "\\"));
+                }
+            }
         }
 
         #endregion

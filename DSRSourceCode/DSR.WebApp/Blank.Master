@@ -15,7 +15,7 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true" EnableScriptGlobalization="true"></asp:ScriptManager>
         <div id="header">
             <div class="logo">
-                <img alt="" src="<%=Page.ResolveClientUrl("~/Images/logo.png") %>" height="50" />        
+                <img alt="" src="<%=Page.ResolveClientUrl("~/Images/BLA-logo.bmp") %>" height="55" />        
             </div>  
             <div class="search">
                 <div style="text-align: right;">
@@ -33,7 +33,7 @@
         </div>
         <div id="footer">
             <hr />
-            <div class="copyright">Copyright 2012, <b>Shiping Limited</b>. All rights reserved.</div>
+            <div class="copyright">Copyright 2012, <b>BLA</b>. All rights reserved.</div>
             <div class="disclaimer">Powred By <a href="#" onclick="window.open('http://www.mycompany.com/','my_Window')"><b>My Company</b></a></div>
         </div>
     </div>

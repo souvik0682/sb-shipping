@@ -49,6 +49,7 @@ namespace DSR.WebApp.Security
         {
             if (!IsPostBack)
             {
+                btnBack.OnClientClick = "javascript:return RedirectAfterCancelClick('ManageArea.aspx','" + ResourceManager.GetStringWithoutName("ERR00046") + "')";
                 rfvName.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00026");
                 rfvLoc.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00025");
             }

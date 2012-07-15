@@ -9,6 +9,7 @@ using DSR.Utilities;
 using DSR.Common;
 using DSR.Entity;
 using DSR.Utilities.ResourceManager;
+using System.Configuration;
 
 namespace DSR.WebApp.Security
 {
@@ -27,7 +28,7 @@ namespace DSR.WebApp.Security
         {
             RetriveParameters();
             CheckUserAccess();
-            SetAttributes();            
+            SetAttributes();
 
             if (!IsPostBack)
             {
@@ -89,7 +90,9 @@ namespace DSR.WebApp.Security
                 //rfvRole.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00040");
                 //rfvLoc.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00025");
 
+                btnBack.OnClientClick = "javascript:return RedirectAfterCancelClick('ManageUser.aspx','" + ResourceManager.GetStringWithoutName("ERR00046") + "')";
                 revEmail.ValidationExpression = Constants.EMAIL_REGX_EXP;
+                revEmail.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00023");
 
                 spnName.InnerText = ResourceManager.GetStringWithoutName("ERR00036");
                 spnFName.InnerText = ResourceManager.GetStringWithoutName("ERR00037");
@@ -104,9 +107,13 @@ namespace DSR.WebApp.Security
 
             if (_uId == -1)
             {
-                txtUserName.Enabled = false;
                 chkActive.Checked = true;
                 chkActive.Enabled = false;
+            }
+
+            if (_uId > 0)
+            {
+                txtUserName.Enabled = false;
             }
         }
 
@@ -246,7 +253,7 @@ namespace DSR.WebApp.Security
                 }
             }
 
-            if (user.UserLocation.Id ==0)
+            if (user.UserLocation.Id == 0)
             {
                 isValid = false;
                 spnLoc.Style["display"] = "";
@@ -268,6 +275,7 @@ namespace DSR.WebApp.Security
 
                 if (message == string.Empty)
                 {
+                    SendEmail(user);
                     Response.Redirect("~/Security/ManageUser.aspx");
                 }
                 else
@@ -293,6 +301,20 @@ namespace DSR.WebApp.Security
                 user.IsActive = 'Y';
             else
                 user.IsActive = 'N';
+        }
+
+        private void SendEmail(IUser user)
+        {
+            string msgBody = "Dear " + user.UserFullName + "<br/>.Thank you for registering with BLA. <br/>Your login credentials:<br/>Username: " + user.Name + "<br/>Password:1234";
+
+            try
+            {
+                CommonBLL.SendMail("", user.EmailId, string.Empty, "DSR Password Reset", "", Convert.ToString(ConfigurationManager.AppSettings["MailServerIP"]));
+            }
+            catch (Exception ex)
+            {
+                CommonBLL.HandleException(ex, this.Server.MapPath(this.Request.ApplicationPath).Replace("/", "\\"));
+            }
         }
 
         #endregion

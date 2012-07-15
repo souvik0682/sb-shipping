@@ -60,7 +60,7 @@
                     </Triggers>
                     <ContentTemplate>
                         <asp:GridView ID="gvwUser" runat="server" AutoGenerateColumns="false" AllowPaging="true" BorderStyle="None" BorderWidth="0" OnPageIndexChanging="gvwUser_PageIndexChanging" OnRowDataBound="gvwUser_RowDataBound" OnRowCommand="gvwUser_RowCommand" Width="100%">
-                        <PagerSettings Mode="NumericFirstLast" Position="TopAndBottom" />
+                        <PagerSettings Mode="NumericFirstLast" Position="Bottom" />
                         <PagerStyle CssClass="gridviewpager" />
                         <EmptyDataRowStyle CssClass="gridviewemptydatarow" />
                         <EmptyDataTemplate>No User(s) Found</EmptyDataTemplate>
@@ -76,7 +76,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField>
                                 <HeaderStyle CssClass="gridviewheader" />
-                                <ItemStyle CssClass="gridviewitem" Width="15%" />
+                                <ItemStyle CssClass="gridviewitem" Width="13%" />
                                 <HeaderTemplate><asp:LinkButton ID="lnkHRole" runat="server" CommandName="Sort" CommandArgument="RoleName" Text="User Role"></asp:LinkButton></HeaderTemplate>                                    
                             </asp:TemplateField>
                             <asp:TemplateField>
@@ -91,14 +91,14 @@
                             </asp:TemplateField>
                             <asp:TemplateField>
                                 <HeaderStyle CssClass="gridviewheader" />
-                                <ItemStyle CssClass="gridviewitem" Width="15%" />       
+                                <ItemStyle CssClass="gridviewitem" Width="13%" />       
                                 <HeaderTemplate><asp:LinkButton ID="lnkHLoc" runat="server" CommandName="Sort" CommandArgument="LocName" Text="Location"></asp:LinkButton></HeaderTemplate>                             
                             </asp:TemplateField>
                             <asp:TemplateField>
                                 <HeaderStyle CssClass="gridviewheader" />
-                                <ItemStyle CssClass="gridviewitem" Width="10%" HorizontalAlign="Center" VerticalAlign="Middle" />                                    
+                                <ItemStyle CssClass="gridviewitem" Width="14%" HorizontalAlign="Center" VerticalAlign="Middle" />                                    
                                 <ItemTemplate>
-                                    <asp:Button ID="btnPwd" runat="server" CommandName="ChangePwd" Text="Change Password" />
+                                    <asp:LinkButton ID="lnkPwd" runat="server" CommandName="ChangePwd" Text="Reset Password"></asp:LinkButton>                                    
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField>

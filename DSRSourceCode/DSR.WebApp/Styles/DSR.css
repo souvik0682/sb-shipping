@@ -22,16 +22,16 @@ select
 
 fieldset{margin: 5px;padding: 5px; text-align:left;vertical-align:top;}
 fieldset p {margin: 2px 6px 0px 6px;}
-legend {font-size: 1.1em;font-weight: 600;padding: 2px 4px 8px 4px;color:Blue;}
+legend {font-size: 1.1em;font-weight: 600;padding: 0px 4px 2px 4px;color:Blue;}
 
 /* Header & Footer */
-#header{margin:0px;width:100%;background:#328dc4 url(Images/header.jpg) no-repeat center top; color:#ffffff;height:65px;border-right:none 0px #328dc4;border-left:none 0px #328dc4;}
-#header .logo{float:left;padding:5px 0px 0px 8px;}
+#header{margin:0px;width:100%;background:#328dc4 url(Images/header.jpg) no-repeat center top; color:#ffffff;height:55px;border-right:none 0px #328dc4;border-left:none 0px #328dc4;}
+#header .logo{float:left;padding:0px 0px 0px 0px;}
 #header .search{float:right;padding:12px 10px 0px 0px;font-size: 12px;}
 #header .search a{ color: #E0F5FF;}
 #subheader{margin:0px;width:100%;color:#FFFFFF;background-color:Black;height:30px;}
 
-#main {background:#ffffff;width:100%;min-height:380px;margin:0px;color:#000000;padding:0px;}
+#main {background:#ffffff;width:100%;min-height:390px;margin:0px;color:#000000;padding:0px;}
 #main .main_left{float:left;padding:0px;margin:0px;width:195px;padding:0px;}
 #main .main_container{padding:0px 0px 10px 0px;border-left: none 0px #cccccc;border-right:none 0px #cccccc;border-bottom:none 0px #cccccc;}
 
@@ -56,7 +56,7 @@ legend {font-size: 1.1em;font-weight: 600;padding: 2px 4px 8px 4px;color:Blue;}
 #navbar li:hover li a:hover{text-decoration:underline;}
 #navbar li li a:hover {background-color: #8db3ff; }
 
-#headercaption{width:100%;background-color:#328dc4;height:30px;color:White;font-size: 12pt;font-weight:bold;text-align:center;padding-top:4px;}
+#headercaption{width:100%;background-color:#328dc4;height:25px;color:White;font-size: 12pt;font-weight:bold;text-align:center;padding-top:2px;}
 .contentheader{font-size:12pt;font-weight:bold;background-color:#ffffff;text-align:left;padding-bottom:4px;}
 
 /* Controls */
@@ -77,13 +77,13 @@ legend {font-size: 1.1em;font-weight: 600;padding: 2px 4px 8px 4px;color:Blue;}
 .tablecaption{font-size: 12pt; font-weight: bold; color: #000000;padding:5px 0px 5px 0px;text-align:center;vertical-align:middle;background-color:#FFC500;}
 .tableheader{font-size:10pt; color:#000000; font-weight:bold;padding-left:10px;text-align: center;}
 .gridviewheader {color:#000000;font-size:12px; font-weight:bold; border:1px solid #e8e8e8; padding:5px; background:-webkit-gradient(linear, left bottom, left top, from(#ccc), to(#fff)); text-align:left;vertical-align:top;}
-.gridviewitem {border:1px solid #e8e8e8;font-size:12px; padding:2px; background-color:#FFFFFF;}
-.gridviewalternateitem {border:1px solid #e8e8e8;font-size:12px; padding:2px; background-color:#f8f8f8;}
+.gridviewitem {border:1px solid #e8e8e8;font-size:12px; padding:1px; background-color:#FFFFFF;}
+.gridviewalternateitem {border:1px solid #e8e8e8;font-size:12px; padding:1px; background-color:#f8f8f8;}
 .gridviewemptydatarow {font-size:12px;color:Red; font-weight:bold;}
 .gridviewemptydatarow td {border:none 0px #000000;padding:5px; }
 .gridviewpager{border:1px solid #A1CDF2;}
-.gridviewpager td{font-size: 12px; color:#36478B; font-weight: bold; padding:2px; border:none 0px #000000;background:#add8e6;}
-.gridviewpager table {padding-top:2px; border: opx; text-align: left; }
+.gridviewpager td{font-size: 12px; color:#36478B; font-weight: bold; padding:1px; border:none 0px #000000;background:#add8e6;}
+.gridviewpager table {padding-top:1px; border: opx; text-align: left; }
 .gridviewpager table td{cursor: pointer;padding-right:5px;}
 .gridviewpager a{color: #36478B;font-weight: Bold;font-size: 12px; padding-left:2px;}
 .gridviewpager span {color:#36A7E9; font-size:12px; }
