@@ -533,6 +533,150 @@ namespace DSR.DAL
 
         #endregion
 
+        #region Call Type
+
+        public static List<ICallType> GetCallType(char isActiveOnly)
+        {
+            string strExecution = "[common].[uspGetCallType]";
+            List<ICallType> lstCallType = new List<ICallType>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    ICallType callType = new CallTypeEntity(reader);
+                    lstCallType.Add(callType);
+                }
+
+                reader.Close();
+            }
+
+            return lstCallType;
+        }
+
+        public static ICallType GetCallType(int callTypeId, char isActiveOnly)
+        {
+            string strExecution = "[common].[uspGetCallType]";
+            ICallType callType = null;
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@CallTypeId", callTypeId);
+                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    callType = new CallTypeEntity(reader);
+                }
+
+                reader.Close();
+            }
+
+            return callType;
+        }
+
+        #endregion
+
+        #region Prospect
+
+        public static List<IProspect> GetProspect(char isActiveOnly)
+        {
+            string strExecution = "[common].[uspGetProspect]";
+            List<IProspect> lstProspect = new List<IProspect>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    IProspect prospect = new ProspectEntity(reader);
+                    lstProspect.Add(prospect);
+                }
+
+                reader.Close();
+            }
+
+            return lstProspect;
+        }
+
+        public static IProspect GetProspect(int prospectId, char isActiveOnly)
+        {
+            string strExecution = "[common].[uspGetProspect]";
+            IProspect prospect = null;
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@ProspectId", prospectId);
+                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    prospect = new ProspectEntity(reader);
+                }
+
+                reader.Close();
+            }
+
+            return prospect;
+        }
+
+        #endregion
+
+        #region Port
+
+        public static List<IPort> GetPort(char isActiveOnly)
+        {
+            string strExecution = "[common].[uspGetPort]";
+            List<IPort> lstPort = new List<IPort>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    IPort port = new PortEntity(reader);
+                    lstPort.Add(port);
+                }
+
+                reader.Close();
+            }
+
+            return lstPort;
+        }
+
+        public static IPort GetPort(int portId, char isActiveOnly)
+        {
+            string strExecution = "[common].[uspGetPort]";
+            IPort port = null;
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@PortId", portId);
+                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    port = new PortEntity(reader);
+                }
+
+                reader.Close();
+            }
+
+            return port;
+        }
+
+        #endregion
+
         #region User
 
         public static List<IUser> GetSalesExecutive()

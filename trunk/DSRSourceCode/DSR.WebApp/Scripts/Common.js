@@ -68,7 +68,8 @@ function ValidateDecimal(txt) {
     }
 }
 
-function SetMaxLength(obj, maxLen) {alert('hi');
+function SetMaxLength(obj, maxLen) {
+    ConvertToUpperCase();
     return (obj.value.length < maxLen);
 }
 
@@ -94,6 +95,23 @@ function RedirectAfterCancelClick(pagename, message) {
     }
     else {
         return false;
+    }
+}
+
+function ConvertToUpperCase(e) {
+    var key;
+
+    if (window.event)
+        key = window.event.keyCode;     // for IE
+    else
+        key = e.which;                  // for firefox
+
+
+    if ((key > 0x60) && (key < 0x7B)) {
+        window.event.keyCode = key - 0x20;
+    }
+    else {
+        e.which = key - 0x20;
     }
 }
 

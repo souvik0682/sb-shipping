@@ -170,7 +170,7 @@ namespace DSR.BLL
 
         #endregion
 
-        #region Location
+        #region Role
 
         public List<IRole> GetRole()
         {
@@ -415,6 +415,63 @@ namespace DSR.BLL
         public ICustomerType GetCustomerType(int custTypeId)
         {
             return CommonDAL.GetCustomerType(custTypeId, 'N');
+        }
+
+        #endregion
+
+        #region Call Type
+
+        public List<ICallType> GetAllCallType()
+        {
+            return CommonDAL.GetCallType('N');
+        }
+
+        public List<ICallType> GetActiveCallType()
+        {
+            return CommonDAL.GetCallType('Y');
+        }
+
+        public ICallType GetCallType(int callTypeId)
+        {
+            return CommonDAL.GetCallType(callTypeId, 'N');
+        }
+
+        #endregion
+
+        #region Prospect
+
+        public List<IProspect> GetAllProspect()
+        {
+            return CommonDAL.GetProspect('N');
+        }
+
+        public List<IProspect> GetActiveProspect()
+        {
+            return CommonDAL.GetProspect('Y');
+        }
+
+        public IProspect GetProspect(int prospectId)
+        {
+            return CommonDAL.GetProspect(prospectId, 'N');
+        }
+
+        #endregion
+
+        #region Port
+
+        public List<IPort> GetAllPort()
+        {
+            return CommonDAL.GetPort('N');
+        }
+
+        public List<IPort> GetActivePort()
+        {
+            return CommonDAL.GetPort('Y');
+        }
+
+        public IPort GetPort(int portId)
+        {
+            return CommonDAL.GetPort(portId, 'N');
         }
 
         #endregion

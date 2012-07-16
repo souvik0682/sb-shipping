@@ -40,13 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IShipSoft.cs" />
+    <Compile Include="ICommitment.cs" />
     <Compile Include="IAddress.cs" />
     <Compile Include="IContactPerson.cs" />
     <Compile Include="ICustomer.cs" />
     <Compile Include="IDailySalesCall.cs" />
     <Compile Include="IGroupCompany.cs" />
     <Compile Include="IPort.cs" />
-    <Compile Include="IProspectFor.cs" />
+    <Compile Include="IProspect.cs" />
     <Compile Include="ICustomerType.cs" />
     <Compile Include="IArea.cs" />
     <Compile Include="IBase.cs" />

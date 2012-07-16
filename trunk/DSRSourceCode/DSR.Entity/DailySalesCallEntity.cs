@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DSR.Common;
+using System.Data;
 
 namespace DSR.Entity
 {
     public class DailySalesCallEntity : IDailySalesCall
     {
-
         #region IDailySalesCall Members
 
         public int CallId
@@ -17,25 +17,25 @@ namespace DSR.Entity
             set;
         }
 
-        public IUser User
+        public int UserId
         {
             get;
             set;
         }
 
-        public ICustomer Customer
+        public int CustomerId
         {
             get;
             set;
         }
 
-        public ICallType CallType
+        public int CallType
         {
             get;
             set;
         }
 
-        public IProspectFor Prospect
+        public int ProspectId
         {
             get;
             set;
@@ -47,7 +47,7 @@ namespace DSR.Entity
             set;
         }
 
-        public DateTime NextCallDate
+        public DateTime? NextCallDate
         {
             get;
             set;
@@ -85,6 +85,30 @@ namespace DSR.Entity
         {
             get;
             set;
+        }
+
+        #endregion
+
+        #region Constructors
+
+        public DailySalesCallEntity()
+        {
+
+        }
+
+        public DailySalesCallEntity(DataTableReader reader)
+        {
+            this.CallId = Convert.ToInt32(reader["CallId"]);
+            this.UserId = Convert.ToInt32(reader["UserId"]);
+            this.CustomerId = Convert.ToInt32(reader["CustomerId"]);
+            this.CallType = Convert.ToInt32(reader["CallType"]);
+            this.ProspectId = Convert.ToInt32(reader["ProspectId"]);
+            this.CallDate = Convert.ToDateTime(reader["CallDate"]);
+
+            if (reader["NextCallDate"] != DBNull.Value)
+                this.NextCallDate = Convert.ToDateTime(reader["NextCallDate"]);
+
+            this.Remarks = Convert.ToString(reader["Remarks"]);
         }
 
         #endregion

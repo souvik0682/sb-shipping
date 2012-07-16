@@ -49,8 +49,11 @@ namespace DSR.WebApp.Security
             if (!IsPostBack)
             {
                 btnBack.OnClientClick = "javascript:return RedirectAfterCancelClick('ManageGroupCompany.aspx','" + ResourceManager.GetStringWithoutName("ERR00046") + "')";
-                txtAddress.Attributes["onkeypress"] = "javascript:return SetMaxLength(this, 200)";
-                
+                txtAddress.Attributes.Add("onkeypress", "javascript:return SetMaxLength(this, 200);");
+                txtName.Attributes.Add("onkeypress", "ConvertToUpperCase(event);");
+                txtCity.Attributes.Add("onkeypress", "ConvertToUpperCase();");
+                txtPin.Attributes.Add("onkeypress", "ConvertToUpperCase();");
+
                 revPhone.ValidationExpression = Constants.PHONE_REGX_EXP;
                 revPhone.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00047");
                 rfvName.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00024");
