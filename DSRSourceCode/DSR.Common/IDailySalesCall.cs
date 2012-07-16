@@ -8,12 +8,12 @@ namespace DSR.Common
     public interface IDailySalesCall : ICommon
     {
         int CallId { get; set; }
-        IUser User { get; set; }
-        ICustomer Customer { get; set; }
-        ICallType CallType { get; set; }
-        IProspectFor Prospect { get; set; }
+        int UserId { get; set; }
+        int CustomerId { get; set; }
+        int CallType { get; set; }
+        int ProspectId { get; set; }
         DateTime CallDate { get; set; }
-        DateTime NextCallDate { get; set; }
+        DateTime? NextCallDate { get; set; }
         string Remarks { get; set; }
     }
 }

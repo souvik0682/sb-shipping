@@ -112,6 +112,24 @@ namespace DSR.WebApp {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liCustMst;
         
         /// <summary>
+        /// liDSC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liDSC;
+        
+        /// <summary>
+        /// liCommitment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liCommitment;
+        
+        /// <summary>
         /// container control.
         /// </summary>
         /// <remarks>

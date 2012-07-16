@@ -40,8 +40,8 @@
                     <li>
                         <a href="#">Transaction</a>
                         <ul>
-                            <li><a href="#">Daily Sales Call</a></li>
-                            <li><a href="#">Commitment Detail</a></li>
+                            <li id="liDSC" runat="server"><a href="<%=Page.ResolveClientUrl("~/Security/DailySalesCall.aspx") %>">Daily Sales Call</a></li>
+                            <li id="liCommitment" runat="server"><a href="<%=Page.ResolveClientUrl("~/Security/Commitment.aspx") %>">Commitment Detail</a></li>
                             <li><a href="#">Tag Customer</a></li>
                         </ul>
                     </li>

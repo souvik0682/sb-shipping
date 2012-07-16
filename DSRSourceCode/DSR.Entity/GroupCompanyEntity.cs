@@ -75,7 +75,7 @@ namespace DSR.Entity
 
         #endregion
 
-         #region Constructors
+        #region Constructors
 
         public GroupCompanyEntity()
         {
@@ -85,12 +85,12 @@ namespace DSR.Entity
         public GroupCompanyEntity(DataTableReader reader)
         {
             this.Id = Convert.ToInt32(reader["Id"]);
-            this.Name  = Convert.ToString(reader["Name"]);
+            this.Name = Convert.ToString(reader["Name"]);
             this.Address = new AddressEntity(reader);
             this.Phone = Convert.ToString(reader["Phone"]);
             this.IsActive = Convert.ToChar(reader["Active"]);
         }
 
-         #endregion
+        #endregion
     }
 }
