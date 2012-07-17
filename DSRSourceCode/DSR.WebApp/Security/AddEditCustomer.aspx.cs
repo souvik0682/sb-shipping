@@ -43,7 +43,12 @@ namespace DSR.WebApp.Security
 
         protected void ddlLoc_SelectedIndexChanged(object sender, EventArgs e)
         {
-            PopulateArea(Convert.ToInt32(ddlLoc.SelectedValue));
+            PopulateArea(Convert.ToInt32(ddlLoc.SelectedValue), txtPin.Text.Trim());
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            PopulateArea(Convert.ToInt32(ddlLoc.SelectedValue), txtPin.Text.Trim());
         }
 
         #endregion
@@ -64,7 +69,7 @@ namespace DSR.WebApp.Security
                 revContactMob2.ValidationExpression = Constants.PHONE_REGX_EXP;
                 revEmail1.ValidationExpression = Constants.EMAIL_REGX_EXP;
                 revEmail2.ValidationExpression = Constants.EMAIL_REGX_EXP;
-                
+
                 rfvGroup.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00024");
                 rfvLoc.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00025");
                 rfvArea.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00026");
@@ -100,12 +105,12 @@ namespace DSR.WebApp.Security
             GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetActiveLocation(), "Id", "Name", true);
             GeneralFunctions.PopulateDropDownList<ICustomerType>(ddlCustType, commonBll.GetActiveCustomerType(), "Id", "Name", true);
             GeneralFunctions.PopulateDropDownList<IUser>(ddlExecutive, commonBll.GetSalesExecutive(), "Id", "UserFullName", true);
-            PopulateArea(0);
+            PopulateArea(0, string.Empty);
         }
 
-        private void PopulateArea(int locId)
+        private void PopulateArea(int locId, string pinCode)
         {
-            List<IArea> lstArea = new CommonBLL().GetAreaByLocation(locId);
+            List<IArea> lstArea = new CommonBLL().GetAreaByLocationAndPinCode(locId, pinCode);
             ddlArea.Items.Clear();
 
             if (lstArea.Count > 0)
@@ -176,7 +181,15 @@ namespace DSR.WebApp.Security
                 if (!ReferenceEquals(cust.Location, null))
                 {
                     ddlLoc.SelectedValue = Convert.ToString(cust.Location.Id);
-                    PopulateArea(cust.Location.Id);
+
+                    if (!ReferenceEquals(cust.Address, null))
+                    {
+                        PopulateArea(cust.Location.Id,cust.Address.Pin);
+                    }
+                    else
+                    {
+                        PopulateArea(cust.Location.Id, string.Empty);
+                    }
                 }
 
                 if (!ReferenceEquals(cust.Area, null))

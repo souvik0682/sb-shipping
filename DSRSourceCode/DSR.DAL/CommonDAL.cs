@@ -285,6 +285,29 @@ namespace DSR.DAL
             return lstArea;
         }
 
+        public static List<IArea> GetAreaByLocationAndPinCode(int locId, string pinCode)
+        {
+            string strExecution = "[common].[uspAreaByLocationAndPinCode]";
+            List<IArea> lstArea = new List<IArea>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@LocId", locId);
+                oDq.AddVarcharParam("@PinCode", 10, pinCode);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    IArea area = new AreaEntity(reader);
+                    lstArea.Add(area);
+                }
+
+                reader.Close();
+            }
+
+            return lstArea;
+        }
+
         #endregion
 
         #region Group Company
