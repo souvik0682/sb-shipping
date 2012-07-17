@@ -53,6 +53,7 @@ namespace DSR.WebApp.Security
                 btnBack.OnClientClick = "javascript:return RedirectAfterCancelClick('ManageArea.aspx','" + ResourceManager.GetStringWithoutName("ERR00046") + "')";
                 rfvName.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00026");
                 rfvLoc.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00025");
+                rfvPin.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00049");
             }
 
             if (_areaId == -1)
@@ -113,6 +114,8 @@ namespace DSR.WebApp.Security
                 if (!ReferenceEquals(area.Location, null))
                     ddlLoc.SelectedValue = area.Location.Id.ToString();
 
+                txtPin.Text = area.PinCode;
+
                 if (area.IsActive == 'Y')
                     chkActive.Checked = true;
                 else
@@ -142,6 +145,7 @@ namespace DSR.WebApp.Security
         {
             area.Id = _areaId;
             area.Name = txtName.Text;
+            area.PinCode = txtPin.Text;
             area.Location.Id = Convert.ToInt32(ddlLoc.SelectedValue);
 
             if (chkActive.Checked)

@@ -21,6 +21,13 @@
                     </td>
                 </tr>
                 <tr>
+                    <td style="width:140px;">Pin Code:<span class="errormessage1">*</span></td>
+                    <td>
+                        <asp:TextBox ID="txtPin" runat="server" MaxLength="10" Width="250"></asp:TextBox><br />
+                        <asp:RequiredFieldValidator ID="rfvPin" runat="server" CssClass="errormessage" ControlToValidate="txtPin" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>
+                    </td>
+                </tr>
+                <tr>
                     <td>Is Active?:</td>
                     <td><asp:CheckBox ID="chkActive" runat="server" /></td>
                 </tr>

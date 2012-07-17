@@ -100,6 +100,7 @@ namespace DSR.WebApp.Security
                 e.Row.Cells[0].Text = ((gvwArea.PageSize * gvwArea.PageIndex) + e.Row.RowIndex + 1).ToString();
                 e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Location.Name"));
                 e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Name"));
+                e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "PinCode"));
 
                 // Edit link
                 ImageButton btnEdit = (ImageButton)e.Row.FindControl("btnEdit");
