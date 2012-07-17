@@ -17,7 +17,7 @@ namespace DSR.BLL
         #region Common
 
         #region Email
-        
+
         public static bool SendMail(string from, string mailTo, string cc, string subject, string body, string mailServerIP)
         {
             bool sent = true;
@@ -292,6 +292,11 @@ namespace DSR.BLL
         public List<IArea> GetAreaByLocation(int locId)
         {
             return CommonDAL.GetAreaByLocation(locId);
+        }
+
+        public List<IArea> GetAreaByLocationAndPinCode(int locId, string pinCode)
+        {
+            return CommonDAL.GetAreaByLocationAndPinCode(locId, pinCode);
         }
 
         #endregion
