@@ -71,13 +71,17 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField>
                                     <HeaderStyle CssClass="gridviewheader" />
-                                    <ItemStyle CssClass="gridviewitem" Width="40%" />    
+                                    <ItemStyle CssClass="gridviewitem" Width="33%" />    
                                     <HeaderTemplate><asp:LinkButton ID="lnkHLoc" runat="server" CommandName="Sort" CommandArgument="Location" Text="Location"></asp:LinkButton></HeaderTemplate>                                
                                 </asp:TemplateField>
                                 <asp:TemplateField>
                                     <HeaderStyle CssClass="gridviewheader" />
-                                    <ItemStyle CssClass="gridviewitem" Width="40%" />    
+                                    <ItemStyle CssClass="gridviewitem" Width="33%" />    
                                     <HeaderTemplate><asp:LinkButton ID="lnkHArea" runat="server" CommandName="Sort" CommandArgument="Area" Text="Area"></asp:LinkButton></HeaderTemplate>                                
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Pin Code">
+                                    <HeaderStyle CssClass="gridviewheader" />
+                                    <ItemStyle CssClass="gridviewitem" Width="14%" />                                        
                                 </asp:TemplateField>
                                 <asp:TemplateField>
                                     <HeaderStyle CssClass="gridviewheader" />

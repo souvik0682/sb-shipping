@@ -11,6 +11,12 @@ namespace DSR.Entity
     {        
         #region IArea Members
 
+        public string PinCode
+        {
+            get;
+            set;
+        }
+
         public ILocation Location
         {
             get;
@@ -80,6 +86,7 @@ namespace DSR.Entity
         {
             this.Id = Convert.ToInt32(reader["Id"]);
             this.Name  = Convert.ToString(reader["Name"]);
+            this.PinCode = Convert.ToString(reader["PinCode"]);
             this.Location = new LocationEntity();
             this.Location.Id = Convert.ToInt32(reader["LocId"]);
             this.Location.Name = Convert.ToString(reader["LocName"]);

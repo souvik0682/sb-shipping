@@ -239,6 +239,7 @@ namespace DSR.DAL
             {
                 oDq.AddIntegerParam("@AreaId", area.Id);
                 oDq.AddVarcharParam("@AreaName", 50, area.Name);
+                oDq.AddVarcharParam("@PinCode", 10, area.PinCode);
                 oDq.AddIntegerParam("@LocId", area.Location.Id);
                 oDq.AddCharParam("@IsActive", 1, area.IsActive);
                 oDq.AddIntegerParam("@ModifiedBy", modifiedBy);

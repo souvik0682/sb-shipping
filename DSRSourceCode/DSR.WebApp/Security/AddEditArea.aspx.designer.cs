@@ -49,6 +49,24 @@ namespace DSR.WebApp.Security {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvLoc;
         
         /// <summary>
+        /// txtPin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPin;
+        
+        /// <summary>
+        /// rfvPin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPin;
+        
+        /// <summary>
         /// chkActive control.
         /// </summary>
         /// <remarks>
