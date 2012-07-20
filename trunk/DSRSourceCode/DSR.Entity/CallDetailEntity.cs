@@ -22,7 +22,7 @@ namespace DSR.Entity
             set;
         }
 
-        public string CallDate
+        public DateTime CallDate
         {
             get;
             set;
@@ -40,7 +40,7 @@ namespace DSR.Entity
             set;
         }
 
-        public string NextCallDate
+        public DateTime? NextCallDate
         {
             get;
             set;

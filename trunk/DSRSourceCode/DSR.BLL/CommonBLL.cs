@@ -481,6 +481,52 @@ namespace DSR.BLL
 
         #endregion
 
+        #region Commitment
+
+        public List<ICommitment> GetCommitment()
+        {
+            return CommonDAL.GetCommitment();
+        }
+
+        public ICommitment GetCommitment(int commitmentId)
+        {
+            return CommonDAL.GetCommitment(commitmentId);
+        }
+
+        public void SaveCommitment(ICommitment commitment, int modifiedBy)
+        {
+            CommonDAL.SaveCommitment(commitment, modifiedBy);
+        }
+
+        #endregion
+
+        #region Area
+
+        private void SetDefaultSearchCriteriaForDSC(SearchCriteria searchCriteria)
+        {
+            searchCriteria.SortExpression = "Location";
+            searchCriteria.SortDirection = "ASC";
+        }
+
+        public List<IDailySalesCall> GetDailySalesCall(SearchCriteria searchCriteria)
+        {
+            return CommonDAL.GetDailySalesCall(searchCriteria);
+        }
+
+        public IDailySalesCall GetDailySalesCall(int callId)
+        {
+            SearchCriteria searchCriteria = new SearchCriteria();
+            SetDefaultSearchCriteriaForDSC(searchCriteria);
+            return CommonDAL.GetDailySalesCall(callId, searchCriteria);
+        }
+
+        public void DeleteDailySalesCall(int callId, int modifiedBy)
+        {
+            CommonDAL.DeleteDailySalesCall(callId, modifiedBy);
+        }
+
+        #endregion
+
         #region User
 
         public List<IUser> GetSalesExecutive()

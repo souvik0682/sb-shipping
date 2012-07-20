@@ -59,6 +59,30 @@ namespace DSR.Entity
             set;
         }
 
+        public string UserName
+        {
+            get;
+            set;
+        }
+
+        public string CustomerName
+        {
+            get;
+            set;
+        }
+
+        public string CallTypes
+        {
+            get;
+            set;
+        }
+
+        public string Prospect
+        {
+            get;
+            set;
+        }
+
         #endregion
 
         #region ICommon Members
@@ -109,6 +133,10 @@ namespace DSR.Entity
                 this.NextCallDate = Convert.ToDateTime(reader["NextCallDate"]);
 
             this.Remarks = Convert.ToString(reader["Remarks"]);
+            this.UserName = Convert.ToString(reader["UserName"]);
+            this.CustomerName = Convert.ToString(reader["CustomerName"]);
+            this.CallTypes = Convert.ToString(reader["CallTypes"]);
+            this.Prospect = Convert.ToString(reader["ProspectName"]);
         }
 
         #endregion

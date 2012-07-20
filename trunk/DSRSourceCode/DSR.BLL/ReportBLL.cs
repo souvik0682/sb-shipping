@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using DSR.Entity;
 using DSR.Common;
-
+using DSR.DAL;
 
 namespace DSR.BLL
 {
@@ -12,11 +12,11 @@ namespace DSR.BLL
     {
         public IEnumerable<ICallDetail> GetDailyCallData()
         {
-            List<ICallDetail> lstRpt = new List<ICallDetail>();
-            CallDetailEntity rpt = new CallDetailEntity();
+            List<ICallDetail> lstRpt = ReportDAL.GetDailyCallData();
+            //CallDetailEntity rpt = new CallDetailEntity();
             
-            rpt.Location = "Test";
-            lstRpt.Add(rpt);
+            //rpt.Location = "Test";
+            //lstRpt.Add(rpt);
             return lstRpt;
         }
     }

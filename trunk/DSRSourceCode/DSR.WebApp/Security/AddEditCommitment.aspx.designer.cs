@@ -7,144 +7,117 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DSR.WebApp {
+namespace DSR.WebApp.Security {
     
     
-    public partial class Site {
+    public partial class AddEditCommitment {
         
         /// <summary>
-        /// head control.
+        /// ddlCall control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCall;
         
         /// <summary>
-        /// form1 control.
+        /// rfvCall control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCall;
         
         /// <summary>
-        /// ScriptManager1 control.
+        /// ddlWeek control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlWeek;
         
         /// <summary>
-        /// lblUserName control.
+        /// rfvWeek control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserName;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvWeek;
         
         /// <summary>
-        /// lnkLogout control.
+        /// ddlPort control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkLogout;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPort;
         
         /// <summary>
-        /// liMaster control.
+        /// rfvPort control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liMaster;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPort;
         
         /// <summary>
-        /// liUserMst control.
+        /// txtTEU control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liUserMst;
+        protected global::System.Web.UI.WebControls.TextBox txtTEU;
         
         /// <summary>
-        /// liLocMst control.
+        /// rfvTEU control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liLocMst;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTEU;
         
         /// <summary>
-        /// liAreaMst control.
+        /// txtFEU control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liAreaMst;
+        protected global::System.Web.UI.WebControls.TextBox txtFEU;
         
         /// <summary>
-        /// liGrMst control.
+        /// rfvFEU control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liGrMst;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFEU;
         
         /// <summary>
-        /// liCustMst control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liCustMst;
+        protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// liDSC control.
+        /// btnBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liDSC;
-        
-        /// <summary>
-        /// liImport control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liImport;
-        
-        /// <summary>
-        /// liDailySCall control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liDailySCall;
-        
-        /// <summary>
-        /// container control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder container;
+        protected global::System.Web.UI.WebControls.Button btnBack;
     }
 }
