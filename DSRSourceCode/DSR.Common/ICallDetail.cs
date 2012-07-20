@@ -18,7 +18,7 @@ namespace DSR.Common
             set;
         }
 
-        string CallDate
+        DateTime CallDate
         {
             get;
             set;
@@ -36,7 +36,7 @@ namespace DSR.Common
             set;
         }
 
-        string NextCallDate
+        DateTime? NextCallDate
         {
             get;
             set;

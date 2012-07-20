@@ -40,20 +40,18 @@
                     <li>
                         <a href="#">Transaction</a>
                         <ul>
-                            <li id="liDSC" runat="server"><a href="<%=Page.ResolveClientUrl("~/Security/DailySalesCall.aspx") %>">Daily Sales Call</a></li>
-                            <li id="liCommitment" runat="server"><a href="<%=Page.ResolveClientUrl("~/Security/Commitment.aspx") %>">Commitment Detail</a></li>
-                            <li><a href="#">Tag Customer</a></li>
+                            <li id="liDSC" runat="server"><a href="<%=Page.ResolveClientUrl("~/Security/ManageDailySalesCall.aspx") %>">Daily Sales Call</a></li>
+                            <li id="liImport" runat="server"><a href="<%=Page.ResolveClientUrl("~/Security/ImportData.aspx") %>">Import Data</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#">Reports</a>
                         <ul>
-                            <li><a href="#">Daily Sales Call Report</a></li>
+                            <li id="liDailySCall" runat="server"><a href="#">Daily Sales Call Report</a></li>
                             <li><a href="#">Location Wise Sales Call</a></li>
                             <li><a href="#">Area Wise Sales Call</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Import Data</a></li>
                 </ul>            
             </div>
         </div>

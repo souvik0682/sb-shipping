@@ -701,6 +701,130 @@ namespace DSR.DAL
 
         #endregion
 
+        #region Commitment
+
+        public static List<ICommitment> GetCommitment()
+        {
+            string strExecution = "[common].[uspGetCommitment]";
+            List<ICommitment> lstCommitment = new List<ICommitment>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    ICommitment commitment = new CommitmentEntity(reader);
+                    lstCommitment.Add(commitment);
+                }
+
+                reader.Close();
+            }
+
+            return lstCommitment;
+        }
+
+        public static ICommitment GetCommitment(int areaId)
+        {
+            string strExecution = "[common].[uspGetCommitment]";
+            ICommitment commitment = null;
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@CommitmentId", areaId);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    commitment = new CommitmentEntity(reader);
+                }
+
+                reader.Close();
+            }
+
+            return commitment;
+        }
+
+        public static void SaveCommitment(ICommitment commitment, int modifiedBy)
+        {
+            string strExecution = "[common].[uspSaveCommitment]";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@CallId", commitment.CallId);
+                oDq.AddIntegerParam("@WeekNo", commitment.WeekNo);
+                oDq.AddIntegerParam("@PortId", commitment.PortId);
+                oDq.AddIntegerParam("@TEU", commitment.TEU);
+                oDq.AddIntegerParam("@FEU", commitment.FEU);
+                oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
+                oDq.RunActionQuery();
+            }
+        }
+
+        #endregion
+
+        #region Area
+
+        public static List<IDailySalesCall> GetDailySalesCall(SearchCriteria searchCriteria)
+        {
+            string strExecution = "[common].[uspGetDailySalesCall]";
+            List<IDailySalesCall> lstDSR = new List<IDailySalesCall>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
+                oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    IDailySalesCall dsr = new DailySalesCallEntity(reader);
+                    lstDSR.Add(dsr);
+                }
+
+                reader.Close();
+            }
+
+            return lstDSR;
+        }
+
+        public static IDailySalesCall GetDailySalesCall(int callId, SearchCriteria searchCriteria)
+        {
+            string strExecution = "[common].[uspGetDailySalesCall]";
+            IDailySalesCall dsr = null;
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@CallId", callId);
+                oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
+                oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    dsr = new DailySalesCallEntity(reader);
+                }
+
+                reader.Close();
+            }
+
+            return dsr;
+        }
+
+        public static void DeleteDailySalesCall(int callId, int modifiedBy)
+        {
+            string strExecution = "[common].[uspDeleteDailySalesCall]";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@CallId", callId);
+                oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
+                oDq.RunActionQuery();
+            }
+        }
+
+        #endregion
+
         #region User
 
         public static List<IUser> GetSalesExecutive()

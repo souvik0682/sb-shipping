@@ -15,5 +15,9 @@ namespace DSR.Common
         DateTime CallDate { get; set; }
         DateTime? NextCallDate { get; set; }
         string Remarks { get; set; }
+        string UserName { get; set; }
+        string CustomerName { get; set; }
+        string CallTypes { get; set; }
+        string Prospect { get; set; }
     }
 }

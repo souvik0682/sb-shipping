@@ -76,6 +76,9 @@
     <Content Include="Security\AddEditArea.aspx" />
     <Content Include="Security\AddEditCustomer.aspx" />
     <Content Include="Security\AddEditGroupCompany.aspx" />
+    <Content Include="Security\AddEditCommitment.aspx" />
+    <Content Include="Security\ImportData.aspx" />
+    <Content Include="Security\ManageDailySalesCall.aspx" />
     <Content Include="Security\Home.aspx" />
     <Content Include="Security\ManageCustomer.aspx" />
     <Content Include="Security\ManageGroupCompany.aspx" />
@@ -118,6 +121,27 @@
     </Compile>
     <Compile Include="FileNotFound.aspx.designer.cs">
       <DependentUpon>FileNotFound.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\AddEditCommitment.aspx.cs">
+      <DependentUpon>AddEditCommitment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\AddEditCommitment.aspx.designer.cs">
+      <DependentUpon>AddEditCommitment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\ImportData.aspx.cs">
+      <DependentUpon>ImportData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\ImportData.aspx.designer.cs">
+      <DependentUpon>ImportData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\ManageDailySalesCall.aspx.cs">
+      <DependentUpon>ManageDailySalesCall.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\ManageDailySalesCall.aspx.designer.cs">
+      <DependentUpon>ManageDailySalesCall.aspx</DependentUpon>
     </Compile>
     <Compile Include="Security\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
