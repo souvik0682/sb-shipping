@@ -256,12 +256,21 @@
     <value>Want to Quit?</value>
   </data>
   <data name="ERR00047" xml:space="preserve">
-    <value>*Invalid Phone Number</value>
+    <value>* Invalid Phone Number</value>
   </data>
   <data name="ERR00048" xml:space="preserve">
-    <value>*Invalid Mobile Number</value>
+    <value>* Invalid Mobile Number</value>
   </data>
   <data name="ERR00049" xml:space="preserve">
-    <value>*Pin Code cannot be left blank</value>
+    <value>* Pin Code cannot be left blank</value>
+  </data>
+  <data name="ERR00050" xml:space="preserve">
+    <value>Are you sure you want to cancel?</value>
+  </data>
+  <data name="ERR00051" xml:space="preserve">
+    <value>* Please select customer</value>
+  </data>
+  <data name="ERR00052" xml:space="preserve">
+    <value>Please select a valid file to import</value>
   </data>
 </root>

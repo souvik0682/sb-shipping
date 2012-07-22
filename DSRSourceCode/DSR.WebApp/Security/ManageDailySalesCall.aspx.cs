@@ -33,7 +33,6 @@ namespace DSR.WebApp.Security
 
             if (!IsPostBack)
             {
-                SetDefaultSearchCriteria();
                 LoadDSC();
             }
         }
@@ -56,32 +55,7 @@ namespace DSR.WebApp.Security
         }
         protected void gvwDSC_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName.Equals("Sort"))
-            {
-                if (ViewState[Constants.SORT_EXPRESSION] == null)
-                {
-                    ViewState[Constants.SORT_EXPRESSION] = e.CommandArgument.ToString();
-                    ViewState[Constants.SORT_DIRECTION] = "ASC";
-                }
-                else
-                {
-                    if (ViewState[Constants.SORT_EXPRESSION].ToString() == e.CommandArgument.ToString())
-                    {
-                        if (ViewState[Constants.SORT_DIRECTION].ToString() == "ASC")
-                            ViewState[Constants.SORT_DIRECTION] = "DESC";
-                        else
-                            ViewState[Constants.SORT_DIRECTION] = "ASC";
-                    }
-                    else
-                    {
-                        ViewState[Constants.SORT_DIRECTION] = "ASC";
-                        ViewState[Constants.SORT_EXPRESSION] = e.CommandArgument.ToString();
-                    }
-                }
-
-                LoadDSC();
-            }
-            else if (e.CommandName == "Edit")
+            if (e.CommandName == "Edit")
             {
                 RedirecToAddEditPage(Convert.ToInt32(e.CommandArgument));
             }
@@ -155,9 +129,13 @@ namespace DSR.WebApp.Security
                     Response.Redirect("~/Login.aspx");
                 }
 
-                if (user.UserRole.Id != (int)UserRole.Admin)
+                if (user.UserRole.Id != (int)UserRole.Management)
                 {
-                    Response.Redirect("~/Unauthorized.aspx");
+                    _hasEditAccess = true;
+                }
+                else
+                {
+                    _hasEditAccess = false;
                 }
             }
             else
@@ -170,8 +148,6 @@ namespace DSR.WebApp.Security
         {
             if (!IsPostBack)
             {
-                //txtWMEArea.WatermarkText = ResourceManager.GetStringWithoutName("ERR00016");
-                //txtWMELoc.WatermarkText = ResourceManager.GetStringWithoutName("ERR00018");
                 gvwDSC.PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
                 gvwDSC.PagerSettings.PageButtonCount = Convert.ToInt32(ConfigurationManager.AppSettings["PageButtonCount"]);
             }
@@ -179,18 +155,9 @@ namespace DSR.WebApp.Security
 
         private void LoadDSC()
         {
-            if (!ReferenceEquals(Session[Constants.SESSION_SEARCH_CRITERIA], null))
-            {
-                SearchCriteria searchCriteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
-
-                if (!ReferenceEquals(searchCriteria, null))
-                {
-                    BuildSearchCriteria(searchCriteria);
-                    CommonBLL commonBll = new CommonBLL();
-                    gvwDSC.DataSource = commonBll.GetDailySalesCall(searchCriteria);
-                    gvwDSC.DataBind();
-                }
-            }
+            CommonBLL commonBll = new CommonBLL();
+            gvwDSC.DataSource = commonBll.GetDailySalesCall();
+            gvwDSC.DataBind();
         }
 
         private void DeleteDSC(int callId)
@@ -205,42 +172,6 @@ namespace DSR.WebApp.Security
         {
             string encryptedId = GeneralFunctions.EncryptQueryString(id.ToString());
             Response.Redirect("~/Security/AddEditDailySalesCall.aspx?id=" + encryptedId);
-        }
-
-        private void BuildSearchCriteria(SearchCriteria criteria)
-        {
-            string sortExpression = string.Empty;
-            string sortDirection = string.Empty;
-
-            if (!ReferenceEquals(ViewState[Constants.SORT_EXPRESSION], null) && !ReferenceEquals(ViewState[Constants.SORT_DIRECTION], null))
-            {
-                sortExpression = Convert.ToString(ViewState[Constants.SORT_EXPRESSION]);
-                sortDirection = Convert.ToString(ViewState[Constants.SORT_DIRECTION]);
-            }
-            else
-            {
-                sortExpression = "Area";
-                sortDirection = "ASC";
-            }
-
-            criteria.SortExpression = sortExpression;
-            criteria.SortDirection = sortDirection;
-            //criteria.AreaName = (txtArea.Text == ResourceManager.GetStringWithoutName("ERR00016")) ? string.Empty : txtArea.Text.Trim();
-            //criteria.LocName = (txtLoc.Text == ResourceManager.GetStringWithoutName("ERR00018")) ? string.Empty : txtLoc.Text.Trim();
-
-            Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
-        }
-
-        private void SetDefaultSearchCriteria()
-        {
-            SearchCriteria criteria = new SearchCriteria();
-            string sortExpression = string.Empty;
-            string sortDirection = string.Empty;
-
-            criteria.SortExpression = sortExpression;
-            criteria.SortDirection = sortDirection;
-
-            Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
         }
 
         #endregion

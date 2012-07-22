@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using DSR.Common;
 using System.Data;
+using System.Xml.Serialization;
 
 namespace DSR.Entity
 {
+    [Serializable]
     public class ShipSoftEntity : IShipSoft
     {
         #region IShipSoft Members
@@ -23,7 +25,19 @@ namespace DSR.Entity
             set;
         }
 
+        public string LocationName
+        {
+            get;
+            set;
+        }
+
         public int ProspectId
+        {
+            get;
+            set;
+        }
+
+        public string ProspectName
         {
             get;
             set;
@@ -59,6 +73,12 @@ namespace DSR.Entity
             set;
         }
 
+        public string PortName
+        {
+            get;
+            set;
+        }
+
         public int? TEU
         {
             get;
@@ -77,7 +97,13 @@ namespace DSR.Entity
             set;
         }
 
-        public int CustomerId
+        public int? CustomerId
+        {
+            get;
+            set;
+        }
+
+        public string CustomerName
         {
             get;
             set;
@@ -94,7 +120,26 @@ namespace DSR.Entity
 
         public ShipSoftEntity(DataTableReader reader)
         {
+            this.TranId = Convert.ToInt32(reader["TranID"]);
+            this.LocationId = Convert.ToInt32(reader["LocId"]);
+            this.LocationName = Convert.ToString(reader["LocName"]);
+            this.ProspectId = Convert.ToInt32(reader["ProspectId"]);
+            this.ProspectName = Convert.ToString(reader["ProspectName"]);
+            this.BookingNo = Convert.ToString(reader["BookingNo"]);
+            this.BLANumber = Convert.ToString(reader["BLNumber"]);
+            this.VesselVoyage = Convert.ToString(reader["VesselVoyage"]);
+            this.ShipperName = Convert.ToString(reader["ShipperName"]);
+            this.PortId = Convert.ToInt32(reader["PortId"]);
+            this.PortName = Convert.ToString(reader["PortName"]);
+            this.TEU = Convert.ToInt32(reader["TEU"]);
+            this.FEU = Convert.ToInt32(reader["FEU"]);
+            this.SOBDate = Convert.ToDateTime(reader["SOBDate"]);
 
+            if (reader["CustId"] != DBNull.Value)
+            {
+                this.CustomerId = Convert.ToInt32(reader["CustId"]);
+                this.CustomerName = Convert.ToString(reader["CustName"]);
+            }
         }
 
         #endregion
