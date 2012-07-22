@@ -483,46 +483,65 @@ namespace DSR.BLL
 
         #region Commitment
 
-        public List<ICommitment> GetCommitment()
-        {
-            return CommonDAL.GetCommitment();
-        }
+        //public List<ICommitment> GetCommitment()
+        //{
+        //    return CommonDAL.GetCommitment();
+        //}
 
-        public ICommitment GetCommitment(int commitmentId)
-        {
-            return CommonDAL.GetCommitment(commitmentId);
-        }
+        //public ICommitment GetCommitment(int commitmentId)
+        //{
+        //    return CommonDAL.GetCommitment(commitmentId);
+        //}
 
-        public void SaveCommitment(ICommitment commitment, int modifiedBy)
-        {
-            CommonDAL.SaveCommitment(commitment, modifiedBy);
-        }
+        //public void SaveCommitment(ICommitment commitment, int modifiedBy)
+        //{
+        //    CommonDAL.SaveCommitment(commitment, modifiedBy);
+        //}
 
         #endregion
 
-        #region Area
+        #region Sales Call
 
-        private void SetDefaultSearchCriteriaForDSC(SearchCriteria searchCriteria)
-        {
-            searchCriteria.SortExpression = "Location";
-            searchCriteria.SortDirection = "ASC";
-        }
+        //private void SetDefaultSearchCriteriaForDSC(SearchCriteria searchCriteria)
+        //{
+        //    searchCriteria.SortExpression = "Location";
+        //    searchCriteria.SortDirection = "ASC";
+        //}
 
-        public List<IDailySalesCall> GetDailySalesCall(SearchCriteria searchCriteria)
+        public List<IDailySalesCall> GetDailySalesCall()
         {
-            return CommonDAL.GetDailySalesCall(searchCriteria);
+            return CommonDAL.GetDailySalesCall();
         }
 
         public IDailySalesCall GetDailySalesCall(int callId)
-        {
-            SearchCriteria searchCriteria = new SearchCriteria();
-            SetDefaultSearchCriteriaForDSC(searchCriteria);
-            return CommonDAL.GetDailySalesCall(callId, searchCriteria);
+        {                      
+            return CommonDAL.GetDailySalesCall(callId);
         }
 
         public void DeleteDailySalesCall(int callId, int modifiedBy)
         {
             CommonDAL.DeleteDailySalesCall(callId, modifiedBy);
+        }
+
+        #endregion
+
+        #region Import Data
+
+        public List<IShipSoft> GetShipSoftData(bool isTagged)
+        {
+            return CommonDAL.GetShipSoftData(isTagged);
+        }
+
+        public void SaveShipSoft(List<ShipSoftEntity> lstShipSoft, int modifiedBy, out int rowsAffected, out int dupCount)
+        {
+            string xmlDoc = GeneralFunctions.Serialize(lstShipSoft);
+            CommonDAL.SaveShipSoft(xmlDoc, modifiedBy, out rowsAffected, out dupCount);
+        }
+
+        public void TagCustomer(List<ShipSoftEntity> lstShipSoft, int custId, int modifiedBy)
+        {
+            string xmlDoc = GeneralFunctions.Serialize(lstShipSoft);
+            CommonDAL.TagCustomer(xmlDoc, custId, modifiedBy);
         }
 
         #endregion

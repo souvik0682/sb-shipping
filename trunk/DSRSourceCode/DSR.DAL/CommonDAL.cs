@@ -703,77 +703,75 @@ namespace DSR.DAL
 
         #region Commitment
 
-        public static List<ICommitment> GetCommitment()
-        {
-            string strExecution = "[common].[uspGetCommitment]";
-            List<ICommitment> lstCommitment = new List<ICommitment>();
+        //public static List<ICommitment> GetCommitment()
+        //{
+        //    string strExecution = "[common].[uspGetCommitment]";
+        //    List<ICommitment> lstCommitment = new List<ICommitment>();
 
-            using (DbQuery oDq = new DbQuery(strExecution))
-            {
-                DataTableReader reader = oDq.GetTableReader();
+        //    using (DbQuery oDq = new DbQuery(strExecution))
+        //    {
+        //        DataTableReader reader = oDq.GetTableReader();
 
-                while (reader.Read())
-                {
-                    ICommitment commitment = new CommitmentEntity(reader);
-                    lstCommitment.Add(commitment);
-                }
+        //        while (reader.Read())
+        //        {
+        //            ICommitment commitment = new CommitmentEntity(reader);
+        //            lstCommitment.Add(commitment);
+        //        }
 
-                reader.Close();
-            }
+        //        reader.Close();
+        //    }
 
-            return lstCommitment;
-        }
+        //    return lstCommitment;
+        //}
 
-        public static ICommitment GetCommitment(int areaId)
-        {
-            string strExecution = "[common].[uspGetCommitment]";
-            ICommitment commitment = null;
+        //public static ICommitment GetCommitment(int areaId)
+        //{
+        //    string strExecution = "[common].[uspGetCommitment]";
+        //    ICommitment commitment = null;
 
-            using (DbQuery oDq = new DbQuery(strExecution))
-            {
-                oDq.AddIntegerParam("@CommitmentId", areaId);
-                DataTableReader reader = oDq.GetTableReader();
+        //    using (DbQuery oDq = new DbQuery(strExecution))
+        //    {
+        //        oDq.AddIntegerParam("@CommitmentId", areaId);
+        //        DataTableReader reader = oDq.GetTableReader();
 
-                while (reader.Read())
-                {
-                    commitment = new CommitmentEntity(reader);
-                }
+        //        while (reader.Read())
+        //        {
+        //            commitment = new CommitmentEntity(reader);
+        //        }
 
-                reader.Close();
-            }
+        //        reader.Close();
+        //    }
 
-            return commitment;
-        }
+        //    return commitment;
+        //}
 
-        public static void SaveCommitment(ICommitment commitment, int modifiedBy)
-        {
-            string strExecution = "[common].[uspSaveCommitment]";
+        //public static void SaveCommitment(ICommitment commitment, int modifiedBy)
+        //{
+        //    string strExecution = "[common].[uspSaveCommitment]";
 
-            using (DbQuery oDq = new DbQuery(strExecution))
-            {
-                oDq.AddIntegerParam("@CallId", commitment.CallId);
-                oDq.AddIntegerParam("@WeekNo", commitment.WeekNo);
-                oDq.AddIntegerParam("@PortId", commitment.PortId);
-                oDq.AddIntegerParam("@TEU", commitment.TEU);
-                oDq.AddIntegerParam("@FEU", commitment.FEU);
-                oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
-                oDq.RunActionQuery();
-            }
-        }
+        //    using (DbQuery oDq = new DbQuery(strExecution))
+        //    {
+        //        oDq.AddIntegerParam("@CallId", commitment.CallId);
+        //        oDq.AddIntegerParam("@WeekNo", commitment.WeekNo);
+        //        oDq.AddIntegerParam("@PortId", commitment.PortId);
+        //        oDq.AddIntegerParam("@TEU", commitment.TEU);
+        //        oDq.AddIntegerParam("@FEU", commitment.FEU);
+        //        oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
+        //        oDq.RunActionQuery();
+        //    }
+        //}
 
         #endregion
 
-        #region Area
+        #region Sales Call
 
-        public static List<IDailySalesCall> GetDailySalesCall(SearchCriteria searchCriteria)
+        public static List<IDailySalesCall> GetDailySalesCall()
         {
             string strExecution = "[common].[uspGetDailySalesCall]";
             List<IDailySalesCall> lstDSR = new List<IDailySalesCall>();
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
-                oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
-                oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
                 DataTableReader reader = oDq.GetTableReader();
 
                 while (reader.Read())
@@ -788,7 +786,7 @@ namespace DSR.DAL
             return lstDSR;
         }
 
-        public static IDailySalesCall GetDailySalesCall(int callId, SearchCriteria searchCriteria)
+        public static IDailySalesCall GetDailySalesCall(int callId)
         {
             string strExecution = "[common].[uspGetDailySalesCall]";
             IDailySalesCall dsr = null;
@@ -796,8 +794,6 @@ namespace DSR.DAL
             using (DbQuery oDq = new DbQuery(strExecution))
             {
                 oDq.AddIntegerParam("@CallId", callId);
-                oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
-                oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
                 DataTableReader reader = oDq.GetTableReader();
 
                 while (reader.Read())
@@ -819,6 +815,63 @@ namespace DSR.DAL
             {
                 oDq.AddIntegerParam("@CallId", callId);
                 oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
+                oDq.RunActionQuery();
+            }
+        }
+
+        #endregion
+
+        #region Import Data
+
+        public static List<IShipSoft> GetShipSoftData(bool isTagged)
+        {
+            string strExecution = "[common].[uspGetShipSoft]";
+            List<IShipSoft> lstShipSoft = new List<IShipSoft>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddBooleanParam("@IsTagged", isTagged);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    IShipSoft shipSoft = new ShipSoftEntity(reader);
+                    lstShipSoft.Add(shipSoft);
+                }
+
+                reader.Close();
+            }
+
+            return lstShipSoft;
+        }
+
+        public static void SaveShipSoft(string xmlDoc, int modifiedBy, out int rowsAffected, out int dupCount)
+        {
+            string strExecution = "[common].[uspSaveShipSoft]";
+            dupCount = 0;
+            rowsAffected = 0;
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
+                oDq.AddNTextParam("@XMLDoc", xmlDoc);
+                oDq.AddIntegerParam("@RowsAffected", rowsAffected, QueryParameterDirection.Output);
+                oDq.AddIntegerParam("@DupCount", dupCount, QueryParameterDirection.Output);
+                oDq.RunActionQuery();
+                rowsAffected = Convert.ToInt32(oDq.GetParaValue("@RowsAffected"));
+                dupCount = Convert.ToInt32(oDq.GetParaValue("@DupCount"));
+            }
+        }
+
+        public static void TagCustomer(string xmlDoc, int custId, int modifiedBy)
+        {
+            string strExecution = "[common].[uspTagCustomer]";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@CustId", custId);
+                oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
+                oDq.AddNTextParam("@XMLDoc", xmlDoc);
                 oDq.RunActionQuery();
             }
         }
