@@ -47,7 +47,7 @@
                     <li>
                         <a href="#">Reports</a>
                         <ul>
-                            <li id="liDailySCall" runat="server"><a href="#">Daily Sales Call Report</a></li>
+                            <li id="liDailySCall" runat="server"><a href="<%=Page.ResolveClientUrl("~/Reports/DailyCallRpt.aspx") %>">Daily Sales Call Report</a></li>
                             <li><a href="#">Location Wise Sales Call</a></li>
                             <li><a href="#">Area Wise Sales Call</a></li>
                         </ul>

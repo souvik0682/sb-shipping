@@ -113,15 +113,15 @@ namespace DSR.WebApp.Security
                                     ShipSoftEntity shipSoft = new ShipSoftEntity();
                                     shipSoft.LocationName = Convert.ToString(abc[0]);
                                     shipSoft.ProspectName = Convert.ToString(abc[1]);
-                                    shipSoft.BookingNo = Convert.ToString(abc[2]);
-                                    shipSoft.BLANumber = Convert.ToString(abc[3]);
-                                    shipSoft.VesselVoyage = Convert.ToString(abc[4]);
-                                    shipSoft.ShipperName = Convert.ToString(abc[5]);
-                                    shipSoft.PortName = Convert.ToString(abc[6]);
-                                    shipSoft.TEU = Convert.ToInt32(abc[7]);
-                                    shipSoft.FEU = Convert.ToInt32(abc[8]);
+                                    shipSoft.BookingNo = Descramble(Convert.ToString(abc[2]));
+                                    shipSoft.BLANumber = Descramble(Convert.ToString(abc[3]));
+                                    shipSoft.VesselVoyage = Descramble(Convert.ToString(abc[4]));
+                                    shipSoft.ShipperName = Descramble(Convert.ToString(abc[5]));
+                                    shipSoft.PortName = Descramble(Convert.ToString(abc[6]));
+                                    shipSoft.TEU = Convert.ToInt32(Descramble(Convert.ToString(abc[7])));
+                                    shipSoft.FEU = Convert.ToInt32(Descramble(Convert.ToString(abc[8])));
 
-                                    shipSoft.SOBDate = Convert.ToDateTime(abc[9], _culture);
+                                    shipSoft.SOBDate = Convert.ToDateTime(Descramble(Convert.ToString(abc[9], _culture)));
                                     lstShipSoft.Add(shipSoft);
                                 }
                                 catch (Exception ex)
@@ -165,6 +165,47 @@ namespace DSR.WebApp.Security
                     byte[] str = Encoding.ASCII.GetBytes(arg.Substring(index * 1, 1));
                     cNextChar = str[0];
                     cOutString = cOutString + (char)((cNextChar / 2));
+                }
+            }
+
+            return cOutString;
+        }
+
+        private string Descramble(string cInString)
+        {
+            int nInStrLen = 0;
+            char cNextChar;
+            string cOutString = string.Empty;            
+
+            if (!string.IsNullOrEmpty(cInString))
+            {
+                nInStrLen = cInString.Length;
+
+                for (int nCounter = 0; nCounter < nInStrLen; nCounter++)
+                {
+                    cNextChar = Convert.ToChar(cInString.Substring(nCounter, 1));
+                    cOutString = cOutString + Convert.ToString((char)(cNextChar -96));
+                }
+            }
+
+            //return cOutString;
+            return cInString;
+        }
+
+        private string Descramble_old(string cInString)
+        {
+            int nInStrLen = 0;
+            char cNextChar;
+            string cOutString = string.Empty;
+            
+            if (!string.IsNullOrEmpty(cInString))
+            {
+                nInStrLen = cInString.Length;
+
+                for (int nCounter = 0; nCounter < nInStrLen; nCounter++)
+                {
+                    cNextChar = Convert.ToChar(cInString.Substring(nInStrLen - nCounter - 1, 1));
+                    cOutString = cOutString + Convert.ToString((char)(cNextChar / 2));
                 }
             }
 
