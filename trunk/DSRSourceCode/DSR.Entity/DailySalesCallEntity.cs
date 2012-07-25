@@ -133,12 +133,32 @@ namespace DSR.Entity
                 this.NextCallDate = Convert.ToDateTime(reader["NextCallDate"]);
 
             this.Remarks = Convert.ToString(reader["Remarks"]);
-            this.UserName = Convert.ToString(reader["UserName"]);
-            this.CustomerName = Convert.ToString(reader["CustomerName"]);
-            this.CallTypes = Convert.ToString(reader["CallTypes"]);
-            this.Prospect = Convert.ToString(reader["ProspectName"]);
+
+            if (HasColumn(reader, "UserName") && reader["UserName"] != DBNull.Value)
+                this.UserName = Convert.ToString(reader["UserName"]);
+
+            if (HasColumn(reader, "CustomerName") && reader["CustomerName"] != DBNull.Value)
+                this.CustomerName = Convert.ToString(reader["CustomerName"]);
+
+            if (HasColumn(reader, "CallTypes") && reader["CallTypes"] != DBNull.Value)
+                this.CallTypes = Convert.ToString(reader["CallTypes"]);
+
+            if (HasColumn(reader, "ProspectName") && reader["ProspectName"] != DBNull.Value)
+                this.Prospect = Convert.ToString(reader["ProspectName"]);
         }
 
         #endregion
+
+        private bool HasColumn(DataTableReader reader, string columnName)
+        {
+            try
+            {
+                return reader.GetOrdinal(columnName) >= 0;
+            }
+            catch (ArgumentException)
+            {
+                return false;
+            }
+        }
     }
 }

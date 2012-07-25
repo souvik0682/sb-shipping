@@ -156,7 +156,7 @@ namespace DSR.WebApp.Security
         private void LoadDSC()
         {
             CommonBLL commonBll = new CommonBLL();
-            gvwDSC.DataSource = commonBll.GetDailySalesCall();
+            gvwDSC.DataSource = commonBll.GetDailySalesCallList();
             gvwDSC.DataBind();
         }
 
@@ -170,8 +170,12 @@ namespace DSR.WebApp.Security
 
         private void RedirecToAddEditPage(int id)
         {
-            string encryptedId = GeneralFunctions.EncryptQueryString(id.ToString());
-            Response.Redirect("~/Security/AddEditDailySalesCall.aspx?id=" + encryptedId);
+            //string encryptedId = GeneralFunctions.EncryptQueryString(id.ToString());
+
+            if (id > 0)
+                Response.Redirect("~/Security/DailySalesCallEntry.aspx?CallId=" + id.ToString());
+            else
+                Response.Redirect("~/Security/DailySalesCallEntry.aspx");
         }
 
         #endregion

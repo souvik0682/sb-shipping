@@ -508,9 +508,9 @@ namespace DSR.BLL
         //    searchCriteria.SortDirection = "ASC";
         //}
 
-        public List<IDailySalesCall> GetDailySalesCall()
+        public List<IDailySalesCall> GetDailySalesCallList()
         {
-            return CommonDAL.GetDailySalesCall();
+            return CommonDAL.GetDailySalesCallList();
         }
 
         public IDailySalesCall GetDailySalesCall(int callId)

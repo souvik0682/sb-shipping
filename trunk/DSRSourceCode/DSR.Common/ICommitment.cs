@@ -13,6 +13,7 @@ namespace DSR.Common
         int CustomerId { get; set; }
         int WeekNo { get; set; }
         int PortId { get; set; }
+        string PortCode { get; set; }
         int TEU { get; set; }
         int FEU { get; set; }
     }

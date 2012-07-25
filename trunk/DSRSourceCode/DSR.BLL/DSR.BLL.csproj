@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonBLL.cs" />
+    <Compile Include="DailySalesCallBLL.cs" />
     <Compile Include="ReportBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserBLL.cs" />
