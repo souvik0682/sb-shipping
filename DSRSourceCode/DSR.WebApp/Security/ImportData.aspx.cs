@@ -109,7 +109,6 @@ namespace DSR.WebApp.Security
                             {
                                 try
                                 {
-
                                     ShipSoftEntity shipSoft = new ShipSoftEntity();
                                     shipSoft.LocationName = Convert.ToString(abc[0]);
                                     shipSoft.ProspectName = Convert.ToString(abc[1]);
@@ -150,32 +149,32 @@ namespace DSR.WebApp.Security
             }
         }
 
-        private string test(string arg)
-        {
-            int nInStrLen = 0;
-            int cNextChar = 0;
-            string cOutString = "";
+        //private string test(string arg)
+        //{
+        //    int nInStrLen = 0;
+        //    int cNextChar = 0;
+        //    string cOutString = "";
 
-            if (!string.IsNullOrEmpty(arg))
-            {
-                nInStrLen = arg.Length;
+        //    if (!string.IsNullOrEmpty(arg))
+        //    {
+        //        nInStrLen = arg.Length;
 
-                for (int index = 1; index < nInStrLen; index++)
-                {
-                    byte[] str = Encoding.ASCII.GetBytes(arg.Substring(index * 1, 1));
-                    cNextChar = str[0];
-                    cOutString = cOutString + (char)((cNextChar / 2));
-                }
-            }
+        //        for (int index = 1; index < nInStrLen; index++)
+        //        {
+        //            byte[] str = Encoding.ASCII.GetBytes(arg.Substring(index * 1, 1));
+        //            cNextChar = str[0];
+        //            cOutString = cOutString + (char)((cNextChar / 2));
+        //        }
+        //    }
 
-            return cOutString;
-        }
+        //    return cOutString;
+        //}
 
         private string Descramble(string cInString)
         {
             int nInStrLen = 0;
             char cNextChar;
-            string cOutString = string.Empty;            
+            string cOutString = string.Empty;
 
             if (!string.IsNullOrEmpty(cInString))
             {
@@ -184,33 +183,54 @@ namespace DSR.WebApp.Security
                 for (int nCounter = 0; nCounter < nInStrLen; nCounter++)
                 {
                     cNextChar = Convert.ToChar(cInString.Substring(nCounter, 1));
-                    cOutString = cOutString + Convert.ToString((char)(cNextChar -96));
+                    cOutString = cOutString + Convert.ToString((char)(cNextChar - 96));
                 }
             }
 
-            //return cOutString;
             return cInString;
         }
 
-        private string Descramble_old(string cInString)
+        private string ConvertUnicodeToAscii(string unicodeString)
         {
-            int nInStrLen = 0;
-            char cNextChar;
-            string cOutString = string.Empty;
-            
-            if (!string.IsNullOrEmpty(cInString))
-            {
-                nInStrLen = cInString.Length;
+            // Create two different encodings.
+            Encoding ascii = Encoding.ASCII;
+            Encoding unicode = Encoding.UTF8;
 
-                for (int nCounter = 0; nCounter < nInStrLen; nCounter++)
-                {
-                    cNextChar = Convert.ToChar(cInString.Substring(nInStrLen - nCounter - 1, 1));
-                    cOutString = cOutString + Convert.ToString((char)(cNextChar / 2));
-                }
-            }
+            // Convert the string into a byte[].
+            byte[] unicodeBytes = unicode.GetBytes(unicodeString);
 
-            return cOutString;
+            // Perform the conversion from one encoding to the other.
+            byte[] asciiBytes = Encoding.Convert(unicode, ascii, unicodeBytes);
+
+            // Convert the new byte[] into a char[] and then into a string.
+            // This is a slightly different approach to converting to illustrate
+            // the use of GetCharCount/GetChars.
+            char[] asciiChars = new char[ascii.GetCharCount(asciiBytes, 0, asciiBytes.Length)];
+            ascii.GetChars(asciiBytes, 0, asciiBytes.Length, asciiChars, 0);
+            string asciiString = new string(asciiChars);
+
+            // Display the strings created before and after the conversion.
+            return asciiString;
         }
+        //private string Descramble_old(string cInString)
+        //{
+        //    int nInStrLen = 0;
+        //    char cNextChar;
+        //    string cOutString = string.Empty;
+
+        //    if (!string.IsNullOrEmpty(cInString))
+        //    {
+        //        nInStrLen = cInString.Length;
+
+        //        for (int nCounter = 0; nCounter < nInStrLen; nCounter++)
+        //        {
+        //            cNextChar = Convert.ToChar(cInString.Substring(nInStrLen - nCounter - 1, 1));
+        //            cOutString = cOutString + Convert.ToString((char)(cNextChar / 2));
+        //        }
+        //    }
+
+        //    return cOutString;
+        //}
 
         protected void gvwData_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {

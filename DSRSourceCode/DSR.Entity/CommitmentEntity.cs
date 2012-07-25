@@ -7,6 +7,7 @@ using System.Data;
 
 namespace DSR.Entity
 {
+    [Serializable]
     public class CommitmentEntity : ICommitment
     {
         #region ICommitment Members
@@ -47,6 +48,8 @@ namespace DSR.Entity
             set;
         }
 
+        public string PortCode { get; set; }
+
         public int TEU
         {
             get;
@@ -72,10 +75,11 @@ namespace DSR.Entity
         {
             this.CommitmentId = Convert.ToInt32(reader["CommitmentId"]);
             this.CallId = Convert.ToInt32(reader["CallId"]);
-            this.UserId = Convert.ToInt32(reader["UserId"]);
+            //this.UserId = Convert.ToInt32(reader["UserId"]);
             this.CustomerId = Convert.ToInt32(reader["CustomerId"]);
             this.WeekNo = Convert.ToInt32(reader["WeekNo"]);
             this.PortId = Convert.ToInt32(reader["PortId"]);
+            this.PortCode = Convert.ToString(reader["PortCode"]);
             this.TEU = Convert.ToInt32(reader["TEU"]);
             this.FEU = Convert.ToInt32(reader["FEU"]);
         }

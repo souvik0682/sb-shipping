@@ -5,8 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <link href="<%=Page.ResolveClientUrl("~/Styles/DSR.css") %>" rel="stylesheet" type="text/css" />
-    <script src="<%=Page.ResolveClientUrl("~/Scripts/Common.js") %>" type="text/javascript"></script>
+    <link href="Styles/DSR.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/Common.js" type="text/javascript"></script>
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
 </head>
 <body>
@@ -47,7 +47,7 @@
                     <li>
                         <a href="#">Reports</a>
                         <ul>
-                            <li id="liDailySCall" runat="server"><a href="<%=Page.ResolveClientUrl("~/Reports/DailyCallRpt.aspx") %>">Daily Sales Call Report</a></li>
+                            <li id="liDailySCall" runat="server"><a href="#">Daily Sales Call Report</a></li>
                             <li><a href="#">Location Wise Sales Call</a></li>
                             <li><a href="#">Area Wise Sales Call</a></li>
                         </ul>

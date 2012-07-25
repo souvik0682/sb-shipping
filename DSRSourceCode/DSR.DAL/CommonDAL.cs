@@ -765,9 +765,9 @@ namespace DSR.DAL
 
         #region Sales Call
 
-        public static List<IDailySalesCall> GetDailySalesCall()
+        public static List<IDailySalesCall> GetDailySalesCallList()
         {
-            string strExecution = "[common].[uspGetDailySalesCall]";
+            string strExecution = "[common].[uspGetDailySalesCallList]";
             List<IDailySalesCall> lstDSR = new List<IDailySalesCall>();
 
             using (DbQuery oDq = new DbQuery(strExecution))
