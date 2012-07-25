@@ -28,8 +28,10 @@ namespace DSR.DAL
                 while (reader.Read())
                 {
                     ICallDetail callDetail = new CallDetailEntity();
+                    callDetail.ProspectFor = Convert.ToString(reader["ProspectName"]);
                     callDetail.CallDate = Convert.ToDateTime(reader["CallDate"]);
                     callDetail.GroupCompany = Convert.ToString(reader["GroupCompany"]);
+                    callDetail.CallType = Convert.ToString(reader["CallType"]);
 
                     if (reader["NextCallOn"] != DBNull.Value)
                         callDetail.NextCallDate = Convert.ToDateTime(reader["NextCallOn"]);

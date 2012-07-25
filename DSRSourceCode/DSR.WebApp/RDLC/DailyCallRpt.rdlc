@@ -483,7 +483,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=RowNumber("CallDetailEntity")</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                               </Style>
@@ -516,7 +516,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!CallDate.Value</Value>
+                              <Value>=Format(Fields!CallDate.Value,"dd/MM/yyyy")</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                               </Style>
@@ -615,7 +615,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!NextCallDate.Value</Value>
+                              <Value>=Format(Fields!NextCallDate.Value,"dd/MM/yyyy")</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                               </Style>
