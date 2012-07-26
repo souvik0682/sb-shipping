@@ -1,17 +1,22 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddEditCustomer.aspx.cs" Inherits="DSR.WebApp.Security.AddEditCustomer" MasterPageFile="~/Site.Master" Title=":: DSR :: Add / Edit Customer" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <script src="../Scripts/Common.js" type="text/javascript"></script>
     <script type="text/javascript" language="javascript">
         function SetMaxLength(obj, maxLen) {
             return (obj.value.length < maxLen);
         }    
     </script>
+    <style type="text/css">
+        .custtable{width:100%;}
+        .custtable td{vertical-align:top;}
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="container" runat="Server">
     <div id="headercaption">ADD / EDIT CUSTOMER</div>
     <center>
         <fieldset style="width:95%;">
             <legend>Add / Edit Customer</legend>
-            <table border="0" cellpadding="2" cellspacing="0" width="100%">
+            <table border="0" cellpadding="1" cellspacing="0" width="100%" class="custtable">
                 <tr>
                     <td style="width:20%;">Group:<span class="errormessage">*</span></td>
                     <td style="width:28%;"><asp:DropDownList ID="ddlGroup" runat="server" CssClass="dropdownlist" TabIndex="1"><asp:ListItem Value="0" Text="--Select--"></asp:ListItem></asp:DropDownList><br /><asp:RequiredFieldValidator ID="rfvGroup" runat="server" CssClass="errormessage" ControlToValidate="ddlGroup" InitialValue="0" ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator></td>
@@ -30,22 +35,22 @@
                     <td>Pin:</td>
                     <td><asp:TextBox ID="txtPin" runat="server" CssClass="textbox" MaxLength="10" Width="150" TabIndex="3"></asp:TextBox>&nbsp;&nbsp;<asp:Button ID="btnSearch" runat="server" TabIndex="4" Text="Search Area" Height="24" OnClick="btnSearch_Click" /></td>
                     <td></td>
-                    <td>Customer Profile:</td>
-                    <td><asp:TextBox ID="txtProfile" runat="server" CssClass="textbox" MaxLength="500" TextMode="MultiLine" Rows="5" Width="250" TabIndex="13"></asp:TextBox></td>
+                    <td>Account Of:<span class="errormessage">*</span></td>
+                    <td><asp:DropDownList ID="ddlExecutive" runat="server" CssClass="dropdownlist" TabIndex="13"><asp:ListItem Value="0" Text="---Select---"></asp:ListItem></asp:DropDownList><br /><asp:RequiredFieldValidator ID="rfvExecutive" runat="server" CssClass="errormessage" ControlToValidate="ddlExecutive" InitialValue="0" ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator></td>
                 </tr>
                 <tr>
                     <td>Area:<span class="errormessage">*</span></td>
                     <td><asp:DropDownList ID="ddlArea" runat="server" CssClass="dropdownlist" TabIndex="5"><asp:ListItem Value="0" Text="---Select---"></asp:ListItem></asp:DropDownList><br /><asp:RequiredFieldValidator ID="rfvArea" runat="server" CssClass="errormessage" ControlToValidate="ddlArea" InitialValue="0" ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator></td>
                     <td></td>
-                    <td>Account Of:<span class="errormessage">*</span></td>
-                    <td><asp:DropDownList ID="ddlExecutive" runat="server" CssClass="dropdownlist" TabIndex="14"><asp:ListItem Value="0" Text="---Select---"></asp:ListItem></asp:DropDownList><br /><asp:RequiredFieldValidator ID="rfvExecutive" runat="server" CssClass="errormessage" ControlToValidate="ddlExecutive" InitialValue="0" ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator></td>
+                    <td>PAN:</td>
+                    <td><asp:TextBox ID="txtPan" runat="server" CssClass="textbox" MaxLength="10" Width="250" TabIndex="14"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td>Customer Type:<span class="errormessage">*</span></td>
                     <td><asp:DropDownList ID="ddlCustType" runat="server" CssClass="dropdownlist" TabIndex="6"><asp:ListItem Value="0" Text="---Select---"></asp:ListItem></asp:DropDownList><br /><asp:RequiredFieldValidator ID="rfvCustType" runat="server" CssClass="errormessage" ControlToValidate="ddlCustType" InitialValue="0" ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator></td>
                     <td></td>
-                    <td>PAN:</td>
-                    <td><asp:TextBox ID="txtPan" runat="server" CssClass="textbox" MaxLength="10" Width="250" TabIndex="15"></asp:TextBox></td>
+                    <td>TAN:</td>
+                    <td><asp:TextBox ID="txtTan" runat="server" CssClass="textbox" MaxLength="15" Width="250" TabIndex="15"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td>Client Scope:<span class="errormessage">*</span></td>
@@ -58,22 +63,22 @@
                         <asp:RequiredFieldValidator ID="rfvCorpLoc" runat="server" CssClass="errormessage" ControlToValidate="ddlCorpLoc" InitialValue="0" ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator>
                     </td>
                     <td></td>
-                    <td>TAN:</td>
-                    <td><asp:TextBox ID="txtTan" runat="server" CssClass="textbox" MaxLength="15" Width="250" TabIndex="16"></asp:TextBox></td>
+                    <td>BIN:</td>
+                    <td><asp:TextBox ID="txtBin" runat="server" CssClass="textbox" MaxLength="15" Width="250" TabIndex="16"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td>Customer Name:<span class="errormessage">*</span></td>
                     <td><asp:TextBox ID="txtName" runat="server" CssClass="textbox" MaxLength="60" Width="250" TabIndex="8"></asp:TextBox><br /><asp:RequiredFieldValidator ID="rfvName" runat="server" CssClass="errormessage" ControlToValidate="txtName" ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator></td>
                     <td></td>
-                    <td>BIN:</td>
-                    <td><asp:TextBox ID="txtBin" runat="server" CssClass="textbox" MaxLength="15" Width="250" TabIndex="17"></asp:TextBox></td>
+                    <td>IEC:</td>
+                    <td><asp:TextBox ID="txtIec" runat="server" CssClass="textbox" MaxLength="15" Width="250" TabIndex="17"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td>Address:<span class="errormessage">*</span></td>
-                    <td><asp:TextBox ID="txtAddress" runat="server" CssClass="textbox" MaxLength="200" TextMode="MultiLine" Rows="5" Width="250" TabIndex="9"></asp:TextBox><br /><asp:RequiredFieldValidator ID="rfvAddr" runat="server" CssClass="errormessage" ControlToValidate="txtAddress" ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator></td>
+                    <td><asp:TextBox ID="txtAddress" runat="server" CssClass="textbox" MaxLength="200" TextMode="MultiLine" Rows="3" Width="250" TabIndex="9" ></asp:TextBox><br /><asp:RequiredFieldValidator ID="rfvAddr" runat="server" CssClass="errormessage" ControlToValidate="txtAddress" ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator></td>
                     <td></td>
-                    <td>IEC:</td>
-                    <td><asp:TextBox ID="txtIec" runat="server" CssClass="textbox" MaxLength="15" Width="250" TabIndex="18"></asp:TextBox></td>
+                    <td>Customer Profile:</td>
+                    <td><asp:TextBox ID="txtProfile" runat="server" CssClass="textbox" MaxLength="500" TextMode="MultiLine" Rows="3" Width="250" TabIndex="18"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td>City:</td>
@@ -83,9 +88,9 @@
                     <td><asp:CheckBox ID="chkActive" runat="server" TabIndex="19" /></td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="padding-top:20px;"><h3><strong>Contact Person1</strong></h3></td>
+                    <td colspan="2" style="padding-top:0px;"><h3><strong>Contact Person1</strong></h3></td>
                     <td></td>
-                    <td colspan="2" style="padding-top:20px;"><h3><strong>Contact Person2</strong></h3></td>
+                    <td colspan="2" style="padding-top:0px;"><h3><strong>Contact Person2</strong></h3></td>
                 </tr>
                 <tr>
                     <td>Contact Person1:<span class="errormessage">*</span></td>
