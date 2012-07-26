@@ -112,13 +112,22 @@ namespace DSR.WebApp.Security {
         protected global::System.Web.UI.WebControls.Button btnSearch;
         
         /// <summary>
-        /// txtProfile control.
+        /// ddlExecutive control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProfile;
+        protected global::System.Web.UI.WebControls.DropDownList ddlExecutive;
+        
+        /// <summary>
+        /// rfvExecutive control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvExecutive;
         
         /// <summary>
         /// ddlArea control.
@@ -139,22 +148,13 @@ namespace DSR.WebApp.Security {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvArea;
         
         /// <summary>
-        /// ddlExecutive control.
+        /// txtPan control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlExecutive;
-        
-        /// <summary>
-        /// rfvExecutive control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvExecutive;
+        protected global::System.Web.UI.WebControls.TextBox txtPan;
         
         /// <summary>
         /// ddlCustType control.
@@ -175,13 +175,13 @@ namespace DSR.WebApp.Security {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCustType;
         
         /// <summary>
-        /// txtPan control.
+        /// txtTan control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPan;
+        protected global::System.Web.UI.WebControls.TextBox txtTan;
         
         /// <summary>
         /// ddlCorpLoc control.
@@ -202,13 +202,13 @@ namespace DSR.WebApp.Security {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCorpLoc;
         
         /// <summary>
-        /// txtTan control.
+        /// txtBin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTan;
+        protected global::System.Web.UI.WebControls.TextBox txtBin;
         
         /// <summary>
         /// txtName control.
@@ -229,13 +229,13 @@ namespace DSR.WebApp.Security {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvName;
         
         /// <summary>
-        /// txtBin control.
+        /// txtIec control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBin;
+        protected global::System.Web.UI.WebControls.TextBox txtIec;
         
         /// <summary>
         /// txtAddress control.
@@ -256,13 +256,13 @@ namespace DSR.WebApp.Security {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvAddr;
         
         /// <summary>
-        /// txtIec control.
+        /// txtProfile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIec;
+        protected global::System.Web.UI.WebControls.TextBox txtProfile;
         
         /// <summary>
         /// txtCity control.

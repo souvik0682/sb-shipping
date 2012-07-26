@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManageArea.aspx.cs" Inherits="DSR.WebApp.Security.ManageArea" MasterPageFile="~/Site.Master" Title=":: DSR:: Manage Area" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <script src="../Scripts/Common.js" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="container" runat="Server">
     <div id="dvAsync" style="padding: 5px; display: none;">
