@@ -10,6 +10,12 @@ namespace DSR.Entity
     {
         #region ICallDetail Members
 
+        public int LocationId
+        {
+            get;
+            set;
+        }
+
         public string Location
         {
             get;
@@ -58,7 +64,7 @@ namespace DSR.Entity
             set;
         }
 
-        public string SalesPersionId
+        public int SalesPersionId
         {
             get;
             set;

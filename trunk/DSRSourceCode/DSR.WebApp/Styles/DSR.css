@@ -87,6 +87,9 @@ legend {font-size: 1.1em;font-weight: 600;padding: 0px 4px 2px 4px;color:Blue;}
 .gridviewpager table td{cursor: pointer;padding-right:5px;}
 .gridviewpager a{color: #36478B;font-weight: Bold;font-size: 12px; padding-left:2px;}
 .gridviewpager span {color:#36A7E9; font-size:12px; }
+.gridviewemptydatarowtable{border-collapse:collapse;width:100%;}
+.gridviewemptydatarowtable th{color:#000000;font-size:12px; font-weight:bold; border:1px solid #e8e8e8; padding:5px; background:-webkit-gradient(linear, left bottom, left top, from(#ccc), to(#fff)); text-align:left;vertical-align:top;}
+.gridviewemptydatarowtable td{font-size:12px;color:Red; font-weight:bold;border:solid 1px #e8e8e8;padding:5px;}
 
 /* Miscellaneous */
 .errormessage{color:Red;font-size:8pt;}

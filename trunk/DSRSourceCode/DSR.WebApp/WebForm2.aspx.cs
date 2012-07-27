@@ -31,8 +31,8 @@ namespace DSR.WebApp
                 {
                     cNextChar = Convert.ToChar(cInString.Substring(nCounter, 1));
 
-                    if ((int)cNextChar > 255)
-                        cOutString = cOutString + Convert.ToString((char)(cNextChar - 96));
+                    //if ((int)cNextChar > 255)
+                    cOutString = cOutString + ConvertUnicodeToAscii(Convert.ToString((char)(cNextChar - 96)));
                 }
             }
 
@@ -44,8 +44,8 @@ namespace DSR.WebApp
         {
             // Create two different encodings.
             Encoding ascii = Encoding.ASCII;
-            Encoding unicode = Encoding.UTF8;
-
+            Encoding unicode = Encoding.Unicode;
+                        
             // Convert the string into a byte[].
             byte[] unicodeBytes = unicode.GetBytes(unicodeString);
 

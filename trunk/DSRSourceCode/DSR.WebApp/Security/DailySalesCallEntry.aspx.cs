@@ -27,6 +27,7 @@ namespace DSR.WebApp.Security
         protected void Page_Load(object sender, EventArgs e)
         {
             CheckUserAccess();
+            SetAttributes();
 
             if (!IsPostBack)
             {
@@ -35,6 +36,14 @@ namespace DSR.WebApp.Security
                 GetCustomer();
 
                 LoadRecordForEdit();
+            }
+        }
+
+        private void SetAttributes()
+        {
+            if (!IsPostBack)
+            {
+                btnBack.OnClientClick = "javascript:return RedirectAfterCancelClick('ManageDailySalesCall.aspx','" + ResourceManager.GetStringWithoutName("ERR00046") + "')";
             }
         }
 
@@ -66,6 +75,7 @@ namespace DSR.WebApp.Security
         private void PopulateCallType()
         {
             GeneralFunctions.PopulateDropDownList<ICallType>(ddlCallType, new CommonBLL().GetActiveCallType(), "Id", "Name", true);
+            ddlCallType.SelectedValue = "3";
         }
 
         private void PopulateProspectFor()
@@ -144,6 +154,7 @@ namespace DSR.WebApp.Security
                 List<ICommitment> commitments = ViewState["CommittmentDetails"] as List<ICommitment>;
                 objDailySalesCall = new DailySalesCallBLL();
                 objDailySalesCall.SaveDailySalesCallEntry(dailySales, commitments);
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "<script>javascript:void alert('" + ResourceManager.GetStringWithoutName("ERR00005") + "');</script>", false);
             }
         }
 
