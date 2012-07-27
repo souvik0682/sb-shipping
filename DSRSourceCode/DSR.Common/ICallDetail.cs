@@ -6,6 +6,12 @@ namespace DSR.Common
 {
     public interface ICallDetail
     {
+        int LocationId
+        {
+            get;
+            set;
+        }
+
         string Location
         {
             get;
@@ -54,7 +60,7 @@ namespace DSR.Common
             set;
         }
 
-        string SalesPersionId
+        int SalesPersionId
         {
             get;
             set;

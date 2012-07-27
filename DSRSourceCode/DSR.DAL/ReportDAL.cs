@@ -37,6 +37,19 @@ namespace DSR.DAL
                         callDetail.NextCallDate = Convert.ToDateTime(reader["NextCallOn"]);
 
                     callDetail.CallDetails = Convert.ToString(reader["Remarks"]);
+
+                    if (reader["LocId"] != DBNull.Value)
+                    {
+                        callDetail.LocationId = Convert.ToInt32(reader["LocId"]);
+                        callDetail.Location = Convert.ToString(reader["LocName"]);
+                    }
+
+                    if (reader["SalesPersionId"] != DBNull.Value)
+                    {
+                        callDetail.SalesPersionId = Convert.ToInt32(reader["SalesPersionId"]);
+                        callDetail.SalesPerson = Convert.ToString(reader["SalesPerson"]);
+                    }
+
                     lstCallDetail.Add(callDetail);
                 }
 
