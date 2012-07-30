@@ -12,7 +12,7 @@ namespace DSR.Common
             set;
         }
 
-        string Location
+        string LocationName
         {
             get;
             set;
@@ -30,7 +30,13 @@ namespace DSR.Common
             set;
         }
 
-        string GroupCompany
+        int GroupCompanyId
+        {
+            get;
+            set;
+        }
+
+        string GroupCompanyName
         {
             get;
             set;
@@ -54,19 +60,25 @@ namespace DSR.Common
             set;
         }
 
-        string SalesPerson
-        {
-            get;
-            set;
-        }
-
         int SalesPersionId
         {
             get;
             set;
         }
 
-        decimal Area
+        string SalesPersonName
+        {
+            get;
+            set;
+        }
+
+        int AreaId
+        {
+            get;
+            set;
+        }
+
+        string AreaName
         {
             get;
             set;
@@ -97,6 +109,18 @@ namespace DSR.Common
         }
 
         string Destination
+        {
+            get;
+            set;
+        }
+
+        int TEU
+        {
+            get;
+            set;
+        }
+
+        int FEU
         {
             get;
             set;

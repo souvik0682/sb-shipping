@@ -403,6 +403,11 @@ namespace DSR.BLL
             CommonDAL.DeleteCustomer(customer, modifiedBy);
         }
 
+        public List<ICustomer> GetCustomerByUser(int salesExecutiveId)
+        {
+            return CommonDAL.GetCustomerByUser(salesExecutiveId);
+        }
+
         #endregion
 
         #region Customer Type
