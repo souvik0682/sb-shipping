@@ -16,7 +16,7 @@ namespace DSR.Entity
             set;
         }
 
-        public string Location
+        public string LocationName
         {
             get;
             set;
@@ -34,7 +34,13 @@ namespace DSR.Entity
             set;
         }
 
-        public string GroupCompany
+        public int GroupCompanyId
+        {
+            get;
+            set;
+        }
+
+        public string GroupCompanyName
         {
             get;
             set;
@@ -58,19 +64,25 @@ namespace DSR.Entity
             set;
         }
 
-        public string SalesPerson
-        {
-            get;
-            set;
-        }
-
         public int SalesPersionId
         {
             get;
             set;
         }
 
-        public decimal Area
+        public string SalesPersonName
+        {
+            get;
+            set;
+        }
+
+        public int AreaId
+        {
+            get;
+            set;
+        }
+
+        public string AreaName
         {
             get;
             set;
@@ -101,6 +113,18 @@ namespace DSR.Entity
         }
 
         public string Destination
+        {
+            get;
+            set;
+        }
+
+        public int TEU
+        {
+            get;
+            set;
+        }
+
+        public int FEU
         {
             get;
             set;

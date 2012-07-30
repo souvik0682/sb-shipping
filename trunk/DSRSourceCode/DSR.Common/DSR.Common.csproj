@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICallDetail.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="IShipSoft.cs" />
     <Compile Include="ICommitment.cs" />
     <Compile Include="IAddress.cs" />
@@ -52,7 +55,6 @@
     <Compile Include="ICustomerType.cs" />
     <Compile Include="IArea.cs" />
     <Compile Include="IBase.cs" />
-    <Compile Include="ICallDetail.cs" />
     <Compile Include="ICallType.cs" />
     <Compile Include="ICommon.cs" />
     <Compile Include="ILocation.cs" />

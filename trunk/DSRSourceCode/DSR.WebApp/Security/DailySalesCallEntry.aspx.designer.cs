@@ -22,6 +22,15 @@ namespace DSR.WebApp.Security {
         protected global::System.Web.UI.UpdatePanel uspSalesCall;
         
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
         /// txtCallDate control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace DSR.WebApp.Security {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl spnCallDate;
         
         /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+        
+        /// <summary>
         /// ddlCallType control.
         /// </summary>
         /// <remarks>
@@ -65,6 +83,15 @@ namespace DSR.WebApp.Security {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl spnCallType;
+        
+        /// <summary>
+        /// Label3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
         /// ddlCustomer control.
@@ -85,13 +112,13 @@ namespace DSR.WebApp.Security {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl spnCustomer;
         
         /// <summary>
-        /// Label1 control.
+        /// Label4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
         /// txtNextCallDate control.
@@ -121,6 +148,15 @@ namespace DSR.WebApp.Security {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl spnNextCallDate;
         
         /// <summary>
+        /// Label5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label5;
+        
+        /// <summary>
         /// ddlProspectFor control.
         /// </summary>
         /// <remarks>
@@ -137,6 +173,15 @@ namespace DSR.WebApp.Security {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl spnProspect;
+        
+        /// <summary>
+        /// Label6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
         /// txtRemarks control.

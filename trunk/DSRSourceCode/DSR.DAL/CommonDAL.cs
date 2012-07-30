@@ -507,6 +507,28 @@ namespace DSR.DAL
             }
         }
 
+        public static List<ICustomer> GetCustomerByUser(int salesExecutiveId)
+        {
+            string strExecution = "[common].[uspGetCustomerByUser]";
+            List<ICustomer> lstCustomer = new List<ICustomer>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@SalesExecutiveId", salesExecutiveId);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    ICustomer customer = new CustomerEntity(reader);
+                    lstCustomer.Add(customer);
+                }
+
+                reader.Close();
+            }
+
+            return lstCustomer;
+        }
+
         #endregion
 
         #region Customer Type

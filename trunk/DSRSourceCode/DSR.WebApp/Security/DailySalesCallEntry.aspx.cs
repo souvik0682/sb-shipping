@@ -35,7 +35,18 @@ namespace DSR.WebApp.Security
                 PopulateProspectFor();
                 GetCustomer();
 
+                LoadRecordForAdd();
                 LoadRecordForEdit();
+            }
+        }
+
+        private void LoadRecordForAdd()
+        {
+            if (Request.QueryString["CallId"] == null)
+            {
+                List<ICommitment> lstCommitment = new List<ICommitment>();
+                ViewState["CommittmentDetails"] = lstCommitment;
+                RefreshGridView();
             }
         }
 
@@ -124,6 +135,7 @@ namespace DSR.WebApp.Security
         private void EditCommitmentDetails()
         {
             ICommitment commitment;
+            int res = 0;
 
             if (ViewState["CommittmentDetails"] != null)
                 commitmentDetails = ViewState["CommittmentDetails"] as List<ICommitment>;
@@ -135,8 +147,11 @@ namespace DSR.WebApp.Security
             commitment.WeekNo = Convert.ToInt32(txtWeekNo.Text.Trim());
             commitment.PortCode = txtDestination.Text.Trim();
             commitment.PortId = _portId;
-            commitment.FEU = Convert.ToInt32(txtFEU.Text.Trim());
-            commitment.TEU = Convert.ToInt32(txtTEU.Text.Trim());
+            int.TryParse(txtFEU.Text.Trim(), out res);
+            commitment.FEU = res;
+
+            int.TryParse(txtTEU.Text.Trim(), out res);
+            commitment.TEU = res;
 
             commitmentDetails.Add(commitment);
             ViewState["CommittmentDetails"] = commitmentDetails;
@@ -195,6 +210,8 @@ namespace DSR.WebApp.Security
 
         private void BuildCommitmentEntity(ICommitment commitment)
         {
+            int res = 0;
+
             if (ViewState["CommID"] == null)
                 commitment.CommitmentId = -1;
             else
@@ -204,10 +221,12 @@ namespace DSR.WebApp.Security
 
             commitment.CallId = 1; // get call id after save header call section.
             commitment.CustomerId = Convert.ToInt32(ddlCustomer.SelectedValue);
-            commitment.FEU = Convert.ToInt32(txtFEU.Text);
+            int.TryParse(txtFEU.Text.Trim(), out res);
+            commitment.FEU = res;
             commitment.PortCode = txtDestination.Text.Trim();
             commitment.PortId = _portId;
-            commitment.TEU = Convert.ToInt32(txtTEU.Text);
+            int.TryParse(txtTEU.Text.Trim(), out res);
+            commitment.TEU = res;
             commitment.WeekNo = Convert.ToInt32(txtWeekNo.Text);
             commitment.UserId = _userId;
         }
@@ -456,37 +475,72 @@ namespace DSR.WebApp.Security
                 isValid = false;
             }
 
+            int TEU = 0;
+            int FEU = 0;
+
             if (txtTEU.Text.Trim() != string.Empty)
             {
-                int.TryParse(txtTEU.Text.Trim(), out res);
-
-                if (res == 0)
+                try
+                {
+                    TEU = Convert.ToInt32(txtTEU.Text.Trim());
+                }
+                catch
                 {
                     lblTEU.Text = "Invalid TEU";
                     isValid = false;
                 }
             }
-            else
-            {
-                lblTEU.Text = "TEU can not be blank";
-                isValid = false;
-            }
 
             if (txtFEU.Text.Trim() != string.Empty)
             {
-                int.TryParse(txtFEU.Text.Trim(), out res);
-
-                if (res == 0)
+                try
+                {
+                    FEU = Convert.ToInt32(txtFEU.Text.Trim());
+                }
+                catch
                 {
                     lblFEU.Text = "Invalid FEU";
                     isValid = false;
                 }
             }
-            else
+
+            if ((TEU + FEU) == 0)
             {
-                lblFEU.Text = "FEU can not be blank";
+                lblTEU.Text = "(TEU + FEU) should be > 0";
                 isValid = false;
             }
+
+            //if (txtTEU.Text.Trim() != string.Empty)
+            //{
+            //    int.TryParse(txtTEU.Text.Trim(), out res);
+
+            //    if (res == 0)
+            //    {
+            //        lblTEU.Text = "Invalid TEU";
+            //        isValid = false;
+            //    }
+            //}
+            //else
+            //{
+            //    lblTEU.Text = "TEU can not be blank";
+            //    isValid = false;
+            //}
+
+            //if (txtFEU.Text.Trim() != string.Empty)
+            //{
+            //    int.TryParse(txtFEU.Text.Trim(), out res);
+
+            //    if (res == 0)
+            //    {
+            //        lblFEU.Text = "Invalid FEU";
+            //        isValid = false;
+            //    }
+            //}
+            //else
+            //{
+            //    lblFEU.Text = "FEU can not be blank";
+            //    isValid = false;
+            //}
 
             if (txtDestination.Text.Trim() == string.Empty)
             {

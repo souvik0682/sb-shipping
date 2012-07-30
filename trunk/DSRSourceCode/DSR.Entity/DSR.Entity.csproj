@@ -42,7 +42,9 @@
   <ItemGroup>
     <Compile Include="AddressEntity.cs" />
     <Compile Include="AreaEntity.cs" />
-    <Compile Include="CallDetailEntity.cs" />
+    <Compile Include="CallDetailEntity.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ContactPersonEntity.cs" />
     <Compile Include="CommitmentEntity.cs" />
     <Compile Include="CallTypeEntity.cs" />

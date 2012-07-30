@@ -69,6 +69,14 @@
     <Content Include="Images\remove.png" />
     <Content Include="Images\trash_icon.gif" />
     <Content Include="Login.aspx" />
+    <Content Include="Reports\CallTypeWiseDailyRpt.aspx" />
+    <Content Include="Reports\CallDueRpt.aspx" />
+    <Content Include="Reports\CustCallDetail.aspx" />
+    <Content Include="Reports\SpecificCallTypeRpt.aspx" />
+    <Content Include="Reports\CustWiseCallRpt.aspx" />
+    <Content Include="Reports\LineWiseLocSummary.aspx" />
+    <Content Include="Reports\LocWiseWiseLineSummary.aspx" />
+    <Content Include="Reports\CustListWithLoc.aspx" />
     <Content Include="Reports\DailyCallRpt.aspx" />
     <Content Include="Scripts\Common.js" />
     <Content Include="Security\AddEditUser.aspx" />
@@ -99,7 +107,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="WebForm2.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Blank.Master.cs">
@@ -122,6 +129,62 @@
     </Compile>
     <Compile Include="FileNotFound.aspx.designer.cs">
       <DependentUpon>FileNotFound.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\CallTypeWiseDailyRpt.aspx.cs">
+      <DependentUpon>CallTypeWiseDailyRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\CallTypeWiseDailyRpt.aspx.designer.cs">
+      <DependentUpon>CallTypeWiseDailyRpt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\CallDueRpt.aspx.cs">
+      <DependentUpon>CallDueRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\CallDueRpt.aspx.designer.cs">
+      <DependentUpon>CallDueRpt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\CustCallDetail.aspx.cs">
+      <DependentUpon>CustCallDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\CustCallDetail.aspx.designer.cs">
+      <DependentUpon>CustCallDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\SpecificCallTypeRpt.aspx.cs">
+      <DependentUpon>SpecificCallTypeRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\SpecificCallTypeRpt.aspx.designer.cs">
+      <DependentUpon>SpecificCallTypeRpt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\CustWiseCallRpt.aspx.cs">
+      <DependentUpon>CustWiseCallRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\CustWiseCallRpt.aspx.designer.cs">
+      <DependentUpon>CustWiseCallRpt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\LineWiseLocSummary.aspx.cs">
+      <DependentUpon>LineWiseLocSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\LineWiseLocSummary.aspx.designer.cs">
+      <DependentUpon>LineWiseLocSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\LocWiseWiseLineSummary.aspx.cs">
+      <DependentUpon>LocWiseWiseLineSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\LocWiseWiseLineSummary.aspx.designer.cs">
+      <DependentUpon>LocWiseWiseLineSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\CustListWithLoc.aspx.cs">
+      <DependentUpon>CustListWithLoc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\CustListWithLoc.aspx.designer.cs">
+      <DependentUpon>CustListWithLoc.aspx</DependentUpon>
     </Compile>
     <Compile Include="Security\DailySalesCallEntry.aspx.cs">
       <DependentUpon>DailySalesCallEntry.aspx</DependentUpon>
@@ -253,13 +316,6 @@
     <Compile Include="Unauthorized.aspx.designer.cs">
       <DependentUpon>Unauthorized.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForm2.aspx.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm2.aspx.designer.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -289,7 +345,16 @@
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="RDLC\CallTypeWiseDailyRpt.rdlc" />
+    <EmbeddedResource Include="RDLC\CallDueRpt.rdlc" />
+    <EmbeddedResource Include="RDLC\CustomerWiseCallRpt.rdlc" />
+    <EmbeddedResource Include="RDLC\SpecificCallTypeRpt.rdlc" />
+    <EmbeddedResource Include="RDLC\CustomerListWithLoc.rdlc" />
+    <EmbeddedResource Include="RDLC\CustomerCallDetailRpt.rdlc" />
     <EmbeddedResource Include="RDLC\DailyCallRpt.rdlc" />
+    <EmbeddedResource Include="RDLC\LineWiseLocationSummRpt.rdlc" />
+    <EmbeddedResource Include="RDLC\LocationWiseLineSummRpt.rdlc" />
+    <EmbeddedResource Include="RDLC\MISRpt.rdlc" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
