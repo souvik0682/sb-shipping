@@ -22,6 +22,12 @@ namespace DSR.Entity
             set;
         }
 
+        public int ProspectId
+        {
+            get;
+            set;
+        }
+
         public string ProspectFor
         {
             get;
@@ -41,6 +47,12 @@ namespace DSR.Entity
         }
 
         public string GroupCompanyName
+        {
+            get;
+            set;
+        }
+
+        public int CallTypeId
         {
             get;
             set;

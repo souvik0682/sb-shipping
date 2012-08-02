@@ -154,12 +154,12 @@ namespace DSR.WebApp.Security
         private void BuildLocationEntity(ILocation loc)
         {
             loc.Id = _locId;
-            loc.Name = txtLocName.Text;
-            loc.LocAddress.Address = txtAddress.Text;
-            loc.LocAddress.City = txtCity.Text;
-            loc.LocAddress.Pin = txtPin.Text;
-            loc.Abbreviation = txtAbbr.Text;
-            loc.Phone = txtPhone.Text;
+            loc.Name = txtLocName.Text.Trim().ToUpper();
+            loc.LocAddress.Address = txtAddress.Text.Trim().ToUpper();
+            loc.LocAddress.City = txtCity.Text.Trim().ToUpper();
+            loc.LocAddress.Pin = txtPin.Text.Trim().ToUpper();
+            loc.Abbreviation = txtAbbr.Text.Trim().ToUpper();
+            loc.Phone = txtPhone.Text.Trim().ToUpper();
             loc.ManagerId = Convert.ToInt32(ddlManager.SelectedValue);
 
             if (chkActive.Checked)

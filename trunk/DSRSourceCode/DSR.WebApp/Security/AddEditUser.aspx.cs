@@ -288,11 +288,11 @@ namespace DSR.WebApp.Security
         private void BuildUserEntity(IUser user)
         {
             user.Id = _uId;
-            user.Name = txtUserName.Text;
+            user.Name = txtUserName.Text.Trim().ToUpper();
             user.Password = UserBLL.GetDefaultPassword();
-            user.FirstName = txtFName.Text;
-            user.LastName = txtLName.Text;
-            user.EmailId = txtEmail.Text;
+            user.FirstName = txtFName.Text.Trim().ToUpper();
+            user.LastName = txtLName.Text.Trim().ToUpper();
+            user.EmailId = txtEmail.Text.Trim().ToUpper();
             user.UserRole.Id = Convert.ToInt32(ddlRole.SelectedValue);
             user.UserLocation.Id = Convert.ToInt32(ddlLoc.SelectedValue);
             user.SalesPersonType = Convert.ToChar(ddlSalesPersonType.SelectedValue);

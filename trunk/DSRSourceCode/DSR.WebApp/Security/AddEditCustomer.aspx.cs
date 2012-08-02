@@ -105,6 +105,20 @@ namespace DSR.WebApp.Security
             GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetActiveLocation(), "Id", "Name", true);
             GeneralFunctions.PopulateDropDownList<ICustomerType>(ddlCustType, commonBll.GetActiveCustomerType(), "Id", "Name", true);
             GeneralFunctions.PopulateDropDownList<IUser>(ddlExecutive, commonBll.GetSalesExecutive(), "Id", "UserFullName", true);
+
+            int roleId = UserBLL.GetLoggedInUserRoleId();
+
+            if (roleId == (int)UserRole.SalesExecutive || roleId == (int)UserRole.Manager)
+            {
+                GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetLocationByUser(_userId), "Id", "Name", true);
+                GeneralFunctions.PopulateDropDownList<IUser>(ddlExecutive, commonBll.GetSalesExecutive(_userId), "Id", "UserFullName", true);
+            }
+            else
+            {
+                GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetActiveLocation(), "Id", "Name", true);
+                GeneralFunctions.PopulateDropDownList<IUser>(ddlExecutive, commonBll.GetSalesExecutive(), "Id", "UserFullName", true);
+            }
+
             PopulateArea(0, string.Empty);
         }
 
@@ -184,7 +198,7 @@ namespace DSR.WebApp.Security
 
                     if (!ReferenceEquals(cust.Address, null))
                     {
-                        PopulateArea(cust.Location.Id,cust.Address.Pin);
+                        PopulateArea(cust.Location.Id, cust.Address.Pin);
                     }
                     else
                     {
@@ -270,26 +284,26 @@ namespace DSR.WebApp.Security
         {
             cust.Initialize();
             cust.Id = _custId;
-            cust.Name = txtName.Text;
+            cust.Name = txtName.Text.Trim().ToUpper();
             cust.Group.Id = Convert.ToInt32(ddlGroup.SelectedValue);
             cust.Location.Id = Convert.ToInt32(ddlLoc.SelectedValue);
             cust.Area.Id = Convert.ToInt32(ddlArea.SelectedValue);
             cust.CustType.Id = Convert.ToInt32(ddlCustType.SelectedValue);
             cust.CorporateOrLocal = Convert.ToChar(ddlCorpLoc.SelectedValue);
-            cust.Address.Address = txtAddress.Text.Trim();
-            cust.Address.City = txtCity.Text.Trim();
-            cust.Address.Pin = txtPin.Text.Trim();
-            cust.Phone1 = txtPhone1.Text.Trim();
-            cust.Phone2 = txtPhone2.Text.Trim();
-            cust.ContactPerson1.Name = txtPerson1.Text.Trim();
-            cust.ContactPerson1.Designation = txtDesig1.Text.Trim();
-            cust.ContactPerson1.Mobile = txtContactMob1.Text.Trim();
-            cust.ContactPerson1.EmailId = txtEmail1.Text.Trim();
-            cust.ContactPerson2.Name = txtPerson2.Text.Trim();
-            cust.ContactPerson2.Designation = txtDesig2.Text.Trim();
-            cust.ContactPerson2.Mobile = txtContactMob2.Text.Trim();
-            cust.ContactPerson2.EmailId = txtEmail2.Text.Trim();
-            cust.CustomerProfile = txtProfile.Text.Trim();
+            cust.Address.Address = txtAddress.Text.Trim().ToUpper();
+            cust.Address.City = txtCity.Text.Trim().ToUpper();
+            cust.Address.Pin = txtPin.Text.Trim().ToUpper();
+            cust.Phone1 = txtPhone1.Text.Trim().ToUpper();
+            cust.Phone2 = txtPhone2.Text.Trim().ToUpper();
+            cust.ContactPerson1.Name = txtPerson1.Text.Trim().ToUpper();
+            cust.ContactPerson1.Designation = txtDesig1.Text.Trim().ToUpper();
+            cust.ContactPerson1.Mobile = txtContactMob1.Text.Trim().ToUpper();
+            cust.ContactPerson1.EmailId = txtEmail1.Text.Trim().ToUpper();
+            cust.ContactPerson2.Name = txtPerson2.Text.Trim().ToUpper();
+            cust.ContactPerson2.Designation = txtDesig2.Text.Trim().ToUpper();
+            cust.ContactPerson2.Mobile = txtContactMob2.Text.Trim().ToUpper();
+            cust.ContactPerson2.EmailId = txtEmail2.Text.Trim().ToUpper();
+            cust.CustomerProfile = txtProfile.Text.Trim().ToUpper();
 
             if (ddlExecutive.SelectedValue != "0")
                 cust.SalesExecutiveId = Convert.ToInt32(ddlExecutive.SelectedValue);

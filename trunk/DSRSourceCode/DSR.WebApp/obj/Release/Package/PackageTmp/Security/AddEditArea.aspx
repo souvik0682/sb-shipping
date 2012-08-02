@@ -11,7 +11,7 @@
                 <tr>
                     <td style="width:140px;">Area Name:<span class="errormessage1">*</span></td>
                     <td>
-                        <asp:TextBox ID="txtName" runat="server" MaxLength="50" Width="250"></asp:TextBox><br />
+                        <asp:TextBox ID="txtName" runat="server" CssClass="textboxuppercase" MaxLength="50" Width="250"></asp:TextBox><br />
                         <asp:RequiredFieldValidator ID="rfvName" runat="server" CssClass="errormessage" ControlToValidate="txtName" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
@@ -25,7 +25,7 @@
                 <tr>
                     <td style="width:140px;">Pin Code:<span class="errormessage1">*</span></td>
                     <td>
-                        <asp:TextBox ID="txtPin" runat="server" MaxLength="10" Width="250"></asp:TextBox><br />
+                        <asp:TextBox ID="txtPin" runat="server" CssClass="textboxuppercase" MaxLength="10" Width="250"></asp:TextBox><br />
                         <asp:RequiredFieldValidator ID="rfvPin" runat="server" CssClass="errormessage" ControlToValidate="txtPin" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>
                     </td>
                 </tr>

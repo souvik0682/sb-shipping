@@ -53,6 +53,12 @@ namespace DSR.Entity
             set;
         }
 
+        public int UserId
+        {
+            get;
+            set;
+        }
+
         public string SortExpression
         {
             get;

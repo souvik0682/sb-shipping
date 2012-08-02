@@ -176,6 +176,28 @@ namespace DSR.DAL
             }
         }
 
+        public static List<ILocation> GetLocationByUser(int userId)
+        {
+            string strExecution = "[common].[uspGetLocationByUser]";
+            List<ILocation> lstLoc = new List<ILocation>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@UserId", userId);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    ILocation loc = new LocationEntity(reader);
+                    lstLoc.Add(loc);
+                }
+
+                reader.Close();
+            }
+
+            return lstLoc;
+        }
+
         #endregion
 
         #region Area
@@ -412,6 +434,7 @@ namespace DSR.DAL
                 oDq.AddVarcharParam("@SchLocAbbr", 3, searchCriteria.LocAbbr);
                 oDq.AddVarcharParam("@SchCustName", 60, searchCriteria.CustomerName);
                 oDq.AddVarcharParam("@SchGroupName", 50, searchCriteria.GroupName);
+                oDq.AddIntegerParam("@SalesExecutiveId", searchCriteria.UserId);
                 oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
                 oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
                 DataTableReader reader = oDq.GetTableReader();
@@ -909,6 +932,28 @@ namespace DSR.DAL
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    IUser user = new UserEntity(reader);
+                    lstUser.Add(user);
+                }
+
+                reader.Close();
+            }
+
+            return lstUser;
+        }
+
+        public static List<IUser> GetSalesExecutive(int salesExecutiveId)
+        {
+            string strExecution = "[common].[uspGetSalesExecutive]";
+            List<IUser> lstUser = new List<IUser>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@SalesExecutiveId", salesExecutiveId);
                 DataTableReader reader = oDq.GetTableReader();
 
                 while (reader.Read())

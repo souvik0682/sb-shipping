@@ -11,6 +11,14 @@ input[type="text"],textarea
 	color: #000000;
 	font-family:"Trebuchet MS", Helvetica, sans-serif;font-size:10pt;
 }
+.textboxuppercase
+{
+	border: 1px default #7f9db9;
+	color: #000000;
+	font-family:"Trebuchet MS", Helvetica, sans-serif;font-size:10pt;
+	text-transform:uppercase;	
+}
+
 input[type="submit"]
 {
 	background-color:#f3f6f8;color:Black;border:solid 1px #c8c8c8; cursor:pointer;font-family:"Trebuchet MS", Helvetica, sans-serif;font-size:10pt;height:28px;
@@ -69,7 +77,7 @@ legend {font-size: 1.1em;font-weight: 600;padding: 0px 4px 2px 4px;color:Blue;}
 .panel{background-color:#f0f0f0;}
 .hyperlink{text-decoration:underline;}
 
-.watermark{width: 221px;background: transparent url('../Images/bg.jpg') no-repeat;color: #747862;height: 20px;border: 0;padding: 4px 8px;margin-bottom: 0px;}
+.watermark{text-transform:uppercase;width: 221px;background: transparent url('../Images/bg.jpg') no-repeat;color: #747862;height: 20px;border: 0;padding: 4px 8px;margin-bottom: 0px;}
 
 .table{border-collapse:collapse;}
 .table th{border:solid 1px #A1CDF2;font-size:12px; font-weight:bold;color:#36478B;text-align:left;}

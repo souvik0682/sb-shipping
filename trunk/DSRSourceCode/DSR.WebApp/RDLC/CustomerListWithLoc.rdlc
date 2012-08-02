@@ -111,25 +111,25 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>0.8in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.7in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.3in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.3in</Width>
-            </TablixColumn>
-            <TablixColumn>
               <Width>1in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>0.8in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.7in</Width>
+              <Width>0.5in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.2in</Width>
+              <Width>1.4in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -658,17 +658,24 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>1.64583in</Height>
+    <Height>0.5in</Height>
     <Style />
   </Body>
   <ReportParameters>
     <ReportParameter Name="AreaName">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="CompanyName">
       <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Location">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>

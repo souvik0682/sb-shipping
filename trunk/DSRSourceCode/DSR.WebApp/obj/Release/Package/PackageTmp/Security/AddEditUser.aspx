@@ -11,7 +11,7 @@
                 <tr>
                     <td style="width:150px;">User Name:<span class="errormessage1">*</span></td>
                     <td>
-                        <asp:TextBox ID="txtUserName" runat="server" MaxLength="10" Width="250"></asp:TextBox><br />
+                        <asp:TextBox ID="txtUserName" runat="server" CssClass="textboxuppercase" MaxLength="10" Width="250"></asp:TextBox><br />
                         <span id="spnName" runat="server" class="errormessage" style="display:none;"></span>
                         <%--<asp:RequiredFieldValidator ID="rfvUserName" runat="server" CssClass="errormessage" ControlToValidate="txtUserName" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>--%>
                     </td>
@@ -19,7 +19,7 @@
                 <tr>
                     <td>First Name:<span class="errormessage1">*</span></td>
                     <td>
-                        <asp:TextBox ID="txtFName" runat="server" MaxLength="30" Width="250"></asp:TextBox><br />
+                        <asp:TextBox ID="txtFName" runat="server" CssClass="textboxuppercase" MaxLength="30" Width="250"></asp:TextBox><br />
                         <span id="spnFName" runat="server" class="errormessage" style="display:none;"></span>
                         <%--<asp:RequiredFieldValidator ID="rfvFName" runat="server" CssClass="errormessage" ControlToValidate="txtFName" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>--%>
                     </td>
@@ -27,7 +27,7 @@
                 <tr>
                     <td>Last Name:<span class="errormessage1">*</span></td>
                     <td>
-                        <asp:TextBox ID="txtLName" runat="server" MaxLength="30" Width="250"></asp:TextBox><br />
+                        <asp:TextBox ID="txtLName" runat="server" CssClass="textboxuppercase" MaxLength="30" Width="250"></asp:TextBox><br />
                         <span id="spnLName" runat="server" class="errormessage" style="display:none;"></span>
                         <%--<asp:RequiredFieldValidator ID="rfvLName" runat="server" CssClass="errormessage" ControlToValidate="txtLName" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>--%>
                     </td>
@@ -35,7 +35,7 @@
                 <tr>
                     <td>Email Id:<span class="errormessage1">*</span></td>
                     <td>
-                        <asp:TextBox ID="txtEmail" runat="server" MaxLength="100" Width="250"></asp:TextBox><br />
+                        <asp:TextBox ID="txtEmail" runat="server" CssClass="textboxuppercase" MaxLength="100" Width="250"></asp:TextBox><br />
                         <span id="spnEmail" runat="server" class="errormessage" style="display:none;"></span>
                         <%--<asp:RequiredFieldValidator ID="rfvEmail" runat="server" CssClass="errormessage" ControlToValidate="txtEmail" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator>--%>
                         <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" CssClass="errormessage" ValidationGroup="Save" Display="Dynamic"></asp:RegularExpressionValidator>

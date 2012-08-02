@@ -237,6 +237,11 @@ namespace DSR.BLL
             CommonDAL.DeleteLocation(locId, modifiedBy);
         }
 
+        public List<ILocation> GetLocationByUser(int userId)
+        {
+            return CommonDAL.GetLocationByUser(userId);
+        }
+
         #endregion
 
         #region Area
@@ -556,6 +561,11 @@ namespace DSR.BLL
         public List<IUser> GetSalesExecutive()
         {
             return CommonDAL.GetSalesExecutive();
+        }
+
+        public List<IUser> GetSalesExecutive(int salesExecutiveId)
+        {
+            return CommonDAL.GetSalesExecutive(salesExecutiveId);
         }
 
         #endregion

@@ -18,6 +18,12 @@ namespace DSR.Common
             set;
         }
 
+        int ProspectId
+        {
+            get;
+            set;
+        }
+
         string ProspectFor
         {
             get;
@@ -37,6 +43,12 @@ namespace DSR.Common
         }
 
         string GroupCompanyName
+        {
+            get;
+            set;
+        }
+
+        int CallTypeId
         {
             get;
             set;

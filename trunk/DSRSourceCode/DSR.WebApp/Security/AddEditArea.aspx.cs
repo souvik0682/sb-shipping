@@ -49,7 +49,6 @@ namespace DSR.WebApp.Security
         {
             if (!IsPostBack)
             {
-                txtName.Attributes.Add("onkeypress", "ConvertToUpperCase();"); 
                 btnBack.OnClientClick = "javascript:return RedirectAfterCancelClick('ManageArea.aspx','" + ResourceManager.GetStringWithoutName("ERR00046") + "')";
                 rfvName.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00026");
                 rfvLoc.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00025");
@@ -144,8 +143,8 @@ namespace DSR.WebApp.Security
         private void BuildAreaEntity(IArea area)
         {
             area.Id = _areaId;
-            area.Name = txtName.Text;
-            area.PinCode = txtPin.Text;
+            area.Name = txtName.Text.Trim().ToUpper();
+            area.PinCode = txtPin.Text.Trim().ToUpper();
             area.Location.Id = Convert.ToInt32(ddlLoc.SelectedValue);
 
             if (chkActive.Checked)

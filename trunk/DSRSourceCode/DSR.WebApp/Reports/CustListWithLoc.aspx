@@ -7,10 +7,17 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="container" runat="Server">
+<center>
     <div style="padding-top: 10px;">
         <fieldset style="width:784px;height:40px;">
         <table>
             <tr>
+                <td class="label" style="padding-right:5px;vertical-align:top;">
+                    Location:
+                </td>
+                <td style="padding-right:20px;vertical-align:top;">
+                    <asp:DropDownList ID="ddlLoc" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLoc_SelectedIndexChanged"></asp:DropDownList>
+                </td>
                 <td class="label" style="padding-right:5px;vertical-align:top;">
                     Area:
                 </td>
@@ -23,8 +30,9 @@
             </tr>
         </table>
         </fieldset>
-        <div style="padding-left:5px;">
-            <rsweb:ReportViewer ID="rptViewer" runat="server" Width="800px"></rsweb:ReportViewer>        
+        <div style="padding-left:5px;width:800px;">
+            <rsweb:ReportViewer ID="rptViewer" runat="server" Width="100%"></rsweb:ReportViewer>        
         </div>
     </div>
+</center>
 </asp:Content>

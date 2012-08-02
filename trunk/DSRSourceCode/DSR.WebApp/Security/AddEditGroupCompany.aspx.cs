@@ -146,11 +146,11 @@ namespace DSR.WebApp.Security
         private void BuildGroupCompanyEntity(IGroupCompany groupCompany)
         {
             groupCompany.Id = _groupId;
-            groupCompany.Name = txtName.Text;
-            groupCompany.Address.Address = txtAddress.Text;
-            groupCompany.Address.City = txtCity.Text;
-            groupCompany.Address.Pin = txtPin.Text;
-            groupCompany.Phone = txtPhone.Text;
+            groupCompany.Name = txtName.Text.Trim().ToUpper();
+            groupCompany.Address.Address = txtAddress.Text.Trim().ToUpper();
+            groupCompany.Address.City = txtCity.Text.Trim().ToUpper();
+            groupCompany.Address.Pin = txtPin.Text.Trim().ToUpper();
+            groupCompany.Phone = txtPhone.Text.Trim().ToUpper();
 
             if (chkActive.Checked)
                 groupCompany.IsActive = 'Y';
