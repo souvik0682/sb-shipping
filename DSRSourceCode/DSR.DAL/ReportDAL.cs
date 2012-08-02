@@ -15,7 +15,7 @@ namespace DSR.DAL
         {
         }
 
-        public static List<ICallDetail> GetDailyCallData(DateTime fromDate, DateTime toDate, int callTypeId, int salesExecutiveId)
+        public static List<ICallDetail> GetDailyCallData(DateTime fromDate, DateTime toDate, ICallDetail detail)
         {
             string strExecution = "[report].[uspGetDailyCall]";
             List<ICallDetail> lstCallDetail = new List<ICallDetail>();
@@ -24,8 +24,11 @@ namespace DSR.DAL
             {
                 oDq.AddDateTimeParam("@FromDate", fromDate);
                 oDq.AddDateTimeParam("@ToDate", toDate);
-                oDq.AddIntegerParam("@CallTypeId", callTypeId);
-                oDq.AddIntegerParam("@SalesExecutiveId", salesExecutiveId);
+                oDq.AddIntegerParam("@LocId", detail.LocationId);
+                oDq.AddIntegerParam("@SalesExecutiveId", detail.SalesPersionId);
+                oDq.AddIntegerParam("@ProspectId", detail.ProspectId);
+                oDq.AddIntegerParam("@CallTypeId", detail.CallTypeId);
+
                 DataTableReader reader = oDq.GetTableReader();
 
                 while (reader.Read())
@@ -63,7 +66,7 @@ namespace DSR.DAL
             return lstCallDetail;
         }
 
-        public static List<ICallDetail> GetCallDueData(DateTime fromDate, DateTime toDate)
+        public static List<ICallDetail> GetCallDueData(DateTime fromDate, DateTime toDate, ICallDetail detail)
         {
             string strExecution = "[report].[uspGetCallDue]";
             List<ICallDetail> lstCallDetail = new List<ICallDetail>();
@@ -72,6 +75,10 @@ namespace DSR.DAL
             {
                 oDq.AddDateTimeParam("@FromDate", fromDate);
                 oDq.AddDateTimeParam("@ToDate", toDate);
+                oDq.AddIntegerParam("@LocId", detail.LocationId);
+                oDq.AddIntegerParam("@SalesExecutiveId", detail.SalesPersionId);
+                oDq.AddIntegerParam("@ProspectId", detail.ProspectId);
+                oDq.AddIntegerParam("@CallTypeId", detail.CallTypeId);
 
                 DataTableReader reader = oDq.GetTableReader();
 

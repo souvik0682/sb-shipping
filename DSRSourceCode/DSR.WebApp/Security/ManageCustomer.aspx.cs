@@ -26,6 +26,7 @@ namespace DSR.WebApp.Security
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            RetriveParameters();
             CheckUserAccess();
             SetAttributes();
 
@@ -158,6 +159,11 @@ namespace DSR.WebApp.Security
             }
         }
 
+        private void RetriveParameters()
+        {
+            _userId = UserBLL.GetLoggedInUserId();
+        }
+
         private void SetAttributes()
         {
             if (!IsPostBack)
@@ -205,6 +211,8 @@ namespace DSR.WebApp.Security
             string sortExpression = string.Empty;
             string sortDirection = string.Empty;
 
+            int roleId = UserBLL.GetLoggedInUserRoleId();
+
             if (!ReferenceEquals(ViewState[Constants.SORT_EXPRESSION], null) && !ReferenceEquals(ViewState[Constants.SORT_DIRECTION], null))
             {
                 sortExpression = Convert.ToString(ViewState[Constants.SORT_EXPRESSION]);
@@ -215,6 +223,11 @@ namespace DSR.WebApp.Security
                 sortExpression = "Location";
                 sortDirection = "ASC";
             }
+
+            if (roleId == (int)UserRole.SalesExecutive || roleId == (int)UserRole.Manager)
+                criteria.UserId = _userId;
+            else
+                criteria.UserId = 0;
 
             criteria.SortExpression = sortExpression;
             criteria.SortDirection = sortDirection;

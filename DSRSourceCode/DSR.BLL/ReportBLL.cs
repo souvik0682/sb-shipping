@@ -10,15 +10,15 @@ namespace DSR.BLL
 {
     public class ReportBLL
     {
-        public IEnumerable<ICallDetail> GetDailyCallData(DateTime fromDate, DateTime toDate, int callTypeId, int salesExecutiveId)
+        public IEnumerable<ICallDetail> GetDailyCallData(DateTime fromDate, DateTime toDate, ICallDetail detail)
         {
-            List<ICallDetail> lstRpt = ReportDAL.GetDailyCallData(fromDate, toDate, callTypeId, salesExecutiveId);
+            List<ICallDetail> lstRpt = ReportDAL.GetDailyCallData(fromDate, toDate, detail);
             return lstRpt;
         }
 
-        public IEnumerable<ICallDetail> GetCallDueData(DateTime fromDate, DateTime toDate)
+        public IEnumerable<ICallDetail> GetCallDueData(DateTime fromDate, DateTime toDate, ICallDetail detail)
         {
-            List<ICallDetail> lstRpt = ReportDAL.GetCallDueData(fromDate, toDate);
+            List<ICallDetail> lstRpt = ReportDAL.GetCallDueData(fromDate, toDate, detail);
             return lstRpt;
         }
 

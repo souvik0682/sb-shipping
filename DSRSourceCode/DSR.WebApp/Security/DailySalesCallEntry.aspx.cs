@@ -69,10 +69,10 @@ namespace DSR.WebApp.Security
                     Response.Redirect("~/Login.aspx");
                 }
 
-                if (user.UserRole.Id != (int)UserRole.Admin)
-                {
-                    Response.Redirect("~/Unauthorized.aspx");
-                }
+                //if (user.UserRole.Id != (int)UserRole.Admin)
+                //{
+                //    Response.Redirect("~/Unauthorized.aspx");
+                //}
             }
             else
             {

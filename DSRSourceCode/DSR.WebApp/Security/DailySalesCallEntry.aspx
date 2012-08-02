@@ -84,7 +84,7 @@
                                     <asp:Label ID="Label6" runat="server" Text="Remarks" />
                                 </td>
                                 <td colspan="4">
-                                    <asp:TextBox ID="txtRemarks" runat="server" TextMode="MultiLine" Rows="3" Width="235px" Height="50px"></asp:TextBox>
+                                    <asp:TextBox ID="txtRemarks" runat="server" CssClass="textboxuppercase" TextMode="MultiLine" Rows="3" Width="235px" Height="50px"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>

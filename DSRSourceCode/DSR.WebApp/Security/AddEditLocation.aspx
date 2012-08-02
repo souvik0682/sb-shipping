@@ -15,27 +15,27 @@
             <table border="0" cellpadding="2" cellspacing="3">
                 <tr>
                     <td style="width:140px;">Location Name:<span class="errormessage1">*</span></td>
-                    <td><asp:TextBox ID="txtLocName" runat="server" MaxLength="50" Width="250"></asp:TextBox><br /><asp:RequiredFieldValidator ID="rfvName" runat="server" CssClass="errormessage" ControlToValidate="txtLocName" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator></td>
+                    <td><asp:TextBox ID="txtLocName" runat="server" CssClass="textboxuppercase" MaxLength="50" Width="250"></asp:TextBox><br /><asp:RequiredFieldValidator ID="rfvName" runat="server" CssClass="errormessage" ControlToValidate="txtLocName" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator></td>
                 </tr>
                 <tr>
                     <td>Address:</td>
-                    <td><asp:TextBox ID="txtAddress" runat="server" TextMode="MultiLine" MaxLength="200" Rows="5" Width="250"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtAddress" runat="server" CssClass="textboxuppercase" TextMode="MultiLine" MaxLength="200" Rows="5" Width="250"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td>City:</td>
-                    <td><asp:TextBox ID="txtCity" runat="server" MaxLength="20" Width="250"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtCity" runat="server" CssClass="textboxuppercase" MaxLength="20" Width="250"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td>Pin:</td>
-                    <td><asp:TextBox ID="txtPin" runat="server" MaxLength="10" Width="250"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtPin" runat="server" CssClass="textboxuppercase" MaxLength="10" Width="250"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td>Abbreviation:<span class="errormessage1">*</span></td>
-                    <td><asp:TextBox ID="txtAbbr" runat="server" MaxLength="3" Width="250"></asp:TextBox><br /><asp:RequiredFieldValidator ID="rfvAbbr" runat="server" CssClass="errormessage" ControlToValidate="txtAbbr" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator></td>
+                    <td><asp:TextBox ID="txtAbbr" runat="server" CssClass="textboxuppercase" MaxLength="3" Width="250"></asp:TextBox><br /><asp:RequiredFieldValidator ID="rfvAbbr" runat="server" CssClass="errormessage" ControlToValidate="txtAbbr" Display="Dynamic" ValidationGroup="Save"></asp:RequiredFieldValidator></td>
                 </tr>
                 <tr>
                     <td>Phone:</td>
-                    <td><asp:TextBox ID="txtPhone" runat="server" MaxLength="30" Width="250"></asp:TextBox><asp:RegularExpressionValidator ID="revPhone" runat="server" ControlToValidate="txtPhone" CssClass="errormessage" ValidationGroup="Save" Display="Dynamic"></asp:RegularExpressionValidator></td>
+                    <td><asp:TextBox ID="txtPhone" runat="server" CssClass="textboxuppercase" MaxLength="30" Width="250"></asp:TextBox><asp:RegularExpressionValidator ID="revPhone" runat="server" ControlToValidate="txtPhone" CssClass="errormessage" ValidationGroup="Save" Display="Dynamic"></asp:RegularExpressionValidator></td>
                 </tr>
                 <tr>
                     <td>Manager:</td>

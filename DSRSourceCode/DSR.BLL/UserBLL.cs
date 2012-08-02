@@ -42,6 +42,26 @@ namespace DSR.BLL
             return userId;
         }
 
+        public static int GetLoggedInUserRoleId()
+        {
+            int roleId = 0;
+
+            if (!ReferenceEquals(System.Web.HttpContext.Current.Session[Constants.SESSION_USER_INFO], null))
+            {
+                IUser user = (IUser)System.Web.HttpContext.Current.Session[Constants.SESSION_USER_INFO];
+
+                if (!ReferenceEquals(user, null) && user.Id > 0)
+                {
+                    if (!ReferenceEquals(user.UserRole, null))
+                    {
+                        roleId = user.UserRole.Id;
+                    }
+                }
+            }
+
+            return roleId;
+        }
+
         private void SetDefaultSearchCriteriaForUser(SearchCriteria searchCriteria)
         {
             searchCriteria.SortExpression = "UserName";

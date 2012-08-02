@@ -21,6 +21,7 @@ namespace DSR.WebApp.Reports
         #region Private Member Variables
 
         private IFormatProvider _culture = new CultureInfo(ConfigurationManager.AppSettings["Culture"].ToString());
+        private int _userId = 0;
 
         #endregion
 
@@ -28,9 +29,12 @@ namespace DSR.WebApp.Reports
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            SetUserAccess();
+            SetAttributes();
+
             if (!IsPostBack)
-            {
-                PopulateSalesExecutive();
+            {                
+                PopulateControls();
             }
         }
 
@@ -58,6 +62,17 @@ namespace DSR.WebApp.Reports
         #endregion
 
         #region Private Methods
+
+        private void SetAttributes()
+        {
+            if (!IsPostBack)
+            {
+                cbeFromDt.Format = Convert.ToString(ConfigurationManager.AppSettings["DateFormat"]);
+                cbeToDt.Format = Convert.ToString(ConfigurationManager.AppSettings["DateFormat"]);
+                txtFromDt.Text = System.DateTime.Now.Date.ToString(ConfigurationManager.AppSettings["DateFormat"]);
+                txtToDt.Text = System.DateTime.Now.Date.ToString(ConfigurationManager.AppSettings["DateFormat"]);
+            }
+        }
 
         private bool ValidateData(out string message)
         {
@@ -87,21 +102,37 @@ namespace DSR.WebApp.Reports
             return isValid;
         }
 
-        private void PopulateSalesExecutive()
+        private void PopulateControls()
         {
-            GeneralFunctions.PopulateDropDownList<IUser>(ddlExec, new CommonBLL().GetSalesExecutive(), "Id", "UserFullName", Constants.DROPDOWNLIST_ALL_TEXT);
+            CommonBLL commonBll = new CommonBLL();
+            GeneralFunctions.PopulateDropDownList<ICallType>(ddlType, commonBll.GetActiveCallType(), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
+
+            int roleId = UserBLL.GetLoggedInUserRoleId();
+
+            if (roleId == (int)UserRole.SalesExecutive)
+            {
+                GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetLocationByUser(_userId), "Id", "Name", false);
+                GeneralFunctions.PopulateDropDownList<IUser>(ddlSales, commonBll.GetSalesExecutive(_userId), "Id", "UserFullName", false);
+            }
+            else
+            {
+                GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetActiveLocation(), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
+                GeneralFunctions.PopulateDropDownList<IUser>(ddlSales, commonBll.GetSalesExecutive(), "Id", "UserFullName", Constants.DROPDOWNLIST_ALL_TEXT);
+            }
         }
 
         private void GenerateReport()
         {
             ReportBLL cls = new ReportBLL();
+            ICallDetail callDetail = new CallDetailEntity();
             LocalReportManager reportManager = new LocalReportManager(rptViewer, "CallTypeWiseDailyRpt", ConfigurationManager.AppSettings["ReportNamespace"].ToString(), ConfigurationManager.AppSettings["ReportPath"].ToString());
             string rptName = "CallTypeWiseDailyRpt.rdlc";
             DateTime fromDate;
             DateTime toDate;
             fromDate = Convert.ToDateTime(txtFromDt.Text, _culture);
             toDate = Convert.ToDateTime(txtToDt.Text, _culture);
-            IEnumerable<ICallDetail> lst = cls.GetDailyCallData(fromDate, toDate, 0, Convert.ToInt32(ddlExec.SelectedValue));
+            BuildEntity(callDetail);
+            IEnumerable<ICallDetail> lst = cls.GetDailyCallData(fromDate, toDate, callDetail);
 
             rptViewer.Reset();
             rptViewer.LocalReport.Dispose();
@@ -109,10 +140,51 @@ namespace DSR.WebApp.Reports
             rptViewer.LocalReport.ReportPath = this.Server.MapPath(this.Request.ApplicationPath) + ConfigurationManager.AppSettings["ReportPath"].ToString() + "/" + rptName;
             rptViewer.LocalReport.DataSources.Add(new ReportDataSource("ReportDataSet", lst));
             rptViewer.LocalReport.SetParameters(new ReportParameter("CompanyName", Convert.ToString(ConfigurationManager.AppSettings["CompanyName"])));
-            rptViewer.LocalReport.SetParameters(new ReportParameter("SalesPerson", ddlExec.SelectedItem.Text));
             rptViewer.LocalReport.SetParameters(new ReportParameter("FromDate", txtFromDt.Text));
             rptViewer.LocalReport.SetParameters(new ReportParameter("ToDate", txtToDt.Text));
+            rptViewer.LocalReport.SetParameters(new ReportParameter("Location", ddlLoc.SelectedItem.Text));
+            rptViewer.LocalReport.SetParameters(new ReportParameter("SalesPerson", ddlSales.SelectedItem.Text));
+            rptViewer.LocalReport.SetParameters(new ReportParameter("CallType", ddlType.SelectedItem.Text));
             rptViewer.LocalReport.Refresh();
+        }
+
+        private void BuildEntity(ICallDetail detail)
+        {
+            detail.LocationId = Convert.ToInt32(ddlLoc.SelectedValue);
+            detail.SalesPersionId = Convert.ToInt32(ddlSales.SelectedValue);
+            detail.ProspectId = 0;
+            detail.CallTypeId = Convert.ToInt32(ddlType.SelectedValue);
+        }
+
+        private void SetUserAccess()
+        {
+            if (!ReferenceEquals(Session[Constants.SESSION_USER_INFO], null))
+            {
+                IUser user = (IUser)Session[Constants.SESSION_USER_INFO];
+
+                if (!ReferenceEquals(user, null) && user.Id > 0)
+                {
+                    _userId = user.Id;
+
+                    switch (user.UserRole.Id)
+                    {
+                        case (int)UserRole.Admin:
+                        case (int)UserRole.Management:
+                        case (int)UserRole.Manager:
+                            break;
+                        case (int)UserRole.SalesExecutive:
+                            ddlSales.Enabled = false;
+                            ddlLoc.Enabled = false;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                Response.Redirect("~/Login.aspx");
+            }
         }
 
         #endregion

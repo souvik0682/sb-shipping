@@ -22,22 +22,13 @@ namespace DSR.WebApp.Reports {
         protected global::System.Web.UI.WebControls.TextBox txtFromDt;
         
         /// <summary>
-        /// MaskedEditExtender1 control.
+        /// cbeFromDt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.MaskedEditExtender MaskedEditExtender1;
-        
-        /// <summary>
-        /// MaskedEditValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.MaskedEditValidator MaskedEditValidator1;
+        protected global::AjaxControlToolkit.CalendarExtender cbeFromDt;
         
         /// <summary>
         /// txtToDt control.
@@ -49,22 +40,49 @@ namespace DSR.WebApp.Reports {
         protected global::System.Web.UI.WebControls.TextBox txtToDt;
         
         /// <summary>
-        /// MaskedEditExtender2 control.
+        /// cbeToDt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.MaskedEditExtender MaskedEditExtender2;
+        protected global::AjaxControlToolkit.CalendarExtender cbeToDt;
         
         /// <summary>
-        /// MaskedEditValidator2 control.
+        /// ddlLoc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.MaskedEditValidator MaskedEditValidator2;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLoc;
+        
+        /// <summary>
+        /// ddlSales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSales;
+        
+        /// <summary>
+        /// ddlPros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPros;
+        
+        /// <summary>
+        /// ddlType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlType;
         
         /// <summary>
         /// btnShow control.

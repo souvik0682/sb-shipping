@@ -15,23 +15,23 @@
                 <table border="0" cellpadding="3" cellspacing="3">
                 <tr>
                     <td valign="top" style="width:140px;">Group Name:<span class="errormessage">*</span></td>
-                    <td><asp:TextBox ID="txtName" runat="server" MaxLength="50" Width="250"></asp:TextBox><br /><asp:RequiredFieldValidator ID="rfvName" runat="server" CssClass="errormessage" ControlToValidate="txtName" ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator></td>
+                    <td><asp:TextBox ID="txtName" runat="server" CssClass="textboxuppercase" MaxLength="50" Width="250"></asp:TextBox><br /><asp:RequiredFieldValidator ID="rfvName" runat="server" CssClass="errormessage" ControlToValidate="txtName" ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator></td>
                 </tr>
                 <tr>
                     <td>Address:</td>
-                    <td><asp:TextBox ID="txtAddress" runat="server" MaxLength="200" TextMode="MultiLine" Rows="5" Width="250"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtAddress" runat="server" CssClass="textboxuppercase" MaxLength="200" TextMode="MultiLine" Rows="5" Width="250"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td>City:</td>
-                    <td><asp:TextBox ID="txtCity" runat="server" MaxLength="50" Width="250"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtCity" runat="server" CssClass="textboxuppercase" MaxLength="50" Width="250"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td>Pin:</td>
-                    <td><asp:TextBox ID="txtPin" runat="server" MaxLength="10" Width="250"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtPin" runat="server" CssClass="textboxuppercase" MaxLength="10" Width="250"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td>Phone:</td>
-                    <td><asp:TextBox ID="txtPhone" runat="server" MaxLength="40" Width="250"></asp:TextBox><br /><asp:RegularExpressionValidator ID="revPhone" runat="server" ControlToValidate="txtPhone" CssClass="errormessage" ValidationGroup="Save" Display="Dynamic"></asp:RegularExpressionValidator></td>
+                    <td><asp:TextBox ID="txtPhone" runat="server" CssClass="textboxuppercase" MaxLength="40" Width="250"></asp:TextBox><br /><asp:RegularExpressionValidator ID="revPhone" runat="server" ControlToValidate="txtPhone" CssClass="errormessage" ValidationGroup="Save" Display="Dynamic"></asp:RegularExpressionValidator></td>
                 </tr>
                 <tr>
                     <td>Is Active?:</td>
