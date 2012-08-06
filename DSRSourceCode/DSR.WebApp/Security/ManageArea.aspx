@@ -52,7 +52,10 @@
                         <asp:ListItem Text="100" Value="100" />
                     </asp:DropDownList>&nbsp;&nbsp;
                 <asp:Button ID="btnAdd" runat="server" Text="Add New Area" Width="130px" OnClick="btnAdd_Click" />
-            </div><br /><br />
+            </div>
+            <div>
+                <span class="errormessage">* Indicates Inactive Area(s)</span>
+            </div><br />
             <div>
                 <asp:UpdatePanel ID="upArea" runat="server" UpdateMode="Conditional">
                     <Triggers>
@@ -79,6 +82,9 @@
                                     <HeaderStyle CssClass="gridviewheader" />
                                     <ItemStyle CssClass="gridviewitem" Width="33%" />    
                                     <HeaderTemplate><asp:LinkButton ID="lnkHArea" runat="server" CommandName="Sort" CommandArgument="Area" Text="Area"></asp:LinkButton></HeaderTemplate>                                
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblName" runat="server"></asp:Label><asp:Label ID="lblInActive" runat="server" CssClass="errormessage" Font-Bold="true" Text=" *"></asp:Label>
+                                    </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Pin Code">
                                     <HeaderStyle CssClass="gridviewheader" />

@@ -39,7 +39,7 @@
                             </asp:RadioButtonList>
                         </td>
                         <td style="padding-right:5px;">Select Customer:</td>
-                        <td><asp:DropDownList ID="ddlCust" runat="server"><asp:ListItem Value="0" Text="--Select--"></asp:ListItem></asp:DropDownList><asp:RequiredFieldValidator ID="rfvCust" runat="server" CssClass="errormessage" ControlToValidate="ddlCust" InitialValue="0" ValidationGroup="Save"></asp:RequiredFieldValidator></td>
+                        <td><asp:DropDownList ID="ddlCust" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCust_SelectedIndexChanged"><asp:ListItem Value="0" Text="--Select--"></asp:ListItem></asp:DropDownList><asp:RequiredFieldValidator ID="rfvCust" runat="server" CssClass="errormessage" ControlToValidate="ddlCust" InitialValue="0" ValidationGroup="Save"></asp:RequiredFieldValidator></td>
                     </tr>
                 </table>
             </div>

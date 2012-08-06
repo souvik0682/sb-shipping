@@ -273,4 +273,10 @@
   <data name="ERR00052" xml:space="preserve">
     <value>Please select a valid file to import</value>
   </data>
+  <data name="ERR00053" xml:space="preserve">
+    <value>The user cannot be deleted</value>
+  </data>
+  <data name="ERR00054" xml:space="preserve">
+    <value>The group cannot be deleted</value>
+  </data>
 </root>

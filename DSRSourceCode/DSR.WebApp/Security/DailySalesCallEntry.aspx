@@ -158,7 +158,7 @@
                                                         Week No
                                                     </th>
                                                     <th style="width: 39%;" class="gridviewheader">
-                                                        Deatination
+                                                        Destination
                                                     </th>
                                                     <th style="width: 15%;">
                                                         TEU

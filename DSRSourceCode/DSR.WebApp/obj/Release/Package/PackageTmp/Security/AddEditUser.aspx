@@ -62,8 +62,8 @@
                     <td>
                         <asp:DropDownList ID="ddlSalesPersonType" runat="server">
                             <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                            <asp:ListItem Value="M" Text="Team Member"></asp:ListItem>
-                            <asp:ListItem Value="L" Text="Team Lead"></asp:ListItem>
+                            <asp:ListItem Value="M" Text="TEAM MEMBER"></asp:ListItem>
+                            <asp:ListItem Value="L" Text="TEAM LEAD"></asp:ListItem>
                         </asp:DropDownList><br />
                         <span id="spnType" runat="server" class="errormessage" style="display:none;"></span>
                     </td>

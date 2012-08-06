@@ -28,6 +28,7 @@ namespace DSR.WebApp.Security
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            RetriveParameters();
             CheckUserAccess();
             SetAttributes();
 
@@ -118,6 +119,11 @@ namespace DSR.WebApp.Security
 
         #region Private Methods
 
+        private void RetriveParameters()
+        {
+            _userId = UserBLL.GetLoggedInUserId();
+        }
+
         private void CheckUserAccess()
         {
             if (!ReferenceEquals(Session[Constants.SESSION_USER_INFO], null))
@@ -156,7 +162,7 @@ namespace DSR.WebApp.Security
         private void LoadDSC()
         {
             CommonBLL commonBll = new CommonBLL();
-            gvwDSC.DataSource = commonBll.GetDailySalesCallList();
+            gvwDSC.DataSource = commonBll.GetDailySalesCallList(_userId);
             gvwDSC.DataBind();
         }
 

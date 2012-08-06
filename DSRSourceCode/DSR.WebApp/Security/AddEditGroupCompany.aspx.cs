@@ -122,6 +122,9 @@ namespace DSR.WebApp.Security
                     chkActive.Checked = true;
                 else
                     chkActive.Checked = false;
+
+                if (_groupId == 1)
+                    chkActive.Enabled = false;
             }
         }
 

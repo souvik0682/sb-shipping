@@ -26,6 +26,7 @@ namespace DSR.WebApp.Security
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            RetriveParameters();
             CheckUserAccess();
             SetAttributes();
 
@@ -56,6 +57,11 @@ namespace DSR.WebApp.Security
             {
                 btnBack.OnClientClick = "javascript:return RedirectAfterCancelClick('ManageDailySalesCall.aspx','" + ResourceManager.GetStringWithoutName("ERR00046") + "')";
             }
+        }
+
+        private void RetriveParameters()
+        {
+            _userId = UserBLL.GetLoggedInUserId();
         }
 
         private void CheckUserAccess()
@@ -96,7 +102,7 @@ namespace DSR.WebApp.Security
 
         private void GetCustomer()
         {
-            GeneralFunctions.PopulateDropDownList<ICustomer>(ddlCustomer, new CommonBLL().GetActiveCustomer(), "Id", "Name", true);
+            GeneralFunctions.PopulateDropDownList<ICustomer>(ddlCustomer, new CommonBLL().GetCustomerByUser(_userId), "Id", "Name", true);
         }
 
         private int IsValidDestination()

@@ -242,7 +242,7 @@ namespace DSR.WebApp.Security
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                GeneralFunctions.ApplyGridViewAlternateItemStyle(e.Row, 5);
+                GeneralFunctions.ApplyGridViewAlternateItemStyle(e.Row, 12);
 
                 //ScriptManager sManager = ScriptManager.GetCurrent(this);
 
@@ -294,8 +294,14 @@ namespace DSR.WebApp.Security
 
         protected void rblTag_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ddlCust.SelectedIndex = -1;
             LoadShipSoftData();
             //upData.Update();
+        }
+
+        protected void ddlCust_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadShipSoftData();
         }
 
         #endregion
@@ -357,13 +363,13 @@ namespace DSR.WebApp.Security
         private void LoadShipSoftData()
         {
             bool isTagged = (rblTag.SelectedValue == "1") ? true : false;
-            gvwData.DataSource = new CommonBLL().GetShipSoftData(isTagged);
+            gvwData.DataSource = new CommonBLL().GetShipSoftData(Convert.ToInt32(ddlCust.SelectedValue), isTagged);
             gvwData.DataBind();
         }
 
         private void LoadCustomer()
         {
-            GeneralFunctions.PopulateDropDownList<ICustomer>(ddlCust, new CommonBLL().GetActiveCustomer(), "Id", "Name", true);
+            GeneralFunctions.PopulateDropDownList<ICustomer>(ddlCust, new CommonBLL().GetCustomerByUser(_userId), "Id", "Name", true);
         }
 
 

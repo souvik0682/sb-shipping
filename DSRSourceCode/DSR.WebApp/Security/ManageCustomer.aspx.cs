@@ -100,7 +100,19 @@ namespace DSR.WebApp.Security
 
                 e.Row.Cells[0].Text = ((gvwCust.PageSize * gvwCust.PageIndex) + e.Row.RowIndex + 1).ToString();
                 e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Location.Name"));
-                e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Name"));
+                //e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Name"));
+
+                if (Convert.ToChar(DataBinder.Eval(e.Row.DataItem, "IsActive")) == 'Y')
+                {
+                    ((Label)e.Row.FindControl("lblName")).Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Name"));
+                    ((Label)e.Row.FindControl("lblInActive")).Style["display"] = "none";
+                }
+                else
+                {
+                    ((Label)e.Row.FindControl("lblName")).Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Name"));
+                    ((Label)e.Row.FindControl("lblInActive")).Style["display"] = "";
+                }
+
                 e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Group.Name"));
                 e.Row.Cells[4].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "SalesExecutiveName"));
 
@@ -148,7 +160,7 @@ namespace DSR.WebApp.Security
                     Response.Redirect("~/Login.aspx");
                 }
 
-                if (user.UserRole.Id != (int)UserRole.Admin && user.UserRole.Id != (int)UserRole.Manager)
+                if (user.UserRole.Id != (int)UserRole.Admin && user.UserRole.Id != (int)UserRole.Manager && user.UserRole.Id != (int)UserRole.SalesExecutive)
                 {
                     Response.Redirect("~/Unauthorized.aspx");
                 }
@@ -224,11 +236,7 @@ namespace DSR.WebApp.Security
                 sortDirection = "ASC";
             }
 
-            if (roleId == (int)UserRole.SalesExecutive || roleId == (int)UserRole.Manager)
-                criteria.UserId = _userId;
-            else
-                criteria.UserId = 0;
-
+            criteria.UserId = _userId;
             criteria.SortExpression = sortExpression;
             criteria.SortDirection = sortDirection;
             criteria.CustomerName = (txtCustName.Text == ResourceManager.GetStringWithoutName("ERR00022")) ? string.Empty : txtCustName.Text.Trim();
@@ -240,8 +248,8 @@ namespace DSR.WebApp.Security
         private void SetDefaultSearchCriteria()
         {
             SearchCriteria criteria = new SearchCriteria();
-            string sortExpression = string.Empty;
-            string sortDirection = string.Empty;
+            string sortExpression = "Location";
+            string sortDirection = "ASC";
 
             criteria.SortExpression = sortExpression;
             criteria.SortDirection = sortDirection;

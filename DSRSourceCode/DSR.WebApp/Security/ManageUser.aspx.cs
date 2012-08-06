@@ -102,7 +102,19 @@ namespace DSR.WebApp.Security
                 ScriptManager sManager = ScriptManager.GetCurrent(this);
 
                 e.Row.Cells[0].Text = ((gvwUser.PageSize * gvwUser.PageIndex) + e.Row.RowIndex + 1).ToString();
-                e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Name"));
+                //e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Name"));
+
+                if (Convert.ToChar(DataBinder.Eval(e.Row.DataItem, "IsActive")) == 'Y')
+                {
+                    ((Label)e.Row.FindControl("lblName")).Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Name"));
+                    ((Label)e.Row.FindControl("lblInActive")).Style["display"] = "none";
+                }
+                else
+                {
+                    ((Label)e.Row.FindControl("lblName")).Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Name"));
+                    ((Label)e.Row.FindControl("lblInActive")).Style["display"] = "";
+                }
+
                 e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "UserRole.Name"));
                 e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "FirstName"));
                 e.Row.Cells[4].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "LastName"));
@@ -123,14 +135,21 @@ namespace DSR.WebApp.Security
                 btnRemove.ToolTip = ResourceManager.GetStringWithoutName("ERR00007");
                 btnRemove.CommandArgument = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id"));
 
-                if (_hasEditAccess)
+                if (Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id")) == "1")
                 {
-                    btnRemove.OnClientClick = "javascript:return confirm('" + ResourceManager.GetStringWithoutName("ERR00010") + "');";
+                    btnRemove.OnClientClick = "javascript:alert('" + ResourceManager.GetStringWithoutName("ERR00053") + "');return false;";
                 }
                 else
                 {
-                    btnEdit.OnClientClick = "javascript:alert('" + ResourceManager.GetStringWithoutName("ERR00009") + "');return false;";
-                    btnRemove.OnClientClick = "javascript:alert('" + ResourceManager.GetStringWithoutName("ERR00009") + "');return false;";
+                    if (_hasEditAccess)
+                    {
+                        btnRemove.OnClientClick = "javascript:return confirm('" + ResourceManager.GetStringWithoutName("ERR00010") + "');";
+                    }
+                    else
+                    {
+                        btnEdit.OnClientClick = "javascript:alert('" + ResourceManager.GetStringWithoutName("ERR00009") + "');return false;";
+                        btnRemove.OnClientClick = "javascript:alert('" + ResourceManager.GetStringWithoutName("ERR00009") + "');return false;";
+                    }
                 }
             }
         }

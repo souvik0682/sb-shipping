@@ -146,5 +146,91 @@ namespace DSR.DAL
 
             return lstCallDetail;
         }
+
+        public static List<ICallDetail> GetLocationWiseLineSummary(DateTime fromDate, DateTime toDate, ICallDetail detail)
+        {
+            string strExecution = "[report].[uspGetLocationWiseLineSummary]";
+            List<ICallDetail> lstCallDetail = new List<ICallDetail>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddDateTimeParam("@FromDate", fromDate);
+                oDq.AddDateTimeParam("@ToDate", toDate);
+                oDq.AddIntegerParam("@LocId", detail.LocationId);
+                oDq.AddIntegerParam("@ProspectId", detail.ProspectId);
+
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    ICallDetail callDetail = new CallDetailEntity();
+
+                    callDetail.LocationId = Convert.ToInt32(reader["LocId"]);
+                    callDetail.LocationName = Convert.ToString(reader["LocName"]);
+                    callDetail.ProspectId = Convert.ToInt32(reader["ProspectId"]);
+                    callDetail.ProspectFor = Convert.ToString(reader["ProspectName"]);
+
+                    if (reader["SalesPersionId"] != DBNull.Value)
+                    {
+                        callDetail.SalesPersionId = Convert.ToInt32(reader["SalesPersionId"]);
+                        callDetail.SalesPersonName = Convert.ToString(reader["SalesPerson"]);
+                    }
+
+                    callDetail.TEU = Convert.ToInt32(reader["TEU"]);
+                    callDetail.FEU = Convert.ToInt32(reader["FEU"]);
+                    callDetail.TEUActual = Convert.ToInt32(reader["TEUActual"]);
+                    callDetail.FEUActual = Convert.ToInt32(reader["FEUActual"]);
+
+                    lstCallDetail.Add(callDetail);
+                }
+
+                reader.Close();
+            }
+
+            return lstCallDetail;
+        }
+
+        public static List<ICallDetail> GetLineWiseLocationSummary(DateTime fromDate, DateTime toDate, ICallDetail detail)
+        {
+            string strExecution = "[report].[uspGetLineWiseLocationSummary]";
+            List<ICallDetail> lstCallDetail = new List<ICallDetail>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddDateTimeParam("@FromDate", fromDate);
+                oDq.AddDateTimeParam("@ToDate", toDate);
+                oDq.AddIntegerParam("@LocId", detail.LocationId);
+                oDq.AddIntegerParam("@ProspectId", detail.ProspectId);
+
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    ICallDetail callDetail = new CallDetailEntity();
+
+                    callDetail.LocationId = Convert.ToInt32(reader["LocId"]);
+                    callDetail.LocationName = Convert.ToString(reader["LocName"]);
+                    callDetail.ProspectId = Convert.ToInt32(reader["ProspectId"]);
+                    callDetail.ProspectFor = Convert.ToString(reader["ProspectName"]);
+                    
+                    if (reader["SalesPersionId"] != DBNull.Value)
+                    {
+                        callDetail.SalesPersionId = Convert.ToInt32(reader["SalesPersionId"]);
+                        callDetail.SalesPersonName = Convert.ToString(reader["SalesPerson"]);
+                    }
+
+                    callDetail.TEU = Convert.ToInt32(reader["TEU"]);
+                    callDetail.FEU = Convert.ToInt32(reader["FEU"]);
+                    callDetail.TEUActual = Convert.ToInt32(reader["TEUActual"]);
+                    callDetail.FEUActual = Convert.ToInt32(reader["FEUActual"]);
+
+                    lstCallDetail.Add(callDetail);
+                }
+
+                reader.Close();
+            }
+
+            return lstCallDetail;
+        }
     }
 }
