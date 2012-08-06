@@ -48,7 +48,10 @@
                         <asp:ListItem Text="100" Value="100" />
                     </asp:DropDownList>&nbsp;&nbsp;
                 <asp:Button ID="btnAdd" runat="server" Text="Add New Group" Width="130px" OnClick="btnAdd_Click" />
-            </div><br /><br />
+            </div>
+            <div>
+                <span class="errormessage">* Indicates Inactive Group Company(s)</span>
+            </div><br />
             <div>
                 <asp:UpdatePanel ID="upGroup" runat="server" UpdateMode="Conditional">
                     <Triggers>
@@ -73,6 +76,9 @@
                                 <HeaderStyle CssClass="gridviewheader" />
                                 <ItemStyle CssClass="gridviewitem" Width="20%" />
                                 <HeaderTemplate><asp:LinkButton ID="lnkHName" runat="server" Text="Group Name" CommandName="Sort" CommandArgument="GroupName"></asp:LinkButton></HeaderTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lblName" runat="server"></asp:Label><asp:Label ID="lblInActive" runat="server" CssClass="errormessage" Font-Bold="true" Text=" *"></asp:Label>
+                                </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Address">
                                 <HeaderStyle CssClass="gridviewheader" />

@@ -52,7 +52,10 @@
                         <asp:ListItem Text="100" Value="100" />
                     </asp:DropDownList>&nbsp;&nbsp;
                 <asp:Button ID="btnAdd" runat="server" Text="Add New Location" Width="130px" OnClick="btnAdd_Click" />
-            </div><br /><br />
+            </div>
+            <div>
+                <span class="errormessage">* Indicates Inactive Location(s)</span>
+            </div><br />            
             <div>
                 <asp:UpdatePanel ID="upLoc" runat="server" UpdateMode="Conditional">
                     <Triggers>
@@ -74,6 +77,9 @@
                                     <HeaderStyle CssClass="gridviewheader" />
                                     <ItemStyle CssClass="gridviewitem" Width="15%" />    
                                     <HeaderTemplate><asp:LinkButton ID="lnkHAbbr" runat="server" CommandName="Sort" CommandArgument="Abbr" Text="Abbr"></asp:LinkButton></HeaderTemplate>                                
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblAbbr" runat="server"></asp:Label><asp:Label ID="lblInActive" runat="server" CssClass="errormessage" Font-Bold="true" Text=" *"></asp:Label>
+                                    </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField>
                                     <HeaderStyle CssClass="gridviewheader" />

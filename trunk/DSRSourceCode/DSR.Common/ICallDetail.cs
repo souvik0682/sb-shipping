@@ -137,5 +137,17 @@ namespace DSR.Common
             get;
             set;
         }
+
+        int TEUActual
+        {
+            get;
+            set;
+        }
+
+        int FEUActual
+        {
+            get;
+            set;
+        }
     }
 }

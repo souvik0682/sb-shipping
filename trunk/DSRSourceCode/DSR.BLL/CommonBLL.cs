@@ -362,21 +362,56 @@ namespace DSR.BLL
 
         private void SetDefaultSearchCriteriaForCustomer(SearchCriteria searchCriteria)
         {
-            searchCriteria.SortExpression = "Location";
+            searchCriteria.SortExpression = "CustName";
             searchCriteria.SortDirection = "ASC";
         }
 
         public List<ICustomer> GetAllCustomer(SearchCriteria searchCriteria)
         {
-            return CommonDAL.GetCustomer('N', searchCriteria);
+            return CommonDAL.GetCustomerList('N', searchCriteria);
+        }
+
+        public List<ICustomer> GetActiveCustomer(SearchCriteria searchCriteria)
+        {
+            return CommonDAL.GetCustomerList('N', searchCriteria);
+        }
+
+        public List<ICustomer> GetAllCustomer()
+        {
+            SearchCriteria searchCriteria = new SearchCriteria();
+            SetDefaultSearchCriteriaForCustomer(searchCriteria);
+            return CommonDAL.GetCustomerList('N', searchCriteria);
         }
 
         public List<ICustomer> GetActiveCustomer()
         {
             SearchCriteria searchCriteria = new SearchCriteria();
             SetDefaultSearchCriteriaForCustomer(searchCriteria);
-            return CommonDAL.GetCustomer('Y', searchCriteria);
+
+            return CommonDAL.GetCustomerList('N', searchCriteria);
         }
+
+        public List<ICustomer> GetCustomerByUser(int userId)
+        {
+            SearchCriteria searchCriteria = new SearchCriteria();
+            SetDefaultSearchCriteriaForCustomer(searchCriteria);
+            searchCriteria.UserId = userId;
+            return CommonDAL.GetCustomerList('N', searchCriteria);
+        }
+
+        //public List<ICustomer> GetAllCustomer()
+        //{
+        //    SearchCriteria searchCriteria = new SearchCriteria();
+        //    SetDefaultSearchCriteriaForCustomer(searchCriteria);
+        //    return CommonDAL.GetCustomer('N', searchCriteria);
+        //}
+
+        //public List<ICustomer> GetActiveCustomer()
+        //{
+        //    SearchCriteria searchCriteria = new SearchCriteria();
+        //    SetDefaultSearchCriteriaForCustomer(searchCriteria);
+        //    return CommonDAL.GetCustomer('Y', searchCriteria);
+        //}
 
         public ICustomer GetCustomer(int customer)
         {
@@ -406,11 +441,6 @@ namespace DSR.BLL
         public void DeleteCustomer(int customer, int modifiedBy)
         {
             CommonDAL.DeleteCustomer(customer, modifiedBy);
-        }
-
-        public List<ICustomer> GetCustomerByUser(int salesExecutiveId)
-        {
-            return CommonDAL.GetCustomerByUser(salesExecutiveId);
         }
 
         #endregion
@@ -518,13 +548,13 @@ namespace DSR.BLL
         //    searchCriteria.SortDirection = "ASC";
         //}
 
-        public List<IDailySalesCall> GetDailySalesCallList()
+        public List<IDailySalesCall> GetDailySalesCallList(int userId)
         {
-            return CommonDAL.GetDailySalesCallList();
+            return CommonDAL.GetDailySalesCallList(userId);
         }
 
         public IDailySalesCall GetDailySalesCall(int callId)
-        {                      
+        {
             return CommonDAL.GetDailySalesCall(callId);
         }
 
@@ -537,9 +567,9 @@ namespace DSR.BLL
 
         #region Import Data
 
-        public List<IShipSoft> GetShipSoftData(bool isTagged)
+        public List<IShipSoft> GetShipSoftData(int custId, bool isTagged)
         {
-            return CommonDAL.GetShipSoftData(isTagged);
+            return CommonDAL.GetShipSoftData(custId, isTagged);
         }
 
         public void SaveShipSoft(List<ShipSoftEntity> lstShipSoft, int modifiedBy, out int rowsAffected, out int dupCount)

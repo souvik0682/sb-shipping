@@ -83,6 +83,8 @@ namespace DSR.WebApp
                     liCustMst.Style["display"] = "";
                     break;
                 case (int)UserRole.SalesExecutive:
+                    liMaster.Style["display"] = "";
+                    liCustMst.Style["display"] = "";
                     break;
                 default:
                     break;

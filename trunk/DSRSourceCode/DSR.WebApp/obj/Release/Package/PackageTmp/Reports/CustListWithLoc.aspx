@@ -9,7 +9,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="container" runat="Server">
 <center>
     <div style="padding-top: 10px;">
-        <fieldset style="width:784px;height:40px;">
+        <fieldset style="width:964px;height:40px;">
         <table>
             <tr>
                 <td class="label" style="padding-right:5px;vertical-align:top;">
@@ -30,7 +30,7 @@
             </tr>
         </table>
         </fieldset>
-        <div style="padding-left:5px;width:800px;">
+        <div style="padding-left:5px;width:980px;">
             <rsweb:ReportViewer ID="rptViewer" runat="server" Width="100%"></rsweb:ReportViewer>        
         </div>
     </div>

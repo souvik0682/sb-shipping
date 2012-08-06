@@ -57,8 +57,8 @@
                     <td>
                         <asp:DropDownList ID="ddlCorpLoc" runat="server" CssClass="dropdownlist" TabIndex="7">
                             <asp:ListItem Value="0" Text="---Select---"></asp:ListItem>
-                            <asp:ListItem Value="L" Text="Local"></asp:ListItem>
-                            <asp:ListItem Value="C" Text="Corporate"></asp:ListItem>
+                            <asp:ListItem Value="L" Text="LOCAL"></asp:ListItem>
+                            <asp:ListItem Value="C" Text="CORPORATE"></asp:ListItem>
                         </asp:DropDownList><br />
                         <asp:RequiredFieldValidator ID="rfvCorpLoc" runat="server" CssClass="errormessage" ControlToValidate="ddlCorpLoc" InitialValue="0" ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator>
                     </td>
@@ -75,7 +75,7 @@
                 </tr>
                 <tr>
                     <td>Address:<span class="errormessage">*</span></td>
-                    <td><asp:TextBox ID="txtAddress" runat="server" CssClass="textextboxuppercasetbox" MaxLength="200" TextMode="MultiLine" Rows="3" Width="250" TabIndex="9" ></asp:TextBox><br /><asp:RequiredFieldValidator ID="rfvAddr" runat="server" CssClass="errormessage" ControlToValidate="txtAddress" ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator></td>
+                    <td><asp:TextBox ID="txtAddress" runat="server" CssClass="textboxuppercase" MaxLength="200" TextMode="MultiLine" Rows="3" Width="250" TabIndex="9" ></asp:TextBox><br /><asp:RequiredFieldValidator ID="rfvAddr" runat="server" CssClass="errormessage" ControlToValidate="txtAddress" ValidationGroup="Save" Display="Dynamic"></asp:RequiredFieldValidator></td>
                     <td></td>
                     <td>Customer Profile:</td>
                     <td><asp:TextBox ID="txtProfile" runat="server" CssClass="textboxuppercase" MaxLength="500" TextMode="MultiLine" Rows="3" Width="250" TabIndex="18"></asp:TextBox></td>

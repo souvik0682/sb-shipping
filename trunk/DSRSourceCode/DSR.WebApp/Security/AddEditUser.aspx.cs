@@ -144,16 +144,27 @@ namespace DSR.WebApp.Security
 
         private bool IsSalesRole(int roleId)
         {
-            IRole role = new CommonBLL().GetRole(roleId);
             bool isSalesRole = false;
 
-            if (!ReferenceEquals(role, null))
+            if (roleId == (int)UserRole.SalesExecutive)
             {
-                if (role.SalesRole.HasValue && role.SalesRole.Value == 'Y')
-                {
-                    isSalesRole = true;
-                }
+                isSalesRole = true;
             }
+            else
+            {
+                isSalesRole = false;
+            }
+
+            //IRole role = new CommonBLL().GetRole(roleId);
+            //bool isSalesRole = false;
+
+            //if (!ReferenceEquals(role, null))
+            //{
+            //    if (role.SalesRole.HasValue && role.SalesRole.Value == 'Y')
+            //    {
+            //        isSalesRole = true;
+            //    }
+            //}
 
             return isSalesRole;
         }
@@ -185,7 +196,7 @@ namespace DSR.WebApp.Security
                 ddlRole.SelectedValue = Convert.ToString(user.UserRole.Id);
                 ddlLoc.SelectedValue = Convert.ToString(user.UserLocation.Id);
 
-                if (user.UserRole.SalesRole == 'Y')
+                if (user.UserRole.Id == (int)UserRole.SalesExecutive)
                 {
                     ddlSalesPersonType.SelectedValue = Convert.ToString(user.SalesPersonType);
                     ddlSalesPersonType.Enabled = true;
@@ -199,6 +210,9 @@ namespace DSR.WebApp.Security
                     chkActive.Checked = true;
                 else
                     chkActive.Checked = false;
+
+                if (_uId == 1)
+                    chkActive.Enabled = false;
             }
         }
 

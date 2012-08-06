@@ -142,6 +142,18 @@ namespace DSR.Entity
             set;
         }
 
+        public int TEUActual
+        {
+            get;
+            set;
+        }
+
+        public int FEUActual
+        {
+            get;
+            set;
+        }
+
         #endregion
     }
 }

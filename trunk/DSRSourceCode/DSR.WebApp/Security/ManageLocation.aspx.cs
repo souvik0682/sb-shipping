@@ -98,7 +98,19 @@ namespace DSR.WebApp.Security
                 ScriptManager sManager = ScriptManager.GetCurrent(this);
 
                 e.Row.Cells[0].Text = ((gvwLoc.PageSize * gvwLoc.PageIndex) + e.Row.RowIndex + 1).ToString();
-                e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Abbreviation"));
+                //e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Abbreviation"));
+
+                if (Convert.ToChar(DataBinder.Eval(e.Row.DataItem, "IsActive")) == 'Y')
+                {
+                    ((Label)e.Row.FindControl("lblAbbr")).Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Abbreviation"));
+                    ((Label)e.Row.FindControl("lblInActive")).Style["display"] = "none";
+                }
+                else
+                {
+                    ((Label)e.Row.FindControl("lblAbbr")).Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Abbreviation"));
+                    ((Label)e.Row.FindControl("lblInActive")).Style["display"] = "";
+                }
+
                 e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Name"));
 
                 if (Convert.ToString(DataBinder.Eval(e.Row.DataItem, "LocAddress.City")) == string.Empty)

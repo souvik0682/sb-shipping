@@ -28,5 +28,16 @@ namespace DSR.BLL
             return lstRpt;
         }
 
+        public IEnumerable<ICallDetail> GetLocationWiseLineSummary(DateTime fromDate, DateTime toDate, ICallDetail detail)
+        {
+            List<ICallDetail> lstRpt = ReportDAL.GetLocationWiseLineSummary(fromDate, toDate, detail);
+            return lstRpt;
+        }
+
+        public IEnumerable<ICallDetail> GetLineWiseLocationSummary(DateTime fromDate, DateTime toDate, ICallDetail detail)
+        {
+            List<ICallDetail> lstRpt = ReportDAL.GetLineWiseLocationSummary(fromDate, toDate, detail);
+            return lstRpt;
+        }
     }
 }

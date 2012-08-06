@@ -423,6 +423,34 @@ namespace DSR.DAL
 
         #region Customer
 
+        public static List<ICustomer> GetCustomerList(char isActiveOnly, SearchCriteria searchCriteria)
+        {
+            string strExecution = "[common].[uspGetCustomerList]";
+            List<ICustomer> lstCustomer = new List<ICustomer>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@UserId", searchCriteria.UserId);
+                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
+                oDq.AddVarcharParam("@SchLocAbbr", 3, searchCriteria.LocAbbr);
+                oDq.AddVarcharParam("@SchCustName", 60, searchCriteria.CustomerName);
+                oDq.AddVarcharParam("@SchGroupName", 50, searchCriteria.GroupName);
+                oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
+                oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    ICustomer customer = new CustomerEntity(reader);
+                    lstCustomer.Add(customer);
+                }
+
+                reader.Close();
+            }
+
+            return lstCustomer;
+        }
+
         public static List<ICustomer> GetCustomer(char isActiveOnly, SearchCriteria searchCriteria)
         {
             string strExecution = "[common].[uspGetCustomer]";
@@ -810,13 +838,14 @@ namespace DSR.DAL
 
         #region Sales Call
 
-        public static List<IDailySalesCall> GetDailySalesCallList()
+        public static List<IDailySalesCall> GetDailySalesCallList(int userId)
         {
             string strExecution = "[common].[uspGetDailySalesCallList]";
             List<IDailySalesCall> lstDSR = new List<IDailySalesCall>();
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
+                oDq.AddIntegerParam("@UserId", userId);
                 DataTableReader reader = oDq.GetTableReader();
 
                 while (reader.Read())
@@ -868,13 +897,14 @@ namespace DSR.DAL
 
         #region Import Data
 
-        public static List<IShipSoft> GetShipSoftData(bool isTagged)
+        public static List<IShipSoft> GetShipSoftData(int custId, bool isTagged)
         {
             string strExecution = "[common].[uspGetShipSoft]";
             List<IShipSoft> lstShipSoft = new List<IShipSoft>();
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
+                oDq.AddIntegerParam("@CustId", custId);
                 oDq.AddBooleanParam("@IsTagged", isTagged);
                 DataTableReader reader = oDq.GetTableReader();
 
