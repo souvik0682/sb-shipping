@@ -104,21 +104,9 @@ namespace DSR.WebApp.Security
             GeneralFunctions.PopulateDropDownList<IGroupCompany>(ddlGroup, commonBll.GetActiveGroupCompany(), "Id", "Name", true);
             GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetActiveLocation(), "Id", "Name", true);
             GeneralFunctions.PopulateDropDownList<ICustomerType>(ddlCustType, commonBll.GetActiveCustomerType(), "Id", "Name", true);
-            GeneralFunctions.PopulateDropDownList<IUser>(ddlExecutive, commonBll.GetSalesExecutive(), "Id", "UserFullName", true);
 
-            int roleId = UserBLL.GetLoggedInUserRoleId();
-
-            if (roleId == (int)UserRole.SalesExecutive || roleId == (int)UserRole.Manager)
-            {
-                GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetLocationByUser(_userId), "Id", "Name", true);
-                GeneralFunctions.PopulateDropDownList<IUser>(ddlExecutive, commonBll.GetSalesExecutive(_userId), "Id", "UserFullName", true);
-            }
-            else
-            {
-                GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetActiveLocation(), "Id", "Name", true);
-                GeneralFunctions.PopulateDropDownList<IUser>(ddlExecutive, commonBll.GetSalesExecutive(), "Id", "UserFullName", true);
-            }
-
+            GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetLocationByUser(_userId), "Id", "Name", true);
+            GeneralFunctions.PopulateDropDownList<IUser>(ddlExecutive, commonBll.GetSalesExecutive(_userId), "Id", "UserFullName", true);
             PopulateArea(0, string.Empty);
         }
 

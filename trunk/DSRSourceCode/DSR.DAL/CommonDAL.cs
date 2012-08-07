@@ -976,14 +976,14 @@ namespace DSR.DAL
             return lstUser;
         }
 
-        public static List<IUser> GetSalesExecutive(int salesExecutiveId)
+        public static List<IUser> GetSalesExecutive(int userId)
         {
             string strExecution = "[common].[uspGetSalesExecutive]";
             List<IUser> lstUser = new List<IUser>();
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
-                oDq.AddIntegerParam("@SalesExecutiveId", salesExecutiveId);
+                oDq.AddIntegerParam("@UserId", userId);
                 DataTableReader reader = oDq.GetTableReader();
 
                 while (reader.Read())
