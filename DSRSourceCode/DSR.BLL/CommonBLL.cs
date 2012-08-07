@@ -588,14 +588,14 @@ namespace DSR.BLL
 
         #region User
 
-        public List<IUser> GetSalesExecutive()
-        {
-            return CommonDAL.GetSalesExecutive();
-        }
+        //public List<IUser> GetSalesExecutive()
+        //{
+        //    return CommonDAL.GetSalesExecutive();
+        //}
 
-        public List<IUser> GetSalesExecutive(int salesExecutiveId)
+        public List<IUser> GetSalesExecutive(int userId)
         {
-            return CommonDAL.GetSalesExecutive(salesExecutiveId);
+            return CommonDAL.GetSalesExecutive(userId);
         }
 
         #endregion

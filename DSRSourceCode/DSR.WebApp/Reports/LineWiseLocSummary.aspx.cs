@@ -88,7 +88,7 @@ namespace DSR.WebApp.Reports
             }
             else
             {
-                GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetActiveLocation(), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
+                GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetLocationByUser(_userId), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
             }
         }
 

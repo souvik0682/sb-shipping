@@ -33,7 +33,7 @@ namespace DSR.WebApp.Reports
             SetAttributes();
 
             if (!IsPostBack)
-            {                
+            {
                 PopulateControls();
             }
         }
@@ -105,9 +105,9 @@ namespace DSR.WebApp.Reports
         private void PopulateControls()
         {
             CommonBLL commonBll = new CommonBLL();
-            GeneralFunctions.PopulateDropDownList<ICallType>(ddlType, commonBll.GetActiveCallType(), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
-
             int roleId = UserBLL.GetLoggedInUserRoleId();
+
+            GeneralFunctions.PopulateDropDownList<ICallType>(ddlType, commonBll.GetActiveCallType(), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
 
             if (roleId == (int)UserRole.SalesExecutive)
             {
@@ -116,8 +116,8 @@ namespace DSR.WebApp.Reports
             }
             else
             {
-                GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetActiveLocation(), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
-                GeneralFunctions.PopulateDropDownList<IUser>(ddlSales, commonBll.GetSalesExecutive(), "Id", "UserFullName", Constants.DROPDOWNLIST_ALL_TEXT);
+                GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetLocationByUser(_userId), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
+                GeneralFunctions.PopulateDropDownList<IUser>(ddlSales, commonBll.GetSalesExecutive(_userId), "Id", "UserFullName", Constants.DROPDOWNLIST_ALL_TEXT);
             }
         }
 
