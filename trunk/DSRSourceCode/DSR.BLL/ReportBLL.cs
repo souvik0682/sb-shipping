@@ -39,5 +39,11 @@ namespace DSR.BLL
             List<ICallDetail> lstRpt = ReportDAL.GetLineWiseLocationSummary(fromDate, toDate, detail);
             return lstRpt;
         }
+
+        public IEnumerable<ICallDetail> GetCustomerWithCallDetail(DateTime fromDate, DateTime toDate, ICallDetail detail)
+        {
+            List<ICallDetail> lstRpt = ReportDAL.GetCustomerWithCallDetail(fromDate, toDate, detail);
+            return lstRpt;
+        }
     }
 }
