@@ -232,5 +232,54 @@ namespace DSR.DAL
 
             return lstCallDetail;
         }
+
+        public static List<ICallDetail> GetCustomerWithCallDetail(DateTime fromDate, DateTime toDate, ICallDetail detail)
+        {
+            string strExecution = "[report].[uspGetCustomerWithCallDetail]";
+            List<ICallDetail> lstCallDetail = new List<ICallDetail>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddDateTimeParam("@FromDate", fromDate);
+                oDq.AddDateTimeParam("@ToDate", toDate);
+                oDq.AddIntegerParam("@AreaId", detail.AreaId);
+                oDq.AddIntegerParam("@LocId", detail.LocationId);                
+
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    ICallDetail callDetail = new CallDetailEntity();
+
+                    if (reader["LocId"] != DBNull.Value)
+                    {
+                        callDetail.LocationId = Convert.ToInt32(reader["LocId"]);
+                        callDetail.LocationName = Convert.ToString(reader["LocName"]);
+                    }
+
+                    callDetail.ProspectFor = Convert.ToString(reader["ProspectName"]);
+                    callDetail.CallDate = Convert.ToDateTime(reader["CallDate"]);
+                    callDetail.GroupCompanyName = Convert.ToString(reader["GroupName"]);
+                    callDetail.CallType = Convert.ToString(reader["CallType"]);
+
+                    if (reader["NextCallOn"] != DBNull.Value)
+                        callDetail.NextCallDate = Convert.ToDateTime(reader["NextCallOn"]);
+
+                    callDetail.CallDetails = Convert.ToString(reader["Remarks"]);
+
+                    if (reader["SalesPersionId"] != DBNull.Value)
+                    {
+                        callDetail.SalesPersionId = Convert.ToInt32(reader["SalesPersionId"]);
+                        callDetail.SalesPersonName = Convert.ToString(reader["SalesPerson"]);
+                    }
+
+                    lstCallDetail.Add(callDetail);
+                }
+
+                reader.Close();
+            }
+
+            return lstCallDetail;
+        }
     }
 }

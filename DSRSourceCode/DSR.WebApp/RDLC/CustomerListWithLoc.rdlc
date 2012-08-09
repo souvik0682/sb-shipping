@@ -648,7 +648,6 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>ReportDataSet</DataSetName>
-        <Left>0.00001in</Left>
         <Height>0.5in</Height>
         <Width>10in</Width>
         <Style>
@@ -679,7 +678,7 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
-  <Width>10.00001in</Width>
+  <Width>10in</Width>
   <Page>
     <PageHeader>
       <Height>1.11125in</Height>
