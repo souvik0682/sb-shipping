@@ -79,11 +79,13 @@ namespace DSR.WebApp.Reports
 
         private void GenerateReport()
         {
+            ReportBLL cls = new ReportBLL();
+            ICallDetail callDetail = new CallDetailEntity();
             LocalReportManager reportManager = new LocalReportManager(rptViewer, "CustomerListWithLoc", ConfigurationManager.AppSettings["ReportNamespace"].ToString(), ConfigurationManager.AppSettings["ReportPath"].ToString());
             string rptName = "CustomerListWithLoc.rdlc";
 
-            ReportBLL cls = new ReportBLL();
-            IEnumerable<ICallDetail> lst = cls.GetCustomerListWithLoc(Convert.ToInt32(ddlArea.SelectedValue), System.DateTime.Now.Date);
+            BuildEntity(callDetail);
+            IEnumerable<ICallDetail> lst = cls.GetCustomerListWithLoc(callDetail, _userId);
             rptViewer.Reset();
             rptViewer.LocalReport.Dispose();
             rptViewer.LocalReport.DataSources.Clear();
@@ -93,6 +95,12 @@ namespace DSR.WebApp.Reports
             rptViewer.LocalReport.SetParameters(new ReportParameter("AreaName", ddlArea.SelectedItem.Text));
             rptViewer.LocalReport.SetParameters(new ReportParameter("Location", ddlLoc.SelectedItem.Text));
             rptViewer.LocalReport.Refresh();
+        }
+
+        private void BuildEntity(ICallDetail detail)
+        {
+            detail.LocationId = Convert.ToInt32(ddlLoc.SelectedValue);
+            detail.AreaId = Convert.ToInt32(ddlArea.SelectedValue);
         }
 
         private void SetUserAccess()
@@ -112,7 +120,8 @@ namespace DSR.WebApp.Reports
                         case (int)UserRole.Manager:
                             break;
                         case (int)UserRole.SalesExecutive:
-                            ddlLoc.Enabled = false;
+                            //ddlLoc.Enabled = false;
+                            Response.Redirect("~/Unauthorized.aspx");
                             break;
                         default:
                             break;

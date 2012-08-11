@@ -52,10 +52,12 @@
                             <li id="liCallDue" runat="server"><a href="<%=Page.ResolveClientUrl("~/Reports/CallDueRpt.aspx") %>">Call Due Report</a></li>
                             <li id="liSpecificCallType" runat="server"><a href="<%=Page.ResolveClientUrl("~/Reports/SpecificCallTypeRpt.aspx") %>">Specific Call Type Report</a></li>
                             <li id="liCustWiseCall" runat="server"><a href="<%=Page.ResolveClientUrl("~/Reports/CustWiseCallRpt.aspx") %>">Customer Wise Call Report</a></li>
-                            <li id="liLineWiseLoc" runat="server"><a onclick="javascript:alert('This page is under construction');return false;" href="<%=Page.ResolveClientUrl("~/Reports/LineWiseLocSummary.aspx") %>">Line Wise Location Summary</a></li>
-                            <li id="liLocWiseLine" runat="server"><a onclick="javascript:alert('This page is under construction');return false;" href="<%=Page.ResolveClientUrl("~/Reports/LocWiseWiseLineSummary.aspx") %>">Location Wise Line Summary</a></li>
-                            <li id="liCustList" runat="server"><a onclick="javascript:alert('This page is under construction');return false;" href="<%=Page.ResolveClientUrl("~/Reports/CustListWithLoc.aspx") %>">Customer List</a></li>
-                            <li id="liCustCall" runat="server"><a onclick="javascript:alert('This page is under construction');return false;" href="<%=Page.ResolveClientUrl("~/Reports/CustCallDetail.aspx") %>">Customer With Call Details</a></li>
+                            <li id="liLineWiseLoc" runat="server"><a href="<%=Page.ResolveClientUrl("~/Reports/LineWiseLocSummary.aspx") %>">Line Wise Location Summary</a></li>
+                            <li id="liLocWiseLine" runat="server"><a href="<%=Page.ResolveClientUrl("~/Reports/LocWiseWiseLineSummary.aspx") %>">Location Wise Line Summary</a></li>
+                            <li id="liCustList" runat="server"><a href="<%=Page.ResolveClientUrl("~/Reports/CustListWithLoc.aspx") %>">Customer List</a></li>
+                            <li id="liCustCall" runat="server"><a href="<%=Page.ResolveClientUrl("~/Reports/CustCallDetail.aspx") %>">Customer With Call Details</a></li>
+                            <li id="liMisRpt" runat="server"><a href="<%=Page.ResolveClientUrl("~/Reports/MisRpt.aspx") %>">MIS Report</a></li>
+                            <li id="liMisRptYearly" runat="server"><a href="<%=Page.ResolveClientUrl("~/Reports/MisRptYearly.aspx") %>">Yearly MIS Report</a></li>
                         </ul>
                     </li>
                 </ul>            

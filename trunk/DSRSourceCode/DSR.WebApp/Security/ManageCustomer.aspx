@@ -14,7 +14,7 @@
     </div>
     <div id="headercaption">MANAGE CUSTOMER</div>
     <center>
-    <div style="width:850px;">        
+    <div style="width:900px;">        
         <fieldset style="width:100%;">
             <legend>Search Customer</legend>
             <table>
@@ -68,7 +68,7 @@
                     </Triggers>
                     <ContentTemplate>
                         <asp:GridView ID="gvwCust" Width="100%" runat="server" AutoGenerateColumns="false"
-                            AllowPaging="false" BorderStyle="None" BorderWidth="0" OnRowDataBound="gvwCust_RowDataBound" OnRowCommand="gvwCust_RowCommand" OnPageIndexChanging="gvwCust_PageIndexChanging">
+                            AllowPaging="true" BorderStyle="None" BorderWidth="0" OnRowDataBound="gvwCust_RowDataBound" OnRowCommand="gvwCust_RowCommand" OnPageIndexChanging="gvwCust_PageIndexChanging">
                             <PagerSettings Mode="NumericFirstLast" Position="TopAndBottom" />
                             <PagerStyle CssClass="gridviewpager" />
                             <EmptyDataRowStyle CssClass="gridviewemptydatarow" />
@@ -78,28 +78,29 @@
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl#">
                                     <HeaderStyle CssClass="gridviewheader" />
-                                    <ItemStyle CssClass="gridviewitem" Width="5%" />
+                                    <ItemStyle CssClass="gridviewitem" Width="4%" />
                                 </asp:TemplateField>
                                 <asp:TemplateField>
                                     <HeaderStyle CssClass="gridviewheader" />
-                                    <ItemStyle CssClass="gridviewitem" Width="20%" />
+                                    <ItemStyle CssClass="gridviewitem" Width="14%" />
                                     <HeaderTemplate><asp:LinkButton ID="lnkHLoc" runat="server" Text="Location" CommandName="Sort" CommandArgument="Location"></asp:LinkButton></HeaderTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField>
                                     <HeaderStyle CssClass="gridviewheader" />
-                                    <ItemStyle CssClass="gridviewitem" Width="25%" />      
+                                    <ItemStyle CssClass="gridviewitem" Width="40%" />      
                                     <HeaderTemplate><asp:LinkButton ID="lnkHName" runat="server" Text="Customer Name" CommandName="Sort" CommandArgument="CustName"></asp:LinkButton></HeaderTemplate>              
                                     <ItemTemplate>
-                                        <asp:Label ID="lblName" runat="server"></asp:Label><asp:Label ID="lblInActive" runat="server" CssClass="errormessage" Font-Bold="true" Text=" *"></asp:Label>
+                                        <asp:Label ID="lblName" runat="server"></asp:Label>
+                                        <asp:Label ID="lblInActive" runat="server" CssClass="errormessage" Font-Bold="true" Text=" *"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Group Company">
                                     <HeaderStyle CssClass="gridviewheader" />
-                                    <ItemStyle CssClass="gridviewitem" Width="20%" />                          
+                                    <ItemStyle CssClass="gridviewitem" Width="16%" />                          
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Executive Name">
                                     <HeaderStyle CssClass="gridviewheader" />
-                                    <ItemStyle CssClass="gridviewitem" Width="20%" />                          
+                                    <ItemStyle CssClass="gridviewitem" Width="16%" />                          
                                 </asp:TemplateField>
                                 <asp:TemplateField>
                                     <HeaderStyle CssClass="gridviewheader" />

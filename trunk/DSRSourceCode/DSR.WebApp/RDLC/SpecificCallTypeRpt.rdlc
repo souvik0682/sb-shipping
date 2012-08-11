@@ -20,6 +20,10 @@
           <DataField>LocationName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="ProspectId">
+          <DataField>ProspectId</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
         <Field Name="ProspectFor">
           <DataField>ProspectFor</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -35,6 +39,10 @@
         <Field Name="GroupCompanyName">
           <DataField>GroupCompanyName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CallTypeId">
+          <DataField>CallTypeId</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="CallType">
           <DataField>CallType</DataField>
@@ -76,10 +84,6 @@
           <DataField>Profile</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Line">
-          <DataField>Line</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="Destination">
           <DataField>Destination</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -90,6 +94,66 @@
         </Field>
         <Field Name="FEU">
           <DataField>FEU</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TEUActual">
+          <DataField>TEUActual</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="FEUActual">
+          <DataField>FEUActual</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Month1">
+          <DataField>Month1</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Month2">
+          <DataField>Month2</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Month3">
+          <DataField>Month3</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Month4">
+          <DataField>Month4</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Month5">
+          <DataField>Month5</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Month6">
+          <DataField>Month6</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Month7">
+          <DataField>Month7</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Month8">
+          <DataField>Month8</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Month9">
+          <DataField>Month9</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Month10">
+          <DataField>Month10</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Month11">
+          <DataField>Month11</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Month12">
+          <DataField>Month12</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Total">
+          <DataField>Total</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
@@ -710,9 +774,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox17</rd:DefaultName>
-          <Left>2.25in</Left>
+          <Left>2in</Left>
           <Height>0.25in</Height>
-          <Width>5.5in</Width>
+          <Width>6in</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -779,9 +843,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox8</rd:DefaultName>
           <Top>0.25in</Top>
-          <Left>2.25in</Left>
+          <Left>2in</Left>
           <Height>0.25in</Height>
-          <Width>5.5in</Width>
+          <Width>6in</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -935,7 +999,6 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox20</rd:DefaultName>
-          <Top>0in</Top>
           <Height>0.25in</Height>
           <Width>2.2in</Width>
           <Style>
@@ -968,7 +1031,6 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox21</rd:DefaultName>
-          <Top>0in</Top>
           <Left>7.8in</Left>
           <Height>0.25in</Height>
           <Width>2.2in</Width>

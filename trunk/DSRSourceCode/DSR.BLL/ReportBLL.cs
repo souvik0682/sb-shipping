@@ -10,39 +10,69 @@ namespace DSR.BLL
 {
     public class ReportBLL
     {
-        public IEnumerable<ICallDetail> GetDailyCallData(DateTime fromDate, DateTime toDate, ICallDetail detail)
+        public IEnumerable<ICallDetail> GetDailyCallData(DateTime fromDate, DateTime toDate, ICallDetail detail, int userId)
         {
-            List<ICallDetail> lstRpt = ReportDAL.GetDailyCallData(fromDate, toDate, detail);
+            List<ICallDetail> lstRpt = ReportDAL.GetDailyCallData(fromDate, toDate, detail, userId);
             return lstRpt;
         }
 
-        public IEnumerable<ICallDetail> GetCallDueData(DateTime fromDate, DateTime toDate, ICallDetail detail)
+        public IEnumerable<ICallDetail> GetCallTypeWiseDailyData(DateTime fromDate, DateTime toDate, ICallDetail detail, int userId)
         {
-            List<ICallDetail> lstRpt = ReportDAL.GetCallDueData(fromDate, toDate, detail);
+            List<ICallDetail> lstRpt = ReportDAL.GetCallTypeWiseDailyData(fromDate, toDate, detail, userId);
             return lstRpt;
         }
 
-        public IEnumerable<ICallDetail> GetCustomerListWithLoc(int areaId, DateTime currentDate)
+        public IEnumerable<ICallDetail> GetCallDueData(DateTime fromDate, DateTime toDate, ICallDetail detail, int userId)
         {
-            List<ICallDetail> lstRpt = ReportDAL.GetCustomerListWithLoc(areaId, currentDate);
+            List<ICallDetail> lstRpt = ReportDAL.GetCallDueData(fromDate, toDate, detail, userId);
             return lstRpt;
         }
 
-        public IEnumerable<ICallDetail> GetLocationWiseLineSummary(DateTime fromDate, DateTime toDate, ICallDetail detail)
+        public IEnumerable<ICallDetail> GetSpecificCallTypeData(DateTime fromDate, DateTime toDate, ICallDetail detail, int userId)
         {
-            List<ICallDetail> lstRpt = ReportDAL.GetLocationWiseLineSummary(fromDate, toDate, detail);
+            List<ICallDetail> lstRpt = ReportDAL.GetSpecificCallTypeData(fromDate, toDate, detail, userId);
             return lstRpt;
         }
 
-        public IEnumerable<ICallDetail> GetLineWiseLocationSummary(DateTime fromDate, DateTime toDate, ICallDetail detail)
+        public IEnumerable<ICallDetail> GetCustomerWiseCallData(DateTime fromDate, DateTime toDate, ICallDetail detail, int userId)
         {
-            List<ICallDetail> lstRpt = ReportDAL.GetLineWiseLocationSummary(fromDate, toDate, detail);
+            List<ICallDetail> lstRpt = ReportDAL.GetCustomerWiseCallData(fromDate, toDate, detail, userId);
             return lstRpt;
         }
 
-        public IEnumerable<ICallDetail> GetCustomerWithCallDetail(DateTime fromDate, DateTime toDate, ICallDetail detail)
+        public IEnumerable<ICallDetail> GetLineWiseLocationSummary(DateTime fromDate, DateTime toDate, ICallDetail detail, int userId)
         {
-            List<ICallDetail> lstRpt = ReportDAL.GetCustomerWithCallDetail(fromDate, toDate, detail);
+            List<ICallDetail> lstRpt = ReportDAL.GetLineWiseLocationSummary(fromDate, toDate, detail, userId);
+            return lstRpt;
+        }
+
+        public IEnumerable<ICallDetail> GetLocationWiseLineSummary(DateTime fromDate, DateTime toDate, ICallDetail detail, int userId)
+        {
+            List<ICallDetail> lstRpt = ReportDAL.GetLocationWiseLineSummary(fromDate, toDate, detail, userId);
+            return lstRpt;
+        }
+
+        public IEnumerable<ICallDetail> GetCustomerListWithLoc(ICallDetail detail, int userId)
+        {
+            List<ICallDetail> lstRpt = ReportDAL.GetCustomerListWithLoc(detail, System.DateTime.Now.Date, userId);
+            return lstRpt;
+        }
+
+        public IEnumerable<ICallDetail> GetCustomerWithCallDetail(DateTime fromDate, DateTime toDate, ICallDetail detail, int userId)
+        {
+            List<ICallDetail> lstRpt = ReportDAL.GetCustomerWithCallDetail(fromDate, toDate, detail, userId);
+            return lstRpt;
+        }
+
+        public IEnumerable<ICallDetail> GetMisReportData(DateTime fromDate, DateTime toDate, ICallDetail detail, int userId)
+        {
+            List<ICallDetail> lstRpt = ReportDAL.GetMisReportData(fromDate, toDate, detail, userId);
+            return lstRpt;
+        }
+
+        public IEnumerable<ICallDetail> GetYearlyMisReportData(int year, ICallDetail detail, int userId)
+        {
+            List<ICallDetail> lstRpt = ReportDAL.GetYearlyMisReportData(year, detail, userId);
             return lstRpt;
         }
     }

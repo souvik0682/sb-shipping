@@ -211,22 +211,22 @@ namespace DSR.WebApp {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liCustCall;
         
         /// <summary>
-        /// liMisRpt1 control.
+        /// liMisRpt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liMisRpt1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liMisRpt;
         
         /// <summary>
-        /// liMisRpt2 control.
+        /// liMisRptYearly control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liMisRpt2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liMisRptYearly;
         
         /// <summary>
         /// container control.

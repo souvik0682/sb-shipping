@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Globalization;
@@ -134,7 +131,7 @@ namespace DSR.WebApp.Reports
             toDate = Convert.ToDateTime(txtToDt.Text, _culture);
 
             BuildEntity(callDetail);
-            IEnumerable<ICallDetail> lst = cls.GetLocationWiseLineSummary(fromDate, toDate, callDetail);
+            IEnumerable<ICallDetail> lst = cls.GetLocationWiseLineSummary(fromDate, toDate, callDetail,_userId);
 
             rptViewer.Reset();
             rptViewer.LocalReport.Dispose();
@@ -173,7 +170,8 @@ namespace DSR.WebApp.Reports
                         case (int)UserRole.Manager:
                             break;
                         case (int)UserRole.SalesExecutive:
-                            ddlLoc.Enabled = false;
+                            //ddlLoc.Enabled = false;
+                            Response.Redirect("~/Unauthorized.aspx");
                             break;
                         default:
                             break;
