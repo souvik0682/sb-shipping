@@ -132,7 +132,7 @@ namespace DSR.WebApp.Reports
             toDate = Convert.ToDateTime(txtToDt.Text, _culture);
 
             BuildEntity(callDetail);
-            IEnumerable<ICallDetail> lst = cls.GetLineWiseLocationSummary(fromDate, toDate, callDetail);
+            IEnumerable<ICallDetail> lst = cls.GetLineWiseLocationSummary(fromDate, toDate, callDetail, _userId);
 
             rptViewer.Reset();
             rptViewer.LocalReport.Dispose();
@@ -171,7 +171,8 @@ namespace DSR.WebApp.Reports
                         case (int)UserRole.Manager:
                             break;
                         case (int)UserRole.SalesExecutive:
-                            ddlLoc.Enabled = false;
+                            //ddlLoc.Enabled = false;
+                            Response.Redirect("~/Unauthorized.aspx");
                             break;
                         default:
                             break;

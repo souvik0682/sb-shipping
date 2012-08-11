@@ -23,7 +23,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="container" runat="Server">
 <center>
     <div style="padding-top: 10px;">
-        <fieldset style="width:964px;height:70px;">
+        <fieldset style="width:964px;height:65px;">
         <table>
             <tr>
                 <td class="label" style="padding-right:5px;vertical-align:top;">

@@ -18,6 +18,8 @@ namespace DSR.WebApp.Security
         #region Private Member Variables
 
         private int _userId = 0;
+        private int _roleId = 0;
+        private int _locId = 0;
         private bool _hasEditAccess = true;
 
         #endregion
@@ -98,23 +100,62 @@ namespace DSR.WebApp.Security
 
                 ScriptManager sManager = ScriptManager.GetCurrent(this);
 
+                string corporateOrLocal = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "CorporateOrLocal"));
+                string custLocId = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Location.Id"));
+                bool canEdit = true;
+
+                if (_roleId == (int)UserRole.Manager || _roleId == (int)UserRole.SalesExecutive)
+                {
+                    if (corporateOrLocal == "C" && _locId.ToString() != custLocId)
+                    {
+                        canEdit = false;
+                    }
+                }
+
                 e.Row.Cells[0].Text = ((gvwCust.PageSize * gvwCust.PageIndex) + e.Row.RowIndex + 1).ToString();
                 e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Location.Name"));
                 //e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Name"));
 
+                //SA Modify -- Souvik
+                string strCustName = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Name"));
+
+                if (strCustName.Length > 50)
+                {
+                    ((Label)e.Row.FindControl("lblName")).ToolTip = strCustName;
+                    strCustName = strCustName.Substring(0, 50) + "..";
+                }
+
+
                 if (Convert.ToChar(DataBinder.Eval(e.Row.DataItem, "IsActive")) == 'Y')
                 {
-                    ((Label)e.Row.FindControl("lblName")).Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Name"));
+                    ((Label)e.Row.FindControl("lblName")).Text = strCustName;
                     ((Label)e.Row.FindControl("lblInActive")).Style["display"] = "none";
                 }
                 else
                 {
-                    ((Label)e.Row.FindControl("lblName")).Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Name"));
+                    ((Label)e.Row.FindControl("lblName")).Text = strCustName;
                     ((Label)e.Row.FindControl("lblInActive")).Style["display"] = "";
                 }
 
-                e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Group.Name"));
-                e.Row.Cells[4].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "SalesExecutiveName"));
+
+                string strGroupCompany = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Group.Name"));
+                if (strGroupCompany.Length > 17)
+                {
+                    e.Row.Cells[3].ToolTip = strGroupCompany;
+                    strGroupCompany = strGroupCompany.Substring(0, 17) + "..";
+                }
+
+                e.Row.Cells[3].Text = strGroupCompany;
+                //EA Modify -- Souvik
+
+                string strSalesPerson = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "SalesExecutiveName"));
+                if (strSalesPerson.Length > 17)
+                {
+                    e.Row.Cells[4].ToolTip = strSalesPerson;
+                    strSalesPerson = strSalesPerson.Substring(0, 17) + "..";
+                }
+
+                e.Row.Cells[4].Text = strSalesPerson;
 
                 // Edit link
                 ImageButton btnEdit = (ImageButton)e.Row.FindControl("btnEdit");
@@ -126,7 +167,7 @@ namespace DSR.WebApp.Security
                 btnRemove.ToolTip = ResourceManager.GetStringWithoutName("ERR00007");
                 btnRemove.CommandArgument = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id"));
 
-                if (_hasEditAccess)
+                if (_hasEditAccess && canEdit)
                 {
                     btnRemove.OnClientClick = "javascript:return confirm('" + ResourceManager.GetStringWithoutName("ERR00010") + "');";
                 }
@@ -174,6 +215,21 @@ namespace DSR.WebApp.Security
         private void RetriveParameters()
         {
             _userId = UserBLL.GetLoggedInUserId();
+
+            IUser user = new UserBLL().GetUser(_userId);
+
+            if (!ReferenceEquals(user, null))
+            {
+                if (!ReferenceEquals(user.UserRole, null))
+                {
+                    _roleId = user.UserRole.Id;
+                }
+
+                if (!ReferenceEquals(user.UserLocation, null))
+                {
+                    _locId = user.UserLocation.Id;
+                }
+            }
         }
 
         private void SetAttributes()
@@ -232,7 +288,9 @@ namespace DSR.WebApp.Security
             }
             else
             {
-                sortExpression = "Location";
+                //SA Modify -- Souvik
+                sortExpression = "CustName";
+                //EA Modify -- Souvik
                 sortDirection = "ASC";
             }
 
@@ -248,7 +306,11 @@ namespace DSR.WebApp.Security
         private void SetDefaultSearchCriteria()
         {
             SearchCriteria criteria = new SearchCriteria();
-            string sortExpression = "Location";
+
+            //SA Modify -- Souvik
+            //string sortExpression = "Location";
+            string sortExpression = "CustName";
+            //EA Modify -- Souvik
             string sortDirection = "ASC";
 
             criteria.SortExpression = sortExpression;

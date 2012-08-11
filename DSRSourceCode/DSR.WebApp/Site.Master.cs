@@ -65,6 +65,12 @@ namespace DSR.WebApp
             liAreaMst.Style["display"] = "none";
             liGrMst.Style["display"] = "none";
             liCustMst.Style["display"] = "none";
+            liLineWiseLoc.Style["display"] = "none";
+            liLocWiseLine.Style["display"] = "none";
+            liCustList.Style["display"] = "none";
+            liCustCall.Style["display"] = "none";
+            liMisRpt.Style["display"] = "none";
+            liMisRptYearly.Style["display"] = "none";
 
             switch (user.UserRole.Id)
             {
@@ -75,12 +81,30 @@ namespace DSR.WebApp
                     liAreaMst.Style["display"] = "";
                     liGrMst.Style["display"] = "";
                     liCustMst.Style["display"] = "";
+                    liLineWiseLoc.Style["display"] = "";
+                    liLocWiseLine.Style["display"] = "";
+                    liCustList.Style["display"] = "";
+                    liCustCall.Style["display"] = "";
+                    liMisRpt.Style["display"] = "";
+                    liMisRptYearly.Style["display"] = "";
                     break;
                 case (int)UserRole.Management:
+                    liLineWiseLoc.Style["display"] = "";
+                    liLocWiseLine.Style["display"] = "";
+                    liCustList.Style["display"] = "";
+                    liCustCall.Style["display"] = "";
+                    liMisRpt.Style["display"] = "";
+                    liMisRptYearly.Style["display"] = "";
                     break;
                 case (int)UserRole.Manager:
                     liMaster.Style["display"] = "";
                     liCustMst.Style["display"] = "";
+                    liLineWiseLoc.Style["display"] = "";
+                    liLocWiseLine.Style["display"] = "";
+                    liCustList.Style["display"] = "";
+                    liCustCall.Style["display"] = "";
+                    liMisRpt.Style["display"] = "";
+                    liMisRptYearly.Style["display"] = "";
                     break;
                 case (int)UserRole.SalesExecutive:
                     liMaster.Style["display"] = "";

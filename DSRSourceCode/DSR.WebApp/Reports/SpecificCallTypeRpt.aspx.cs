@@ -130,7 +130,7 @@ namespace DSR.WebApp.Reports
             fromDate = Convert.ToDateTime(txtFromDt.Text, _culture);
             toDate = Convert.ToDateTime(txtToDt.Text, _culture);
             BuildEntity(callDetail);
-            IEnumerable<ICallDetail> lst = cls.GetDailyCallData(fromDate, toDate, callDetail);
+            IEnumerable<ICallDetail> lst = cls.GetSpecificCallTypeData(fromDate, toDate, callDetail, _userId);
 
             rptViewer.Reset();
             rptViewer.LocalReport.Dispose();

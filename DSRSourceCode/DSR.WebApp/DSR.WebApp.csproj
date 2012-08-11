@@ -71,6 +71,8 @@
     <Content Include="Login.aspx" />
     <Content Include="Reports\CallTypeWiseDailyRpt.aspx" />
     <Content Include="Reports\CallDueRpt.aspx" />
+    <Content Include="Reports\MISRptYearly.aspx" />
+    <Content Include="Reports\MISRpt.aspx" />
     <Content Include="Reports\CustCallDetail.aspx" />
     <Content Include="Reports\SpecificCallTypeRpt.aspx" />
     <Content Include="Reports\CustWiseCallRpt.aspx" />
@@ -143,6 +145,20 @@
     </Compile>
     <Compile Include="Reports\CallDueRpt.aspx.designer.cs">
       <DependentUpon>CallDueRpt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\MISRptYearly.aspx.cs">
+      <DependentUpon>MISRptYearly.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\MISRptYearly.aspx.designer.cs">
+      <DependentUpon>MISRptYearly.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\MISRpt.aspx.cs">
+      <DependentUpon>MISRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\MISRpt.aspx.designer.cs">
+      <DependentUpon>MISRpt.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\CustCallDetail.aspx.cs">
       <DependentUpon>CustCallDetail.aspx</DependentUpon>
@@ -347,6 +363,7 @@
   <ItemGroup>
     <EmbeddedResource Include="RDLC\CallTypeWiseDailyRpt.rdlc" />
     <EmbeddedResource Include="RDLC\CallDueRpt.rdlc" />
+    <EmbeddedResource Include="RDLC\MISRptYearly.rdlc" />
     <EmbeddedResource Include="RDLC\CustomerWiseCallRpt.rdlc" />
     <EmbeddedResource Include="RDLC\SpecificCallTypeRpt.rdlc" />
     <EmbeddedResource Include="RDLC\CustomerListWithLoc.rdlc" />
