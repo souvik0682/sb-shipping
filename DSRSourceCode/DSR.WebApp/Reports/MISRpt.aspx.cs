@@ -127,6 +127,8 @@ namespace DSR.WebApp.Reports
             rptViewer.LocalReport.DataSources.Clear();
             rptViewer.LocalReport.ReportPath = this.Server.MapPath(this.Request.ApplicationPath) + ConfigurationManager.AppSettings["ReportPath"].ToString() + "/" + rptName;
             rptViewer.LocalReport.DataSources.Add(new ReportDataSource("ReportDataSet", lst));
+            rptViewer.LocalReport.SetParameters(new ReportParameter("FromDate", txtFromDt.Text));
+            rptViewer.LocalReport.SetParameters(new ReportParameter("ToDate", txtToDt.Text));
             rptViewer.LocalReport.SetParameters(new ReportParameter("CompanyName", Convert.ToString(ConfigurationManager.AppSettings["CompanyName"])));
             rptViewer.LocalReport.SetParameters(new ReportParameter("Location", ddlLoc.SelectedItem.Text));
             rptViewer.LocalReport.SetParameters(new ReportParameter("Line", ddlPros.SelectedItem.Text));

@@ -33,10 +33,12 @@ fieldset p {margin: 2px 6px 0px 6px;}
 legend {font-size: 1.1em;font-weight: 600;padding: 0px 4px 2px 4px;color:Blue;}
 
 /* Header & Footer */
-#header{margin:0px;width:100%;background:#328dc4 url(Images/header.jpg) no-repeat center top; color:#ffffff;height:55px;border-right:none 0px #328dc4;border-left:none 0px #328dc4;}
+#header{margin:0px;width:100%;background:#ffffff url(Images/header.jpg) no-repeat center top; color:#000000;height:55px;border-right:none 0px #328dc4;border-left:none 0px #328dc4;}
 #header .logo{float:left;padding:0px 0px 0px 0px;}
+#header .productname{float:left;}
+#header .productname h1{color:Black;font-size: 20px; font-weight:bolder; letter-spacing: 2px; margin-top:12px;padding-left:5px;}
 #header .search{float:right;padding:12px 10px 0px 0px;font-size: 12px;}
-#header .search a{ color: #E0F5FF;}
+#header .search a{ color: #000000;}
 #subheader{margin:0px;width:100%;color:#FFFFFF;background-color:Black;height:30px;}
 
 #main {background:#ffffff;width:100%;min-height:390px;margin:0px;color:#000000;padding:0px;}
@@ -58,7 +60,7 @@ legend {font-size: 1.1em;font-weight: 600;padding: 0px 4px 2px 4px;color:Blue;}
 #navbar li a {display: block;padding: 6px 25px 6px 5px;background-color:Black;color: #fff;text-decoration: none;}
 #navbar li a:hover {display: block;padding: 6px 25px 6px 5px;background-color:Black;color: #fff;text-decoration: underline;}
 #navbar li ul {display: none; width: 200px; /* Width to help Opera out */background-color: #69f;}
-#navbar li:hover ul {display: block;position: absolute;margin: 0;padding: 0; }
+#navbar li:hover ul {z-index:999;display: block;position: absolute;margin: 0;padding: 0; }
 #navbar li:hover li {float: none; }
 #navbar li:hover li a {background:none;background-color: #69f;border-bottom: 1px solid #fff;color: #000; }
 #navbar li:hover li a:hover{text-decoration:underline;}
