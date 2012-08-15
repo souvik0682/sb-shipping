@@ -14,7 +14,6 @@ using DSR.Utilities;
 using DSR.Utilities.ReportManager;
 using Microsoft.Reporting.WebForms;
 
-
 namespace DSR.WebApp.Reports
 {
     public partial class CustCallDetail : System.Web.UI.Page
@@ -23,6 +22,8 @@ namespace DSR.WebApp.Reports
 
         private IFormatProvider _culture = new CultureInfo(ConfigurationManager.AppSettings["Culture"].ToString());
         private int _userId = 0;
+        private int _roleId = 0;
+        private int _locId = 0;
 
         #endregion
 
@@ -30,6 +31,7 @@ namespace DSR.WebApp.Reports
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            RetriveParameters();
             SetUserAccess();
             SetAttributes();
 
@@ -88,14 +90,14 @@ namespace DSR.WebApp.Reports
             CommonBLL commonBll = new CommonBLL();
             int roleId = UserBLL.GetLoggedInUserRoleId();
 
-            GeneralFunctions.PopulateDropDownList<IArea>(ddlArea, new CommonBLL().GetActiveArea(), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
-
-            if (roleId == (int)UserRole.SalesExecutive)
+            if (roleId == (int)UserRole.SalesExecutive || roleId == (int)UserRole.Manager)
             {
+                GeneralFunctions.PopulateDropDownList<IArea>(ddlArea, new CommonBLL().GetAreaByLocation(_locId), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
                 GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetLocationByUser(_userId), "Id", "Name", false);
             }
             else
             {
+                GeneralFunctions.PopulateDropDownList<IArea>(ddlArea, new CommonBLL().GetActiveArea(), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
                 GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetLocationByUser(_userId), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
             }
         }
@@ -162,29 +164,42 @@ namespace DSR.WebApp.Reports
             detail.AreaId = Convert.ToInt32(ddlArea.SelectedValue);
         }
 
+        private void RetriveParameters()
+        {
+            _userId = UserBLL.GetLoggedInUserId();
+
+            IUser user = new UserBLL().GetUser(_userId);
+
+            if (!ReferenceEquals(user, null))
+            {
+                if (!ReferenceEquals(user.UserRole, null))
+                {
+                    _roleId = user.UserRole.Id;
+                }
+
+                if (!ReferenceEquals(user.UserLocation, null))
+                {
+                    _locId = user.UserLocation.Id;
+                }
+            }
+        }
+
         private void SetUserAccess()
         {
-            if (!ReferenceEquals(Session[Constants.SESSION_USER_INFO], null))
+            if (_userId > 0)
             {
-                IUser user = (IUser)Session[Constants.SESSION_USER_INFO];
-
-                if (!ReferenceEquals(user, null) && user.Id > 0)
+                switch (_roleId)
                 {
-                    _userId = user.Id;
-
-                    switch (user.UserRole.Id)
-                    {
-                        case (int)UserRole.Admin:
-                        case (int)UserRole.Management:
-                        case (int)UserRole.Manager:
-                            break;
-                        case (int)UserRole.SalesExecutive:
-                            //ddlLoc.Enabled = false;
-                            Response.Redirect("~/Unauthorized.aspx");
-                            break;
-                        default:
-                            break;
-                    }
+                    case (int)UserRole.Admin:
+                    case (int)UserRole.Management:
+                    case (int)UserRole.Manager:
+                        break;
+                    case (int)UserRole.SalesExecutive:
+                        //ddlLoc.Enabled = false;
+                        Response.Redirect("~/Unauthorized.aspx");
+                        break;
+                    default:
+                        break;
                 }
             }
             else

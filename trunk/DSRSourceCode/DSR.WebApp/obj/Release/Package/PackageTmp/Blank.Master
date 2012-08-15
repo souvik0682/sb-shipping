@@ -17,6 +17,9 @@
             <div class="logo">
                 <img alt="" src="<%=Page.ResolveClientUrl("~/Images/BLA-logo.bmp") %>" height="55" />        
             </div>  
+            <div class="productname">
+                <img alt="" src="<%=Page.ResolveClientUrl("~/Images/MUST_LOGO1.jpg") %>" height="55" width="300" />
+            </div>
             <div class="search">
                 <div style="text-align: right;">
                     <asp:Label ID="lblUserName" runat="server" Text="Welcome Guest"></asp:Label>
