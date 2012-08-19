@@ -148,14 +148,19 @@ namespace DSR.WebApp.Security
                     Response.Redirect("~/Login.aspx");
                 }
 
-                if (user.UserRole.Id != (int)UserRole.Admin && user.UserRole.Id != (int)UserRole.Manager && user.UserRole.Id != (int)UserRole.SalesExecutive)
-                {
-                    Response.Redirect("~/Unauthorized.aspx");
-                }
+                //if (user.UserRole.Id != (int)UserRole.Admin && user.UserRole.Id != (int)UserRole.Manager && user.UserRole.Id != (int)UserRole.SalesExecutive)
+                //{
+                //    Response.Redirect("~/Unauthorized.aspx");
+                //}
 
                 if (user.UserRole.Id == (int)UserRole.Admin)
                 {
                     chkActive.Enabled = true;
+                }
+
+                if (user.UserRole.Id == (int)UserRole.Management)
+                {
+                    btnSave.Enabled = false;
                 }
             }
             else

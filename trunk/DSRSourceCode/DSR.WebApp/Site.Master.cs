@@ -89,6 +89,8 @@ namespace DSR.WebApp
                     liMisRptYearly.Style["display"] = "";
                     break;
                 case (int)UserRole.Management:
+                    liMaster.Style["display"] = "";
+                    liCustMst.Style["display"] = "";
                     liLineWiseLoc.Style["display"] = "";
                     liLocWiseLine.Style["display"] = "";
                     liCustList.Style["display"] = "";

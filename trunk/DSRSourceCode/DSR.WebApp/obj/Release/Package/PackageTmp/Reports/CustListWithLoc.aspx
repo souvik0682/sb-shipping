@@ -26,6 +26,12 @@
                         <asp:ListItem Value="0" Text="All"></asp:ListItem>
                     </asp:DropDownList>
                 </td>
+                <td class="label" style="padding-right:5px;vertical-align:top;">
+                    Sales Person:
+                </td>
+                <td style="padding-right:20px;vertical-align:top;">
+                    <asp:DropDownList ID="ddlSales" runat="server"></asp:DropDownList>
+                </td>
                 <td style="vertical-align:top;"><asp:Button ID="btnShow" runat="server" Text="Show" CssClass="button" OnClick="btnShow_Click" /></td>
             </tr>
         </table>

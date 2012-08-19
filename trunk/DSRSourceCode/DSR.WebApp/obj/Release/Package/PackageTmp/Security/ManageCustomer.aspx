@@ -14,13 +14,13 @@
     </div>
     <div id="headercaption">MANAGE CUSTOMER</div>
     <center>
-    <div style="width:900px;">        
+    <div style="width:950px;">        
         <fieldset style="width:100%;">
             <legend>Search Customer</legend>
             <table>
                 <tr>
                     <td>
-                        <asp:TextBox ID="txtLoc" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
+                        <asp:TextBox ID="txtLoc" runat="server" CssClass="watermark" ForeColor="#747862" Width="150"></asp:TextBox>
                         <cc1:TextBoxWatermarkExtender ID="txtWMELoc" runat="server" TargetControlID="txtLoc" WatermarkText="Type Location Name" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
                     </td>
                     <td>
@@ -28,8 +28,12 @@
                         <cc1:TextBoxWatermarkExtender ID="txtWMECust" runat="server" TargetControlID="txtCustName" WatermarkText="Type Customer Name" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtGrComp" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
+                        <asp:TextBox ID="txtGrComp" runat="server" CssClass="watermark" ForeColor="#747862" Width="150"></asp:TextBox>
                         <cc1:TextBoxWatermarkExtender ID="txtWMEGr" runat="server" TargetControlID="txtGrComp" WatermarkText="Type Group Company" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtExec" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
+                        <cc1:TextBoxWatermarkExtender ID="txtWMEExec" runat="server" TargetControlID="txtExec" WatermarkText="Type Executive Name" WatermarkCssClass="watermark"></cc1:TextBoxWatermarkExtender>
                     </td>
                     <td><asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="button" Width="100px" OnClick="btnSearch_Click" /></td>
                 </tr>

@@ -360,6 +360,7 @@ namespace DSR.DAL
             {
                 oDq.AddIntegerParam("@LocId", detail.LocationId);
                 oDq.AddIntegerParam("@AreaId", detail.AreaId);
+                oDq.AddIntegerParam("@SalesExecutiveId", detail.SalesPersionId);
                 oDq.AddDateTimeParam("@CurrDate", currDate);
                 oDq.AddIntegerParam("@UserId", userId);
 

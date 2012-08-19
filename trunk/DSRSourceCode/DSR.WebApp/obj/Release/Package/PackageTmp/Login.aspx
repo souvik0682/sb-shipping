@@ -13,7 +13,7 @@
     <div id="dvAsync" style="padding: 5px; display: none;">
         <div class="asynpanel">
             <div id="dvAsyncClose">
-                <img alt="" src="../Images/Close-Button.bmp" style="cursor: pointer;" onclick="ClearErrorState()" /></div>
+                <img alt="" src="<%=Page.ResolveClientUrl("~/Images/Close-Button.bmp") %>" style="cursor: pointer;" onclick="ClearErrorState()" /></div>
             <div id="dvAsyncMessage">
             </div>
         </div>
@@ -23,7 +23,7 @@
             <ProgressTemplate>
                 <div class="progress">
                     <div id="image">
-                        <img src="../Images/PleaseWait.gif" alt="" /></div>
+                        <img src="<%=Page.ResolveClientUrl("~/Images/PleaseWait.gif") %>" alt="" /></div>
                     <div id="text">
                         Please Wait...</div>
                 </div>
@@ -36,7 +36,7 @@
                     <table border="0" cellpadding="0" cellspacing="0" align="center">
                         <tr>
                             <td valign="top" style="padding:5px;">
-                                <img src="../Images/MUST_PIC1.jpg" height="337" width="400" alt="" />
+                                <img src="<%=Page.ResolveClientUrl("~/Images/MUST_PIC1.jpg") %>" height="337" width="400" alt="" />
                             </td>
                             <td align="left" valign="top">&nbsp;</td>
                             <td style="padding:0px 5px 0px 5px;" valign="top">

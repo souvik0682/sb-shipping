@@ -310,7 +310,7 @@ namespace DSR.BLL
 
         private void SetDefaultSearchCriteriaForGroupCompany(SearchCriteria searchCriteria)
         {
-            searchCriteria.SortExpression = "Location";
+            searchCriteria.SortExpression = "GroupName";
             searchCriteria.SortDirection = "ASC";
         }
 
@@ -373,7 +373,7 @@ namespace DSR.BLL
 
         public List<ICustomer> GetActiveCustomer(SearchCriteria searchCriteria)
         {
-            return CommonDAL.GetCustomerList('N', searchCriteria);
+            return CommonDAL.GetCustomerList('Y', searchCriteria);
         }
 
         public List<ICustomer> GetAllCustomer()

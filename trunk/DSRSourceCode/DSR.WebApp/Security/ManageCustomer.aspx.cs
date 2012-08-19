@@ -138,14 +138,17 @@ namespace DSR.WebApp.Security
                 }
 
 
-                string strGroupCompany = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Group.Name"));
-                if (strGroupCompany.Length > 17)
+                if (Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Group.Id")) != "1")
                 {
-                    e.Row.Cells[3].ToolTip = strGroupCompany;
-                    strGroupCompany = strGroupCompany.Substring(0, 17) + "..";
-                }
+                    string strGroupCompany = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Group.Name"));
+                    if (strGroupCompany.Length > 17)
+                    {
+                        e.Row.Cells[3].ToolTip = strGroupCompany;
+                        strGroupCompany = strGroupCompany.Substring(0, 17) + "..";
+                    }
 
-                e.Row.Cells[3].Text = strGroupCompany;
+                    e.Row.Cells[3].Text = strGroupCompany;
+                }
                 //EA Modify -- Souvik
 
                 string strSalesPerson = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "SalesExecutiveName"));
@@ -169,7 +172,10 @@ namespace DSR.WebApp.Security
 
                 if (_hasEditAccess && canEdit)
                 {
-                    btnRemove.OnClientClick = "javascript:return confirm('" + ResourceManager.GetStringWithoutName("ERR00010") + "');";
+                    if (_roleId == (int)UserRole.Manager)
+                        btnRemove.OnClientClick = "javascript:return confirm('" + ResourceManager.GetStringWithoutName("ERR00010") + "');";
+                    else
+                        btnRemove.OnClientClick = "javascript:alert('" + ResourceManager.GetStringWithoutName("ERR00009") + "');return false;";
                 }
                 else
                 {
@@ -201,10 +207,10 @@ namespace DSR.WebApp.Security
                     Response.Redirect("~/Login.aspx");
                 }
 
-                if (user.UserRole.Id != (int)UserRole.Admin && user.UserRole.Id != (int)UserRole.Manager && user.UserRole.Id != (int)UserRole.SalesExecutive)
-                {
-                    Response.Redirect("~/Unauthorized.aspx");
-                }
+                //if (user.UserRole.Id != (int)UserRole.Admin && user.UserRole.Id != (int)UserRole.Manager && user.UserRole.Id != (int)UserRole.SalesExecutive)
+                //{
+                //    Response.Redirect("~/Unauthorized.aspx");
+                //}
             }
             else
             {
@@ -239,6 +245,7 @@ namespace DSR.WebApp.Security
                 txtWMELoc.WatermarkText = ResourceManager.GetStringWithoutName("ERR00018");
                 txtWMECust.WatermarkText = ResourceManager.GetStringWithoutName("ERR00022");
                 txtWMEGr.WatermarkText = ResourceManager.GetStringWithoutName("ERR00021");
+                txtWMEExec.WatermarkText = ResourceManager.GetStringWithoutName("ERR00055");
                 gvwCust.PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
                 gvwCust.PagerSettings.PageButtonCount = Convert.ToInt32(ConfigurationManager.AppSettings["PageButtonCount"]);
             }
@@ -254,7 +261,12 @@ namespace DSR.WebApp.Security
                 {
                     BuildSearchCriteria(searchCriteria);
                     CommonBLL commonBll = new CommonBLL();
-                    gvwCust.DataSource = commonBll.GetAllCustomer(searchCriteria);
+
+                    if (_roleId == (int)UserRole.Management)
+                        gvwCust.DataSource = commonBll.GetActiveCustomer(searchCriteria);
+                    else
+                        gvwCust.DataSource = commonBll.GetAllCustomer(searchCriteria);
+
                     gvwCust.DataBind();
                 }
             }
@@ -300,6 +312,8 @@ namespace DSR.WebApp.Security
             criteria.CustomerName = (txtCustName.Text == ResourceManager.GetStringWithoutName("ERR00022")) ? string.Empty : txtCustName.Text.Trim();
             criteria.GroupName = (txtGrComp.Text == ResourceManager.GetStringWithoutName("ERR00021")) ? string.Empty : txtGrComp.Text.Trim();
             criteria.LocAbbr = (txtLoc.Text == ResourceManager.GetStringWithoutName("ERR00018")) ? string.Empty : txtLoc.Text.Trim();
+            criteria.ExecutiveName = (txtLoc.Text == ResourceManager.GetStringWithoutName("ERR00055")) ? string.Empty : txtExec.Text.Trim();
+
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
         }
 

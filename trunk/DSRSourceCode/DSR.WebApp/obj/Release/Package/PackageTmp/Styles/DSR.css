@@ -34,10 +34,10 @@ legend {font-size: 1.1em;font-weight: 600;padding: 0px 4px 2px 4px;color:Blue;}
 
 /* Header & Footer */
 #header{margin:0px;width:100%;background:#ffffff url(Images/header.jpg) no-repeat center top; color:#000000;height:55px;border-right:none 0px #328dc4;border-left:none 0px #328dc4;}
-#header .logo{float:left;padding:0px 0px 0px 0px;}
-#header .productname{float:left;}
+#header .logo{float:left;padding:0px 0px 0px 0px;width:25%;}
+#header .productname{float:left;width:47%;}
 #header .productname h1{color:Black;font-size: 20px; font-weight:bolder; letter-spacing: 2px; margin-top:12px;padding-left:5px;}
-#header .search{float:right;padding:12px 10px 0px 0px;font-size: 12px;}
+#header .search{float:right;padding:12px 10px 0px 0px;font-size: 12px;width:25%;}
 #header .search a{ color: #000000;}
 #subheader{margin:0px;width:100%;color:#FFFFFF;background-color:Black;height:30px;}
 

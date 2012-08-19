@@ -279,4 +279,7 @@
   <data name="ERR00054" xml:space="preserve">
     <value>The group cannot be deleted</value>
   </data>
+  <data name="ERR00055" xml:space="preserve">
+    <value>Type Executive Name</value>
+  </data>
 </root>
