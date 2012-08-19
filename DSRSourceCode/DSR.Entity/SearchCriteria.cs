@@ -53,6 +53,12 @@ namespace DSR.Entity
             set;
         }
 
+        public string ExecutiveName
+        {
+            get;
+            set;
+        }
+
         public int UserId
         {
             get;

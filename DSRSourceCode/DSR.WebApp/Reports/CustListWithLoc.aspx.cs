@@ -78,6 +78,15 @@ namespace DSR.WebApp.Reports
                 GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetLocationByUser(_userId), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
                 GeneralFunctions.PopulateDropDownList<IArea>(ddlArea, new CommonBLL().GetActiveArea(), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
             }
+
+            if (roleId == (int)UserRole.SalesExecutive)
+            {
+                GeneralFunctions.PopulateDropDownList<IUser>(ddlSales, commonBll.GetSalesExecutive(_userId), "Id", "UserFullName", false);
+            }
+            else
+            {
+                GeneralFunctions.PopulateDropDownList<IUser>(ddlSales, commonBll.GetSalesExecutive(_userId), "Id", "UserFullName", Constants.DROPDOWNLIST_ALL_TEXT);
+            }
         }
 
         private void GenerateReport()
@@ -97,6 +106,7 @@ namespace DSR.WebApp.Reports
             rptViewer.LocalReport.SetParameters(new ReportParameter("CompanyName", Convert.ToString(ConfigurationManager.AppSettings["CompanyName"])));
             rptViewer.LocalReport.SetParameters(new ReportParameter("AreaName", ddlArea.SelectedItem.Text));
             rptViewer.LocalReport.SetParameters(new ReportParameter("Location", ddlLoc.SelectedItem.Text));
+            rptViewer.LocalReport.SetParameters(new ReportParameter("SalesPerson", ddlSales.SelectedItem.Text));
             rptViewer.LocalReport.Refresh();
         }
 
@@ -104,6 +114,7 @@ namespace DSR.WebApp.Reports
         {
             detail.LocationId = Convert.ToInt32(ddlLoc.SelectedValue);
             detail.AreaId = Convert.ToInt32(ddlArea.SelectedValue);
+            detail.SalesPersionId = Convert.ToInt32(ddlSales.SelectedValue);
         }
 
         private void RetriveParameters()
@@ -138,6 +149,7 @@ namespace DSR.WebApp.Reports
                         break;
                     case (int)UserRole.SalesExecutive:
                         //ddlLoc.Enabled = false;
+                        ddlSales.Enabled = false;
                         Response.Redirect("~/Unauthorized.aspx");
                         break;
                     default:

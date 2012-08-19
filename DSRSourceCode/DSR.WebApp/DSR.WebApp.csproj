@@ -65,6 +65,7 @@
     <Content Include="Images\edit.png" />
     <Content Include="Images\edit_icon.png" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\logo_benline.jpg" />
     <Content Include="Images\MUST_LOGO1.jpg" />
     <Content Include="Images\MUST_LOGO2.jpg" />
     <Content Include="Images\MUST_LOGO3.jpg" />

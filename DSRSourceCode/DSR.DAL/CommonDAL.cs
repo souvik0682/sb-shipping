@@ -435,6 +435,7 @@ namespace DSR.DAL
                 oDq.AddVarcharParam("@SchLocAbbr", 3, searchCriteria.LocAbbr);
                 oDq.AddVarcharParam("@SchCustName", 60, searchCriteria.CustomerName);
                 oDq.AddVarcharParam("@SchGroupName", 50, searchCriteria.GroupName);
+                oDq.AddVarcharParam("@SchExecutiveName", 50, searchCriteria.ExecutiveName);
                 oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
                 oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
                 DataTableReader reader = oDq.GetTableReader();
