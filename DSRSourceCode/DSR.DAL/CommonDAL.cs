@@ -583,6 +583,86 @@ namespace DSR.DAL
 
         #endregion
 
+        #region Assign Customer
+
+        public static List<ICustomerAssign> GetAssignedCustomer()
+        {
+            string strExecution = "[common].[uspGetAssignedCustomerList]";
+            List<ICustomerAssign> lstCust = new List<ICustomerAssign>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    ICustomerAssign cust = new CustomerAssignEntity(reader);
+                    lstCust.Add(cust);
+                }
+
+                reader.Close();
+            }
+
+            return lstCust;
+        }
+
+        public static ICustomerAssign GetAssignedCustomer(int custAssignID)
+        {
+            string strExecution = "[common].[uspGetAssignedCustomerList]";
+            ICustomerAssign cust = null;
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@CustAssignID", custAssignID);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    cust = new CustomerAssignEntity(reader);
+                }
+
+                reader.Close();
+            }
+
+            return cust;
+        }
+
+        public static int SaveAssignedCustomer(ICustomerAssign customer, int modifiedBy)
+        {
+            string strExecution = "[common].[uspSaveAssignCustomer]";
+            int result = 0;
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@Id", customer.Id);
+                oDq.AddIntegerParam("@NewUserID", customer.NewUserId);
+                oDq.AddIntegerParam("@ExistingUserID", customer.ExistingUserId);
+                oDq.AddCharParam("@AssignType", 1, customer.AssignType);
+                oDq.AddDateTimeParam("@StartDate", customer.StartDate);
+                oDq.AddDateTimeParam("@EndDate", customer.EndDate);
+                oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
+                oDq.AddIntegerParam("@Result", result, QueryParameterDirection.Output);
+                oDq.RunActionQuery();
+                result = Convert.ToInt32(oDq.GetParaValue("@Result"));
+            }
+
+            return result;
+        }
+
+        public static void DeleteAssignedCustomer(int id, int modifiedBy)
+        {
+            string strExecution = "[common].[uspDeleteAssignedCustomer]";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@Id", id);
+                oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
+                oDq.RunActionQuery();
+            }
+        }
+
+        #endregion
+
         #region Customer Type
 
         public static List<ICustomerType> GetCustomerType(char isActiveOnly)

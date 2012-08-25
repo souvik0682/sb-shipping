@@ -85,7 +85,7 @@ namespace DSR.WebApp.Security
             }
             else if (e.CommandName == "Remove")
             {
-                DelateArea(Convert.ToInt32(e.CommandArgument));
+                DeleteArea(Convert.ToInt32(e.CommandArgument));
             }
         }
 
@@ -196,7 +196,7 @@ namespace DSR.WebApp.Security
             }
         }
 
-        private void DelateArea(int areaId)
+        private void DeleteArea(int areaId)
         {
             CommonBLL commonBll = new CommonBLL();
             commonBll.DeleteArea(areaId, _userId);

@@ -58,6 +58,7 @@ namespace DSR.WebApp
 
         private void ShowMenu(IUser user)
         {
+            liSpecificCallType.Style["display"] = "none";
             liMaster.Style["display"] = "none";
 
             liUserMst.Style["display"] = "none";
@@ -65,6 +66,7 @@ namespace DSR.WebApp
             liAreaMst.Style["display"] = "none";
             liGrMst.Style["display"] = "none";
             liCustMst.Style["display"] = "none";
+            liCustAssign.Style["display"] = "none";
             liLineWiseLoc.Style["display"] = "none";
             liLocWiseLine.Style["display"] = "none";
             liCustList.Style["display"] = "none";
@@ -101,6 +103,7 @@ namespace DSR.WebApp
                 case (int)UserRole.Manager:
                     liMaster.Style["display"] = "";
                     liCustMst.Style["display"] = "";
+                    liCustAssign.Style["display"] = "";
                     liLineWiseLoc.Style["display"] = "";
                     liLocWiseLine.Style["display"] = "";
                     liCustList.Style["display"] = "";

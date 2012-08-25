@@ -282,4 +282,7 @@
   <data name="ERR00055" xml:space="preserve">
     <value>Type Executive Name</value>
   </data>
+  <data name="ERR00056" xml:space="preserve">
+    <value>Customer Successfully Assigned</value>
+  </data>
 </root>

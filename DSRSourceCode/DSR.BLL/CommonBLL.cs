@@ -445,6 +445,30 @@ namespace DSR.BLL
 
         #endregion
 
+        #region Assign Customer
+
+        public List<ICustomerAssign> GetAssignedCustomer()
+        {
+            return CommonDAL.GetAssignedCustomer();
+        }
+
+        public ICustomerAssign GetAssignedCustomer(int custAssignID)
+        {
+            return CommonDAL.GetAssignedCustomer(custAssignID);
+        }
+
+        public int SaveAssignedCustomer(ICustomerAssign customer, int modifiedBy)
+        {
+            return CommonDAL.SaveAssignedCustomer(customer, modifiedBy);
+        }
+
+        public void DeleteAssignedCustomer(int id, int modifiedBy)
+        {
+            CommonDAL.DeleteAssignedCustomer(id, modifiedBy);
+        }
+
+        #endregion
+
         #region Customer Type
 
         public List<ICustomerType> GetAllCustomerType()

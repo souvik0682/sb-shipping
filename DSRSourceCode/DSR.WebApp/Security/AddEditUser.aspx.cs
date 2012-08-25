@@ -45,16 +45,32 @@ namespace DSR.WebApp.Security
 
         protected void ddlRole_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (IsSalesRole(Convert.ToInt32(ddlRole.SelectedValue)))
+            switch (Convert.ToInt32(ddlRole.SelectedValue))
             {
-                ddlSalesPersonType.SelectedValue = "M";
-                ddlSalesPersonType.Enabled = true;
+                case (int)UserRole.SalesExecutive:
+                    ddlSalesPersonType.SelectedValue = "M";
+                    ddlSalesPersonType.Enabled = true;
+                    break;
+                case (int)UserRole.Manager:
+                    ddlSalesPersonType.Enabled = false;
+                    ddlSalesPersonType.SelectedValue = "L";
+                    break;
+                default:
+                    ddlSalesPersonType.Enabled = false;
+                    ddlSalesPersonType.SelectedValue = "0";
+                    break;
             }
-            else
-            {
-                ddlSalesPersonType.Enabled = false;
-                ddlSalesPersonType.SelectedValue = "0";
-            }
+
+            //if (IsSalesRole(Convert.ToInt32(ddlRole.SelectedValue)))
+            //{
+            //    ddlSalesPersonType.SelectedValue = "M";
+            //    ddlSalesPersonType.Enabled = true;
+            //}
+            //else
+            //{
+            //    ddlSalesPersonType.Enabled = false;
+            //    ddlSalesPersonType.SelectedValue = "0";
+            //}
         }
 
         #endregion
@@ -142,32 +158,32 @@ namespace DSR.WebApp.Security
                 Response.Redirect("~/Security/ManageUser.aspx");
         }
 
-        private bool IsSalesRole(int roleId)
-        {
-            bool isSalesRole = false;
+        //private bool IsSalesRole(int roleId)
+        //{
+        //    bool isSalesRole = false;
 
-            if (roleId == (int)UserRole.SalesExecutive)
-            {
-                isSalesRole = true;
-            }
-            else
-            {
-                isSalesRole = false;
-            }
+        //    if (roleId == (int)UserRole.SalesExecutive)
+        //    {
+        //        isSalesRole = true;
+        //    }
+        //    else
+        //    {
+        //        isSalesRole = false;
+        //    }
 
-            //IRole role = new CommonBLL().GetRole(roleId);
-            //bool isSalesRole = false;
+        //    //IRole role = new CommonBLL().GetRole(roleId);
+        //    //bool isSalesRole = false;
 
-            //if (!ReferenceEquals(role, null))
-            //{
-            //    if (role.SalesRole.HasValue && role.SalesRole.Value == 'Y')
-            //    {
-            //        isSalesRole = true;
-            //    }
-            //}
+        //    //if (!ReferenceEquals(role, null))
+        //    //{
+        //    //    if (role.SalesRole.HasValue && role.SalesRole.Value == 'Y')
+        //    //    {
+        //    //        isSalesRole = true;
+        //    //    }
+        //    //}
 
-            return isSalesRole;
-        }
+        //    return isSalesRole;
+        //}
 
         private void PopulateRole()
         {
@@ -200,6 +216,11 @@ namespace DSR.WebApp.Security
                 {
                     ddlSalesPersonType.SelectedValue = Convert.ToString(user.SalesPersonType);
                     ddlSalesPersonType.Enabled = true;
+                }
+                else if (user.UserRole.Id == (int)UserRole.Manager)
+                {
+                    ddlSalesPersonType.SelectedValue = Convert.ToString(user.SalesPersonType);
+                    ddlSalesPersonType.Enabled = false;
                 }
                 else
                 {
