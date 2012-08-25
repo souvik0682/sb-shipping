@@ -37,7 +37,7 @@
         <div id="footer">
             <hr />
             <div class="copyright">Copyright 2012, <b>BLA</b>. All rights reserved.</div>
-            <div class="disclaimer">Powred By <a href="#" onclick="window.open('http://www.mycompany.com/','my_Window')"><b>My Company</b></a></div>
+            <div class="disclaimer">Powred By <a href="#" onclick="window.open('http://www.mycompany.com/','my_Window')"><b>Ganapati & Europia</b></a></div>
         </div>
     </div>
     </form>

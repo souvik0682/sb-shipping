@@ -23,6 +23,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="container" runat="Server">
+<center>
     <div style="padding-top: 10px;">
         <fieldset style="width:964px;height:65px;">
         <table>
@@ -65,4 +66,5 @@
             <rsweb:ReportViewer ID="rptViewer" runat="server" Width="100%"></rsweb:ReportViewer>        
         </div>
     </div>
+</center>
 </asp:Content>

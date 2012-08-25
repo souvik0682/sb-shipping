@@ -48,6 +48,7 @@
     <Compile Include="ContactPersonEntity.cs" />
     <Compile Include="CommitmentEntity.cs" />
     <Compile Include="CallTypeEntity.cs" />
+    <Compile Include="CustomerAssignEntity.cs" />
     <Compile Include="ProspectEntity.cs" />
     <Compile Include="ShipSoftEntity.cs" />
     <Compile Include="PortEntity.cs" />
