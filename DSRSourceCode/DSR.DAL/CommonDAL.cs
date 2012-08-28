@@ -1077,6 +1077,28 @@ namespace DSR.DAL
             }
 
             return lstUser;
+        } 
+
+        public static List<IUser> GetSalesExecutiveNew(int userId)
+        {
+            string strExecution = "[common].[uspGetSalesExecutiveNew]";
+            List<IUser> lstUser = new List<IUser>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@UserId", userId);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    IUser user = new UserEntity(reader);
+                    lstUser.Add(user);
+                }
+
+                reader.Close();
+            }
+
+            return lstUser;
         }
 
         #endregion

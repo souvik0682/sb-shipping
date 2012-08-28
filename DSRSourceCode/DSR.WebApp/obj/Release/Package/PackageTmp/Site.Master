@@ -38,6 +38,7 @@
                             <li id="liAreaMst" runat="server"><a href="<%=Page.ResolveClientUrl("~/Security/ManageArea.aspx") %>">Area Master</a></li>
                             <li id="liGrMst" runat="server"><a href="<%=Page.ResolveClientUrl("~/Security/ManageGroupCompany.aspx") %>">Group Company Master</a></li>
                             <li id="liCustMst" runat="server"><a href="<%=Page.ResolveClientUrl("~/Security/ManageCustomer.aspx") %>">Customer Master</a></li>
+                            <li id="liCustAssign" runat="server"><a href="<%=Page.ResolveClientUrl("~/Security/CustomerAssign.aspx") %>">Assign Customer</a></li>
                         </ul>
                     </li>
                     <li>

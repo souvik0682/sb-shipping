@@ -91,6 +91,7 @@
     <Content Include="Security\AddEditArea.aspx" />
     <Content Include="Security\AddEditCustomer.aspx" />
     <Content Include="Security\AddEditGroupCompany.aspx" />
+    <Content Include="Security\AddEditCustomerAssign.aspx" />
     <Content Include="Security\CustomerAssign.aspx" />
     <Content Include="Security\DailySalesCallEntry.aspx" />
     <Content Include="Security\ImportData.aspx" />
@@ -207,6 +208,13 @@
     </Compile>
     <Compile Include="Reports\CustListWithLoc.aspx.designer.cs">
       <DependentUpon>CustListWithLoc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\AddEditCustomerAssign.aspx.cs">
+      <DependentUpon>AddEditCustomerAssign.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\AddEditCustomerAssign.aspx.designer.cs">
+      <DependentUpon>AddEditCustomerAssign.aspx</DependentUpon>
     </Compile>
     <Compile Include="Security\CustomerAssign.aspx.cs">
       <DependentUpon>CustomerAssign.aspx</DependentUpon>

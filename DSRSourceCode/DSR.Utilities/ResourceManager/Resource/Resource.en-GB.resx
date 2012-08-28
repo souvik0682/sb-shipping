@@ -285,4 +285,28 @@
   <data name="ERR00056" xml:space="preserve">
     <value>Customer Successfully Assigned</value>
   </data>
+  <data name="ERR00057" xml:space="preserve">
+    <value>* Please select existing user</value>
+  </data>
+  <data name="ERR00058" xml:space="preserve">
+    <value>* Please select new user</value>
+  </data>
+  <data name="ERR00059" xml:space="preserve">
+    <value>* Date can't be blank</value>
+  </data>
+  <data name="ERR00060" xml:space="preserve">
+    <value>Permanent type cannot be edited</value>
+  </data>
+  <data name="ERR00061" xml:space="preserve">
+    <value>Permanent type cannot be deleted</value>
+  </data>
+  <data name="ERR00062" xml:space="preserve">
+    <value>Data earlier than current date cannot be edited</value>
+  </data>
+  <data name="ERR00063" xml:space="preserve">
+    <value>Data earlier than current date cannot be deleted</value>
+  </data>
+  <data name="ERR00064" xml:space="preserve">
+    <value>* Start Date cannot be earlier than current date</value>
+  </data>
 </root>

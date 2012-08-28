@@ -34,14 +34,13 @@ namespace DSR.WebApp.Security
 
             if (!IsPostBack)
             {
-                PopulateSalesExecutive();
                 LoadData();
             }
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-
+            RedirecToAddEditPage(-1);
         }
 
         protected void ddlPaging_SelectedIndexChanged(object sender, EventArgs e)
@@ -49,18 +48,6 @@ namespace DSR.WebApp.Security
             gvwList.PageSize = Convert.ToInt32(ddlPaging.SelectedValue);
             LoadData();
             upList.Update();
-        }
-
-        protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlType.SelectedValue == "P")
-            {
-                ShowEndDate(false);
-            }
-            else
-            {
-                ShowEndDate(true);
-            }
         }
 
         protected void gvwList_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -98,14 +85,33 @@ namespace DSR.WebApp.Security
                 btnRemove.ToolTip = ResourceManager.GetStringWithoutName("ERR00007");
                 btnRemove.CommandArgument = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "Id"));
 
-                if (_hasEditAccess)
+                char assignType = Convert.ToChar(DataBinder.Eval(e.Row.DataItem, "AssignType"));
+                DateTime startDt = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "StartDate"), _culture);
+
+                if (assignType == 'P') // Permanent, cannot be deleted or edited
                 {
-                    btnRemove.OnClientClick = "javascript:return confirm('" + ResourceManager.GetStringWithoutName("ERR00010") + "');";
+                    btnEdit.OnClientClick = "javascript:alert('" + ResourceManager.GetStringWithoutName("ERR00060") + "');return false;";
+                    btnRemove.OnClientClick = "javascript:alert('" + ResourceManager.GetStringWithoutName("ERR00061") + "');return false;";
                 }
                 else
                 {
-                    btnEdit.OnClientClick = "javascript:alert('" + ResourceManager.GetStringWithoutName("ERR00009") + "');return false;";
-                    btnRemove.OnClientClick = "javascript:alert('" + ResourceManager.GetStringWithoutName("ERR00009") + "');return false;";
+                    if (DateTime.Compare(startDt, DateTime.Now.Date) == -1)
+                    {
+                        btnEdit.OnClientClick = "javascript:alert('" + ResourceManager.GetStringWithoutName("ERR00062") + "');return false;";
+                        btnRemove.OnClientClick = "javascript:alert('" + ResourceManager.GetStringWithoutName("ERR00063") + "');return false;";
+                    }
+                    else
+                    {
+                        if (_hasEditAccess)
+                        {
+                            btnRemove.OnClientClick = "javascript:return confirm('" + ResourceManager.GetStringWithoutName("ERR00010") + "');";
+                        }
+                        else
+                        {
+                            btnEdit.OnClientClick = "javascript:alert('" + ResourceManager.GetStringWithoutName("ERR00009") + "');return false;";
+                            btnRemove.OnClientClick = "javascript:alert('" + ResourceManager.GetStringWithoutName("ERR00009") + "');return false;";
+                        }
+                    }
                 }
             }
         }
@@ -114,7 +120,7 @@ namespace DSR.WebApp.Security
         {
             if (e.CommandName == "EditData")
             {
-                GetData(Convert.ToInt32(e.CommandArgument));
+                RedirecToAddEditPage(Convert.ToInt32(e.CommandArgument));
             }
             else if (e.CommandName == "Remove")
             {
@@ -126,6 +132,7 @@ namespace DSR.WebApp.Security
         {
             gvwList.PageIndex = e.NewPageIndex;
             LoadData();
+            upList.Update();
         }
 
         #endregion
@@ -165,32 +172,15 @@ namespace DSR.WebApp.Security
         {
             if (!IsPostBack)
             {
-                ShowEndDate(false);
+                gvwList.PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
+                gvwList.PagerSettings.PageButtonCount = Convert.ToInt32(ConfigurationManager.AppSettings["PageButtonCount"]);
             }
         }
 
-        private void ShowEndDate(bool isVisible)
+        private void RedirecToAddEditPage(int id)
         {
-            if (!isVisible)
-            {
-                lblFromDt.Text = "From:";
-                txtEndDt.Style["display"] = "none";
-                lblEndDt.Style["display"] = "none";
-                spnEndDt.Style["display"] = "none";
-            }
-            else
-            {
-                lblFromDt.Text = "Start Date:";
-                txtEndDt.Style["display"] = "";
-                lblEndDt.Style["display"] = "";
-            }
-        }
-
-        private void PopulateSalesExecutive()
-        {
-            CommonBLL commonBll = new CommonBLL();
-            GeneralFunctions.PopulateDropDownList<IUser>(ddlNew, commonBll.GetSalesExecutive(_userId), "Id", "UserFullName", Constants.DROPDOWNLIST_ALL_TEXT);
-            GeneralFunctions.PopulateDropDownList<IUser>(ddlExisting, commonBll.GetSalesExecutive(_userId), "Id", "UserFullName", Constants.DROPDOWNLIST_ALL_TEXT);
+            string encryptedId = GeneralFunctions.EncryptQueryString(id.ToString());
+            Response.Redirect("~/Security/AddEditCustomerAssign.aspx?id=" + encryptedId);
         }
 
         private void LoadData()
@@ -199,58 +189,13 @@ namespace DSR.WebApp.Security
             gvwList.DataBind();
         }
 
-        private void GetData(int id)
-        {
-            ICustomerAssign cust = new CommonBLL().GetAssignedCustomer(id);
-
-            if (!ReferenceEquals(cust, null))
-            {
-                hdnId.Value = cust.Id.ToString();
-                ddlExisting.SelectedValue = cust.ExistingUserId.ToString();
-                ddlNew.SelectedValue = cust.NewUserId.ToString();
-                ddlType.SelectedValue = Convert.ToString(cust.AssignType);
-                txtStartDt.Text = cust.StartDate.ToString(ConfigurationManager.AppSettings["DateFormat"]);
-
-                if (cust.AssignType == 'P')
-                {
-                    ShowEndDate(false);
-                }
-                else
-                {
-                    if (cust.EndDate.HasValue)
-                        txtEndDt.Text = cust.EndDate.Value.ToString(ConfigurationManager.AppSettings["DateFormat"]);
-                    
-                    ShowEndDate(true);
-                }
-
-                upAdd.Update();
-            }
-        }
-
-        private void SaveData()
-        {
-            ICustomerAssign cust = new CustomerAssignEntity();
-            BuildEntity(cust);
-            CommonBLL commonBll = new CommonBLL();
-            commonBll.SaveAssignedCustomer(cust, _userId);
-            ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "<script>javascript:void alert('" + ResourceManager.GetStringWithoutName("ERR00056") + "');</script>", false);
-        }
-
         private void DeleteData(int id)
         {
-
+            new CommonBLL().DeleteAssignedCustomer(id, _userId);
+            LoadData();
+            ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "<script>javascript:void alert('" + ResourceManager.GetStringWithoutName("ERR00006") + "');</script>", false);
         }
 
-        private void BuildEntity(ICustomerAssign cust)
-        {
-            cust.ExistingUserId = Convert.ToInt32(ddlExisting.SelectedValue);
-            cust.NewUserId = Convert.ToInt32(ddlNew.SelectedValue);
-            cust.AssignType = Convert.ToChar(ddlType.SelectedValue);
-            cust.StartDate = Convert.ToDateTime(txtStartDt.Text, _culture);
-
-            if (cust.AssignType == 'T')
-                cust.EndDate = Convert.ToDateTime(txtEndDt.Text, _culture);
-        }
         #endregion
     }
 }

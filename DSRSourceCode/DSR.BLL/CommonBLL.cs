@@ -465,7 +465,7 @@ namespace DSR.BLL
         public void DeleteAssignedCustomer(int id, int modifiedBy)
         {
             CommonDAL.DeleteAssignedCustomer(id, modifiedBy);
-        }
+        }        
 
         #endregion
 
@@ -620,6 +620,11 @@ namespace DSR.BLL
         public List<IUser> GetSalesExecutive(int userId)
         {
             return CommonDAL.GetSalesExecutive(userId);
+        }
+
+        public List<IUser> GetSalesExecutiveNew(int userId)
+        {
+            return CommonDAL.GetSalesExecutiveNew(userId);
         }
 
         #endregion
