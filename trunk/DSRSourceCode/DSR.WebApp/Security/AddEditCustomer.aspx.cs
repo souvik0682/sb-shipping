@@ -106,7 +106,7 @@ namespace DSR.WebApp.Security
             GeneralFunctions.PopulateDropDownList<ICustomerType>(ddlCustType, commonBll.GetActiveCustomerType(), "Id", "Name", true);
 
             GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetLocationByUser(_userId), "Id", "Name", true);
-            GeneralFunctions.PopulateDropDownList<IUser>(ddlExecutive, commonBll.GetSalesExecutive(_userId), "Id", "UserFullName", true);
+            GeneralFunctions.PopulateDropDownList<IUser>(ddlExecutive, commonBll.GetSalesExecutiveNew(_userId), "Id", "UserFullName", true);
             PopulateArea(0, string.Empty);
         }
 
