@@ -68,6 +68,11 @@ namespace DSR.BLL
             searchCriteria.SortDirection = "ASC";
         }
 
+        public bool ChangePassword(IUser user)
+        {
+            return UserDAL.ChangePassword(user);
+        }
+
         public List<IUser> GetAllUserList(SearchCriteria searchCriteria)
         {
             return UserDAL.GetUserList('N', searchCriteria);

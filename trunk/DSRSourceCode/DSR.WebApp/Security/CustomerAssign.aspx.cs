@@ -155,9 +155,15 @@ namespace DSR.WebApp.Security
                     Response.Redirect("~/Login.aspx");
                 }
 
-                if (user.UserRole.Id != (int)UserRole.Manager)
+                switch (user.UserRole.Id)
                 {
-                    Response.Redirect("~/Unauthorized.aspx");
+                    case (int)UserRole.Admin:
+                    case (int)UserRole.Management:
+                    case (int)UserRole.Manager:
+                        break;
+                    default:
+                        Response.Redirect("~/Unauthorized.aspx");
+                        break;
                 }
 
                 _hasEditAccess = true;

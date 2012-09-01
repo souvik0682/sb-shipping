@@ -64,6 +64,7 @@
                             <li id="liMisRptYearly" runat="server"><a href="<%=Page.ResolveClientUrl("~/Reports/MisRptYearly.aspx") %>">Yearly MIS Report</a></li>
                         </ul>
                     </li>
+                    <li><a href="<%=Page.ResolveClientUrl("~/Security/ChangePassword.aspx") %>">Change Password</a></li>
                 </ul>            
             </div>
         </div>

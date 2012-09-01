@@ -83,6 +83,7 @@ namespace DSR.WebApp
                     liAreaMst.Style["display"] = "";
                     liGrMst.Style["display"] = "";
                     liCustMst.Style["display"] = "";
+                    liCustAssign.Style["display"] = "";
                     liLineWiseLoc.Style["display"] = "";
                     liLocWiseLine.Style["display"] = "";
                     liCustList.Style["display"] = "";
@@ -93,6 +94,7 @@ namespace DSR.WebApp
                 case (int)UserRole.Management:
                     liMaster.Style["display"] = "";
                     liCustMst.Style["display"] = "";
+                    liCustAssign.Style["display"] = "";
                     liLineWiseLoc.Style["display"] = "";
                     liLocWiseLine.Style["display"] = "";
                     liCustList.Style["display"] = "";

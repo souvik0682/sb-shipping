@@ -310,7 +310,9 @@ namespace DSR.WebApp.Security
 
                 if (message == string.Empty)
                 {
-                    SendEmail(user);
+                    if (_uId == 0)
+                        SendEmail(user);
+
                     Response.Redirect("~/Security/ManageUser.aspx");
                 }
                 else
@@ -340,11 +342,12 @@ namespace DSR.WebApp.Security
 
         private void SendEmail(IUser user)
         {
-            string msgBody = "Dear " + user.UserFullName + "<br/>.Thank you for registering with BLA. <br/>Your login credentials:<br/>Username: " + user.Name + "<br/>Password:1234";
+            string url = Convert.ToString(ConfigurationManager.AppSettings["ApplicationUrl"]) + "/Security/ChangePassword.aspx?id=" + GeneralFunctions.EncryptQueryString(user.Id.ToString());
+            string msgBody = "Hello " + user.UserFullName + "<br/>We have received new account creation request for your account " + user.Name + ". <br/>If this request was initiated by you, please click on following link and change your password:<br/><a href=\"" + url + "\">";
 
             try
             {
-                CommonBLL.SendMail("", user.EmailId, string.Empty, "DSR Password Reset", "", Convert.ToString(ConfigurationManager.AppSettings["MailServerIP"]));
+                CommonBLL.SendMail(Convert.ToString(ConfigurationManager.AppSettings["Sender"]), user.EmailId, string.Empty, "New account creation", msgBody, Convert.ToString(ConfigurationManager.AppSettings["MailServerIP"]), Convert.ToString(ConfigurationManager.AppSettings["MailUserAccount"]), Convert.ToString(ConfigurationManager.AppSettings["MailUserPwd"]));
             }
             catch (Exception ex)
             {
