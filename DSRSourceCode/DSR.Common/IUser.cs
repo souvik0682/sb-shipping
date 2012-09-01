@@ -8,6 +8,7 @@ namespace DSR.Common
     public interface IUser : IBase<int>, ICommon
     {
         string Password { get; set; }
+        string NewPassword { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
         string UserFullName { get; }

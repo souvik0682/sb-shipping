@@ -35,7 +35,7 @@
                     <asp:ListItem Text="100" Value="100" />
                 </asp:DropDownList>&nbsp;&nbsp;        
                 <asp:Button ID="btnAdd" runat="server" Text="Assign Customer" Width="130px" OnClick="btnAdd_Click" />    
-            </div>
+            </div><br /><br />
             <div>
                 <asp:UpdatePanel ID="upList" runat="server" UpdateMode="Conditional">
                     <Triggers>

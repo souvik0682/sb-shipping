@@ -92,6 +92,7 @@
     <Content Include="Security\AddEditCustomer.aspx" />
     <Content Include="Security\AddEditGroupCompany.aspx" />
     <Content Include="Security\AddEditCustomerAssign.aspx" />
+    <Content Include="Security\ChangePassword.aspx" />
     <Content Include="Security\CustomerAssign.aspx" />
     <Content Include="Security\DailySalesCallEntry.aspx" />
     <Content Include="Security\ImportData.aspx" />
@@ -102,6 +103,7 @@
     <Content Include="Security\ManageArea.aspx" />
     <Content Include="Security\ManageLocation.aspx" />
     <Content Include="Security\ManageUser.aspx" />
+    <Content Include="Security\TestMail.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
@@ -216,6 +218,13 @@
     <Compile Include="Security\AddEditCustomerAssign.aspx.designer.cs">
       <DependentUpon>AddEditCustomerAssign.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Security\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Security\CustomerAssign.aspx.cs">
       <DependentUpon>CustomerAssign.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -250,6 +259,13 @@
     </Compile>
     <Compile Include="Security\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\TestMail.aspx.cs">
+      <DependentUpon>TestMail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\TestMail.aspx.designer.cs">
+      <DependentUpon>TestMail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

@@ -15,6 +15,24 @@ namespace DSR.DAL
         {
         }
 
+        public static bool ChangePassword(IUser user)
+        {
+            string strExecution = "[admin].[uspChangePassword]";
+            bool result = false;
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@UserId", user.Id);
+                oDq.AddVarcharParam("@OldPwd", 50, user.Password);
+                oDq.AddVarcharParam("@NewPwd", 50, user.NewPassword);
+                oDq.AddBooleanParam("@Result", result, QueryParameterDirection.Output);
+                oDq.RunActionQuery();
+                result = Convert.ToBoolean(oDq.GetParaValue("@Result"));
+            }
+
+            return result;
+        }
+
         public static void ValidateUser(IUser user)
         {
             string strExecution = "[admin].[uspValidateUser]";
@@ -103,7 +121,7 @@ namespace DSR.DAL
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
-                oDq.AddIntegerParam("@RoleId",roleId);
+                oDq.AddIntegerParam("@RoleId", roleId);
                 DataTableReader reader = oDq.GetTableReader();
 
                 while (reader.Read())

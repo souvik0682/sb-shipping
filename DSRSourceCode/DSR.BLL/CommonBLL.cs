@@ -39,6 +39,7 @@ namespace DSR.BLL
 
                     MyMail.Subject = subject;
                     MyMail.Body = GetMessageBody(body);
+                    MyMail.BodyEncoding = System.Text.Encoding.ASCII;
                     MyMail.IsBodyHtml = true;
 
                     SmtpClient client = new SmtpClient(mailServerIP);
@@ -65,7 +66,7 @@ namespace DSR.BLL
                     MailMessage MyMail = new MailMessage();
                     MyMail.To.Add(new MailAddress(mailTo));
                     MyMail.Priority = MailPriority.High;
-                    MyMail.From = new MailAddress(from, "DSR Help Desk");
+                    MyMail.From = new MailAddress(from, "BEN LINE AGENCIES Help Desk");
 
                     if (cc != "")
                     {
@@ -75,9 +76,11 @@ namespace DSR.BLL
 
                     MyMail.Subject = subject;
                     MyMail.Body = GetMessageBody(body);
+                    MyMail.BodyEncoding = System.Text.Encoding.ASCII;
                     MyMail.IsBodyHtml = true;
 
                     SmtpClient client = new SmtpClient(mailServerIP, 25);
+                    client.DeliveryMethod = SmtpDeliveryMethod.Network;
                     System.Net.NetworkCredential credential = new System.Net.NetworkCredential(mailUserAccount, mailUserPwd);
                     client.Credentials = credential;
                     client.Send(MyMail);

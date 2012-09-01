@@ -17,6 +17,12 @@ namespace DSR.Entity
             set;
         }
 
+        public string NewPassword
+        {
+            get;
+            set;
+        }
+
         public string FirstName
         {
             get;
