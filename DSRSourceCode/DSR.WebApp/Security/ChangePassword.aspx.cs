@@ -60,7 +60,7 @@ namespace DSR.WebApp.Security
         {
             if (!ReferenceEquals(Request.QueryString["id"], null) && Convert.ToString(Request.QueryString["id"]) != string.Empty)
             {
-                int.TryParse(Convert.ToString(Request.QueryString["id"]), out _userId);
+                int.TryParse(GeneralFunctions.DecryptQueryString(Convert.ToString(Request.QueryString["id"])), out _userId);
             }
             else
             {

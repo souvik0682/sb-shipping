@@ -17,21 +17,24 @@ namespace DSR.WebApp
             //Clears the application cache.
             GeneralFunctions.ClearApplicationCache();
 
-            if (!ReferenceEquals(Session[Constants.SESSION_USER_INFO], null))
+            if (!Request.Path.Contains("ChangePassword.aspx"))
             {
-                IUser user = (IUser)Session[Constants.SESSION_USER_INFO];
+                if (!ReferenceEquals(Session[Constants.SESSION_USER_INFO], null))
+                {
+                    IUser user = (IUser)Session[Constants.SESSION_USER_INFO];
 
-                if (ReferenceEquals(user, null) || user.Id == 0)
+                    if (ReferenceEquals(user, null) || user.Id == 0)
+                    {
+                        Response.Redirect("~/Login.aspx");
+                    }
+
+                    SetAttributes(user);
+                    ShowMenu(user);
+                }
+                else
                 {
                     Response.Redirect("~/Login.aspx");
                 }
-
-                SetAttributes(user);
-                ShowMenu(user);
-            }
-            else
-            {
-                Response.Redirect("~/Login.aspx");
             }
         }
 
