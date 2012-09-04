@@ -14,19 +14,21 @@ namespace DSR.WebApp.Security
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            dvMsg.Style["display"] = "none";
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
             try
             {
-                CommonBLL.SendMail("maa.system@benlineagencies.com", TextBox1.Text, string.Empty, "Test Mail", "This is a test mail", Convert.ToString(ConfigurationManager.AppSettings["MailServerIP"]), Convert.ToString(ConfigurationManager.AppSettings["MailUserAccount"]), Convert.ToString(ConfigurationManager.AppSettings["MailUserPwd"]));
+                string msgBody = @"This is a test mail. Please ignore it.";
+                CommonBLL.SendMail(Convert.ToString(ConfigurationManager.AppSettings["Sender"]), Convert.ToString(ConfigurationManager.AppSettings["DisplayName"]), TextBox1.Text, string.Empty, "New account creation", msgBody, Convert.ToString(ConfigurationManager.AppSettings["MailServerIP"]));
                 GeneralFunctions.RegisterAlertScript(this, "Mail successfully send");
             }
             catch (Exception ex)
             {
-                GeneralFunctions.RegisterAlertScript(this, ex.Message);
+                dvMsg.Style["display"] = "";
+                dvMsg.InnerText = "An error has occured: " + ex.Message + "<br/>" + ex.InnerException.ToString();
             }
 
         }
@@ -35,12 +37,14 @@ namespace DSR.WebApp.Security
         {
             try
             {
-                CommonBLL.SendMail("maa.system@benlineagencies.com", TextBox1.Text, string.Empty, "Test Mail", "This is a test mail", Convert.ToString(ConfigurationManager.AppSettings["MailServerIP"]));
+                string msgBody = @"This is a test mail. Please ignore it.";
+                CommonBLL.SendMail(Convert.ToString(ConfigurationManager.AppSettings["Sender"]), Convert.ToString(ConfigurationManager.AppSettings["DisplayName"]), TextBox1.Text, string.Empty, "New account creation", msgBody, Convert.ToString(ConfigurationManager.AppSettings["MailServerIP"]), Convert.ToString(ConfigurationManager.AppSettings["MailUserAccount"]), Convert.ToString(ConfigurationManager.AppSettings["MailUserPwd"]));
                 GeneralFunctions.RegisterAlertScript(this, "Mail successfully send");
             }
             catch (Exception ex)
             {
-                GeneralFunctions.RegisterAlertScript(this, ex.Message);
+                dvMsg.Style["display"] = "";
+                dvMsg.InnerText = "An error has occured: " + ex.Message + "<br/>" + ex.InnerException.ToString();
             }
 
         }

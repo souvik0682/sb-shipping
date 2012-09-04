@@ -278,11 +278,11 @@ namespace DSR.WebApp.Security
             if (!ReferenceEquals(user, null))
             {
                 string url = Convert.ToString(ConfigurationManager.AppSettings["ApplicationUrl"]) + "/Security/ChangePassword.aspx?id=" + GeneralFunctions.EncryptQueryString(uId.ToString());
-                string msgBody = "Hello " + user.UserFullName + "<br/>We have received new password request for your account " + user.Name + ". Your temporary password is:" + Constants.DEFAULT_PASSWORD + " <br/>If this request was initiated by you, please click on following link and change your password:<br/><a href=\"" + url + "\">";
+                string msgBody = "Hello " + user.UserFullName + "<br/>We have received new password request for your account " + user.Name + ". Your temporary password is:" + Constants.DEFAULT_PASSWORD + " <br/>If this request was initiated by you, please click on following link and change your password:<br/><a href='" + url + "'>" + url + "</a>";
 
                 try
                 {
-                    CommonBLL.SendMail(Convert.ToString(ConfigurationManager.AppSettings["Sender"]), user.EmailId, string.Empty, "Request for change password", msgBody, Convert.ToString(ConfigurationManager.AppSettings["MailServerIP"]), Convert.ToString(ConfigurationManager.AppSettings["MailUserAccount"]), Convert.ToString(ConfigurationManager.AppSettings["MailUserPwd"]));
+                    CommonBLL.SendMail(Convert.ToString(ConfigurationManager.AppSettings["Sender"]), Convert.ToString(ConfigurationManager.AppSettings["DisplayName"]), user.EmailId, string.Empty, "Request for change password", msgBody, Convert.ToString(ConfigurationManager.AppSettings["MailServerIP"]), Convert.ToString(ConfigurationManager.AppSettings["MailUserAccount"]), Convert.ToString(ConfigurationManager.AppSettings["MailUserPwd"]));
                     ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "<script>javascript:void alert('" + ResourceManager.GetStringWithoutName("ERR00071") + "');</script>", false);
                 }
                 catch (Exception ex)

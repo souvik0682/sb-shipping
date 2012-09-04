@@ -5,13 +5,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <link href="../Styles/DSR.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
         Recipient:<asp:TextBox ID="TextBox1" runat="server" Width="300"></asp:TextBox>
         <asp:Button ID="Button1" runat="server" Text="Send Mail" OnClick="Button1_Click" />
-        <asp:Button ID="Button2" runat="server" Text="Send Mail (Default Credential)" OnClick="Button2_Click" />
+        <asp:Button ID="Button2" runat="server" Text="Send Mail (Default Credential)" OnClick="Button2_Click" /><br />
+        <div id="dvMsg" runat="server" style="display:none;padding-top:10px;width:100%;" class="errormessage"></div>
+       
     </div>
     </form>
 </body>

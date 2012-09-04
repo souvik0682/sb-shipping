@@ -18,7 +18,7 @@ namespace DSR.BLL
 
         #region Email
 
-        public static bool SendMail(string from, string mailTo, string cc, string subject, string body, string mailServerIP)
+        public static bool SendMail(string from, string displayName, string mailTo, string cc, string subject, string body, string mailServerIP)
         {
             bool sent = true;
 
@@ -29,7 +29,7 @@ namespace DSR.BLL
                     MailMessage MyMail = new MailMessage();
                     MyMail.To.Add(new MailAddress(mailTo));
                     MyMail.Priority = MailPriority.High;
-                    MyMail.From = new MailAddress(from, "DSR Help Desk");
+                    MyMail.From = new MailAddress(from, displayName);
 
                     if (cc != "")
                     {
@@ -39,7 +39,7 @@ namespace DSR.BLL
 
                     MyMail.Subject = subject;
                     MyMail.Body = GetMessageBody(body);
-                    MyMail.BodyEncoding = System.Text.Encoding.ASCII;
+                    //MyMail.BodyEncoding = System.Text.Encoding.ASCII;
                     MyMail.IsBodyHtml = true;
 
                     SmtpClient client = new SmtpClient(mailServerIP);
@@ -55,7 +55,7 @@ namespace DSR.BLL
             return sent;
         }
 
-        public static bool SendMail(string from, string mailTo, string cc, string subject, string body, string mailServerIP, string mailUserAccount, string mailUserPwd)
+        public static bool SendMail(string from, string displayName, string mailTo, string cc, string subject, string body, string mailServerIP, string mailUserAccount, string mailUserPwd)
         {
             bool sent = true;
 
@@ -66,7 +66,7 @@ namespace DSR.BLL
                     MailMessage MyMail = new MailMessage();
                     MyMail.To.Add(new MailAddress(mailTo));
                     MyMail.Priority = MailPriority.High;
-                    MyMail.From = new MailAddress(from, "BEN LINE AGENCIES Help Desk");
+                    MyMail.From = new MailAddress(from, displayName);
 
                     if (cc != "")
                     {
@@ -76,10 +76,10 @@ namespace DSR.BLL
 
                     MyMail.Subject = subject;
                     MyMail.Body = GetMessageBody(body);
-                    MyMail.BodyEncoding = System.Text.Encoding.ASCII;
+                    //MyMail.BodyEncoding = System.Text.Encoding.ASCII;
                     MyMail.IsBodyHtml = true;
 
-                    SmtpClient client = new SmtpClient(mailServerIP, 25);
+                    SmtpClient client = new SmtpClient(mailServerIP, 25);                    
                     client.DeliveryMethod = SmtpDeliveryMethod.Network;
                     System.Net.NetworkCredential credential = new System.Net.NetworkCredential(mailUserAccount, mailUserPwd);
                     client.Credentials = credential;
@@ -99,10 +99,12 @@ namespace DSR.BLL
             try
             {
                 StringBuilder sbMsgBody = new StringBuilder();
-                sbMsgBody.Append("<font face='Verdana, Arial, Helvetica, sans-serif' size='10' color='#8B4B0D'>Daily Sales Call</font>");
-                sbMsgBody.Append("<br>");
-                sbMsgBody.Append("<br><br><br>");
+                //sbMsgBody.Append("<font face='Verdana, Arial, Helvetica, sans-serif' size='10' color='#8B4B0D'>Daily Sales Call</font>");
+                //sbMsgBody.Append("<br />");
+                //sbMsgBody.Append("<br /><br /><br />");
+                sbMsgBody.Append("<html><body>");
                 sbMsgBody.Append("<font face=verdana size=2>" + strBodyContent + "</font>");
+                sbMsgBody.Append("</body></html>");
 
                 return sbMsgBody.ToString();
             }
@@ -468,7 +470,7 @@ namespace DSR.BLL
         public void DeleteAssignedCustomer(int id, int modifiedBy)
         {
             CommonDAL.DeleteAssignedCustomer(id, modifiedBy);
-        }        
+        }
 
         #endregion
 
