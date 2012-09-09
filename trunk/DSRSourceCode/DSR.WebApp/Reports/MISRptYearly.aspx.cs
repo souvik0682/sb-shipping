@@ -78,7 +78,7 @@ namespace DSR.WebApp.Reports
             string rptName = "MISRptYearly.rdlc";
 
             BuildEntity(callDetail);
-            IEnumerable<ICallDetail> lst = cls.GetYearlyMisReportData(Convert.ToInt32(ddlYear.SelectedValue), callDetail, _userId);
+            IEnumerable<ICallDetail> lst = cls.GetYearlyMisReportData(Convert.ToInt32(ddlYear.SelectedValue), callDetail, Convert.ToChar(ddlParam.SelectedValue), _userId);
             rptViewer.Reset();
             rptViewer.LocalReport.Dispose();
             rptViewer.LocalReport.DataSources.Clear();
@@ -86,6 +86,7 @@ namespace DSR.WebApp.Reports
             rptViewer.LocalReport.DataSources.Add(new ReportDataSource("ReportDataSet", lst));
             rptViewer.LocalReport.SetParameters(new ReportParameter("CompanyName", Convert.ToString(ConfigurationManager.AppSettings["CompanyName"])));
             rptViewer.LocalReport.SetParameters(new ReportParameter("Location", ddlLoc.SelectedItem.Text));
+            rptViewer.LocalReport.SetParameters(new ReportParameter("ReportType", ddlParam.SelectedItem.Text));
             rptViewer.LocalReport.SetParameters(new ReportParameter("RptYear", ddlYear.SelectedItem.Text));
             rptViewer.LocalReport.Refresh();
         }

@@ -11,14 +11,14 @@
                 <tr>
                     <td width="150" class="labelcaption">Old Password:<span class="errormessage">*</span></td>
                     <td>
-                        <asp:TextBox ID="txtOldPwd" MaxLength="20" runat="server" ToolTip="Old Password" TextMode="Password" CssClass="textbox"></asp:TextBox><br />
+                        <asp:TextBox ID="txtOldPwd" MaxLength="10" runat="server" ToolTip="Old Password" TextMode="Password" CssClass="textbox"></asp:TextBox><br />
                         <asp:RequiredFieldValidator ID="rfvOldPwd" runat="server" CssClass="errormessage" ControlToValidate="txtOldPwd" Display="Dynamic" ValidationGroup="Submit"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
                     <td width="150" class="labelcaption">New Password:<span class="errormessage">*</span></td>
                     <td>
-                        <asp:TextBox ID="txtNewPwd" MaxLength="20" runat="server" ToolTip="New Password" TextMode="Password" CssClass="textbox"></asp:TextBox><br />
+                        <asp:TextBox ID="txtNewPwd" MaxLength="10" runat="server" ToolTip="New Password" TextMode="Password" CssClass="textbox"></asp:TextBox><br />
                         <asp:RequiredFieldValidator ID="rfvNewPwd" runat="server" CssClass="errormessage" ControlToValidate="txtNewPwd" Display="Dynamic" ValidationGroup="Submit"></asp:RequiredFieldValidator>
                         <cc1:PasswordStrength ID="txtNewPwd_PasswordStrength" runat="server" Enabled="True" TargetControlID="txtNewPwd"></cc1:PasswordStrength>
                     </td>
@@ -26,7 +26,7 @@
                 <tr>
                     <td width="150" class="labelcaption">Confirm Password:<span class="errormessage">*</span></td>
                     <td>
-                        <asp:TextBox ID="txtRePwd" MaxLength="20" runat="server" ToolTip="Re-type Password" TextMode="Password" CssClass="textbox"></asp:TextBox><br />
+                        <asp:TextBox ID="txtRePwd" MaxLength="10" runat="server" ToolTip="Re-type Password" TextMode="Password" CssClass="textbox"></asp:TextBox><br />
                         <asp:RequiredFieldValidator ID="rfvRePwd" runat="server" CssClass="errormessage" ControlToValidate="txtRePwd" Display="Dynamic" ValidationGroup="Submit"></asp:RequiredFieldValidator>
                         <asp:CompareValidator ID="cvRePwd" runat="server" ControlToCompare="txtNewPwd" ControlToValidate="txtRePwd" CssClass="errormessage" ValidationGroup="Submit"></asp:CompareValidator>
                     </td>

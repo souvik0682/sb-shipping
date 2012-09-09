@@ -39,8 +39,8 @@ namespace DSR.DAL
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
-                oDq.AddVarcharParam("@UserName", 15, user.Name);
-                oDq.AddVarcharParam("@Password", 15, user.Password);
+                oDq.AddVarcharParam("@UserName", 10, user.Name);
+                oDq.AddVarcharParam("@Password", 50, user.Password);
                 DataTableReader reader = oDq.GetTableReader();
 
                 while (reader.Read())

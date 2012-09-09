@@ -349,7 +349,7 @@ namespace DSR.DAL
             }
 
             return lstCallDetail;
-        } 
+        }
 
         public static List<ICallDetail> GetCustomerListWithLoc(ICallDetail detail, DateTime currDate, int userId)
         {
@@ -444,7 +444,7 @@ namespace DSR.DAL
                 {
                     ICallDetail callDetail = new CallDetailEntity();
                     callDetail.LocationName = Convert.ToString(reader["LocName"]);
-                    callDetail.ProspectFor = Convert.ToString(reader["ProspectName"]);                    
+                    callDetail.ProspectFor = Convert.ToString(reader["ProspectName"]);
                     callDetail.GroupCompanyName = Convert.ToString(reader["GroupName"]);
                     callDetail.Destination = Convert.ToString(reader["Destination"]);
                     callDetail.SalesPersonName = Convert.ToString(reader["SalesPerson"]);
@@ -461,7 +461,7 @@ namespace DSR.DAL
             return lstCallDetail;
         }
 
-        public static List<ICallDetail> GetYearlyMisReportData(int year, ICallDetail detail, int userId)
+        public static List<ICallDetail> GetYearlyMisReportData(int year, ICallDetail detail, char reportType, int userId)
         {
             string strExecution = "[report].[uspGetYearlyMisReportData]";
             List<ICallDetail> lstCallDetail = new List<ICallDetail>();
@@ -470,6 +470,7 @@ namespace DSR.DAL
             {
                 oDq.AddIntegerParam("@Year", year);
                 oDq.AddIntegerParam("@LocId", detail.LocationId);
+                oDq.AddCharParam("@ReportType", 1, reportType);
                 oDq.AddIntegerParam("@UserId", userId);
 
                 DataTableReader reader = oDq.GetTableReader();
@@ -477,6 +478,8 @@ namespace DSR.DAL
                 while (reader.Read())
                 {
                     ICallDetail callDetail = new CallDetailEntity();
+                    callDetail.LocationId = Convert.ToInt32(reader["LocId"]);
+                    callDetail.LocationName = Convert.ToString(reader["LocName"]);
                     callDetail.ProspectFor = Convert.ToString(reader["ProspectName"]);
                     callDetail.Month1 = Convert.ToInt32(reader["Month1"]);
                     callDetail.Month2 = Convert.ToInt32(reader["Month2"]);

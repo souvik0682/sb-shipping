@@ -19,6 +19,7 @@ namespace DSR.WebApp.Security
 
         private int _userId = 0;
         private int _portId = 0;
+        private int _callId = 0; //Added by amit on 09-Sep-2012
         private List<ICommitment> commitmentDetails = new List<ICommitment>();
         DailySalesCallBLL objDailySalesCall;
 
@@ -62,6 +63,12 @@ namespace DSR.WebApp.Security
         private void RetriveParameters()
         {
             _userId = UserBLL.GetLoggedInUserId();
+
+            //Added by amit on 09-Sep-2012
+            if (!ReferenceEquals(Request.QueryString["CallId"], null) && Convert.ToString(Request.QueryString["CallId"]) != string.Empty)
+            {
+                int.TryParse(Convert.ToString(Request.QueryString["CallId"]), out _callId);
+            }
         }
 
         private void CheckUserAccess()
@@ -126,6 +133,26 @@ namespace DSR.WebApp.Security
             gvwSalesCall.DataBind();
 
             ViewState["CommittmentDetails"] = commitmentDetails;
+            ClearCommitmentDetail();
+        }
+
+        //Added by amit on 09-Sep-2012
+        private void ClearFormData()
+        {
+            _portId = 0;
+            ViewState["CommID"] = null;
+            txtCallDate.Text = string.Empty;
+            ddlCallType.SelectedValue = "0";
+            ddlCustomer.SelectedValue = "0";
+            txtNextCallDate.Text = string.Empty;
+            ddlProspectFor.SelectedValue = "0";
+            txtRemarks.Text = string.Empty;
+            btnAddToGrid.Text = "Add Record";
+
+            // Clear commitment data.
+            List<ICommitment> lstCommitment = new List<ICommitment>();
+            ViewState["CommittmentDetails"] = lstCommitment;
+            RefreshGridView();
             ClearCommitmentDetail();
         }
 
@@ -254,7 +281,7 @@ namespace DSR.WebApp.Security
             dailySales.CallType = Convert.ToInt32(ddlCallType.SelectedValue);
             dailySales.CustomerId = Convert.ToInt32(ddlCustomer.SelectedValue);
             dailySales.ProspectId = Convert.ToInt32(ddlProspectFor.SelectedValue);
-            dailySales.Remarks = txtRemarks.Text;
+            dailySales.Remarks = txtRemarks.Text.ToUpper();
             dailySales.UserId = ((IUser)Session[Constants.SESSION_USER_INFO]).Id;
 
             if (Request.QueryString["CallId"] != null)
@@ -394,6 +421,12 @@ namespace DSR.WebApp.Security
         protected void btnSave_Click(object sender, EventArgs e)
         {
             SaveDailySalesCall();
+
+            //Added by amit on 09-Sep-2012
+            if (_callId == 0) // Clear form data when mode is AddNew.
+            {
+                ClearFormData();
+            }
         }
 
         private bool ValidateSave(IDailySalesCall dailySales)

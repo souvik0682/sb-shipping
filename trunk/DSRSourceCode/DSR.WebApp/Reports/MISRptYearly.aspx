@@ -26,6 +26,13 @@
                         <asp:ListItem Value="0" Text="All"></asp:ListItem>
                     </asp:DropDownList>
                 </td>
+                <td class="label" style="padding-right:5px;vertical-align:top;">Paremeter:</td>
+                <td style="padding-right:20px;vertical-align:top;">
+                    <asp:DropDownList ID="ddlParam" runat="server">
+                        <asp:ListItem Value="A" Text="Actual"></asp:ListItem>
+                        <asp:ListItem Value="C" Text="Commitment"></asp:ListItem>
+                    </asp:DropDownList>
+                </td>
                 <td style="vertical-align:top;"><asp:Button ID="btnShow" runat="server" Text="Show" CssClass="button" OnClick="btnShow_Click" /></td>
             </tr>
         </table>

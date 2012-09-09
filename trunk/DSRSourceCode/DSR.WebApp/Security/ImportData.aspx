@@ -53,7 +53,7 @@
                     </asp:DropDownList>&nbsp;&nbsp;
             </div><br />
             <div>
-                <asp:GridView ID="gvwData" runat="server" AutoGenerateColumns="false" AllowPaging="true" BorderStyle="None" BorderWidth="0" OnPageIndexChanging="gvwData_PageIndexChanging" OnRowDataBound="gvwData_RowDataBound" Width="100%">
+                <asp:GridView ID="gvwData" runat="server" AutoGenerateColumns="false" AllowPaging="true" BorderStyle="None" BorderWidth="0" OnPageIndexChanging="gvwData_PageIndexChanging" OnRowDataBound="gvwData_RowDataBound" OnRowCommand="gvwData_RowCommand" Width="100%">
                     <PagerSettings Mode="NumericFirstLast" Position="TopAndBottom" />
                     <PagerStyle CssClass="gridviewpager" />
                     <EmptyDataRowStyle CssClass="gridviewemptydatarow" />
@@ -69,47 +69,37 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Location">
                             <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="10%" />                                       
+                            <ItemStyle CssClass="gridviewitem" Width="9%" />                                       
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Prospect">
                             <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="6%" />                                       
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Booking No">
-                            <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="10%" />                                        
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="BLA No">
-                            <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="10%" />                                       
+                            <ItemStyle CssClass="gridviewitem" Width="7%" />                                       
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Vessel Voyage">
                             <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="10%" />                                       
+                            <ItemStyle CssClass="gridviewitem" Width="13%" />                                       
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Shipper Name">
+                        <asp:TemplateField>
                             <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="11%" />                                       
+                            <ItemStyle CssClass="gridviewitem" Width="25%" />
+                            <HeaderTemplate><asp:LinkButton ID="lnkHShipper" runat="server" CommandName="Sort" CommandArgument="ShipperName" Text="Shipper Name"></asp:LinkButton></HeaderTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Port">
                             <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="10%" />                                       
+                            <ItemStyle CssClass="gridviewitem" Width="9%" />                                       
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="TEU">
                             <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="5%" />                                       
+                            <ItemStyle CssClass="gridviewitem" Width="4%" />                                       
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="FEU">
                             <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="5%" />                                       
+                            <ItemStyle CssClass="gridviewitem" Width="4%" />                                       
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="SOB Date">
+                        <asp:TemplateField>
                             <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="7%" />                                       
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Customer">
-                            <HeaderStyle CssClass="gridviewheader" />
-                            <ItemStyle CssClass="gridviewitem" Width="13%" />                                       
+                            <ItemStyle CssClass="gridviewitem" Width="26%" /> 
+                            <HeaderTemplate><asp:LinkButton ID="lnkHCust" runat="server" CommandName="Sort" CommandArgument="CustName" Text="Customer"></asp:LinkButton></HeaderTemplate>
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
