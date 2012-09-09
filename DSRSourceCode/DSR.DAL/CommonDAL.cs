@@ -978,7 +978,7 @@ namespace DSR.DAL
 
         #region Import Data
 
-        public static List<IShipSoft> GetShipSoftData(int custId, bool isTagged)
+        public static List<IShipSoft> GetShipSoftData(int custId, bool isTagged, SearchCriteria searchCriteria)
         {
             string strExecution = "[common].[uspGetShipSoft]";
             List<IShipSoft> lstShipSoft = new List<IShipSoft>();
@@ -987,6 +987,8 @@ namespace DSR.DAL
             {
                 oDq.AddIntegerParam("@CustId", custId);
                 oDq.AddBooleanParam("@IsTagged", isTagged);
+                oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
+                oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
                 DataTableReader reader = oDq.GetTableReader();
 
                 while (reader.Read())
@@ -1077,7 +1079,7 @@ namespace DSR.DAL
             }
 
             return lstUser;
-        } 
+        }
 
         public static List<IUser> GetSalesExecutiveNew(int userId)
         {

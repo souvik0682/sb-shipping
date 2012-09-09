@@ -70,9 +70,9 @@ namespace DSR.BLL
             return lstRpt;
         }
 
-        public IEnumerable<ICallDetail> GetYearlyMisReportData(int year, ICallDetail detail, int userId)
+        public IEnumerable<ICallDetail> GetYearlyMisReportData(int year, ICallDetail detail, char reportType, int userId)
         {
-            List<ICallDetail> lstRpt = ReportDAL.GetYearlyMisReportData(year, detail, userId);
+            List<ICallDetail> lstRpt = ReportDAL.GetYearlyMisReportData(year, detail, reportType, userId);
             return lstRpt;
         }
     }

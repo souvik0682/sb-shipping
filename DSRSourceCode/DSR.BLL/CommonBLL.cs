@@ -596,9 +596,9 @@ namespace DSR.BLL
 
         #region Import Data
 
-        public List<IShipSoft> GetShipSoftData(int custId, bool isTagged)
+        public List<IShipSoft> GetShipSoftData(int custId, bool isTagged, SearchCriteria searchCriteria)
         {
-            return CommonDAL.GetShipSoftData(custId, isTagged);
+            return CommonDAL.GetShipSoftData(custId, isTagged, searchCriteria);
         }
 
         public void SaveShipSoft(List<ShipSoftEntity> lstShipSoft, int modifiedBy, out int rowsAffected, out int dupCount)

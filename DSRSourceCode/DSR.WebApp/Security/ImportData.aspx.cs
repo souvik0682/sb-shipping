@@ -37,6 +37,7 @@ namespace DSR.WebApp.Security
 
             if (!IsPostBack)
             {
+                SetDefaultSearchCriteria();
                 LoadCustomer();
                 LoadShipSoftData();
             }
@@ -242,7 +243,7 @@ namespace DSR.WebApp.Security
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                GeneralFunctions.ApplyGridViewAlternateItemStyle(e.Row, 12);
+                GeneralFunctions.ApplyGridViewAlternateItemStyle(e.Row, 9);
 
                 //ScriptManager sManager = ScriptManager.GetCurrent(this);
 
@@ -250,18 +251,18 @@ namespace DSR.WebApp.Security
                 ((HiddenField)e.Row.FindControl("hdnId")).Value = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "TranId"));
                 e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "LocationName"));
                 e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ProspectName"));
-                e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "BookingNo"));
-                e.Row.Cells[4].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "BLANumber"));
-                e.Row.Cells[5].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "VesselVoyage"));
-                e.Row.Cells[6].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ShipperName"));
-                e.Row.Cells[7].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "PortName"));
-                e.Row.Cells[8].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "TEU"));
-                e.Row.Cells[9].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "FEU"));
+                //e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "BookingNo"));
+                //e.Row.Cells[4].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "BLANumber"));
+                e.Row.Cells[3].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "VesselVoyage"));
+                e.Row.Cells[4].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ShipperName"));
+                e.Row.Cells[5].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "PortName"));
+                e.Row.Cells[6].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "TEU"));
+                e.Row.Cells[7].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "FEU"));
 
-                if (DataBinder.Eval(e.Row.DataItem, "SOBDate") != DBNull.Value && DataBinder.Eval(e.Row.DataItem, "SOBDate") != null)
-                    e.Row.Cells[10].Text = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "SOBDate"), _culture).ToString(Convert.ToString(ConfigurationManager.AppSettings["DateFormat"]));
+                //if (DataBinder.Eval(e.Row.DataItem, "SOBDate") != DBNull.Value && DataBinder.Eval(e.Row.DataItem, "SOBDate") != null)
+                //    e.Row.Cells[10].Text = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "SOBDate"), _culture).ToString(Convert.ToString(ConfigurationManager.AppSettings["DateFormat"]));
 
-                e.Row.Cells[11].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "CustomerName"));
+                e.Row.Cells[8].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "CustomerName"));
 
                 //// Edit link
                 //ImageButton btnEdit = (ImageButton)e.Row.FindControl("btnEdit");
@@ -282,6 +283,35 @@ namespace DSR.WebApp.Security
                 //    btnEdit.OnClientClick = "javascript:alert('" + ResourceManager.GetStringWithoutName("ERR00009") + "');return false;";
                 //    btnRemove.OnClientClick = "javascript:alert('" + ResourceManager.GetStringWithoutName("ERR00009") + "');return false;";
                 //}
+            }
+        }
+
+        protected void gvwData_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName.Equals("Sort"))
+            {
+                if (ViewState[Constants.SORT_EXPRESSION] == null)
+                {
+                    ViewState[Constants.SORT_EXPRESSION] = e.CommandArgument.ToString();
+                    ViewState[Constants.SORT_DIRECTION] = "ASC";
+                }
+                else
+                {
+                    if (ViewState[Constants.SORT_EXPRESSION].ToString() == e.CommandArgument.ToString())
+                    {
+                        if (ViewState[Constants.SORT_DIRECTION].ToString() == "ASC")
+                            ViewState[Constants.SORT_DIRECTION] = "DESC";
+                        else
+                            ViewState[Constants.SORT_DIRECTION] = "ASC";
+                    }
+                    else
+                    {
+                        ViewState[Constants.SORT_DIRECTION] = "ASC";
+                        ViewState[Constants.SORT_EXPRESSION] = e.CommandArgument.ToString();
+                    }
+                }
+
+                LoadShipSoftData();
             }
         }
 
@@ -362,9 +392,19 @@ namespace DSR.WebApp.Security
 
         private void LoadShipSoftData()
         {
-            bool isTagged = (rblTag.SelectedValue == "1") ? true : false;
-            gvwData.DataSource = new CommonBLL().GetShipSoftData(Convert.ToInt32(ddlCust.SelectedValue), isTagged);
-            gvwData.DataBind();
+            if (!ReferenceEquals(Session[Constants.SESSION_SEARCH_CRITERIA], null))
+            {
+                SearchCriteria searchCriteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
+
+                if (!ReferenceEquals(searchCriteria, null))
+                {
+                    BuildSearchCriteria(searchCriteria);
+
+                    bool isTagged = (rblTag.SelectedValue == "1") ? true : false;
+                    gvwData.DataSource = new CommonBLL().GetShipSoftData(Convert.ToInt32(ddlCust.SelectedValue), isTagged, searchCriteria);
+                    gvwData.DataBind();
+                }
+            }
         }
 
         private void LoadCustomer()
@@ -372,6 +412,38 @@ namespace DSR.WebApp.Security
             GeneralFunctions.PopulateDropDownList<ICustomer>(ddlCust, new CommonBLL().GetCustomerByUser(_userId), "Id", "Name", true);
         }
 
+        private void SetDefaultSearchCriteria()
+        {
+            SearchCriteria criteria = new SearchCriteria();
+            string sortExpression = string.Empty;
+            string sortDirection = string.Empty;
+
+            criteria.SortExpression = sortExpression;
+            criteria.SortDirection = sortDirection;
+
+            Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
+        }
+
+        private void BuildSearchCriteria(SearchCriteria criteria)
+        {
+            string sortExpression = string.Empty;
+            string sortDirection = string.Empty;
+
+            if (!ReferenceEquals(ViewState[Constants.SORT_EXPRESSION], null) && !ReferenceEquals(ViewState[Constants.SORT_DIRECTION], null))
+            {
+                sortExpression = Convert.ToString(ViewState[Constants.SORT_EXPRESSION]);
+                sortDirection = Convert.ToString(ViewState[Constants.SORT_DIRECTION]);
+            }
+            else
+            {
+                sortExpression = "UserName";
+                sortDirection = "ASC";
+            }
+
+            criteria.SortExpression = sortExpression;
+            criteria.SortDirection = sortDirection;
+            Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
+        }
 
         #endregion
     }
