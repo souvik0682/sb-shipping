@@ -359,7 +359,7 @@ namespace DSR.DAL
             using (DbQuery oDq = new DbQuery(strExecution))
             {
                 oDq.AddIntegerParam("@LocId", detail.LocationId);
-                oDq.AddIntegerParam("@AreaId", detail.AreaId);
+                oDq.AddVarcharParam("@AreaName", 50, detail.AreaName);
                 oDq.AddIntegerParam("@SalesExecutiveId", detail.SalesPersionId);
                 oDq.AddDateTimeParam("@CurrDate", currDate);
                 oDq.AddIntegerParam("@UserId", userId);

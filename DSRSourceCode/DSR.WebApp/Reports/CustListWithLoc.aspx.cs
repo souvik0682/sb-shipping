@@ -13,6 +13,7 @@ using DSR.Entity;
 using DSR.Utilities;
 using DSR.Utilities.ReportManager;
 using Microsoft.Reporting.WebForms;
+using DSR.Utilities.ResourceManager;
 
 namespace DSR.WebApp.Reports
 {
@@ -27,7 +28,7 @@ namespace DSR.WebApp.Reports
         {
             RetriveParameters();
             SetUserAccess();
-            //SetAttributes();
+            SetAttributes();
 
             if (!IsPostBack)
             {
@@ -47,13 +48,13 @@ namespace DSR.WebApp.Reports
             }
         }
 
-        protected void ddlLoc_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlLoc.SelectedValue == "0")
-                GeneralFunctions.PopulateDropDownList<IArea>(ddlArea, new CommonBLL().GetActiveArea(), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
-            else
-                GeneralFunctions.PopulateDropDownList<IArea>(ddlArea, new CommonBLL().GetAreaByLocation(Convert.ToInt32(ddlLoc.SelectedValue)), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
-        }
+        //protected void ddlLoc_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (ddlLoc.SelectedValue == "0")
+        //        GeneralFunctions.PopulateDropDownList<IArea>(ddlArea, new CommonBLL().GetActiveArea(), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
+        //    else
+        //        GeneralFunctions.PopulateDropDownList<IArea>(ddlArea, new CommonBLL().GetAreaByLocation(Convert.ToInt32(ddlLoc.SelectedValue)), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
+        //}
 
         //private void SetAttributes()
         //{
@@ -63,6 +64,14 @@ namespace DSR.WebApp.Reports
         //    }
         //}
 
+        private void SetAttributes()
+        {
+            if (!IsPostBack)
+            {
+                txtWMEArea.WatermarkText = ResourceManager.GetStringWithoutName("ERR00016");
+            }
+        }
+
         private void PopulateControls()
         {
             CommonBLL commonBll = new CommonBLL();
@@ -71,12 +80,12 @@ namespace DSR.WebApp.Reports
             if (roleId == (int)UserRole.SalesExecutive || roleId == (int)UserRole.Manager)
             {
                 GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetLocationByUser(_userId), "Id", "Name", false);
-                GeneralFunctions.PopulateDropDownList<IArea>(ddlArea, new CommonBLL().GetAreaByLocation(_locId), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
+                //GeneralFunctions.PopulateDropDownList<IArea>(ddlArea, new CommonBLL().GetAreaByLocation(_locId), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
             }
             else
             {
                 GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetLocationByUser(_userId), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
-                GeneralFunctions.PopulateDropDownList<IArea>(ddlArea, new CommonBLL().GetActiveArea(), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
+                //GeneralFunctions.PopulateDropDownList<IArea>(ddlArea, new CommonBLL().GetActiveArea(), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
             }
 
             if (roleId == (int)UserRole.SalesExecutive)
@@ -104,7 +113,12 @@ namespace DSR.WebApp.Reports
             rptViewer.LocalReport.ReportPath = this.Server.MapPath(this.Request.ApplicationPath) + ConfigurationManager.AppSettings["ReportPath"].ToString() + "/" + rptName;
             rptViewer.LocalReport.DataSources.Add(new ReportDataSource("ReportDataSet", lst));
             rptViewer.LocalReport.SetParameters(new ReportParameter("CompanyName", Convert.ToString(ConfigurationManager.AppSettings["CompanyName"])));
-            rptViewer.LocalReport.SetParameters(new ReportParameter("AreaName", ddlArea.SelectedItem.Text));
+
+            if (txtArea.Text != ResourceManager.GetStringWithoutName("ERR00016"))
+                rptViewer.LocalReport.SetParameters(new ReportParameter("AreaName", txtArea.Text));
+            else
+                rptViewer.LocalReport.SetParameters(new ReportParameter("AreaName", txtArea.Text));
+
             rptViewer.LocalReport.SetParameters(new ReportParameter("Location", ddlLoc.SelectedItem.Text));
             rptViewer.LocalReport.SetParameters(new ReportParameter("SalesPerson", ddlSales.SelectedItem.Text));
             rptViewer.LocalReport.Refresh();
@@ -113,7 +127,13 @@ namespace DSR.WebApp.Reports
         private void BuildEntity(ICallDetail detail)
         {
             detail.LocationId = Convert.ToInt32(ddlLoc.SelectedValue);
-            detail.AreaId = Convert.ToInt32(ddlArea.SelectedValue);
+
+            if (txtArea.Text != ResourceManager.GetStringWithoutName("ERR00016"))
+                detail.AreaName = txtArea.Text.Trim();
+            else
+                detail.AreaName = string.Empty;
+
+            //detail.AreaId = Convert.ToInt32(ddlArea.SelectedValue);
             detail.SalesPersionId = Convert.ToInt32(ddlSales.SelectedValue);
         }
 
