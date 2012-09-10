@@ -16,15 +16,14 @@
                     Location:
                 </td>
                 <td style="padding-right:20px;vertical-align:top;">
-                    <asp:DropDownList ID="ddlLoc" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLoc_SelectedIndexChanged"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlLoc" runat="server" AutoPostBack="false"></asp:DropDownList>
                 </td>
                 <td class="label" style="padding-right:5px;vertical-align:top;">
                     Area:
                 </td>
                 <td style="padding-right:20px;vertical-align:top;">
-                    <asp:DropDownList ID="ddlArea" runat="server">
-                        <asp:ListItem Value="0" Text="All"></asp:ListItem>
-                    </asp:DropDownList>
+                    <asp:TextBox ID="txtArea" runat="server" CssClass="watermark" ForeColor="#747862"></asp:TextBox>
+                    <cc2:TextBoxWatermarkExtender ID="txtWMEArea" runat="server" TargetControlID="txtArea" WatermarkCssClass="watermark"></cc2:TextBoxWatermarkExtender>
                 </td>
                 <td class="label" style="padding-right:5px;vertical-align:top;">
                     Sales Person:

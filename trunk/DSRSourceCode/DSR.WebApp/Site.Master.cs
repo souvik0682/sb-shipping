@@ -36,6 +36,19 @@ namespace DSR.WebApp
                     Response.Redirect("~/Login.aspx");
                 }
             }
+            else
+            {
+                if (!ReferenceEquals(Session[Constants.SESSION_USER_INFO], null))
+                {
+                    IUser user = (IUser)Session[Constants.SESSION_USER_INFO];
+
+                    if (!ReferenceEquals(user, null) && user.Id > 0)
+                    {
+                        SetAttributes(user);
+                        ShowMenu(user);
+                    }
+                }
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -70,6 +83,7 @@ namespace DSR.WebApp
             liGrMst.Style["display"] = "none";
             liCustMst.Style["display"] = "none";
             liCustAssign.Style["display"] = "none";
+            liImport.Style["display"] = "none";
             liLineWiseLoc.Style["display"] = "none";
             liLocWiseLine.Style["display"] = "none";
             liCustList.Style["display"] = "none";
@@ -87,6 +101,7 @@ namespace DSR.WebApp
                     liGrMst.Style["display"] = "";
                     liCustMst.Style["display"] = "";
                     liCustAssign.Style["display"] = "";
+                    liImport.Style["display"] = "";
                     liLineWiseLoc.Style["display"] = "";
                     liLocWiseLine.Style["display"] = "";
                     liCustList.Style["display"] = "";
@@ -109,6 +124,7 @@ namespace DSR.WebApp
                     liMaster.Style["display"] = "";
                     liCustMst.Style["display"] = "";
                     liCustAssign.Style["display"] = "";
+                    liImport.Style["display"] = "";
                     liLineWiseLoc.Style["display"] = "";
                     liLocWiseLine.Style["display"] = "";
                     liCustList.Style["display"] = "";

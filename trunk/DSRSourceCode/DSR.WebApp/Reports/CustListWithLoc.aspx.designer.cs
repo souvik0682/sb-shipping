@@ -22,13 +22,22 @@ namespace DSR.WebApp.Reports {
         protected global::System.Web.UI.WebControls.DropDownList ddlLoc;
         
         /// <summary>
-        /// ddlArea control.
+        /// txtArea control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlArea;
+        protected global::System.Web.UI.WebControls.TextBox txtArea;
+        
+        /// <summary>
+        /// txtWMEArea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TextBoxWatermarkExtender txtWMEArea;
         
         /// <summary>
         /// ddlSales control.

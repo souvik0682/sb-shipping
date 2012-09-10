@@ -29,7 +29,7 @@
         <table>
             <tr>
                 <td class="label" style="padding-right:5px;vertical-align:top;">
-                    From Date:
+                    From Date:<span class="errormessage">*</span>
                 </td>
                 <td style="padding-right:20px;vertical-align:top;">
                     <asp:TextBox ID="txtFromDt" runat="server" CssClass="textbox" Width="80"></asp:TextBox><br />
