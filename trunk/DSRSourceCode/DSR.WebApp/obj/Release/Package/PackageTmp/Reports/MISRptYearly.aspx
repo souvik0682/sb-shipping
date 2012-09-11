@@ -26,6 +26,10 @@
                         <asp:ListItem Value="0" Text="All"></asp:ListItem>
                     </asp:DropDownList>
                 </td>
+                <td class="label" style="padding-right:5px;vertical-align:top;">Prospect For:</td>
+                <td style="padding-right:20px;vertical-align:top;">
+                    <asp:DropDownList ID="ddlPros" runat="server"></asp:DropDownList>
+                </td>                
                 <td class="label" style="padding-right:5px;vertical-align:top;">Paremeter:</td>
                 <td style="padding-right:20px;vertical-align:top;">
                     <asp:DropDownList ID="ddlParam" runat="server">

@@ -48,6 +48,8 @@ namespace DSR.WebApp.Reports
             CommonBLL commonBll = new CommonBLL();
             int roleId = UserBLL.GetLoggedInUserRoleId();
 
+            GeneralFunctions.PopulateDropDownList<IProspect>(ddlPros, commonBll.GetActiveProspect(), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
+
             if (roleId == (int)UserRole.SalesExecutive)
             {
                 GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetLocationByUser(_userId), "Id", "Name", false);
@@ -88,12 +90,14 @@ namespace DSR.WebApp.Reports
             rptViewer.LocalReport.SetParameters(new ReportParameter("Location", ddlLoc.SelectedItem.Text));
             rptViewer.LocalReport.SetParameters(new ReportParameter("ReportType", ddlParam.SelectedItem.Text));
             rptViewer.LocalReport.SetParameters(new ReportParameter("RptYear", ddlYear.SelectedItem.Text));
+            rptViewer.LocalReport.SetParameters(new ReportParameter("Prospect", ddlPros.SelectedItem.Text));
             rptViewer.LocalReport.Refresh();
         }
 
         private void BuildEntity(ICallDetail detail)
         {
             detail.LocationId = Convert.ToInt32(ddlLoc.SelectedValue);
+            detail.ProspectId = Convert.ToInt32(ddlPros.SelectedValue);
         }
 
         private void SetUserAccess()
