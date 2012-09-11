@@ -470,6 +470,7 @@ namespace DSR.DAL
             {
                 oDq.AddIntegerParam("@Year", year);
                 oDq.AddIntegerParam("@LocId", detail.LocationId);
+                oDq.AddIntegerParam("@ProspectId", detail.ProspectId);
                 oDq.AddCharParam("@ReportType", 1, reportType);
                 oDq.AddIntegerParam("@UserId", userId);
 
