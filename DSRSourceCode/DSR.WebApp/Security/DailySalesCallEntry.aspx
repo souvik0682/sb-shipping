@@ -70,7 +70,7 @@
                                 <td>
                                     <asp:Label ID="Label5" runat="server" Text="Prospect For" />
                                 </td>
-                                <td colspan="4">
+                                <td>
                                     <asp:DropDownList ID="ddlProspectFor" runat="server" Width="155px">
                                         <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
                                     </asp:DropDownList>
@@ -78,6 +78,9 @@
                                     <span id="spnProspect" runat="server" class="errormessage" style="display: none;">Prospect
                                         For can't be blank</span>
                                 </td>
+                                <td></td>
+                                <td><asp:Label ID="lblHExecutive" runat="server" Text="Sales Executive" /></td>
+                                <td><asp:Label ID="lblExecutive" runat="server" Font-Bold="true" /></td>
                             </tr>
                             <tr>
                                 <td>

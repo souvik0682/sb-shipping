@@ -26,6 +26,13 @@
                     <asp:TextBox ID="txtToDt" runat="server" CssClass="textbox" Width="80"></asp:TextBox>
                     <cc2:CalendarExtender ID="cbeToDt" runat="server" TargetControlID="txtToDt" />
                 </td>
+                <td class="label" style="padding-right:5px;vertical-align:top;">Paremeter:</td>
+                <td style="vertical-align:top;">
+                    <asp:DropDownList ID="ddlParam" runat="server">
+                        <asp:ListItem Value="A" Text="Actual"></asp:ListItem>
+                        <asp:ListItem Value="C" Text="Commitment"></asp:ListItem>
+                    </asp:DropDownList>
+                </td>
             </tr>
             <tr>
                 <td class="label" style="padding-right:5px;vertical-align:top;">
@@ -42,7 +49,7 @@
                         <asp:ListItem Value="0" Text="All"></asp:ListItem>
                     </asp:DropDownList>
                 </td>
-                <td style="vertical-align:top;"><asp:Button ID="btnShow" runat="server" Text="Show" CssClass="button" OnClick="btnShow_Click" /></td>
+                <td colspan="2" style="vertical-align:top;"><asp:Button ID="btnShow" runat="server" Text="Show" CssClass="button" OnClick="btnShow_Click" /></td>
             </tr>
         </table>
         </fieldset>

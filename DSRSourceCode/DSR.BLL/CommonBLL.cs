@@ -79,7 +79,7 @@ namespace DSR.BLL
                     //MyMail.BodyEncoding = System.Text.Encoding.ASCII;
                     MyMail.IsBodyHtml = true;
 
-                    SmtpClient client = new SmtpClient(mailServerIP, 25);                    
+                    SmtpClient client = new SmtpClient(mailServerIP, 25);
                     client.DeliveryMethod = SmtpDeliveryMethod.Network;
                     System.Net.NetworkCredential credential = new System.Net.NetworkCredential(mailUserAccount, mailUserPwd);
                     client.Credentials = credential;
@@ -596,9 +596,9 @@ namespace DSR.BLL
 
         #region Import Data
 
-        public List<IShipSoft> GetShipSoftData(int custId, bool isTagged, SearchCriteria searchCriteria)
+        public List<IShipSoft> GetShipSoftData(int custId, int locId, bool isTagged, int month, int year, SearchCriteria searchCriteria)
         {
-            return CommonDAL.GetShipSoftData(custId, isTagged, searchCriteria);
+            return CommonDAL.GetShipSoftData(custId, locId, isTagged, month, year, searchCriteria);
         }
 
         public void SaveShipSoft(List<ShipSoftEntity> lstShipSoft, int modifiedBy, out int rowsAffected, out int dupCount)
@@ -607,10 +607,10 @@ namespace DSR.BLL
             CommonDAL.SaveShipSoft(xmlDoc, modifiedBy, out rowsAffected, out dupCount);
         }
 
-        public void TagCustomer(List<ShipSoftEntity> lstShipSoft, int custId, int modifiedBy)
+        public void TagCustomer(List<ShipSoftEntity> lstShipSoft, int custId, bool isTagged, int modifiedBy)
         {
             string xmlDoc = GeneralFunctions.Serialize(lstShipSoft);
-            CommonDAL.TagCustomer(xmlDoc, custId, modifiedBy);
+            CommonDAL.TagCustomer(xmlDoc, custId, isTagged, modifiedBy);
         }
 
         #endregion

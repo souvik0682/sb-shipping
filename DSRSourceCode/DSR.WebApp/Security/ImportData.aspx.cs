@@ -22,6 +22,8 @@ namespace DSR.WebApp.Security
         #region Private Member Variables
 
         private int _userId = 0;
+        private int _roleId = 0;
+        private int _locId = 0;
         private bool _hasEditAccess = true;
         private IFormatProvider _culture = new CultureInfo(ConfigurationManager.AppSettings["Culture"].ToString());
 
@@ -37,6 +39,9 @@ namespace DSR.WebApp.Security
 
             if (!IsPostBack)
             {
+                rblTag.SelectedValue = "1";
+                AllowUntagging(true);
+                PopulateYear();
                 SetDefaultSearchCriteria();
                 LoadCustomer();
                 LoadShipSoftData();
@@ -45,38 +50,61 @@ namespace DSR.WebApp.Security
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            List<ShipSoftEntity> lstShipSoft = new List<ShipSoftEntity>();
-            int tranId = 0;
-
-            for (int index = 0; index < gvwData.Rows.Count; index++)
+            if (ValidateSave())
             {
-                CheckBox chkSel = (CheckBox)gvwData.Rows[index].FindControl("chkSel");
-                HiddenField hdnId = (HiddenField)gvwData.Rows[index].FindControl("hdnId");
+                List<ShipSoftEntity> lstShipSoft = new List<ShipSoftEntity>();
+                int tranId = 0;
+                bool isTagged = (rblTag.SelectedValue == "1") ? true : false;
 
-                if (!ReferenceEquals(chkSel, null) && !ReferenceEquals(hdnId, null))
+                for (int index = 0; index < gvwData.Rows.Count; index++)
                 {
-                    if (chkSel.Checked)
+                    CheckBox chkSel = (CheckBox)gvwData.Rows[index].FindControl("chkSel");
+                    HiddenField hdnId = (HiddenField)gvwData.Rows[index].FindControl("hdnId");
+
+                    if (!ReferenceEquals(chkSel, null) && !ReferenceEquals(hdnId, null))
                     {
-                        tranId = 0;
-
-                        int.TryParse(hdnId.Value, out tranId);
-
-                        if (tranId > 0)
+                        if (isTagged) //For tagged data, populate deselected data
                         {
-                            ShipSoftEntity shipSoft = new ShipSoftEntity();
-                            shipSoft.TranId = tranId;
-                            lstShipSoft.Add(shipSoft);
+                            if (!chkSel.Checked)
+                            {
+                                tranId = 0;
+
+                                int.TryParse(hdnId.Value, out tranId);
+
+                                if (tranId > 0)
+                                {
+                                    ShipSoftEntity shipSoft = new ShipSoftEntity();
+                                    shipSoft.TranId = tranId;
+                                    lstShipSoft.Add(shipSoft);
+                                }
+                            }
+                        }
+                        else //For untagged data, populate only selected data
+                        {
+                            if (chkSel.Checked)
+                            {
+                                tranId = 0;
+
+                                int.TryParse(hdnId.Value, out tranId);
+
+                                if (tranId > 0)
+                                {
+                                    ShipSoftEntity shipSoft = new ShipSoftEntity();
+                                    shipSoft.TranId = tranId;
+                                    lstShipSoft.Add(shipSoft);
+                                }
+                            }
                         }
                     }
                 }
-            }
 
-            if (lstShipSoft.Count > 0)
-            {
-                new CommonBLL().TagCustomer(lstShipSoft, Convert.ToInt32(ddlCust.SelectedValue), _userId);
-                LoadShipSoftData();
-                GeneralFunctions.RegisterAlertScript(this, ResourceManager.GetStringWithoutName("ERR00005"));
-                //ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "<script>javascript:void alert('" + ResourceManager.GetStringWithoutName("ERR00005") + "');</script>", false);
+                if (lstShipSoft.Count > 0)
+                {
+                    new CommonBLL().TagCustomer(lstShipSoft, Convert.ToInt32(ddlCust.SelectedValue), isTagged, _userId);
+                    LoadShipSoftData();
+                    GeneralFunctions.RegisterAlertScript(this, ResourceManager.GetStringWithoutName("ERR00005"));
+                    //ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "<script>javascript:void alert('" + ResourceManager.GetStringWithoutName("ERR00005") + "');</script>", false);
+                }
             }
         }
 
@@ -235,8 +263,8 @@ namespace DSR.WebApp.Security
 
         protected void gvwData_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            //gvwData.PageIndex = e.NewPageIndex;
-            //LoadShipSoftData();
+            gvwData.PageIndex = e.NewPageIndex;
+            LoadShipSoftData();
         }
 
         protected void gvwData_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -248,6 +276,16 @@ namespace DSR.WebApp.Security
                 //ScriptManager sManager = ScriptManager.GetCurrent(this);
 
                 //e.Row.Cells[0].Text = ((gvwData.PageSize * gvwData.PageIndex) + e.Row.RowIndex + 1).ToString();
+                CheckBox chkSel = (CheckBox)e.Row.FindControl("chkSel");
+
+                if (!ReferenceEquals(chkSel, null))
+                {
+                    if (rblTag.SelectedValue == "1")
+                        chkSel.Checked = true;
+                    else
+                        chkSel.Checked = false;
+                }
+
                 ((HiddenField)e.Row.FindControl("hdnId")).Value = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "TranId"));
                 e.Row.Cells[1].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "LocationName"));
                 e.Row.Cells[2].Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ProspectName"));
@@ -324,12 +362,27 @@ namespace DSR.WebApp.Security
 
         protected void rblTag_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (rblTag.SelectedValue == "1")
+                AllowUntagging(true);
+            else if (rblTag.SelectedValue == "2")
+                AllowUntagging(false);
+
             ddlCust.SelectedIndex = -1;
             LoadShipSoftData();
             //upData.Update();
         }
 
         protected void ddlCust_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadShipSoftData();
+        }
+
+        protected void ddlMonth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadShipSoftData();
+        }
+
+        protected void ddlYear_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadShipSoftData();
         }
@@ -367,6 +420,21 @@ namespace DSR.WebApp.Security
         private void RetrieveParameters()
         {
             _userId = UserBLL.GetLoggedInUserId();
+
+            IUser user = new UserBLL().GetUser(_userId);
+
+            if (!ReferenceEquals(user, null))
+            {
+                if (!ReferenceEquals(user.UserRole, null))
+                {
+                    _roleId = user.UserRole.Id;
+                }
+
+                if (!ReferenceEquals(user.UserLocation, null))
+                {
+                    _locId = user.UserLocation.Id;
+                }
+            }
         }
 
         private void SetAttributes()
@@ -377,7 +445,7 @@ namespace DSR.WebApp.Security
                 //txtWMEArea.WatermarkText = ResourceManager.GetStringWithoutName("ERR00016");
                 //txtWMELoc.WatermarkText = ResourceManager.GetStringWithoutName("ERR00018");
                 btnCancel.OnClientClick = "javascript:return confirm('" + ResourceManager.GetStringWithoutName("ERR00050") + "')";
-                rfvCust.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00051");
+                //rfvCust.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00051");
                 gvwData.PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
                 gvwData.PagerSettings.PageButtonCount = Convert.ToInt32(ConfigurationManager.AppSettings["PageButtonCount"]);
             }
@@ -398,10 +466,12 @@ namespace DSR.WebApp.Security
 
                 if (!ReferenceEquals(searchCriteria, null))
                 {
+                    int locId = (_roleId == (int)UserRole.Admin) ? 0 : _locId;
+
                     BuildSearchCriteria(searchCriteria);
 
                     bool isTagged = (rblTag.SelectedValue == "1") ? true : false;
-                    gvwData.DataSource = new CommonBLL().GetShipSoftData(Convert.ToInt32(ddlCust.SelectedValue), isTagged, searchCriteria);
+                    gvwData.DataSource = new CommonBLL().GetShipSoftData(Convert.ToInt32(ddlCust.SelectedValue), locId, isTagged, Convert.ToInt32(ddlMonth.SelectedValue), Convert.ToInt32(ddlYear.SelectedValue), searchCriteria);
                     gvwData.DataBind();
                 }
             }
@@ -443,6 +513,49 @@ namespace DSR.WebApp.Security
             criteria.SortExpression = sortExpression;
             criteria.SortDirection = sortDirection;
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
+        }
+
+        private void PopulateYear()
+        {
+            for (int index = 2010; index <= 2020; index++)
+            {
+                ddlYear.Items.Add(new ListItem(index.ToString(), index.ToString()));
+            }
+
+            ddlYear.SelectedValue = DateTime.Now.Date.Year.ToString();
+            ddlMonth.SelectedValue = DateTime.Now.Date.Month.ToString();
+            //ddlYear.Items.Insert(0, new ListItem(Constants.DROPDOWNLIST_DEFAULT_TEXT, Constants.DROPDOWNLIST_DEFAULT_VALUE));
+        }
+
+        private void AllowUntagging(bool isTagging)
+        {
+            if (isTagging)
+            {
+                if (_roleId == (int)UserRole.Admin)
+                    btnSave.Enabled = true;
+                else
+                    btnSave.Enabled = false;
+            }
+            else
+            {
+                btnSave.Enabled = true;
+            }
+        }
+
+        private bool ValidateSave()
+        {
+            bool isValid = true;
+
+            if (rblTag.SelectedValue == "2")
+            {
+                if (ddlCust.SelectedValue == "0")
+                {
+                    GeneralFunctions.RegisterAlertScript(this, ResourceManager.GetStringWithoutName("ERR00072"));
+                    isValid = false;
+                }
+            }
+
+            return isValid;
         }
 
         #endregion
