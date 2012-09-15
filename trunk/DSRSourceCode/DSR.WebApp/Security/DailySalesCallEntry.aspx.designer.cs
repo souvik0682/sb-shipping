@@ -175,6 +175,24 @@ namespace DSR.WebApp.Security {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl spnProspect;
         
         /// <summary>
+        /// lblHExecutive control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHExecutive;
+        
+        /// <summary>
+        /// lblExecutive control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblExecutive;
+        
+        /// <summary>
         /// Label6 control.
         /// </summary>
         /// <remarks>

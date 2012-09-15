@@ -64,9 +64,9 @@ namespace DSR.BLL
             return lstRpt;
         }
 
-        public IEnumerable<ICallDetail> GetMisReportData(DateTime fromDate, DateTime toDate, ICallDetail detail, int userId)
+        public IEnumerable<ICallDetail> GetMisReportData(DateTime fromDate, DateTime toDate, ICallDetail detail, char reportType, int userId)
         {
-            List<ICallDetail> lstRpt = ReportDAL.GetMisReportData(fromDate, toDate, detail, userId);
+            List<ICallDetail> lstRpt = ReportDAL.GetMisReportData(fromDate, toDate, detail, reportType, userId);
             return lstRpt;
         }
 

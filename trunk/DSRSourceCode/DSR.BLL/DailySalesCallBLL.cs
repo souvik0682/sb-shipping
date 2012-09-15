@@ -50,5 +50,10 @@ namespace DSR.BLL
         {
             return DailySalesCallDAL.GetCommitments(callId);
         }
+
+        public IDailySalesCall GetSalesExecutiveByCallId(int callId)
+        {
+            return DailySalesCallDAL.GetSalesExecutiveByCallId(callId);
+        }
     }
 }

@@ -978,7 +978,7 @@ namespace DSR.DAL
 
         #region Import Data
 
-        public static List<IShipSoft> GetShipSoftData(int custId, bool isTagged, SearchCriteria searchCriteria)
+        public static List<IShipSoft> GetShipSoftData(int custId, int locId, bool isTagged, int month, int year, SearchCriteria searchCriteria)
         {
             string strExecution = "[common].[uspGetShipSoft]";
             List<IShipSoft> lstShipSoft = new List<IShipSoft>();
@@ -986,7 +986,10 @@ namespace DSR.DAL
             using (DbQuery oDq = new DbQuery(strExecution))
             {
                 oDq.AddIntegerParam("@CustId", custId);
+                oDq.AddIntegerParam("@LocId", locId);
                 oDq.AddBooleanParam("@IsTagged", isTagged);
+                oDq.AddIntegerParam("@Month", month);
+                oDq.AddIntegerParam("@Year", year);
                 oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
                 oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
                 DataTableReader reader = oDq.GetTableReader();
@@ -1021,13 +1024,14 @@ namespace DSR.DAL
             }
         }
 
-        public static void TagCustomer(string xmlDoc, int custId, int modifiedBy)
+        public static void TagCustomer(string xmlDoc, int custId, bool isTagged, int modifiedBy)
         {
             string strExecution = "[common].[uspTagCustomer]";
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
                 oDq.AddIntegerParam("@CustId", custId);
+                oDq.AddBooleanParam("@IsTagged", isTagged);
                 oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
                 oDq.AddNTextParam("@XMLDoc", xmlDoc);
                 oDq.RunActionQuery();

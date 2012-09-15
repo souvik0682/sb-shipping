@@ -33,12 +33,23 @@ namespace DSR.WebApp.Security
 
             if (!IsPostBack)
             {
+                LoadSalesExecutive();
                 PopulateCallType();
                 PopulateProspectFor();
                 GetCustomer();
 
                 LoadRecordForAdd();
                 LoadRecordForEdit();
+            }
+        }
+
+        private void LoadSalesExecutive()
+        {
+            IDailySalesCall salesCall = new DailySalesCallBLL().GetSalesExecutiveByCallId(_callId);
+
+            if (!ReferenceEquals(salesCall, null))
+            {
+                lblExecutive.Text = salesCall.UserName;
             }
         }
 

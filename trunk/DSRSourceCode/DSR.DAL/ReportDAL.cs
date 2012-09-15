@@ -425,7 +425,7 @@ namespace DSR.DAL
             return lstCallDetail;
         }
 
-        public static List<ICallDetail> GetMisReportData(DateTime fromDate, DateTime toDate, ICallDetail detail, int userId)
+        public static List<ICallDetail> GetMisReportData(DateTime fromDate, DateTime toDate, ICallDetail detail, char reportType, int userId)
         {
             string strExecution = "[report].[uspGetMisReportData]";
             List<ICallDetail> lstCallDetail = new List<ICallDetail>();
@@ -436,6 +436,7 @@ namespace DSR.DAL
                 oDq.AddDateTimeParam("@ToDate", toDate);
                 oDq.AddIntegerParam("@LocId", detail.LocationId);
                 oDq.AddIntegerParam("@LineId", detail.ProspectId);
+                oDq.AddCharParam("@ReportType", 1, reportType);
                 oDq.AddIntegerParam("@UserId", userId);
 
                 DataTableReader reader = oDq.GetTableReader();

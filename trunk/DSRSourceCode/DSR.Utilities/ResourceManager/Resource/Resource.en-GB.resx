@@ -330,4 +330,7 @@
   <data name="ERR00071" xml:space="preserve">
     <value>Password has been reset and send to user's email</value>
   </data>
+  <data name="ERR00072" xml:space="preserve">
+    <value>Please select customer</value>
+  </data>
 </root>

@@ -127,7 +127,26 @@ namespace DSR.DAL
 
             return lstCommitment;
         }
-    }
 
-    
+        public static IDailySalesCall GetSalesExecutiveByCallId(int callId)
+        {
+            string strExecution = "[common].[uspGetSalesExecutiveByCallId]";
+            IDailySalesCall salesCall = null;
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@CallId", callId);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    salesCall = new DailySalesCallEntity();
+                    salesCall.UserName = Convert.ToString(reader["UserName"]);
+                }
+
+                reader.Close();
+            }
+            return salesCall;
+        }
+    }    
 }

@@ -121,7 +121,7 @@ namespace DSR.WebApp.Reports
             toDate = Convert.ToDateTime(txtToDt.Text, _culture);
 
             BuildEntity(callDetail);
-            IEnumerable<ICallDetail> lst = cls.GetMisReportData(fromDate, toDate, callDetail, _userId);
+            IEnumerable<ICallDetail> lst = cls.GetMisReportData(fromDate, toDate, callDetail, Convert.ToChar(ddlParam.SelectedValue), _userId);
             rptViewer.Reset();
             rptViewer.LocalReport.Dispose();
             rptViewer.LocalReport.DataSources.Clear();
@@ -132,6 +132,7 @@ namespace DSR.WebApp.Reports
             rptViewer.LocalReport.SetParameters(new ReportParameter("CompanyName", Convert.ToString(ConfigurationManager.AppSettings["CompanyName"])));
             rptViewer.LocalReport.SetParameters(new ReportParameter("Location", ddlLoc.SelectedItem.Text));
             rptViewer.LocalReport.SetParameters(new ReportParameter("Line", ddlPros.SelectedItem.Text));
+            rptViewer.LocalReport.SetParameters(new ReportParameter("ReportType", ddlParam.SelectedItem.Text));
             rptViewer.LocalReport.Refresh();
         }
 
