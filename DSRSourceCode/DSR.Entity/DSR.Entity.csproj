@@ -67,6 +67,10 @@
       <Project>{DEAA8F62-9F75-48A1-AD97-9FAE417E238F}</Project>
       <Name>DSR.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DSR.Utilities\DSR.Utilities.csproj">
+      <Project>{96CE34FB-822A-4470-8919-130E02839431}</Project>
+      <Name>DSR.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1024,13 +1024,14 @@ namespace DSR.DAL
             }
         }
 
-        public static void TagCustomer(string xmlDoc, int custId, bool isTagged, int modifiedBy)
+        public static void TagCustomer(string xmlDoc, int custId, int salesExecutiveId, bool isTagged, int modifiedBy)
         {
             string strExecution = "[common].[uspTagCustomer]";
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
                 oDq.AddIntegerParam("@CustId", custId);
+                oDq.AddIntegerParam("@SalesExecutiveId", salesExecutiveId);
                 oDq.AddBooleanParam("@IsTagged", isTagged);
                 oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
                 oDq.AddNTextParam("@XMLDoc", xmlDoc);
@@ -1092,6 +1093,29 @@ namespace DSR.DAL
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
+                oDq.AddIntegerParam("@UserId", userId);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    IUser user = new UserEntity(reader);
+                    lstUser.Add(user);
+                }
+
+                reader.Close();
+            }
+
+            return lstUser;
+        }
+
+        public static List<IUser> GetSalesExecutiveForImportData(int custId, int userId)
+        {
+            string strExecution = "[common].[uspGetSalesExecutiveForImportData]";
+            List<IUser> lstUser = new List<IUser>();
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@CustId", custId);
                 oDq.AddIntegerParam("@UserId", userId);
                 DataTableReader reader = oDq.GetTableReader();
 

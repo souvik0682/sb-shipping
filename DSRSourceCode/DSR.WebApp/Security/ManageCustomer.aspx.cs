@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using DSR.Utilities;
 using DSR.BLL;
-using DSR.Utilities.ResourceManager;
-using DSR.Entity;
 using DSR.Common;
-using System.Configuration;
+using DSR.Entity;
+using DSR.Utilities;
+using DSR.Utilities.ResourceManager;
 
 namespace DSR.WebApp.Security
 {
@@ -34,7 +34,7 @@ namespace DSR.WebApp.Security
 
             if (!IsPostBack)
             {
-                SetDefaultSearchCriteria();
+                RetrieveSearchCriteria();
                 LoadCustomer();
             }
         }
@@ -46,13 +46,16 @@ namespace DSR.WebApp.Security
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            SaveNewPageIndex(0);
             LoadCustomer();
             upCust.Update();
         }
 
         protected void gvwCust_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            int newIndex = e.NewPageIndex;
             gvwCust.PageIndex = e.NewPageIndex;
+            SaveNewPageIndex(e.NewPageIndex);
             LoadCustomer();
         }
         protected void gvwCust_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -187,7 +190,8 @@ namespace DSR.WebApp.Security
 
         protected void ddlPaging_SelectedIndexChanged(object sender, EventArgs e)
         {
-            gvwCust.PageSize = Convert.ToInt32(ddlPaging.SelectedValue);
+            int newPageSize = Convert.ToInt32(ddlPaging.SelectedValue);
+            SaveNewPageSize(newPageSize);
             LoadCustomer();
             upCust.Update();
         }
@@ -246,7 +250,7 @@ namespace DSR.WebApp.Security
                 txtWMECust.WatermarkText = ResourceManager.GetStringWithoutName("ERR00022");
                 txtWMEGr.WatermarkText = ResourceManager.GetStringWithoutName("ERR00021");
                 txtWMEExec.WatermarkText = ResourceManager.GetStringWithoutName("ERR00055");
-                gvwCust.PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
+                //gvwCust.PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
                 gvwCust.PagerSettings.PageButtonCount = Convert.ToInt32(ConfigurationManager.AppSettings["PageButtonCount"]);
             }
         }
@@ -261,6 +265,9 @@ namespace DSR.WebApp.Security
                 {
                     BuildSearchCriteria(searchCriteria);
                     CommonBLL commonBll = new CommonBLL();
+
+                    gvwCust.PageIndex = searchCriteria.PageIndex;
+                    if (searchCriteria.PageSize > 0) gvwCust.PageSize = searchCriteria.PageSize;
 
                     if (_roleId == (int)UserRole.Management)
                         gvwCust.DataSource = commonBll.GetActiveCustomer(searchCriteria);
@@ -306,6 +313,7 @@ namespace DSR.WebApp.Security
                 sortDirection = "ASC";
             }
 
+            //criteria.PageIndex = gvwCust.PageIndex;
             criteria.UserId = _userId;
             criteria.SortExpression = sortExpression;
             criteria.SortDirection = sortDirection;
@@ -317,9 +325,45 @@ namespace DSR.WebApp.Security
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
         }
 
-        private void SetDefaultSearchCriteria()
+        private void RetrieveSearchCriteria()
         {
-            SearchCriteria criteria = new SearchCriteria();
+            bool isCriteriaExists = false;
+
+            if (!ReferenceEquals(Session[Constants.SESSION_SEARCH_CRITERIA], null))
+            {
+                SearchCriteria criteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
+
+                if (!ReferenceEquals(criteria, null))
+                {
+                    if (criteria.CurrentPage != PageName.CustomerMaster)
+                    {
+                        criteria.Clear();
+                        SetDefaultSearchCriteria(criteria);
+                    }
+                    else
+                    {
+                        txtCustName.Text = criteria.CustomerName;
+                        txtGrComp.Text = criteria.GroupName;
+                        txtLoc.Text = criteria.LocAbbr;
+                        txtExec.Text = criteria.ExecutiveName;
+                        gvwCust.PageIndex = criteria.PageIndex;
+                        gvwCust.PageSize = criteria.PageSize;
+                        ddlPaging.SelectedValue = criteria.PageSize.ToString();
+                        isCriteriaExists = true;
+                    }
+                }
+            }
+
+            if (!isCriteriaExists)
+            {
+                SearchCriteria newcriteria = new SearchCriteria();
+                SetDefaultSearchCriteria(newcriteria);
+            }
+        }
+
+        private void SetDefaultSearchCriteria(SearchCriteria criteria)
+        {
+            //SearchCriteria criteria = new SearchCriteria();
 
             //SA Modify -- Souvik
             //string sortExpression = "Location";
@@ -327,10 +371,38 @@ namespace DSR.WebApp.Security
             //EA Modify -- Souvik
             string sortDirection = "ASC";
 
+            criteria.CurrentPage = PageName.CustomerMaster;
+            criteria.PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
             criteria.SortExpression = sortExpression;
             criteria.SortDirection = sortDirection;
 
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
+        }
+
+        private void SaveNewPageIndex(int newIndex)
+        {
+            if (!ReferenceEquals(Session[Constants.SESSION_SEARCH_CRITERIA], null))
+            {
+                SearchCriteria criteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
+
+                if (!ReferenceEquals(criteria, null))
+                {
+                    criteria.PageIndex = newIndex;
+                }
+            }
+        }
+
+        private void SaveNewPageSize(int newPageSize)
+        {
+            if (!ReferenceEquals(Session[Constants.SESSION_SEARCH_CRITERIA], null))
+            {
+                SearchCriteria criteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
+
+                if (!ReferenceEquals(criteria, null))
+                {
+                    criteria.PageSize = newPageSize;
+                }
+            }
         }
 
         #endregion

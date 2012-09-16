@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DSR.Common;
+using DSR.Utilities;
 
 namespace DSR.Entity
 {
@@ -77,6 +78,24 @@ namespace DSR.Entity
             set;
         }
 
+        public PageName CurrentPage
+        {
+            get;
+            set;
+        }
+
+        public int PageIndex
+        {
+            get;
+            set;
+        }
+
+        public int PageSize
+        {
+            get;
+            set;
+        }
+
         #endregion
 
         #region Constructor
@@ -84,6 +103,28 @@ namespace DSR.Entity
         public SearchCriteria()
         {
 
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        public void Clear()
+        {
+            this.AreaName = string.Empty;
+            this.CustomerName = string.Empty;
+            this.ExecutiveName = string.Empty;
+            this.FirstName = string.Empty;
+            this.GroupName = string.Empty;
+            this.LocAbbr = string.Empty;
+            this.LocName = string.Empty;
+            this.SortDirection = string.Empty;
+            this.SortExpression = string.Empty;
+            this.UserId = 0;
+            this.UserName = string.Empty;
+            this.CurrentPage = 0;
+            this.PageIndex = 0;
+            this.PageSize = 0;
         }
 
         #endregion

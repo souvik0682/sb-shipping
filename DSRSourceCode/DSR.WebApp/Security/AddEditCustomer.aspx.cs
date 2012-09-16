@@ -60,6 +60,7 @@ namespace DSR.WebApp.Security
             if (!IsPostBack)
             {
                 btnBack.OnClientClick = "javascript:return RedirectAfterCancelClick('ManageCustomer.aspx','" + ResourceManager.GetStringWithoutName("ERR00046") + "')";
+
                 txtAddress.Attributes["onkeypress"] = "javascript:return SetMaxLength(this, 200)";
                 txtProfile.Attributes["onkeypress"] = "javascript:return SetMaxLength(this, 500)";
 

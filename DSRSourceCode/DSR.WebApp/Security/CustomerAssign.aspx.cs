@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using DSR.BLL;
-using DSR.Utilities;
 using DSR.Common;
-using DSR.Utilities.ResourceManager;
-using System.Configuration;
-using System.Globalization;
 using DSR.Entity;
+using DSR.Utilities;
+using DSR.Utilities.ResourceManager;
 
 namespace DSR.WebApp.Security
 {
@@ -34,6 +34,7 @@ namespace DSR.WebApp.Security
 
             if (!IsPostBack)
             {
+                RetrieveSearchCriteria();
                 LoadData();
             }
         }
@@ -45,7 +46,8 @@ namespace DSR.WebApp.Security
 
         protected void ddlPaging_SelectedIndexChanged(object sender, EventArgs e)
         {
-            gvwList.PageSize = Convert.ToInt32(ddlPaging.SelectedValue);
+            int newPageSize = Convert.ToInt32(ddlPaging.SelectedValue);
+            SaveNewPageSize(newPageSize);
             LoadData();
             upList.Update();
         }
@@ -130,7 +132,9 @@ namespace DSR.WebApp.Security
 
         protected void gvwList_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            int newIndex = e.NewPageIndex;
             gvwList.PageIndex = e.NewPageIndex;
+            SaveNewPageIndex(e.NewPageIndex);
             LoadData();
             upList.Update();
         }
@@ -178,7 +182,7 @@ namespace DSR.WebApp.Security
         {
             if (!IsPostBack)
             {
-                gvwList.PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
+                //gvwList.PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
                 gvwList.PagerSettings.PageButtonCount = Convert.ToInt32(ConfigurationManager.AppSettings["PageButtonCount"]);
             }
         }
@@ -191,8 +195,21 @@ namespace DSR.WebApp.Security
 
         private void LoadData()
         {
-            gvwList.DataSource = new CommonBLL().GetAssignedCustomer();
-            gvwList.DataBind();
+            if (!ReferenceEquals(Session[Constants.SESSION_SEARCH_CRITERIA], null))
+            {
+                SearchCriteria searchCriteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
+
+                if (!ReferenceEquals(searchCriteria, null))
+                {
+                    CommonBLL commonBll = new CommonBLL();
+
+                    gvwList.PageIndex = searchCriteria.PageIndex;
+                    if (searchCriteria.PageSize > 0) gvwList.PageSize = searchCriteria.PageSize;
+
+                    gvwList.DataSource = new CommonBLL().GetAssignedCustomer();
+                    gvwList.DataBind();
+                }
+            }
         }
 
         private void DeleteData(int id)
@@ -200,6 +217,71 @@ namespace DSR.WebApp.Security
             new CommonBLL().DeleteAssignedCustomer(id, _userId);
             LoadData();
             ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "<script>javascript:void alert('" + ResourceManager.GetStringWithoutName("ERR00006") + "');</script>", false);
+        }
+
+        private void RetrieveSearchCriteria()
+        {
+            bool isCriteriaExists = false;
+
+            if (!ReferenceEquals(Session[Constants.SESSION_SEARCH_CRITERIA], null))
+            {
+                SearchCriteria criteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
+
+                if (!ReferenceEquals(criteria, null))
+                {
+                    if (criteria.CurrentPage != PageName.AssignCustomer)
+                    {
+                        criteria.Clear();
+                        SetDefaultSearchCriteria(criteria);
+                    }
+                    else
+                    {
+                        gvwList.PageIndex = criteria.PageIndex;
+                        gvwList.PageSize = criteria.PageSize;
+                        ddlPaging.SelectedValue = criteria.PageSize.ToString();
+                        isCriteriaExists = true;
+                    }
+                }
+            }
+
+            if (!isCriteriaExists)
+            {
+                SearchCriteria newcriteria = new SearchCriteria();
+                SetDefaultSearchCriteria(newcriteria);
+            }
+        }
+
+        private void SetDefaultSearchCriteria(SearchCriteria criteria)
+        {
+            criteria.CurrentPage = PageName.AssignCustomer;
+            criteria.PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
+            Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
+        }
+
+        private void SaveNewPageIndex(int newIndex)
+        {
+            if (!ReferenceEquals(Session[Constants.SESSION_SEARCH_CRITERIA], null))
+            {
+                SearchCriteria criteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
+
+                if (!ReferenceEquals(criteria, null))
+                {
+                    criteria.PageIndex = newIndex;
+                }
+            }
+        }
+
+        private void SaveNewPageSize(int newPageSize)
+        {
+            if (!ReferenceEquals(Session[Constants.SESSION_SEARCH_CRITERIA], null))
+            {
+                SearchCriteria criteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
+
+                if (!ReferenceEquals(criteria, null))
+                {
+                    criteria.PageSize = newPageSize;
+                }
+            }
         }
 
         #endregion

@@ -333,4 +333,7 @@
   <data name="ERR00072" xml:space="preserve">
     <value>Please select customer</value>
   </data>
+  <data name="ERR00073" xml:space="preserve">
+    <value>Please select sales executive</value>
+  </data>
 </root>

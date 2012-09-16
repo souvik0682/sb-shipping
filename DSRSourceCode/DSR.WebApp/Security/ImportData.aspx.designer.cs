@@ -76,6 +76,15 @@ namespace DSR.WebApp.Security {
         protected global::System.Web.UI.WebControls.DropDownList ddlCust;
         
         /// <summary>
+        /// ddlSales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSales;
+        
+        /// <summary>
         /// ddlPaging control.
         /// </summary>
         /// <remarks>

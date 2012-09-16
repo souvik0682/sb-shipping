@@ -88,7 +88,9 @@
                     </tr>
                     <tr>
                         <td>Customer:</td>
-                        <td colspan="5"><asp:DropDownList ID="ddlCust" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCust_SelectedIndexChanged"><asp:ListItem Value="0" Text="--Select--"></asp:ListItem></asp:DropDownList></td>
+                        <td><asp:DropDownList ID="ddlCust" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCust_SelectedIndexChanged"><asp:ListItem Value="0" Text="--Select--"></asp:ListItem></asp:DropDownList></td>
+                        <td>Sales Executive:</td>
+                        <td colspan="2"><asp:DropDownList ID="ddlSales" runat="server"></asp:DropDownList></td>
                     </tr>
                 </table>
             </div>
