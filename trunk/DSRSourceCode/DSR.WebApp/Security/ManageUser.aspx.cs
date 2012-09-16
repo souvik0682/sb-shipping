@@ -31,7 +31,7 @@ namespace DSR.WebApp.Security
 
             if (!IsPostBack)
             {
-                SetDefaultSearchCriteria();
+                RetrieveSearchCriteria();
                 LoadUser();
             }
         }
@@ -43,13 +43,16 @@ namespace DSR.WebApp.Security
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            SaveNewPageIndex(0);
             LoadUser();
             upUser.Update();
         }
 
         protected void gvwUser_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            int newIndex = e.NewPageIndex;
             gvwUser.PageIndex = e.NewPageIndex;
+            SaveNewPageIndex(e.NewPageIndex);
             LoadUser();
         }
         protected void gvwUser_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -156,7 +159,8 @@ namespace DSR.WebApp.Security
 
         protected void ddlPaging_SelectedIndexChanged(object sender, EventArgs e)
         {
-            gvwUser.PageSize = Convert.ToInt32(ddlPaging.SelectedValue);
+            int newPageSize = Convert.ToInt32(ddlPaging.SelectedValue);
+            SaveNewPageSize(newPageSize);
             LoadUser();
             upUser.Update();
         }
@@ -193,7 +197,7 @@ namespace DSR.WebApp.Security
             {
                 txtWMEUserName.WatermarkText = ResourceManager.GetStringWithoutName("ERR00019");
                 txtWMEFName.WatermarkText = ResourceManager.GetStringWithoutName("ERR00020");
-                gvwUser.PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
+                //gvwUser.PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
                 gvwUser.PagerSettings.PageButtonCount = Convert.ToInt32(ConfigurationManager.AppSettings["PageButtonCount"]);
             }
         }
@@ -216,6 +220,10 @@ namespace DSR.WebApp.Security
                 {
                     BuildSearchCriteria(searchCriteria);
                     UserBLL userBll = new UserBLL();
+
+                    gvwUser.PageIndex = searchCriteria.PageIndex;
+                    if (searchCriteria.PageSize > 0) gvwUser.PageSize = searchCriteria.PageSize;
+
                     gvwUser.DataSource = userBll.GetAllUserList(searchCriteria);
                     gvwUser.DataBind();
                 }
@@ -251,16 +259,76 @@ namespace DSR.WebApp.Security
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
         }
 
-        private void SetDefaultSearchCriteria()
+        private void RetrieveSearchCriteria()
         {
-            SearchCriteria criteria = new SearchCriteria();
+            bool isCriteriaExists = false;
+
+            if (!ReferenceEquals(Session[Constants.SESSION_SEARCH_CRITERIA], null))
+            {
+                SearchCriteria criteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
+
+                if (!ReferenceEquals(criteria, null))
+                {
+                    if (criteria.CurrentPage != PageName.UserMaster)
+                    {
+                        criteria.Clear();
+                        SetDefaultSearchCriteria(criteria);
+                    }
+                    else
+                    {
+                        txtUserName.Text = criteria.UserName;
+                        txtFName.Text = criteria.FirstName;
+                        gvwUser.PageIndex = criteria.PageIndex;
+                        gvwUser.PageSize = criteria.PageSize;
+                        ddlPaging.SelectedValue = criteria.PageSize.ToString();
+                        isCriteriaExists = true;
+                    }
+                }
+            }
+
+            if (!isCriteriaExists)
+            {
+                SearchCriteria newcriteria = new SearchCriteria();
+                SetDefaultSearchCriteria(newcriteria);
+            }
+        }
+
+        private void SetDefaultSearchCriteria(SearchCriteria criteria)
+        {
             string sortExpression = string.Empty;
             string sortDirection = string.Empty;
 
             criteria.SortExpression = sortExpression;
             criteria.SortDirection = sortDirection;
-
+            criteria.CurrentPage = PageName.UserMaster;
+            criteria.PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);
             Session[Constants.SESSION_SEARCH_CRITERIA] = criteria;
+        }
+
+        private void SaveNewPageIndex(int newIndex)
+        {
+            if (!ReferenceEquals(Session[Constants.SESSION_SEARCH_CRITERIA], null))
+            {
+                SearchCriteria criteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
+
+                if (!ReferenceEquals(criteria, null))
+                {
+                    criteria.PageIndex = newIndex;
+                }
+            }
+        }
+
+        private void SaveNewPageSize(int newPageSize)
+        {
+            if (!ReferenceEquals(Session[Constants.SESSION_SEARCH_CRITERIA], null))
+            {
+                SearchCriteria criteria = (SearchCriteria)Session[Constants.SESSION_SEARCH_CRITERIA];
+
+                if (!ReferenceEquals(criteria, null))
+                {
+                    criteria.PageSize = newPageSize;
+                }
+            }
         }
 
         private void ResetUserPassword(int uId)

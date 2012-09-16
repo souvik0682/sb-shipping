@@ -607,10 +607,10 @@ namespace DSR.BLL
             CommonDAL.SaveShipSoft(xmlDoc, modifiedBy, out rowsAffected, out dupCount);
         }
 
-        public void TagCustomer(List<ShipSoftEntity> lstShipSoft, int custId, bool isTagged, int modifiedBy)
+        public void TagCustomer(List<ShipSoftEntity> lstShipSoft, int custId, int salesExecutiveId, bool isTagged, int modifiedBy)
         {
             string xmlDoc = GeneralFunctions.Serialize(lstShipSoft);
-            CommonDAL.TagCustomer(xmlDoc, custId, isTagged, modifiedBy);
+            CommonDAL.TagCustomer(xmlDoc, custId, salesExecutiveId, isTagged, modifiedBy);
         }
 
         #endregion
@@ -630,6 +630,11 @@ namespace DSR.BLL
         public List<IUser> GetSalesExecutiveNew(int userId)
         {
             return CommonDAL.GetSalesExecutiveNew(userId);
+        }
+
+        public List<IUser> GetSalesExecutiveForImportData(int custId, int userId)
+        {
+            return CommonDAL.GetSalesExecutiveForImportData(custId, userId);
         }
 
         #endregion

@@ -60,7 +60,7 @@
                     </Triggers>
                     <ContentTemplate>
                         <asp:GridView ID="gvwGroup" Width="100%" runat="server" AutoGenerateColumns="false"
-                        AllowPaging="false" BorderStyle="None" BorderWidth="0" OnRowDataBound="gvwGroup_RowDataBound" OnRowCommand="gvwGroup_RowCommand" OnPageIndexChanging="gvwGroup_PageIndexChanging">
+                        AllowPaging="true" BorderStyle="None" BorderWidth="0" OnRowDataBound="gvwGroup_RowDataBound" OnRowCommand="gvwGroup_RowCommand" OnPageIndexChanging="gvwGroup_PageIndexChanging">
                         <PagerSettings Mode="NumericFirstLast" Position="TopAndBottom" />
                         <PagerStyle CssClass="gridviewpager" />
                         <EmptyDataRowStyle CssClass="gridviewemptydatarow" />

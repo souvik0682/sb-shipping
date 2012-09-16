@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DSR.Utilities;
-using DSR.BLL;
-using DSR.Utilities.ResourceManager;
-using DSR.Entity;
-using DSR.Common;
 using System.Configuration;
 using System.Data.OleDb;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using DSR.BLL;
+using DSR.Common;
+using DSR.Entity;
+using DSR.Utilities;
+using DSR.Utilities.ResourceManager;
 
 namespace DSR.WebApp.Security
 {
@@ -43,7 +43,8 @@ namespace DSR.WebApp.Security
                 AllowUntagging(true);
                 PopulateYear();
                 SetDefaultSearchCriteria();
-                LoadCustomer();
+                PopulateCustomer();
+                PopulateSalesExecutive();
                 LoadShipSoftData();
             }
         }
@@ -100,7 +101,7 @@ namespace DSR.WebApp.Security
 
                 if (lstShipSoft.Count > 0)
                 {
-                    new CommonBLL().TagCustomer(lstShipSoft, Convert.ToInt32(ddlCust.SelectedValue), isTagged, _userId);
+                    new CommonBLL().TagCustomer(lstShipSoft, Convert.ToInt32(ddlCust.SelectedValue), Convert.ToInt32(ddlSales.SelectedValue), isTagged, _userId);
                     LoadShipSoftData();
                     GeneralFunctions.RegisterAlertScript(this, ResourceManager.GetStringWithoutName("ERR00005"));
                     //ScriptManager.RegisterStartupScript(this, typeof(Page), "alert", "<script>javascript:void alert('" + ResourceManager.GetStringWithoutName("ERR00005") + "');</script>", false);
@@ -374,6 +375,7 @@ namespace DSR.WebApp.Security
 
         protected void ddlCust_SelectedIndexChanged(object sender, EventArgs e)
         {
+            PopulateSalesExecutive();
             LoadShipSoftData();
         }
 
@@ -477,7 +479,7 @@ namespace DSR.WebApp.Security
             }
         }
 
-        private void LoadCustomer()
+        private void PopulateCustomer()
         {
             GeneralFunctions.PopulateDropDownList<ICustomer>(ddlCust, new CommonBLL().GetCustomerByUser(_userId), "Id", "Name", true);
         }
@@ -527,6 +529,18 @@ namespace DSR.WebApp.Security
             //ddlYear.Items.Insert(0, new ListItem(Constants.DROPDOWNLIST_DEFAULT_TEXT, Constants.DROPDOWNLIST_DEFAULT_VALUE));
         }
 
+        private void PopulateSalesExecutive()
+        {
+            List<IUser> lstUser = new CommonBLL().GetSalesExecutiveForImportData(Convert.ToInt32(ddlCust.SelectedValue), _userId);
+            ddlSales.DataValueField = "Id";
+            ddlSales.DataTextField = "UserFullName";
+            ddlSales.DataSource = lstUser;
+            ddlSales.DataBind();
+
+            if (lstUser.Count != 1)
+                ddlSales.Items.Insert(0, new ListItem(Constants.DROPDOWNLIST_DEFAULT_TEXT, Constants.DROPDOWNLIST_DEFAULT_VALUE));
+        }
+
         private void AllowUntagging(bool isTagging)
         {
             if (isTagging)
@@ -546,12 +560,20 @@ namespace DSR.WebApp.Security
         {
             bool isValid = true;
 
-            if (rblTag.SelectedValue == "2")
+            if (rblTag.SelectedValue == "2") //For untagged data.
             {
                 if (ddlCust.SelectedValue == "0")
                 {
                     GeneralFunctions.RegisterAlertScript(this, ResourceManager.GetStringWithoutName("ERR00072"));
                     isValid = false;
+                }
+                else
+                {
+                    if (ddlSales.SelectedValue == "0")
+                    {
+                        GeneralFunctions.RegisterAlertScript(this, ResourceManager.GetStringWithoutName("ERR00073"));
+                        isValid = false;
+                    }
                 }
             }
 

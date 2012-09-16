@@ -36,6 +36,17 @@ namespace DSR.Utilities
         SalesExecutive = 4
     };
 
+    public enum PageName
+    {
+        UserMaster = 1,
+        LocationMaster = 2,
+        AreaMaster = 3,
+        GroupMaster = 4,
+        CustomerMaster = 5,
+        AssignCustomer = 6,
+        DailySalesCall = 7
+    };
+
     #endregion
 
     public static class Constants
@@ -63,6 +74,13 @@ namespace DSR.Utilities
         public const string SESSION_SEARCH_CRITERIA = "SearchCriteria";
         public const string SESSION_USER_INFO = "UserInfo";
         public const string SESSION_ERROR = "ErrorInfo";
+
+        #endregion
+
+        #region Query String
+
+        public const string QUERT_STRING_PAGE_INDEX = "pindex";
+
         #endregion
     }
 }
