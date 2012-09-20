@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using DSR.Utilities;
 using DSR.Common;
 using DSR.Entity;
+using DSR.Utilities;
 
 namespace DSR.WebApp
 {
@@ -73,17 +73,20 @@ namespace DSR.WebApp
         }
 
         private void ShowMenu(IUser user)
-        {
-            liSpecificCallType.Style["display"] = "none";
+        {            
             liMaster.Style["display"] = "none";
-
             liUserMst.Style["display"] = "none";
             liLocMst.Style["display"] = "none";
             liAreaMst.Style["display"] = "none";
             liGrMst.Style["display"] = "none";
             liCustMst.Style["display"] = "none";
             liCustAssign.Style["display"] = "none";
+
+            liTran.Style["display"] = "none";
+            liDSC.Style["display"] = "none";
             liImport.Style["display"] = "none";
+
+            liSpecificCallType.Style["display"] = "none";
             liLineWiseLoc.Style["display"] = "none";
             liLocWiseLine.Style["display"] = "none";
             liCustList.Style["display"] = "none";
@@ -101,6 +104,8 @@ namespace DSR.WebApp
                     liGrMst.Style["display"] = "";
                     liCustMst.Style["display"] = "";
                     liCustAssign.Style["display"] = "";
+                    liTran.Style["display"] = "";
+                    liDSC.Style["display"] = "";
                     liImport.Style["display"] = "";
                     liLineWiseLoc.Style["display"] = "";
                     liLocWiseLine.Style["display"] = "";
@@ -112,7 +117,6 @@ namespace DSR.WebApp
                 case (int)UserRole.Management:
                     liMaster.Style["display"] = "";
                     liCustMst.Style["display"] = "";
-                    liCustAssign.Style["display"] = "";
                     liLineWiseLoc.Style["display"] = "";
                     liLocWiseLine.Style["display"] = "";
                     liCustList.Style["display"] = "";
@@ -124,6 +128,8 @@ namespace DSR.WebApp
                     liMaster.Style["display"] = "";
                     liCustMst.Style["display"] = "";
                     liCustAssign.Style["display"] = "";
+                    liTran.Style["display"] = "";
+                    liDSC.Style["display"] = "";
                     liImport.Style["display"] = "";
                     liLineWiseLoc.Style["display"] = "";
                     liLocWiseLine.Style["display"] = "";
@@ -135,6 +141,8 @@ namespace DSR.WebApp
                 case (int)UserRole.SalesExecutive:
                     liMaster.Style["display"] = "";
                     liCustMst.Style["display"] = "";
+                    liTran.Style["display"] = "";
+                    liDSC.Style["display"] = "";
                     break;
                 default:
                     break;

@@ -41,7 +41,7 @@
                             <li id="liCustAssign" runat="server"><a href="<%=Page.ResolveClientUrl("~/Security/CustomerAssign.aspx") %>">Assign Customer</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li id="liTran" runat="server">
                         <a href="#">Transaction</a>
                         <ul>
                             <li id="liDSC" runat="server"><a href="<%=Page.ResolveClientUrl("~/Security/ManageDailySalesCall.aspx") %>">Daily Sales Call</a></li>

@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using DSR.Utilities;
 using DSR.BLL;
-using DSR.Utilities.ResourceManager;
-using DSR.Entity;
 using DSR.Common;
-using System.Configuration;
+using DSR.Entity;
+using DSR.Utilities;
+using DSR.Utilities.ResourceManager;
 
 namespace DSR.WebApp.Security
 {
