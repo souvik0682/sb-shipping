@@ -71,13 +71,13 @@ namespace DSR.WebApp.Reports
 
             GeneralFunctions.PopulateDropDownList<IProspect>(ddlPros, commonBll.GetActiveProspect(), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
 
-            if (roleId == (int)UserRole.SalesExecutive)
+            if (roleId == (int)UserRole.Admin || roleId == (int)UserRole.Management)
             {
-                GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetLocationByUser(_userId), "Id", "Name", false);
+                GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetLocationByUser(_userId), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
             }
             else
             {
-                GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetLocationByUser(_userId), "Id", "Name", Constants.DROPDOWNLIST_ALL_TEXT);
+                GeneralFunctions.PopulateDropDownList<ILocation>(ddlLoc, commonBll.GetLocationByUser(_userId), "Id", "Name", false);
             }
         }
 

@@ -563,6 +563,8 @@
           <TablixMembers>
             <TablixMember>
               <KeepWithGroup>After</KeepWithGroup>
+              <RepeatOnNewPage>true</RepeatOnNewPage>
+              <KeepTogether>true</KeepTogether>
             </TablixMember>
             <TablixMember>
               <Group Name="Details" />
