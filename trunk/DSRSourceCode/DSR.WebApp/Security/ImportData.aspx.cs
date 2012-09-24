@@ -109,6 +109,46 @@ namespace DSR.WebApp.Security
             }
         }
 
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            int tranId = 0;
+            List<ShipSoftEntity> lstShipSoft = new List<ShipSoftEntity>();
+
+            for (int index = 0; index < gvwData.Rows.Count; index++)
+            {
+                CheckBox chkSel = (CheckBox)gvwData.Rows[index].FindControl("chkSel");
+                HiddenField hdnId = (HiddenField)gvwData.Rows[index].FindControl("hdnId");
+
+                if (!ReferenceEquals(chkSel, null) && !ReferenceEquals(hdnId, null))
+                {
+                    if (chkSel.Checked)
+                    {
+                        tranId = 0;
+
+                        int.TryParse(hdnId.Value, out tranId);
+
+                        if (tranId > 0)
+                        {
+                            ShipSoftEntity shipSoft = new ShipSoftEntity();
+                            shipSoft.TranId = tranId;
+                            lstShipSoft.Add(shipSoft);
+                        }
+                    }
+                }
+            }
+
+            if (lstShipSoft.Count > 0)
+            {
+                new CommonBLL().DeleteShipSoftData(lstShipSoft, _userId);
+                LoadShipSoftData();
+                GeneralFunctions.RegisterAlertScript(this, ResourceManager.GetStringWithoutName("ERR00006"));
+            }
+            else
+            {
+                GeneralFunctions.RegisterAlertScript(this, ResourceManager.GetStringWithoutName("ERR00075"));
+            }
+        }
+
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             LoadShipSoftData();
@@ -364,9 +404,15 @@ namespace DSR.WebApp.Security
         protected void rblTag_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (rblTag.SelectedValue == "1")
+            {
                 AllowUntagging(true);
+                btnDelete.Style["display"] = "none";
+            }
             else if (rblTag.SelectedValue == "2")
+            {
                 AllowUntagging(false);
+                btnDelete.Style["display"] = "";
+            }
 
             ddlCust.SelectedIndex = -1;
             LoadShipSoftData();
@@ -443,9 +489,11 @@ namespace DSR.WebApp.Security
         {
             if (!IsPostBack)
             {
+                btnDelete.Style["display"] = "none";
                 rblTag.SelectedValue = "1";
                 //txtWMEArea.WatermarkText = ResourceManager.GetStringWithoutName("ERR00016");
                 //txtWMELoc.WatermarkText = ResourceManager.GetStringWithoutName("ERR00018");
+                btnDelete.OnClientClick = "javascript:return confirm('" + ResourceManager.GetStringWithoutName("ERR00074") + "')";
                 btnCancel.OnClientClick = "javascript:return confirm('" + ResourceManager.GetStringWithoutName("ERR00050") + "')";
                 //rfvCust.ErrorMessage = ResourceManager.GetStringWithoutName("ERR00051");
                 gvwData.PageSize = Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]);

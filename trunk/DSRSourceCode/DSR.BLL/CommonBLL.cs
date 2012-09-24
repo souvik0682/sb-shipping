@@ -613,6 +613,12 @@ namespace DSR.BLL
             CommonDAL.TagCustomer(xmlDoc, custId, salesExecutiveId, isTagged, modifiedBy);
         }
 
+        public void DeleteShipSoftData(List<ShipSoftEntity> lstShipSoft, int modifiedBy)
+        {
+            string xmlDoc = GeneralFunctions.Serialize(lstShipSoft);
+            CommonDAL.DeleteShipSoftData(xmlDoc, modifiedBy);
+        }
+
         #endregion
 
         #region User
