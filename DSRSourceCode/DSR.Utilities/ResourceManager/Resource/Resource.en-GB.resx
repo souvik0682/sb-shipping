@@ -336,4 +336,10 @@
   <data name="ERR00073" xml:space="preserve">
     <value>Please select sales executive</value>
   </data>
+  <data name="ERR00074" xml:space="preserve">
+    <value>Are you sure you want to delete (Y/N)?</value>
+  </data>
+  <data name="ERR00075" xml:space="preserve">
+    <value>Please select atleast one record to delete</value>
+  </data>
 </root>

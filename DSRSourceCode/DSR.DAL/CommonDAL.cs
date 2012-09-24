@@ -1039,6 +1039,18 @@ namespace DSR.DAL
             }
         }
 
+        public static void DeleteShipSoftData(string xmlDoc, int modifiedBy)
+        {
+            string strExecution = "[common].[uspDeleteShipSoftData]";
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
+                oDq.AddNTextParam("@XMLDoc", xmlDoc);
+                oDq.RunActionQuery();
+            }
+        }
+
         #endregion
 
         #region User
