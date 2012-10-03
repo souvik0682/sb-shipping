@@ -175,7 +175,7 @@ namespace DSR.WebApp.Security
 
                 if (_hasEditAccess && canEdit)
                 {
-                    if (_roleId == (int)UserRole.Manager)
+                    if (_roleId == (int)UserRole.Admin || _roleId == (int)UserRole.Manager)
                         btnRemove.OnClientClick = "javascript:return confirm('" + ResourceManager.GetStringWithoutName("ERR00010") + "');";
                     else
                         btnRemove.OnClientClick = "javascript:alert('" + ResourceManager.GetStringWithoutName("ERR00009") + "');return false;";
