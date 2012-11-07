@@ -394,7 +394,7 @@ namespace DSR.WebApp.Security
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                GeneralFunctions.ApplyGridViewAlternateItemStyle(e.Row, 9);
+                GeneralFunctions.ApplyGridViewAlternateItemStyle(e.Row, 6);
 
                 ScriptManager sManager = ScriptManager.GetCurrent(this);
 
@@ -620,6 +620,8 @@ namespace DSR.WebApp.Security
                 DayOfWeek currentDay = currentDT.DayOfWeek;
 
                 int callDateWeek = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(callDT.Date, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+                ViewState["CallDateWeek"] = callDateWeek; // added by amit on 04-10-2012
+
                 DayOfWeek callDateDay = callDT.DayOfWeek;
 
 
@@ -694,6 +696,12 @@ namespace DSR.WebApp.Security
             {
                 isValid = false;
             }
+
+            if (!isValid)
+            {
+                ViewState["CallDateWeek"] = 0; // added by amit on 04-10-2012
+            }
+
             return isValid;
         }
 
@@ -724,13 +732,28 @@ namespace DSR.WebApp.Security
             bool isValid = true;
             int CurrentWeekNo = 0;
 
+            // ********added by amit on 04-10-2012*************
+            int callDateWeek = 0;
+
+            if (!ReferenceEquals(ViewState["CallDateWeek"], null) && Convert.ToString(ViewState["CallDateWeek"]) != string.Empty)
+            {
+                int.TryParse(Convert.ToString(ViewState["CallDateWeek"]), out callDateWeek);
+            }
+
+            //*************************************************
+
             DateTime currentDT = DateTime.Now;
             DayOfWeek currentWK = currentDT.DayOfWeek;
 
             CurrentWeekNo = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(currentDT, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
 
-            if (WeekNo < CurrentWeekNo)
+            // added by amit on 04-10-2012
+            if (WeekNo < callDateWeek)
                 isValid = false;
+
+            // Commented by amit on 04-10-2012
+            //if (WeekNo < CurrentWeekNo)
+            //    isValid = false;
 
             return isValid;
         }

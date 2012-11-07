@@ -175,43 +175,43 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.1in</Width>
+              <Width>1.05in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.6in</Width>
+              <Width>0.4in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.6in</Width>
+              <Width>0.4in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.6in</Width>
+              <Width>0.4in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.6in</Width>
+              <Width>0.4in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.6in</Width>
+              <Width>0.4in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.6in</Width>
+              <Width>0.4in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.6in</Width>
+              <Width>0.4in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.6in</Width>
+              <Width>0.4in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.6in</Width>
+              <Width>0.4in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.6in</Width>
+              <Width>0.4in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.6in</Width>
+              <Width>0.4in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.6in</Width>
+              <Width>0.4in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>0.6in</Width>
@@ -2152,7 +2152,7 @@
           <TablixMembers>
             <TablixMember>
               <TablixHeader>
-                <Size>1.1in</Size>
+                <Size>1.05in</Size>
                 <CellContents>
                   <Textbox Name="Textbox116">
                     <CanGrow>true</CanGrow>
@@ -2190,7 +2190,7 @@
                 <TablixMember />
               </TablixMembers>
               <KeepWithGroup>After</KeepWithGroup>
-	      <RepeatOnNewPage>true</RepeatOnNewPage>
+              <RepeatOnNewPage>true</RepeatOnNewPage>
               <KeepTogether>true</KeepTogether>
             </TablixMember>
             <TablixMember>
@@ -2205,7 +2205,7 @@
                 </SortExpression>
               </SortExpressions>
               <TablixHeader>
-                <Size>1.1in</Size>
+                <Size>1.05in</Size>
                 <CellContents>
                   <Textbox Name="Group1">
                     <CanGrow>true</CanGrow>
@@ -2249,7 +2249,7 @@
             </TablixMember>
             <TablixMember>
               <TablixHeader>
-                <Size>1.1in</Size>
+                <Size>1.05in</Size>
                 <CellContents>
                   <Textbox Name="Textbox118">
                     <CanGrow>true</CanGrow>
@@ -2291,7 +2291,7 @@
         </TablixRowHierarchy>
         <DataSetName>ReportDataSet</DataSetName>
         <Height>1in</Height>
-        <Width>10in</Width>
+        <Width>7.5in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2329,7 +2329,7 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
-  <Width>10in</Width>
+  <Width>7.5in</Width>
   <Page>
     <PageHeader>
       <Height>1.33in</Height>
@@ -2343,7 +2343,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>COMPANY NAME</Value>
+                  <Value>=Parameters!CompanyName.Value</Value>
                   <Style>
                     <FontSize>14pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -2356,9 +2356,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox17</rd:DefaultName>
-          <Left>2in</Left>
+          <Left>1.1in</Left>
           <Height>0.25in</Height>
-          <Width>6in</Width>
+          <Width>5.3in</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -2393,9 +2393,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox8</rd:DefaultName>
           <Top>0.25in</Top>
-          <Left>2in</Left>
+          <Left>1.1in</Left>
           <Height>0.25in</Height>
-          <Width>6in</Width>
+          <Width>5.3in</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -2411,7 +2411,7 @@
           <Source>Embedded</Source>
           <Value>logo_benline</Value>
           <Sizing>FitProportional</Sizing>
-          <Left>9in</Left>
+          <Left>6.5in</Left>
           <Height>0.6in</Height>
           <Width>1in</Width>
           <ZIndex>2</ZIndex>
@@ -2647,6 +2647,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox20</rd:DefaultName>
+          <Top>0in</Top>
           <Height>0.25in</Height>
           <Width>2.5in</Width>
           <Style>
@@ -2679,7 +2680,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox21</rd:DefaultName>
-          <Left>7.8in</Left>
+          <Top>0in</Top>
+          <Left>5.3in</Left>
           <Height>0.25in</Height>
           <Width>2.2in</Width>
           <ZIndex>1</ZIndex>
@@ -2700,10 +2702,8 @@
         </Border>
       </Style>
     </PageFooter>
-    <PageHeight>8.5in</PageHeight>
-    <PageWidth>11in</PageWidth>
-    <InteractiveHeight>8.5in</InteractiveHeight>
-    <InteractiveWidth>11in</InteractiveWidth>
+    <InteractiveHeight>11in</InteractiveHeight>
+    <InteractiveWidth>8.5in</InteractiveWidth>
     <LeftMargin>0.5in</LeftMargin>
     <RightMargin>0.5in</RightMargin>
     <TopMargin>1in</TopMargin>
